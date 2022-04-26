@@ -4,6 +4,7 @@ import 'package:playflutter/view/page/home/home.dart';
 import 'package:playflutter/view/page/me/me.dart';
 import 'package:playflutter/view/page/square/square.dart';
 import 'package:playflutter/view/page/system/system.dart';
+import 'package:playflutter/theme/theme_icons.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26
@@ -41,16 +42,26 @@ class _MainState extends State<MainPage> {
           }),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
-          new BottomNavigationBarItem(icon: Icon(Icons.home), label: "home"),
           new BottomNavigationBarItem(
-              icon: Icon(Icons.sports_soccer), label: "square"),
+              icon: Icon(ThemeIcons.home_normal),
+              activeIcon: Icon(ThemeIcons.home_press),
+              label: "home"),
           new BottomNavigationBarItem(
-              icon: Icon(Icons.sports_volleyball), label: "system"),
-          new BottomNavigationBarItem(icon: Icon(Icons.person), label: "me"),
+              icon: Icon(ThemeIcons.square_normal),
+              activeIcon: Icon(ThemeIcons.square_press),
+              label: "square"),
+          new BottomNavigationBarItem(
+              icon: Icon(ThemeIcons.system_normal),
+              activeIcon: Icon(ThemeIcons.system_press),
+              label: "system"),
+          new BottomNavigationBarItem(
+              icon: Icon(ThemeIcons.me_normal),
+              activeIcon: Icon(ThemeIcons.me_press),
+              label: "me"),
         ],
         type: BottomNavigationBarType.fixed,
         currentIndex: _tabIndex,
-        iconSize: 24.0,
+        iconSize: 28.0,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         onTap: (index) {
