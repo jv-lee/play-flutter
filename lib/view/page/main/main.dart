@@ -18,8 +18,8 @@ class MainPage extends StatefulWidget {
 
 class _MainState extends State<MainPage> {
   int _tabIndex = 0;
-  var _pageList = [HomePage(), SquarePage(), SystemPage(), MePage()];
-  PageController _pageController = PageController(initialPage: 0);
+  final _pageList = const[HomePage(), SquarePage(), SystemPage(), MePage()];
+  final PageController _pageController = PageController(initialPage: 0);
 
   @override
   void initState() {
@@ -36,25 +36,25 @@ class _MainState extends State<MainPage> {
       body: PageView.builder(
           itemCount: _pageList.length,
           controller: _pageController,
-          physics: NeverScrollableScrollPhysics(), //静止PageView滑动
+          physics: const NeverScrollableScrollPhysics(), //静止PageView滑动
           itemBuilder: (BuildContext context, int index) {
             return _pageList[index];
           }),
       bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          new BottomNavigationBarItem(
+        items: const <BottomNavigationBarItem>[
+           BottomNavigationBarItem(
               icon: Icon(ThemeIcons.home_normal),
               activeIcon: Icon(ThemeIcons.home_press),
               label: "home"),
-          new BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: Icon(ThemeIcons.square_normal),
               activeIcon: Icon(ThemeIcons.square_press),
               label: "square"),
-          new BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: Icon(ThemeIcons.system_normal),
               activeIcon: Icon(ThemeIcons.system_press),
               label: "system"),
-          new BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: Icon(ThemeIcons.me_normal),
               activeIcon: Icon(ThemeIcons.me_press),
               label: "me"),

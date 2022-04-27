@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:playflutter/route/route_names.dart';
+import 'package:playflutter/theme/theme_colors.dart';
+import 'package:playflutter/provider/dark_mode_provider.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26
@@ -18,11 +21,14 @@ class _HomeState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
-      body: Center(
-        child: Text("this is Home"),
-      ),
-    );
+    return Scaffold(
+        body: Center(
+            child: InkWell(
+          child: Text(
+            "this is Home",
+            style: TextStyle(color: Theme.of(context).primaryColorLight),
+          ),
+          onTap: () => Navigator.pushNamed(context, RouteNames.SETTINGS),
+        )));
   }
 }

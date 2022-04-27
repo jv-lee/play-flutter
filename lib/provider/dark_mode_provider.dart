@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:night/night.dart';
-import 'package:night/night.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 /// @author jv.lee
 /// @date 2020/6/1
@@ -13,7 +11,7 @@ class DarkModeProvider with ChangeNotifier {
   static const int MODE_SYSTEM = 3; // 跟随系统
   static const int MODE_UN_SYSTEM = 4; //取消跟随系统
 
-  int darkMode;
+  int darkMode = MODE_SYSTEM;
 
   DarkModeProvider() {
     _init();
