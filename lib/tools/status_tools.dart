@@ -9,14 +9,23 @@ import 'package:flutter/services.dart';
 /// @description 状态栏操作工具
 class StatusTools {
   //android状态栏沉浸式设置
-  static transparentStatusBar() {
+  static transparentStatusBar(Brightness mode) {
     if (Platform.isAndroid) {
-      SystemUiOverlayStyle systemUiOverlayStyle = const SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.dark,
-          systemNavigationBarColor: Colors.white,
-          systemNavigationBarIconBrightness: Brightness.dark);
-      SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+      if (mode == Brightness.dark) {
+        SystemUiOverlayStyle systemUiOverlayStyle = const SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.light,
+            systemNavigationBarColor: Colors.black,
+            systemNavigationBarIconBrightness: Brightness.light);
+        SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+      } else {
+        SystemUiOverlayStyle systemUiOverlayStyle = const SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.dark,
+            systemNavigationBarColor: Colors.white,
+            systemNavigationBarIconBrightness: Brightness.dark);
+        SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+      }
     }
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_colors.dart';
 import 'package:playflutter/provider/dark_mode_provider.dart';
+import 'package:playflutter/tools/status_tools.dart';
 import 'package:playflutter/view/page/main/main.dart';
 import 'package:playflutter/view/page/me/settings.dart';
 import 'package:provider/provider.dart';
@@ -26,12 +27,14 @@ class PlayFlutterApp extends StatelessWidget {
           switch (darkModeProvider.darkMode) {
             case DarkModeProvider.MODE_DARK:
               {
+                StatusTools.transparentStatusBar(Brightness.dark);
                 lightThemeData = ThemeColors.darkThemeData;
                 darkThemeData = ThemeColors.darkThemeData;
               }
               break;
             case DarkModeProvider.MODE_LIGHT:
               {
+                StatusTools.transparentStatusBar(Brightness.light);
                 lightThemeData = ThemeColors.lightThemeData;
                 darkThemeData = ThemeColors.lightThemeData;
               }

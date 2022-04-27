@@ -24,10 +24,6 @@ class _MainState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    //监听第一帧绘制完毕后设置沉浸式状态栏
-    WidgetsBinding.instance.addPostFrameCallback((callback) {
-      StatusTools.transparentStatusBar();
-    });
   }
 
   @override
@@ -69,9 +65,7 @@ class _MainState extends State<MainPage> {
             _tabIndex = index;
             _pageController.jumpToPage(index);
           });
-        },
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.black12,
+        }
       ),
     );
   }
