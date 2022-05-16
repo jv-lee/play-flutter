@@ -18,10 +18,10 @@ class _MeState extends State<MePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
+    return Scaffold(
       body: Center(
-        child: Text("this is Me"),
+        child: Text("this is Me",
+            style: TextStyle(color: Theme.of(context).primaryColorLight)),
       ),
     );
   }

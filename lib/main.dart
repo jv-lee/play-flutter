@@ -18,6 +18,7 @@ class PlayFlutterApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // 监听深色模式主题变换 更改主题配置
     return MultiProvider(
         providers: [ChangeNotifierProvider.value(value: DarkModeProvider())],
         child:

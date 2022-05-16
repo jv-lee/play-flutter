@@ -37,7 +37,7 @@ dependencies:
   screen_ratio_adapter: ^0.0.2 #屏幕适配
   webview_flutter: ^0.3.22+1 #原生webView插件
   shared_preferences: ^0.5.7+3 #本地存储
-  provider: ^4.0.5 #操作provider通知使用主题切换
+  provider: ^6.0.2 #操作provider通知使用主题切换
   flustars: ^0.2.6+1
   path_provider: ^1.6.9 #获取本地缓存目录 使用清除缓存功能
   share: ^0.6.1+1 #分享

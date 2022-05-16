@@ -18,10 +18,10 @@ class _SystemState extends State<SystemPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
+    return Scaffold(
       body: Center(
-        child: Text("this is System"),
+        child: Text("this is System",
+            style: TextStyle(color: Theme.of(context).primaryColorLight)),
       ),
     );
   }

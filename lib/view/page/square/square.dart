@@ -18,10 +18,10 @@ class _SquareState extends State<SquarePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
+    return Scaffold(
       body: Center(
-        child: Text("this is Square"),
+        child: Text("this is Square",
+            style: TextStyle(color: Theme.of(context).primaryColorLight)),
       ),
     );
   }

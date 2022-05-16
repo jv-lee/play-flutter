@@ -1,8 +1,10 @@
 /// @author jv.lee
 /// @date 2022/4/26
 /// @description
+// ignore_for_file: constant_identifier_names
+
 class RouteNames {
-  static const MAIN = "/main";
+  static const Main = "/main";
   static const HOME = "/home";
   static const SQUARE = "/square";
   static const MY_SHARE = "/my_share";
