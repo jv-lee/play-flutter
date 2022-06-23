@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/tools/status_tools.dart';
-import 'package:playflutter/view/page/home/home.dart';
-import 'package:playflutter/view/page/me/me.dart';
-import 'package:playflutter/view/page/square/square.dart';
-import 'package:playflutter/view/page/system/system.dart';
+import 'package:playflutter/view/home/home.dart';
+import 'package:playflutter/view/me/me.dart';
+import 'package:playflutter/view/square/square.dart';
+import 'package:playflutter/view/system/system.dart';
 import 'package:playflutter/theme/theme_icons.dart';
 
 /// @author jv.lee

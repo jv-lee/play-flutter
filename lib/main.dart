@@ -3,10 +3,10 @@ import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_colors.dart';
 import 'package:playflutter/provider/dark_mode_provider.dart';
 import 'package:playflutter/tools/status_tools.dart';
-import 'package:playflutter/view/page/main/main.dart';
-import 'package:playflutter/view/page/me/settings.dart';
+import 'package:playflutter/view/home/viewmodel/home_viewmodel.dart';
+import 'package:playflutter/view/main.dart';
+import 'package:playflutter/view/me/settings.dart';
 import 'package:provider/provider.dart';
-import 'package:night/night.dart';
 
 void main() {
   runApp(const PlayFlutterApp());
@@ -20,7 +20,12 @@ class PlayFlutterApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // 监听深色模式主题变换 更改主题配置
     return MultiProvider(
-        providers: [ChangeNotifierProvider.value(value: DarkModeProvider())],
+        providers: [
+          // 深色模式状态监听
+          ChangeNotifierProvider.value(value: DarkModeProvider()),
+          // 项目页面viewModel注册监听
+          ChangeNotifierProvider(create: (context) => HomeViewModel())
+        ],
         child:
             Consumer<DarkModeProvider>(builder: (context, darkModeProvider, _) {
           ThemeData lightThemeData;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/route/route_names.dart';
-import 'package:playflutter/theme/theme_colors.dart';
-import 'package:playflutter/provider/dark_mode_provider.dart';
+import 'package:playflutter/view/home/viewmodel/home_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26
@@ -24,11 +24,14 @@ class _HomeState extends State<HomePage> {
     return Scaffold(
         body: Center(
             child: InkWell(
-          child: Text(
-            "this is Home",
-            style: TextStyle(color: Theme.of(context).primaryColorLight),
-          ),
-          onTap: () => Navigator.pushNamed(context, RouteNames.SETTINGS),
-        )));
+      child: Text(
+        "this is Home",
+        style: TextStyle(color: Theme.of(context).primaryColorLight),
+      ),
+      onTap: () => {
+        // Navigator.pushNamed(context, RouteNames.SETTINGS)
+        context.read<HomeViewModel>().requestHomeData()
+      },
+    )));
   }
 }
