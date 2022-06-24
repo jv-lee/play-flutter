@@ -28,6 +28,7 @@ class _MainState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       body: PageView.builder(
           itemCount: _pageList.length,
           controller: _pageController,

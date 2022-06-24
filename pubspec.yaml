@@ -31,18 +31,19 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^0.1.2 #icon库
-  dio: ^3.0.9 #网络库
+  dio: ^4.0.6 #网络库
   toast: ^0.1.5 #toast提示
   flutter_swiper: ^1.1.6 #banner
-  screen_ratio_adapter: ^0.0.2 #屏幕适配
-  webview_flutter: ^0.3.22+1 #原生webView插件
-  shared_preferences: ^0.5.7+3 #本地存储
+  screen_ratio_adapter: ^3.0.0 #屏幕适配
+  webview_flutter: ^3.0.4 #原生webView插件
+  shared_preferences: ^2.0.15 #本地存储
   provider: ^6.0.2 #操作provider通知使用主题切换
-  flustars: ^0.2.6+1
-  path_provider: ^1.6.9 #获取本地缓存目录 使用清除缓存功能
-  share: ^0.6.1+1 #分享
+  flustars: ^2.0.1
+  path_provider: ^2.0.11 #获取本地缓存目录 使用清除缓存功能
+  share: ^2.0.4 #分享
   night: ^0.0.3 #深色模式适配
-  cached_network_image: ^2.2.0+1 #网络图片加载缓存
+  cached_network_image: ^3.2.1 #网络图片加载缓存
+  html: ^0.14.0+3 #html字符串解析
 
 dev_dependencies:
   flutter_test:

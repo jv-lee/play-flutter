@@ -16,7 +16,8 @@ class HomeModel {
         return bannerData;
       }
     }
-    throw HttpException(response.statusMessage);
+    throw HttpException(
+        response.statusMessage ?? "getBannerDataAsync http exception.");
   }
 
   Future<ContentData> getContentDataAsync(int page) async {
@@ -28,6 +29,7 @@ class HomeModel {
         return contentData;
       }
     }
-    throw HttpException(response.statusMessage);
+    throw HttpException(
+        response.statusMessage ?? "getContentDataAsync http exception.");
   }
 }
