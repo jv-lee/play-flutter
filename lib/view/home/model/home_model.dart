@@ -4,6 +4,9 @@ import 'package:playflutter/entity/banner.dart';
 import 'package:playflutter/entity/content.dart';
 import 'package:playflutter/http/http_manager.dart';
 
+/// @author jv.lee
+/// @date 2022/6/23
+/// @description home页面数据处理类
 class HomeModel {
   Future<BannerData> getBannerDataAsync() async {
     var response = await HttpManager.getInstance().dio.get("/banner/json");

@@ -1,14 +1,17 @@
+import 'package:playflutter/tools/paging/paging_data.dart';
+
 class ContentData {
   ContentData({
     required this.data,
     required this.errorCode,
     required this.errorMsg,
   });
+
   late final ContentDataPage data;
   late final int errorCode;
   late final String errorMsg;
-  
-  ContentData.fromJson(Map<String, dynamic> json){
+
+  ContentData.fromJson(Map<String, dynamic> json) {
     data = ContentDataPage.fromJson(json['data']);
     errorCode = json['errorCode'];
     errorMsg = json['errorMsg'];
@@ -23,7 +26,7 @@ class ContentData {
   }
 }
 
-class ContentDataPage {
+class ContentDataPage extends PagingData<Content> {
   ContentDataPage({
     required this.curPage,
     required this.datas,
@@ -33,6 +36,7 @@ class ContentDataPage {
     required this.size,
     required this.total,
   });
+
   late final int curPage;
   late final List<Content> datas;
   late final int offset;
@@ -40,10 +44,10 @@ class ContentDataPage {
   late final int pageCount;
   late final int size;
   late final int total;
-  
-  ContentDataPage.fromJson(Map<String, dynamic> json){
+
+  ContentDataPage.fromJson(Map<String, dynamic> json) {
     curPage = json['curPage'];
-    datas = List.from(json['datas']).map((e)=>Content.fromJson(e)).toList();
+    datas = List.from(json['datas']).map((e) => Content.fromJson(e)).toList();
     offset = json['offset'];
     over = json['over'];
     pageCount = json['pageCount'];
@@ -52,15 +56,30 @@ class ContentDataPage {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['curPage'] = curPage;
-    _data['datas'] = datas.map((e)=>e.toJson()).toList();
-    _data['offset'] = offset;
-    _data['over'] = over;
-    _data['pageCount'] = pageCount;
-    _data['size'] = size;
-    _data['total'] = total;
-    return _data;
+    final data = <String, dynamic>{};
+    data['curPage'] = curPage;
+    data['datas'] = datas.map((e) => e.toJson()).toList();
+    data['offset'] = offset;
+    data['over'] = over;
+    data['pageCount'] = pageCount;
+    data['size'] = size;
+    data['total'] = total;
+    return data;
+  }
+
+  @override
+  List<Content> getDataSource() {
+    return datas;
+  }
+
+  @override
+  int getPageNumber() {
+    return curPage;
+  }
+
+  @override
+  int getPageTotalNumber() {
+    return pageCount;
   }
 }
 
@@ -100,6 +119,7 @@ class Content {
     required this.visible,
     required this.zan,
   });
+
   late final String apkLink;
   late final int audit;
   late final String author;
@@ -133,8 +153,8 @@ class Content {
   late final int userId;
   late final int visible;
   late final int zan;
-  
-  Content.fromJson(Map<String, dynamic> json){
+
+  Content.fromJson(Map<String, dynamic> json) {
     apkLink = json['apkLink'];
     audit = json['audit'];
     author = json['author'];
@@ -162,7 +182,7 @@ class Content {
     shareUser = json['shareUser'];
     superChapterId = json['superChapterId'];
     superChapterName = json['superChapterName'];
-    tags = List.from(json['tags']).map((e)=>Tags.fromJson(e)).toList();
+    tags = List.from(json['tags']).map((e) => Tags.fromJson(e)).toList();
     title = json['title'];
     type = json['type'];
     userId = json['userId'];
@@ -199,7 +219,7 @@ class Content {
     _data['shareUser'] = shareUser;
     _data['superChapterId'] = superChapterId;
     _data['superChapterName'] = superChapterName;
-    _data['tags'] = tags.map((e)=>e.toJson()).toList();
+    _data['tags'] = tags.map((e) => e.toJson()).toList();
     _data['title'] = title;
     _data['type'] = type;
     _data['userId'] = userId;
@@ -214,10 +234,11 @@ class Tags {
     required this.name,
     required this.url,
   });
+
   late final String name;
   late final String url;
-  
-  Tags.fromJson(Map<String, dynamic> json){
+
+  Tags.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     url = json['url'];
   }

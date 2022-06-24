@@ -4,12 +4,12 @@ class BannerData {
     required this.errorCode,
     required this.errorMsg,
   });
-  late final List<Banner> data;
+  late final List<BannerItem> data;
   late final int errorCode;
   late final String errorMsg;
   
   BannerData.fromJson(Map<String, dynamic> json){
-    data = List.from(json['data']).map((e)=>Banner.fromJson(e)).toList();
+    data = List.from(json['data']).map((e)=>BannerItem.fromJson(e)).toList();
     errorCode = json['errorCode'];
     errorMsg = json['errorMsg'];
   }
@@ -23,8 +23,8 @@ class BannerData {
   }
 }
 
-class Banner {
-  Banner({
+class BannerItem {
+  BannerItem({
     required this.desc,
     required this.id,
     required this.imagePath,
@@ -42,8 +42,8 @@ class Banner {
   late final String title;
   late final int type;
   late final String url;
-  
-  Banner.fromJson(Map<String, dynamic> json){
+
+  BannerItem.fromJson(Map<String, dynamic> json){
     desc = json['desc'];
     id = json['id'];
     imagePath = json['imagePath'];
