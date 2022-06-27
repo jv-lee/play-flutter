@@ -63,3 +63,4 @@ flutter:
   assets:
     - assets/svg/ic_official.svg
     - assets/svg/ic_project.svg
+    - assets/svg/ic_search.svg

@@ -1,3 +1,5 @@
+import 'package:playflutter/theme/theme_svg_paths.dart';
+
 /// @author jv.lee
 /// @date 2022/6/27
 /// @description
@@ -11,9 +13,9 @@ class HomeCategory {
   static List<HomeCategory> getHomeCategory() {
     var list = <HomeCategory>[];
     list.add(HomeCategory(
-        name: "公众号", iconRes: "assets/svg/ic_official.svg", link: ""));
+        name: "公众号", iconRes: ThemeSvgPaths.svg_official, link: ""));
     list.add(HomeCategory(
-        name: "项目", iconRes: "assets/svg/ic_project.svg", link: ""));
+        name: "项目", iconRes: ThemeSvgPaths.svg_project, link: ""));
     return list;
   }
 }

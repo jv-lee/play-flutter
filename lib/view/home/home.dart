@@ -3,10 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
+import 'package:playflutter/theme/theme_svg_paths.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
+import 'package:playflutter/tools/status_tools.dart';
 import 'package:playflutter/view/home/viewmodel/home_viewmodel.dart';
-import 'package:playflutter/widget/common/category_item.dart';
-import 'package:playflutter/widget/common/content_item.dart';
+import 'package:playflutter/widget/common/app_gradient_text_bar.dart';
+import 'package:playflutter/widget/common/app_header_container.dart';
+import 'package:playflutter/widget/common/app_header_spacer.dart';
+import 'package:playflutter/widget/item/category_item.dart';
+import 'package:playflutter/widget/item/content_item.dart';
 import 'package:playflutter/widget/status/super_list_view.dart';
 import 'package:provider/provider.dart';
 
@@ -35,53 +40,71 @@ class _HomeState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return RefreshIndicator(
-        color: Theme.of(context).primaryColorLight,
-        backgroundColor: Theme.of(context).cardColor,
-        onRefresh: () async {
-          context.read<HomeViewModel>().requestHomeData(LoadStatus.refresh);
-        },
-        child: SuperListView(
-          statusController:
-              Provider.of<HomeViewModel>(context).paging.statusController,
-          itemCount: Provider.of<HomeViewModel>(context).paging.data.length,
-          onPageReload: () {
-            context.read<HomeViewModel>().requestHomeData(LoadStatus.refresh);
-          },
-          onItemReload: () {
-            context.read<HomeViewModel>().requestHomeData(LoadStatus.reload);
-          },
-          onLoadMore: () {
-            context.read<HomeViewModel>().requestHomeData(LoadStatus.loadMore);
-          },
-          headerChildren: [buildBanner(), buildCategory()],
-          itemBuilder: (BuildContext context, int index) {
-            var item = Provider.of<HomeViewModel>(context).paging.data[index];
-            return ContentItem(content: item);
-          },
-        ));
+    var viewModel = context.read<HomeViewModel>();
+    return Stack(
+      children: [
+        RefreshIndicator(
+            color: Theme.of(context).primaryColorLight,
+            backgroundColor: Theme.of(context).cardColor,
+            onRefresh: () async {
+              viewModel.requestHomeData(LoadStatus.refresh);
+            },
+            child: SuperListView(
+              statusController:
+                  Provider.of<HomeViewModel>(context).paging.statusController,
+              itemCount: Provider.of<HomeViewModel>(context).paging.data.length,
+              onPageReload: () {
+                viewModel.requestHomeData(LoadStatus.refresh);
+              },
+              onItemReload: () {
+                viewModel.requestHomeData(LoadStatus.reload);
+              },
+              onLoadMore: () {
+                viewModel.requestHomeData(LoadStatus.loadMore);
+              },
+              headerChildren: [
+                const AppHeaderSpacer(),
+                buildBanner(),
+                buildCategory()
+              ],
+              itemBuilder: (BuildContext context, int index) {
+                var item =
+                    Provider.of<HomeViewModel>(context).paging.data[index];
+                return ContentItem(content: item);
+              },
+            )),
+        AppHeaderContainer(
+            child: AppGradientTextBar(
+          title: ThemeStrings.home_header_text,
+          svgPath: ThemeSvgPaths.svg_search,
+        ))
+      ],
+    );
   }
 
   Widget buildBanner() {
     var bannerList = Provider.of<HomeViewModel>(context).bannerList;
-    return SizedBox(
-      height: ThemeDimens.banner_height,
-      child: bannerList.isEmpty
-          ? Center(
-              child: Text(
-                ThemeStrings.loading,
-                style: TextStyle(color: Theme.of(context).primaryColorLight),
-              ),
-            )
-          : Swiper(
-              autoplay: true,
-              duration: 300,
-              itemCount: bannerList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return CachedNetworkImage(
+    if (bannerList.isEmpty) {
+      return Container();
+    } else {
+      return SizedBox(
+        height: ThemeDimens.banner_height,
+        child: Swiper(
+            viewportFraction: 0.8,
+            autoplay: true,
+            duration: 300,
+            itemCount: bannerList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                        ThemeDimens.offset_radius_medium)),
+                child: CachedNetworkImage(
                   imageUrl: bannerList[index].imagePath,
                   imageBuilder: (context, imageProvider) => Container(
                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                          ThemeDimens.offset_radius_medium),
                       image: DecorationImage(
                           image: imageProvider, fit: BoxFit.cover),
                     ),
@@ -90,15 +113,17 @@ class _HomeState extends State<HomePage>
                     color: Theme.of(context).splashColor,
                   ),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
-                );
-              },
-              pagination: const SwiperPagination(
-                  builder: DotSwiperPaginationBuilder(
-                      activeSize: 6,
-                      size: 6,
-                      color: Colors.black54,
-                      activeColor: Colors.white))),
-    );
+                ),
+              );
+            },
+            pagination: const SwiperPagination(
+                builder: DotSwiperPaginationBuilder(
+                    activeSize: 6,
+                    size: 6,
+                    color: Colors.grey,
+                    activeColor: Colors.white))),
+      );
+    }
   }
 
   Widget buildCategory() {

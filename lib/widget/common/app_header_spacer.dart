@@ -1,0 +1,24 @@
+import 'package:flutter/cupertino.dart';
+import 'package:playflutter/theme/theme_dimens.dart';
+import 'package:playflutter/tools/status_tools.dart';
+
+/// @author jv.lee
+/// @date 2022/6/27
+/// @description
+class AppHeaderSpacer extends StatefulWidget {
+  const AppHeaderSpacer({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return AppHeaderSpacerState();
+  }
+}
+
+class AppHeaderSpacerState extends State<AppHeaderSpacer> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: ThemeDimens.toolbar_height + StatusTools.getStatusHeight(),
+    );
+  }
+}
