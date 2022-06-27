@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/entity/banner.dart';
 import 'package:playflutter/entity/content.dart';
+import 'package:playflutter/entity/home_category.dart';
 import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
@@ -17,6 +18,7 @@ class HomeViewModel extends ViewModel {
 
   late Paging<Content> paging;
   List<BannerItem> bannerList = [];
+  List<HomeCategory> categoryList = [];
 
   @override
   void bindView(State<dynamic> viewState) {
@@ -40,6 +42,9 @@ class HomeViewModel extends ViewModel {
           .catchError((error) => paging.submitFailed());
       bannerList.clear();
       bannerList.addAll(banner.data);
+
+      categoryList.clear();
+      categoryList.addAll(HomeCategory.getHomeCategory());
     }
 
     // request content list data.

@@ -1,8 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:playflutter/theme/theme_dimens.dart';
+import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/home/viewmodel/home_viewmodel.dart';
+import 'package:playflutter/widget/common/category_item.dart';
 import 'package:playflutter/widget/common/content_item.dart';
 import 'package:playflutter/widget/status/super_list_view.dart';
 import 'package:provider/provider.dart';
@@ -51,7 +54,7 @@ class _HomeState extends State<HomePage>
           onLoadMore: () {
             context.read<HomeViewModel>().requestHomeData(LoadStatus.loadMore);
           },
-          headerChildren: [buildBanner()],
+          headerChildren: [buildBanner(), buildCategory()],
           itemBuilder: (BuildContext context, int index) {
             var item = Provider.of<HomeViewModel>(context).paging.data[index];
             return ContentItem(content: item);
@@ -62,11 +65,11 @@ class _HomeState extends State<HomePage>
   Widget buildBanner() {
     var bannerList = Provider.of<HomeViewModel>(context).bannerList;
     return SizedBox(
-      height: 180,
+      height: ThemeDimens.banner_height,
       child: bannerList.isEmpty
           ? Center(
               child: Text(
-                '加载中...',
+                ThemeStrings.loading,
                 style: TextStyle(color: Theme.of(context).primaryColorLight),
               ),
             )
@@ -96,5 +99,24 @@ class _HomeState extends State<HomePage>
                       color: Colors.black54,
                       activeColor: Colors.white))),
     );
+  }
+
+  Widget buildCategory() {
+    var categoryList = Provider.of<HomeViewModel>(context).categoryList;
+    if (categoryList.isEmpty) {
+      return Container();
+    } else {
+      return SizedBox(
+        height: ThemeDimens.category_layout_height,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: categoryList.length,
+            shrinkWrap: true,
+            itemBuilder: (BuildContext context, int index) {
+              var item = categoryList[index];
+              return CategoryItem(category: item);
+            }),
+      );
+    }
   }
 }
