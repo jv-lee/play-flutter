@@ -1,3 +1,6 @@
+/// @author jv.lee
+/// @date 2022/6/27
+/// @description 首页banner数据实体
 class BannerData {
   BannerData({
     required this.data,

@@ -4,7 +4,7 @@ import 'package:playflutter/tools/status_tools.dart';
 
 /// @author jv.lee
 /// @date 2022/6/27
-/// @description
+/// @description app通用头部间隔占位元素
 class AppHeaderSpacer extends StatefulWidget {
   const AppHeaderSpacer({Key? key}) : super(key: key);
 

@@ -25,8 +25,9 @@ class SuperListView extends StatefulWidget {
   final int itemMoreCount = 1;
   final bool isLoadMore;
 
-  SuperListView(
-      {this.scrollController,
+  const SuperListView(
+      {Key? key,
+      this.scrollController,
       required this.statusController,
       required this.itemCount,
       this.onPageReload,
@@ -42,7 +43,7 @@ class SuperListView extends StatefulWidget {
       this.isLoadMore = false,
       this.headerChildren = const <Widget>[],
       this.footerChildren = const <Widget>[]})
-      : super();
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {

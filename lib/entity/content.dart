@@ -3,6 +3,9 @@ import 'package:html/parser.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/tools/time_tools.dart';
 
+/// @author jv.lee
+/// @date 2022/6/27
+/// @description 项目通用内容实体
 class ContentData {
   ContentData({
     required this.data,

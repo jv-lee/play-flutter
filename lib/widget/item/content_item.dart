@@ -4,11 +4,11 @@ import 'package:playflutter/theme/theme_dimens.dart';
 
 /// @author jv.lee
 /// @date 2022/6/24
-/// @description
+/// @description 全局通用内容item
 class ContentItem extends StatefulWidget {
   final Content content;
 
-  ContentItem({required this.content});
+  const ContentItem({Key? key, required this.content}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {

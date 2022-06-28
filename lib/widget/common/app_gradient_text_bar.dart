@@ -1,16 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 
 /// @author jv.lee
 /// @date 2022/6/27
-/// @description
+/// @description app通用title控件 带导航按钮
 class AppGradientTextBar extends StatefulWidget {
   final String title;
   final String svgPath;
 
-  AppGradientTextBar({required this.title, required this.svgPath});
+  const AppGradientTextBar(
+      {Key? key, required this.title, required this.svgPath})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {

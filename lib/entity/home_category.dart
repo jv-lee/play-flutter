@@ -2,7 +2,7 @@ import 'package:playflutter/theme/theme_svg_paths.dart';
 
 /// @author jv.lee
 /// @date 2022/6/27
-/// @description
+/// @description 首页分类本地实体
 class HomeCategory {
   late final String name;
   late final String iconRes;

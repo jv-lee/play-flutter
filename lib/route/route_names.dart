@@ -1,8 +1,8 @@
-/// @author jv.lee
-/// @date 2022/4/26
-/// @description
 // ignore_for_file: constant_identifier_names
 
+/// @author jv.lee
+/// @date 2022/4/26
+/// @description 路由名称常量类
 class RouteNames {
   static const Main = "/main";
   static const HOME = "/home";

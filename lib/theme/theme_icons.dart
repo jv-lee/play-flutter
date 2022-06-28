@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 
 /// @author jv.lee
 /// @date 2020/5/8
-/// @description
+/// @description 项目主题icon
 class ThemeIcons {
   static const IconData home_normal = IconData(0xe7d4, fontFamily: 'ThemeIcons');
   static const IconData home_press = IconData(0xe7d8, fontFamily: 'ThemeIcons');

@@ -2,7 +2,7 @@
 
 /// @author jv.lee
 /// @date 2022/6/24
-/// @description
+/// @description 项目主题数值参数
 class ThemeDimens {
   // 全局通用组件数值
   static const double toolbar_height = 56;

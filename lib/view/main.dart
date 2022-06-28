@@ -7,7 +7,7 @@ import 'package:playflutter/theme/theme_icons.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26
-/// @description
+/// @description 首页容器类
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 

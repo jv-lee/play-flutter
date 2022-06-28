@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 /// @author jv.lee
 /// @date 2020/6/1
-/// @description
+/// @description 深色模式内容监听器工具类
 class DarkModeProvider with ChangeNotifier {
   static const int MODE_LIGHT = 1; // 亮色模式
   static const int MODE_DARK = 2; // 深色模式

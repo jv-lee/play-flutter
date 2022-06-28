@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 /// @author jv.lee
 /// @date 2020/5/8
-/// @description
+/// @description 网络请求封装工具类
 class HttpManager {
   HttpManager._internal();
 

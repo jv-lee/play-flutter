@@ -3,7 +3,7 @@ import 'package:playflutter/widget/status/status.dart';
 
 /// @author jv.lee
 /// @date 2020/5/14
-/// @description
+/// @description 分页加载状态控制器
 class StatusController extends ChangeNotifier {
   StatusController({
     this.pageStatus = PageStatus.completed,

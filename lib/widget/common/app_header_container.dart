@@ -4,12 +4,14 @@ import 'package:playflutter/tools/status_tools.dart';
 
 /// @author jv.lee
 /// @date 2022/6/27
-/// @description
+/// @description app通用头部容器（可带模糊背景渐变）
 class AppHeaderContainer extends StatefulWidget {
   final Widget child;
   final bool headerBrush;
 
-  AppHeaderContainer({required this.child, this.headerBrush = true});
+  const AppHeaderContainer(
+      {Key? key, required this.child, this.headerBrush = true})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {

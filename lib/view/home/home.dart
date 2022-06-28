@@ -5,7 +5,6 @@ import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/theme/theme_svg_paths.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
-import 'package:playflutter/tools/status_tools.dart';
 import 'package:playflutter/view/home/viewmodel/home_viewmodel.dart';
 import 'package:playflutter/widget/common/app_gradient_text_bar.dart';
 import 'package:playflutter/widget/common/app_header_container.dart';
@@ -17,7 +16,7 @@ import 'package:provider/provider.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26
-/// @description 首页homePage
+/// @description 首页homeTab
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -73,7 +72,7 @@ class _HomeState extends State<HomePage>
                 return ContentItem(content: item);
               },
             )),
-        AppHeaderContainer(
+        const AppHeaderContainer(
             child: AppGradientTextBar(
           title: ThemeStrings.home_header_text,
           svgPath: ThemeSvgPaths.svg_search,

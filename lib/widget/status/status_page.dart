@@ -4,7 +4,7 @@ import 'package:playflutter/widget/status/status.dart';
 
 /// @author jv.lee
 /// @date 2020/5/12
-/// @description
+/// @description 状态控制页面容器
 class StatusPage extends StatefulWidget {
   final PageStatus? status;
   final Widget? child;
@@ -13,13 +13,13 @@ class StatusPage extends StatefulWidget {
   final Widget? error;
   final Function? reLoadFun;
 
-  StatusPage(
-      {this.status,
+  const StatusPage(
+      {Key? key, this.status,
       this.child,
       this.loading,
       this.empty,
       this.error,
-      this.reLoadFun});
+      this.reLoadFun}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {

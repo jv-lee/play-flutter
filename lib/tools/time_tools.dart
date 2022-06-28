@@ -1,10 +1,9 @@
+// ignore_for_file: constant_identifier_names
 import 'package:flustars/flustars.dart';
 
 /// @author jv.lee
 /// @date 2022/6/24
-/// @description
-// ignore_for_file: constant_identifier_names
-
+/// @description 时间工具
 class TimeTools {
   /// 分与毫秒的倍数
   static const int MIN = 60000;

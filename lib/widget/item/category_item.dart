@@ -3,14 +3,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/entity/home_category.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 
-
 /// @author jv.lee
 /// @date 2022/6/27
-/// @description 
+/// @description 首页分类item
 class CategoryItem extends StatefulWidget {
   final HomeCategory category;
 
-  CategoryItem({required this.category});
+  const CategoryItem({Key? key, required this.category}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -30,8 +29,8 @@ class CategoryItemState extends State<CategoryItem> {
             right: ThemeDimens.offset_medium),
         child: Card(
             shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(
-                    ThemeDimens.offset_radius_medium))),
+                borderRadius: BorderRadius.all(
+                    Radius.circular(ThemeDimens.offset_radius_medium))),
             color: Theme.of(context).cardColor,
             child: Padding(
               padding: const EdgeInsets.only(
@@ -45,12 +44,12 @@ class CategoryItemState extends State<CategoryItem> {
                     child: SvgPicture.asset(widget.category.iconRes),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
-                        top: ThemeDimens.offset_medium),
+                    padding:
+                        const EdgeInsets.only(top: ThemeDimens.offset_medium),
                     child: Text(
                       widget.category.name,
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColorDark),
+                      style:
+                          TextStyle(color: Theme.of(context).primaryColorDark),
                     ),
                   )
                 ],

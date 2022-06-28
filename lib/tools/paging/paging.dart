@@ -1,7 +1,6 @@
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/widget/status/status.dart';
-
-import '../../widget/status/status_controller.dart';
+import 'package:playflutter/widget/status/status_controller.dart';
 
 /// @author jv.lee
 /// @date 2020/5/14

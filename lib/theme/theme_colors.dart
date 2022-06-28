@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 /// @author jv.lee
 /// @date 2022/4/27
-/// @description
-
+/// @description 项目主题颜色
 class ThemeColors {
   static final AppColors darkColorPalette = AppColors(
       const Color(0xFFD3D3D3),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26
-/// @description
+/// @description 主页广场tab
 class SquarePage extends StatefulWidget {
   const SquarePage({super.key});
 
