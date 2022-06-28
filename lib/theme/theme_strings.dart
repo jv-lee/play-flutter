@@ -8,4 +8,7 @@ class ThemeStrings {
   static const String loading = "loading...";
   static const String official_category_name = "公众号";
   static const String project_category_name = "项目";
+
+  static const String menu_collect = "收藏";
+  static const String menu_share = "分享";
 }

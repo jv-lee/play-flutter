@@ -48,7 +48,6 @@ class _HomeState extends State<HomePage>
       children: [
         RefreshIndicator(
             color: Theme.of(context).primaryColorLight,
-            backgroundColor: Theme.of(context).cardColor,
             onRefresh: () async {
               viewModel.requestHomeData(LoadStatus.refresh);
             },
