@@ -4,25 +4,25 @@
 /// @date 2022/4/26
 /// @description 路由名称常量类
 class RouteNames {
-  static const Main = "/main";
-  static const HOME = "/home";
-  static const SQUARE = "/square";
-  static const MY_SHARE = "/my_share";
-  static const CREATE_SHARE = "/create_share";
-  static const SYSTEM = "/system";
-  static const SYSTEM_CONTENT_TAB = "/system_content_tab";
-  static const ME = "/me";
-  static const COIN = "/coin";
-  static const COIN_RANK = "/coin_rank";
-  static const COLLECT = "/collect";
-  static const SETTINGS = "/settings";
-  static const TODO = "/todo";
-  static const CREATE_TODO = "/create_todo";
-  static const OFFICIAL = "/official";
-  static const PROJECT = "/project";
-  static const SEARCH = "/search";
-  static const SEARCH_RESULT = "/search_result";
-  static const DETAILS = "/details";
-  static const LOGIN = "/login";
-  static const REGISTER = "/register";
+  static const main = "/main";
+  static const home = "/home";
+  static const square = "/square";
+  static const my_share = "/my_share";
+  static const create_share = "/create_share";
+  static const system = "/system";
+  static const system_content_tab = "/system_content_tab";
+  static const me = "/me";
+  static const coin = "/coin";
+  static const coin_rank = "/coin_rank";
+  static const collect = "/collect";
+  static const settings = "/settings";
+  static const todo = "/todo";
+  static const create_todo = "/create_todo";
+  static const official = "/official";
+  static const project = "/project";
+  static const search = "/search";
+  static const search_result = "/search_result";
+  static const details = "/details";
+  static const login = "/login";
+  static const register = "/register";
 }

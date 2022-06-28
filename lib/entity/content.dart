@@ -1,7 +1,4 @@
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:html/parser.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
-import 'package:playflutter/tools/time_tools.dart';
 
 /// @author jv.lee
 /// @date 2022/6/27
@@ -232,26 +229,6 @@ class Content {
     _data['visible'] = visible;
     _data['zan'] = zan;
     return _data;
-  }
-
-  String getTitle() => parse(title).body.innerHtml;
-
-  String getDescription() => parse(desc).body.innerHtml;
-
-  String getAuthor() => author.isEmpty ? shareUser : author;
-
-  String getDateFormat() => TimeTools.getChineseTimeMill(publishTime);
-
-  String getCategory() {
-    if (superChapterName.isNotEmpty && chapterName.isNotEmpty) {
-      return "$superChapterName / $chapterName";
-    } else if (superChapterName.isNotEmpty) {
-      return superChapterName;
-    } else if (chapterName.isNotEmpty) {
-      return chapterName;
-    } else {
-      return "";
-    }
   }
 }
 

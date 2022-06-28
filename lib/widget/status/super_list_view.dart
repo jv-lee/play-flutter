@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:playflutter/extensions/extensions.dart';
 import 'package:playflutter/widget/status/status.dart';
 import 'package:playflutter/widget/status/status_controller.dart';
 
@@ -68,9 +69,7 @@ class SuperListViewState extends State<SuperListView> {
       if (_controller.position.pixels == _controller.position.maxScrollExtent) {
         if (widget.statusController.itemStatus != ItemStatus.end &&
             widget.statusController.itemStatus != ItemStatus.error) {
-          if (widget.onLoadMore != null) {
-            widget.onLoadMore!();
-          }
+          widget.onLoadMore.checkNullInvoke();
         }
       }
     });
@@ -146,10 +145,8 @@ class SuperListViewState extends State<SuperListView> {
               style: TextStyle(fontSize: _fontSize),
             ),
             onPressed: () {
-              if (widget.onPageReload != null) {
-                widget.statusController.pageLoading().itemEmpty();
-                widget.onPageReload!();
-              }
+              widget.statusController.pageLoading().itemEmpty();
+              widget.onPageReload.checkNullInvoke();
             },
           )
         ],
@@ -270,10 +267,8 @@ class SuperListViewState extends State<SuperListView> {
                 ),
               ),
               onTapDown: (details) {
-                if (widget.onItemReload != null) {
-                  widget.statusController.itemLoading();
-                  widget.onItemReload!();
-                }
+                widget.statusController.itemLoading();
+                widget.onItemReload.checkNullInvoke();
               },
             )
           ],

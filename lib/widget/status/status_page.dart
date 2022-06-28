@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:playflutter/extensions/extensions.dart';
 import 'package:playflutter/widget/status/status.dart';
 
 /// @author jv.lee
@@ -14,12 +15,14 @@ class StatusPage extends StatefulWidget {
   final Function? reLoadFun;
 
   const StatusPage(
-      {Key? key, this.status,
+      {Key? key,
+      this.status,
       this.child,
       this.loading,
       this.empty,
       this.error,
-      this.reLoadFun}) : super(key: key);
+      this.reLoadFun})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -76,9 +79,7 @@ class StatusPageState extends State<StatusPage> {
               style: TextStyle(fontSize: 16),
             ),
             onPressed: () {
-              if(widget.reLoadFun != null){
-                widget.reLoadFun!();
-              }
+              widget.reLoadFun.checkNullInvoke();
             },
           )
         ],

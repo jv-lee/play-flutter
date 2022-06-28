@@ -6,4 +6,6 @@
 class ThemeStrings {
   static const String home_header_text = "Welcome to Play Flutter";
   static const String loading = "loading...";
+  static const String official_category_name = "公众号";
+  static const String project_category_name = "项目";
 }

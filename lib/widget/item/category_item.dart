@@ -8,8 +8,10 @@ import 'package:playflutter/theme/theme_dimens.dart';
 /// @description 首页分类item
 class CategoryItem extends StatefulWidget {
   final HomeCategory category;
+  final Function(HomeCategory)? onItemClick;
 
-  const CategoryItem({Key? key, required this.category}) : super(key: key);
+  const CategoryItem({Key? key, required this.category, this.onItemClick})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -32,27 +34,37 @@ class CategoryItemState extends State<CategoryItem> {
                 borderRadius: BorderRadius.all(
                     Radius.circular(ThemeDimens.offset_radius_medium))),
             color: Theme.of(context).cardColor,
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  top: ThemeDimens.offset_medium,
-                  bottom: ThemeDimens.offset_medium),
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: SvgPicture.asset(widget.category.iconRes),
+            child: Material(
+              child: InkWell(
+                onTap: () => {
+                  if (widget.onItemClick != null)
+                    {widget.onItemClick!(widget.category)}
+                },
+                borderRadius:
+                    BorderRadius.circular(ThemeDimens.offset_radius_medium),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      top: ThemeDimens.offset_medium,
+                      bottom: ThemeDimens.offset_medium),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: SvgPicture.asset(widget.category.iconRes),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: ThemeDimens.offset_medium),
+                        child: Text(
+                          widget.category.name,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColorDark),
+                        ),
+                      )
+                    ],
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: ThemeDimens.offset_medium),
-                    child: Text(
-                      widget.category.name,
-                      style:
-                          TextStyle(color: Theme.of(context).primaryColorDark),
-                    ),
-                  )
-                ],
+                ),
               ),
             )),
       ),

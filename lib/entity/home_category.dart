@@ -1,3 +1,5 @@
+import 'package:playflutter/route/route_names.dart';
+import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/theme/theme_svg_paths.dart';
 
 /// @author jv.lee
@@ -13,9 +15,13 @@ class HomeCategory {
   static List<HomeCategory> getHomeCategory() {
     var list = <HomeCategory>[];
     list.add(HomeCategory(
-        name: "公众号", iconRes: ThemeSvgPaths.svg_official, link: ""));
+        name: ThemeStrings.official_category_name,
+        iconRes: ThemeSvgPaths.svg_official,
+        link: RouteNames.official));
     list.add(HomeCategory(
-        name: "项目", iconRes: ThemeSvgPaths.svg_project, link: ""));
+        name: ThemeStrings.project_category_name,
+        iconRes: ThemeSvgPaths.svg_project,
+        link: RouteNames.project));
     return list;
   }
 }

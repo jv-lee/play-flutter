@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:playflutter/entity/details.dart';
+import 'package:playflutter/provider/dark_mode_provider.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_colors.dart';
-import 'package:playflutter/provider/dark_mode_provider.dart';
 import 'package:playflutter/tools/status_tools.dart';
+import 'package:playflutter/view/details/details.dart';
 import 'package:playflutter/view/home/viewmodel/home_viewmodel.dart';
 import 'package:playflutter/view/main.dart';
 import 'package:playflutter/view/me/settings.dart';
+import 'package:playflutter/view/official/project.dart';
+import 'package:playflutter/view/project/project.dart';
+import 'package:playflutter/view/search/search.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -65,7 +70,20 @@ class PlayFlutterApp extends StatelessWidget {
 
 Route<dynamic> _onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
-    case RouteNames.SETTINGS:
+    case RouteNames.main:
+      return MaterialPageRoute(builder: (_) => const MainPage());
+    case RouteNames.search:
+      return MaterialPageRoute(builder: (_) => const SearchPage());
+    case RouteNames.official:
+      return MaterialPageRoute(builder: (_) => const OfficialPage());
+    case RouteNames.project:
+      return MaterialPageRoute(builder: (_) => const ProjectPage());
+    case RouteNames.details:
+      return MaterialPageRoute(
+          builder: (_) => DetailsPage(
+                detailsData: settings.arguments as DetailsData,
+              ));
+    case RouteNames.settings:
       return MaterialPageRoute(builder: (_) => const SettingsPage());
 
     default:

@@ -1,6 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:playflutter/entity/banner.dart';
+import 'package:playflutter/entity/home_category.dart';
+import 'package:playflutter/extensions/data_format_extensions.dart';
+import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/theme/theme_svg_paths.dart';
@@ -63,25 +67,38 @@ class _HomeState extends State<HomePage>
               },
               headerChildren: [
                 const AppHeaderSpacer(),
-                buildBanner(),
-                buildCategory()
+                buildBanner((item) => {
+                      Navigator.pushNamed(context, RouteNames.details,
+                          arguments: item.transformDetails())
+                    }),
+                buildCategory(
+                    (item) => {Navigator.pushNamed(context, item.link)})
               ],
               itemBuilder: (BuildContext context, int index) {
                 var item =
                     Provider.of<HomeViewModel>(context).paging.data[index];
-                return ContentItem(content: item);
+                return ContentItem(
+                  content: item,
+                  onItemClick: (item) => {
+                    Navigator.pushNamed(context, RouteNames.details,
+                        arguments: item.transformDetails())
+                  },
+                );
               },
             )),
-        const AppHeaderContainer(
+        AppHeaderContainer(
             child: AppGradientTextBar(
           title: ThemeStrings.home_header_text,
-          svgPath: ThemeSvgPaths.svg_search,
+          navigationSvgPath: ThemeSvgPaths.svg_search,
+          onNavigationClick: () {
+            Navigator.pushNamed(context, RouteNames.search);
+          },
         ))
       ],
     );
   }
 
-  Widget buildBanner() {
+  Widget buildBanner(Function(BannerItem) onItemClick) {
     var bannerList = Provider.of<HomeViewModel>(context).bannerList;
     if (bannerList.isEmpty) {
       return Container();
@@ -89,29 +106,38 @@ class _HomeState extends State<HomePage>
       return SizedBox(
         height: ThemeDimens.banner_height,
         child: Swiper(
-            viewportFraction: 0.8,
+            viewportFraction: 0.85,
             autoplay: true,
             duration: 300,
             itemCount: bannerList.length,
             itemBuilder: (BuildContext context, int index) {
+              var item = bannerList[index];
               return Card(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
                         ThemeDimens.offset_radius_medium)),
-                child: CachedNetworkImage(
-                  imageUrl: bannerList[index].imagePath,
-                  imageBuilder: (context, imageProvider) => Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                          ThemeDimens.offset_radius_medium),
-                      image: DecorationImage(
-                          image: imageProvider, fit: BoxFit.cover),
+                child: Material(
+                  child: InkWell(
+                    onTap: () => {onItemClick(item)},
+                    borderRadius:
+                        BorderRadius.circular(ThemeDimens.offset_radius_medium),
+                    child: CachedNetworkImage(
+                      imageUrl: item.imagePath,
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                              ThemeDimens.offset_radius_medium),
+                          image: DecorationImage(
+                              image: imageProvider, fit: BoxFit.cover),
+                        ),
+                      ),
+                      placeholder: (context, url) => Container(
+                        color: Theme.of(context).splashColor,
+                      ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
                   ),
-                  placeholder: (context, url) => Container(
-                    color: Theme.of(context).splashColor,
-                  ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               );
             },
@@ -125,7 +151,7 @@ class _HomeState extends State<HomePage>
     }
   }
 
-  Widget buildCategory() {
+  Widget buildCategory(Function(HomeCategory) onItemClick) {
     var categoryList = Provider.of<HomeViewModel>(context).categoryList;
     if (categoryList.isEmpty) {
       return Container();
@@ -138,7 +164,10 @@ class _HomeState extends State<HomePage>
             shrinkWrap: true,
             itemBuilder: (BuildContext context, int index) {
               var item = categoryList[index];
-              return CategoryItem(category: item);
+              return CategoryItem(
+                category: item,
+                onItemClick: onItemClick,
+              );
             }),
       );
     }
