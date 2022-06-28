@@ -36,42 +36,46 @@ class ThemeColors {
       const Color(0xFFEBEBEB));
 
   static var lightThemeData = ThemeData(
-      primaryColor: lightColorPalette.primary,
-      primaryColorDark: lightColorPalette.primaryDark,
-      primaryColorLight: lightColorPalette.accent,
-      focusColor: lightColorPalette.focus,
-      hoverColor: lightColorPalette.onFocus,
-      scaffoldBackgroundColor: lightColorPalette.background,
-      backgroundColor: lightColorPalette.background,
-      canvasColor: lightColorPalette.backgroundTransparent,
-      dividerColor: lightColorPalette.divider,
-      cardColor: lightColorPalette.item,
-      shadowColor: lightColorPalette.shadow,
-      splashColor: lightColorPalette.placeholder,
-      hintColor: lightColorPalette.label,
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: lightColorPalette.item,
-          selectedIconTheme: IconThemeData(color: lightColorPalette.focus),
-          unselectedIconTheme: IconThemeData(color: lightColorPalette.primary)));
+    primaryColor: lightColorPalette.primary,
+    primaryColorDark: lightColorPalette.primaryDark,
+    primaryColorLight: lightColorPalette.accent,
+    focusColor: lightColorPalette.focus,
+    hoverColor: lightColorPalette.onFocus,
+    scaffoldBackgroundColor: lightColorPalette.background,
+    backgroundColor: lightColorPalette.background,
+    canvasColor: lightColorPalette.backgroundTransparent,
+    dividerColor: lightColorPalette.divider,
+    cardColor: lightColorPalette.item,
+    shadowColor: lightColorPalette.shadow,
+    splashColor: lightColorPalette.placeholder,
+    hintColor: lightColorPalette.label,
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: lightColorPalette.item,
+        selectedIconTheme: IconThemeData(color: lightColorPalette.focus),
+        unselectedIconTheme: IconThemeData(color: lightColorPalette.primary)),
+    fontFamily: "Avenir",
+  );
 
   static var darkThemeData = ThemeData(
-      primaryColor: darkColorPalette.primary,
-      primaryColorDark: darkColorPalette.primaryDark,
-      primaryColorLight: darkColorPalette.accent,
-      focusColor: darkColorPalette.focus,
-      hoverColor: darkColorPalette.onFocus,
-      scaffoldBackgroundColor: darkColorPalette.background,
-      backgroundColor: darkColorPalette.background,
-      canvasColor: darkColorPalette.backgroundTransparent,
-      dividerColor: darkColorPalette.divider,
-      cardColor: darkColorPalette.item,
-      shadowColor: darkColorPalette.shadow,
-      splashColor: darkColorPalette.placeholder,
-      hintColor: darkColorPalette.label,
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: darkColorPalette.item,
-          selectedIconTheme: IconThemeData(color: darkColorPalette.focus),
-          unselectedIconTheme: IconThemeData(color: darkColorPalette.primary)));
+    primaryColor: darkColorPalette.primary,
+    primaryColorDark: darkColorPalette.primaryDark,
+    primaryColorLight: darkColorPalette.accent,
+    focusColor: darkColorPalette.focus,
+    hoverColor: darkColorPalette.onFocus,
+    scaffoldBackgroundColor: darkColorPalette.background,
+    backgroundColor: darkColorPalette.background,
+    canvasColor: darkColorPalette.backgroundTransparent,
+    dividerColor: darkColorPalette.divider,
+    cardColor: darkColorPalette.item,
+    shadowColor: darkColorPalette.shadow,
+    splashColor: darkColorPalette.placeholder,
+    hintColor: darkColorPalette.label,
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: darkColorPalette.item,
+        selectedIconTheme: IconThemeData(color: darkColorPalette.focus),
+        unselectedIconTheme: IconThemeData(color: darkColorPalette.primary)),
+    fontFamily: "Avenir",
+  );
 }
 
 class AppColors {

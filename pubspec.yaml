@@ -59,6 +59,9 @@ flutter:
     - family: ThemeIcons
       fonts:
         - asset: assets/fonts/iconfont.ttf
+    - family: Avenir
+      fonts:
+        - asset: assets/fonts/Avenir.ttf
 
   assets:
     - assets/svg/ic_official.svg
