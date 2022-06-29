@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:playflutter/theme/theme_strings.dart';
-import 'package:playflutter/tools/log_tools.dart';
 import 'package:toast/toast.dart';
 
 /// @author jv.lee
@@ -33,15 +32,12 @@ class _AppBackPopScopeState extends State<AppBackPopScope> {
       onWillPop: () async {
         var secondTime = DateTime.now().millisecondsSinceEpoch;
         // 如果两次back事件时间间隔大于限制时间内，则拦截掉back事件
-        LogTools.log("secondTime:$secondTime,firstTime:$firstTime");
         if ((secondTime - firstTime) > widget.limitMillisecond) {
           Toast.show(widget.alertMessage, context);
           firstTime = secondTime;
-          LogTools.log("back - false");
           return false;
         }
         // 两次back事件小于限制时间内，回调back事件
-        LogTools.log("back - true");
         return true;
       },
       child: widget.child,
