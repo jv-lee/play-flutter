@@ -127,7 +127,7 @@ class _SuperListViewState extends State<SuperListView> {
     return Center(
       child: Text("暂无数据",
           style: TextStyle(
-              color: Theme.of(context).primaryColor, fontSize: _fontSize)),
+              color: Theme.of(context).primaryColorLight, fontSize: _fontSize)),
     );
   }
 
@@ -138,11 +138,14 @@ class _SuperListViewState extends State<SuperListView> {
         children: <Widget>[
           Text("加载失败",
               style: TextStyle(
-                  color: Theme.of(context).primaryColor, fontSize: _fontSize)),
+                  color: Theme.of(context).primaryColorLight,
+                  fontSize: _fontSize)),
           CupertinoButton(
             child: Text(
               "点击重试",
-              style: TextStyle(fontSize: _fontSize),
+              style: TextStyle(
+                  color: Theme.of(context).primaryColorLight,
+                  fontSize: _fontSize),
             ),
             onPressed: () {
               widget.statusController.pageLoading().itemEmpty();
@@ -209,7 +212,7 @@ class _SuperListViewState extends State<SuperListView> {
   }
 
   Widget buildItemLoading(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: _itemHeight,
       child: Center(
         child: Row(
@@ -247,7 +250,7 @@ class _SuperListViewState extends State<SuperListView> {
       child: Center(
         child: Text("没有更多了",
             style: TextStyle(
-                color: Theme.of(context).primaryColor, fontSize: _fontSize)),
+                color: Theme.of(context).primaryColorLight, fontSize: _fontSize)),
       ),
     );
   }
@@ -262,7 +265,7 @@ class _SuperListViewState extends State<SuperListView> {
             Text(
               "加载失败",
               style: TextStyle(
-                  color: Theme.of(context).primaryColor, fontSize: _fontSize),
+                  color: Theme.of(context).primaryColorLight, fontSize: _fontSize),
             ),
             GestureDetector(
               child: Container(
