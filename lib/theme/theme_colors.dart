@@ -54,6 +54,7 @@ class ThemeColors {
         selectedIconTheme: IconThemeData(color: lightColorPalette.focus),
         unselectedIconTheme: IconThemeData(color: lightColorPalette.primary)),
     appBarTheme: AppBarTheme(
+        centerTitle: true,
         backgroundColor: lightColorPalette.item,
         foregroundColor: lightColorPalette.accent,
         titleTextStyle: TextStyle(
@@ -86,6 +87,7 @@ class ThemeColors {
         selectedIconTheme: IconThemeData(color: darkColorPalette.focus),
         unselectedIconTheme: IconThemeData(color: darkColorPalette.primary)),
     appBarTheme: AppBarTheme(
+        centerTitle: true,
         backgroundColor: darkColorPalette.item,
         foregroundColor: darkColorPalette.accent,
         titleTextStyle: TextStyle(

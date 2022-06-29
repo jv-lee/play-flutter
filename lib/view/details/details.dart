@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/entity/details.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
+import 'package:playflutter/widget/common/popup_menu_divider.dart';
+import 'package:share/share.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 /// @author jv.lee
@@ -19,6 +21,7 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsState extends State<DetailsPage> {
+  WebViewController? webViewController;
   var progressVisible = true;
   var progress = 0;
 
@@ -30,53 +33,87 @@ class _DetailsState extends State<DetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.detailsData.title),
-        actions: [
-          PopupMenuButton(
-              offset: const Offset(0, ThemeDimens.toolbar_height),
-              itemBuilder: (context) => [
-                    PopupMenuItem(
-                        onTap: () => {},
-                        child: Container(
-                          width: double.infinity,
-                          alignment: Alignment.center,
-                          child: const Text(ThemeStrings.menu_collect),
-                        )),
-                    PopupMenuItem(
-                        onTap: () => {},
-                        child: Container(
-                          width: double.infinity,
-                          alignment: Alignment.center,
-                          child: const Text(ThemeStrings.menu_share),
-                        ))
-                  ])
-        ],
-      ),
-      body: Stack(
-        children: [
-          WebView(
-            initialUrl: widget.detailsData.link,
-            javascriptMode: JavascriptMode.unrestricted,
-            gestureNavigationEnabled: true,
-            onProgress: onProgress,
-            onPageFinished: onPageFinished,
-            navigationDelegate: (NavigationRequest request) {
-              if (request.url.startsWith("jianshu://")) {
-                return NavigationDecision.prevent;
-              }
-              return NavigationDecision.navigate;
-            },
-            onWebViewCreated: (controller) {},
+    return WillPopScope(
+        onWillPop: onBackChange,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(widget.detailsData.title),
+            actions: [buildActionMenu()],
           ),
-          Visibility(
-              visible: progressVisible,
-              child: LinearProgressIndicator(
-                value: (progress / 100),
-              ))
-        ],
-      ),
+          body: buildWebPage(),
+        ));
+  }
+
+  /// 监听webView是否可回退拦截back事件处理web回退逻辑
+  Future<bool> onBackChange() async {
+    var canGoBack = await webViewController?.canGoBack() ?? false;
+    if (canGoBack) {
+      webViewController?.goBack();
+      return false;
+    }
+    return true;
+  }
+
+  /// 构建更多菜单按钮弹窗
+  Widget buildActionMenu() {
+    return PopupMenuButton(
+        shape: RoundedRectangleBorder(
+            borderRadius:
+                BorderRadius.circular(ThemeDimens.offset_radius_medium)),
+        constraints: const BoxConstraints(maxWidth: 75),
+        offset: const Offset(0, ThemeDimens.toolbar_height),
+        itemBuilder: (context) => [
+              PopupMenuItem(
+                  height: 30,
+                  onTap: () => {},
+                  child: Container(
+                    width: double.infinity,
+                    alignment: Alignment.center,
+                    child: const Text(ThemeStrings.menu_collect),
+                  )),
+              AppPopupMenuDivider(
+                  height: 1, color: Theme.of(context).primaryColorLight),
+              PopupMenuItem(
+                  height: 30,
+                  onTap: () => {
+                        Share.share(
+                            "${widget.detailsData.title}:${widget.detailsData.link}")
+                      },
+                  child: Container(
+                    width: double.infinity,
+                    alignment: Alignment.center,
+                    child: const Text(ThemeStrings.menu_share),
+                  ))
+            ]);
+  }
+
+  /// 构建webView页面
+  Widget buildWebPage() {
+    return Stack(
+      children: [
+        WebView(
+          initialUrl: widget.detailsData.link,
+          javascriptMode: JavascriptMode.unrestricted,
+          gestureNavigationEnabled: true,
+          onProgress: onProgress,
+          onPageFinished: onPageFinished,
+          navigationDelegate: (NavigationRequest request) {
+            // 处理简书页面 scheme intent跳转原生逻辑
+            if (request.url.startsWith("jianshu://")) {
+              return NavigationDecision.prevent;
+            }
+            return NavigationDecision.navigate;
+          },
+          onWebViewCreated: (controller) {
+            webViewController = controller;
+          },
+        ),
+        Visibility(
+            visible: progressVisible,
+            child: LinearProgressIndicator(
+              value: (progress / 100),
+            ))
+      ],
     );
   }
 
