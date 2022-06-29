@@ -10,7 +10,11 @@ class MePage extends StatefulWidget {
   State<StatefulWidget> createState() => _MeState();
 }
 
-class _MeState extends State<MePage> {
+class _MeState extends State<MePage>
+    with AutomaticKeepAliveClientMixin<MePage> {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   void initState() {
     super.initState();
@@ -18,6 +22,7 @@ class _MeState extends State<MePage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: Center(
         child: Text("this is Me",

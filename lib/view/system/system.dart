@@ -10,7 +10,11 @@ class SystemPage extends StatefulWidget {
   State<StatefulWidget> createState() => _SystemState();
 }
 
-class _SystemState extends State<SystemPage> {
+class _SystemState extends State<SystemPage>
+    with AutomaticKeepAliveClientMixin<SystemPage> {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   void initState() {
     super.initState();
@@ -18,6 +22,7 @@ class _SystemState extends State<SystemPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: Center(
         child: Text("this is System",

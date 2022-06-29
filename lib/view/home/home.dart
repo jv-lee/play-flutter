@@ -125,21 +125,17 @@ class _HomeState extends State<HomePage>
                     borderRadius:
                         BorderRadius.circular(ThemeDimens.offset_radius_medium),
                     child: CachedNetworkImage(
-                      imageUrl: item.imagePath,
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                              ThemeDimens.offset_radius_medium),
-                          image: DecorationImage(
-                              image: imageProvider, fit: BoxFit.cover),
-                        ),
-                      ),
-                      placeholder: (context, url) => Container(
-                        color: Theme.of(context).splashColor,
-                      ),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                    ),
+                        imageUrl: item.imagePath,
+                        imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                    ThemeDimens.offset_radius_medium),
+                                image: DecorationImage(
+                                    image: imageProvider, fit: BoxFit.cover))),
+                        placeholder: (context, url) =>
+                            Container(color: Theme.of(context).splashColor),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error)),
                   ),
                 ),
               );
@@ -167,10 +163,7 @@ class _HomeState extends State<HomePage>
             shrinkWrap: true,
             itemBuilder: (BuildContext context, int index) {
               var item = categoryList[index];
-              return CategoryItem(
-                category: item,
-                onItemClick: onItemClick,
-              );
+              return CategoryItem(category: item, onItemClick: onItemClick);
             }),
       );
     }

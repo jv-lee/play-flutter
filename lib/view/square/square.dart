@@ -10,7 +10,11 @@ class SquarePage extends StatefulWidget {
   State<StatefulWidget> createState() => _SquareState();
 }
 
-class _SquareState extends State<SquarePage> {
+class _SquareState extends State<SquarePage>
+    with AutomaticKeepAliveClientMixin<SquarePage> {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   void initState() {
     super.initState();
@@ -18,6 +22,7 @@ class _SquareState extends State<SquarePage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: Center(
         child: Text("this is Square",
