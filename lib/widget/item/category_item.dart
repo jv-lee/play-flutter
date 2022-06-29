@@ -25,10 +25,7 @@ class _CategoryItemState extends State<CategoryItem> {
     return SizedBox(
       width: MediaQuery.of(context).size.width / 2,
       child: Padding(
-        padding: const EdgeInsets.only(
-            top: ThemeDimens.offset_medium,
-            left: ThemeDimens.offset_medium,
-            right: ThemeDimens.offset_medium),
+        padding: const EdgeInsets.all(ThemeDimens.offset_small),
         child: Card(
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(

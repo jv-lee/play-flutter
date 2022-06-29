@@ -52,7 +52,7 @@ class _HomeState extends State<HomePage>
             color: Theme.of(context).primaryColorLight,
             onRefresh: () async {
               await Future<void>.delayed(const Duration(seconds: 1), () {
-                viewModel.requestHomeData(LoadStatus.refresh);
+                viewModel.requestData(LoadStatus.refresh);
               });
             },
             child: SuperListView(
@@ -60,13 +60,13 @@ class _HomeState extends State<HomePage>
                   Provider.of<HomeViewModel>(context).paging.statusController,
               itemCount: Provider.of<HomeViewModel>(context).paging.data.length,
               onPageReload: () {
-                viewModel.requestHomeData(LoadStatus.refresh);
+                viewModel.requestData(LoadStatus.refresh);
               },
               onItemReload: () {
-                viewModel.requestHomeData(LoadStatus.reload);
+                viewModel.requestData(LoadStatus.reload);
               },
               onLoadMore: () {
-                viewModel.requestHomeData(LoadStatus.loadMore);
+                viewModel.requestData(LoadStatus.loadMore);
               },
               headerChildren: [
                 const AppHeaderSpacer(),

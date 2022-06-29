@@ -23,10 +23,7 @@ class _ContentItemState extends State<ContentItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-          left: ThemeDimens.offset_medium,
-          right: ThemeDimens.offset_medium,
-          top: ThemeDimens.offset_medium),
+      padding: const EdgeInsets.all(ThemeDimens.offset_small),
       child: Card(
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(

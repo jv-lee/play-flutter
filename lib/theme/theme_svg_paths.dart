@@ -7,4 +7,5 @@ class ThemeSvgPaths{
   static const String svg_official = "assets/svg/ic_official.svg";
   static const String svg_project = "assets/svg/ic_project.svg";
   static const String svg_search = "assets/svg/ic_search.svg";
+  static const String svg_add = "assets/svg/ic_add.svg";
 }

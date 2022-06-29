@@ -11,6 +11,8 @@ import 'package:playflutter/view/me/settings.dart';
 import 'package:playflutter/view/official/project.dart';
 import 'package:playflutter/view/project/project.dart';
 import 'package:playflutter/view/search/search.dart';
+import 'package:playflutter/view/square/create_share.dart';
+import 'package:playflutter/view/square/viewmodel/square_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -29,7 +31,8 @@ class PlayFlutterApp extends StatelessWidget {
           // 深色模式状态监听
           ChangeNotifierProvider.value(value: DarkModeProvider()),
           // 项目页面viewModel注册监听
-          ChangeNotifierProvider(create: (context) => HomeViewModel())
+          ChangeNotifierProvider(create: (context) => HomeViewModel()),
+          ChangeNotifierProvider(create: (context) => SquareViewModel())
         ],
         child:
             Consumer<DarkModeProvider>(builder: (context, darkModeProvider, _) {
@@ -78,6 +81,8 @@ Route<dynamic> _onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => const OfficialPage());
     case RouteNames.project:
       return MaterialPageRoute(builder: (_) => const ProjectPage());
+    case RouteNames.create_share:
+      return MaterialPageRoute(builder: (_) => const CreateSharePage());
     case RouteNames.details:
       return MaterialPageRoute(
           builder: (_) => DetailsPage(

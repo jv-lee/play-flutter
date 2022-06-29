@@ -5,6 +5,8 @@
 /// @description 项目主题字符串
 class ThemeStrings {
   static const String home_header_text = "Welcome to Play Flutter";
+  static const String square_header_text = "Recently shared";
+
   static const String loading = "loading...";
   static const String back_alert_message = "再次点击可退出";
   static const String official_category_name = "公众号";

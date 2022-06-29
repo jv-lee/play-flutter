@@ -27,11 +27,11 @@ class HomeViewModel extends ViewModel {
         initPage: 0,
         notify: postViewState,
         statusController: StatusController(pageStatus: PageStatus.loading));
-    requestHomeData(LoadStatus.refresh);
+    requestData(LoadStatus.refresh);
   }
 
-  void requestHomeData(LoadStatus status) async {
-    LogTools.log("requestHomeData - $status");
+  void requestData(LoadStatus status) async {
+    LogTools.log("requestData - $status");
 
     if (status == LoadStatus.refresh) {
       BannerData banner = await _model
