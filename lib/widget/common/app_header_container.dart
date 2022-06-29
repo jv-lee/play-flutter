@@ -15,11 +15,11 @@ class AppHeaderContainer extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return AppHeaderContainerState();
+    return _AppHeaderContainerState();
   }
 }
 
-class AppHeaderContainerState extends State<AppHeaderContainer> {
+class _AppHeaderContainerState extends State<AppHeaderContainer> {
   @override
   Widget build(BuildContext context) {
     var content = Column(

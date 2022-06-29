@@ -10,11 +10,11 @@ class AppHeaderSpacer extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return AppHeaderSpacerState();
+    return _AppHeaderSpacerState();
   }
 }
 
-class AppHeaderSpacerState extends State<AppHeaderSpacer> {
+class _AppHeaderSpacerState extends State<AppHeaderSpacer> {
   @override
   Widget build(BuildContext context) {
     return Container(

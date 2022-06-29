@@ -48,11 +48,11 @@ class SuperListView extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return SuperListViewState();
+    return _SuperListViewState();
   }
 }
 
-class SuperListViewState extends State<SuperListView> {
+class _SuperListViewState extends State<SuperListView> {
   late PageStatus _pageStatus;
   late ItemStatus _itemStatus;
   late ScrollController _controller;

@@ -26,11 +26,11 @@ class StatusPage extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return StatusPageState();
+    return _StatusPageState();
   }
 }
 
-class StatusPageState extends State<StatusPage> {
+class _StatusPageState extends State<StatusPage> {
   @override
   Widget build(BuildContext context) {
     return buildWidget(context);

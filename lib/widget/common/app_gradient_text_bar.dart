@@ -20,11 +20,11 @@ class AppGradientTextBar extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return AppGradientTextBarState();
+    return _AppGradientTextBarState();
   }
 }
 
-class AppGradientTextBarState extends State<AppGradientTextBar> {
+class _AppGradientTextBarState extends State<AppGradientTextBar> {
   @override
   Widget build(BuildContext context) {
     return Padding(

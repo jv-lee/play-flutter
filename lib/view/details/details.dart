@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/entity/details.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
-import 'package:playflutter/widget/common/popup_menu_divider.dart';
+import 'package:playflutter/widget/common/app_popup_menu_divider.dart';
 import 'package:share/share.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 

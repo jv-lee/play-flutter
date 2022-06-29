@@ -15,11 +15,11 @@ class ContentItem extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return ContentItemState();
+    return _ContentItemState();
   }
 }
 
-class ContentItemState extends State<ContentItem> {
+class _ContentItemState extends State<ContentItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(

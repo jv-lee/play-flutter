@@ -15,11 +15,11 @@ class CategoryItem extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return CategoryItemState();
+    return _CategoryItemState();
   }
 }
 
-class CategoryItemState extends State<CategoryItem> {
+class _CategoryItemState extends State<CategoryItem> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
