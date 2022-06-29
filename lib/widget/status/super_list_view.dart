@@ -155,36 +155,42 @@ class _SuperListViewState extends State<SuperListView> {
   }
 
   Widget buildPageData(BuildContext context) {
-    return ListView.builder(
-        controller: _controller,
-        padding: const EdgeInsets.all(0),
-        itemCount: widget.itemCount +
-            widget.headerChildren.length +
-            widget.footerChildren.length +
-            widget.itemMoreCount,
-        itemBuilder: (BuildContext context, int index) {
-          //创建headerItem
-          if (index < widget.headerChildren.length) {
-            return widget.headerChildren[index];
-          }
+    // 屏蔽滚动水波纹效果
+    return NotificationListener<OverscrollIndicatorNotification>(
+        onNotification: (OverscrollIndicatorNotification? overscroll) {
+          overscroll?.disallowIndicator();
+          return true;
+        },
+        child: ListView.builder(
+            controller: _controller,
+            padding: const EdgeInsets.all(0),
+            itemCount: widget.itemCount +
+                widget.headerChildren.length +
+                widget.footerChildren.length +
+                widget.itemMoreCount,
+            itemBuilder: (BuildContext context, int index) {
+              //创建headerItem
+              if (index < widget.headerChildren.length) {
+                return widget.headerChildren[index];
+              }
 
-          //创建contentItem
-          if (index < (widget.headerChildren.length + widget.itemCount)) {
-            return widget.itemBuilder(
-                context, index - widget.headerChildren.length);
-          }
+              //创建contentItem
+              if (index < (widget.headerChildren.length + widget.itemCount)) {
+                return widget.itemBuilder(
+                    context, index - widget.headerChildren.length);
+              }
 
-          //创建footerItem
-          if (index <
-              (widget.headerChildren.length +
-                  widget.itemCount +
-                  widget.footerChildren.length)) {
-            return widget.footerChildren[
-                index - (widget.headerChildren.length + widget.itemCount)];
-          }
+              //创建footerItem
+              if (index <
+                  (widget.headerChildren.length +
+                      widget.itemCount +
+                      widget.footerChildren.length)) {
+                return widget.footerChildren[
+                    index - (widget.headerChildren.length + widget.itemCount)];
+              }
 
-          return buildItemWidget(context);
-        });
+              return buildItemWidget(context);
+            }));
   }
 
   Widget buildItemWidget(BuildContext context) {
