@@ -47,9 +47,13 @@ class _HomeState extends State<HomePage>
     return Stack(
       children: [
         RefreshIndicator(
+            displacement: 10,
+            edgeOffset: AppHeaderSpacer.spacerHeight(),
             color: Theme.of(context).primaryColorLight,
             onRefresh: () async {
-              viewModel.requestHomeData(LoadStatus.refresh);
+              await Future<void>.delayed(const Duration(seconds: 1), () {
+                viewModel.requestHomeData(LoadStatus.refresh);
+              });
             },
             child: SuperListView(
               statusController:

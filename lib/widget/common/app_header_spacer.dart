@@ -12,13 +12,17 @@ class AppHeaderSpacer extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _AppHeaderSpacerState();
   }
+
+  static spacerHeight() {
+    return ThemeDimens.toolbar_height + StatusTools.getStatusHeight();
+  }
 }
 
 class _AppHeaderSpacerState extends State<AppHeaderSpacer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: ThemeDimens.toolbar_height + StatusTools.getStatusHeight(),
+      height: AppHeaderSpacer.spacerHeight(),
     );
   }
 }

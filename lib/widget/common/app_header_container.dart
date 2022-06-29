@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/tools/status_tools.dart';
+import 'package:playflutter/widget/common/app_header_spacer.dart';
 
 /// @author jv.lee
 /// @date 2022/6/27
@@ -32,7 +32,7 @@ class _AppHeaderContainerState extends State<AppHeaderContainer> {
     );
     if (widget.headerBrush) {
       return Container(
-        height: ThemeDimens.toolbar_height + StatusTools.getStatusHeight(),
+        height: AppHeaderSpacer.spacerHeight(),
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topCenter,
