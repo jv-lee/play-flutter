@@ -16,7 +16,7 @@ extension BannerExtensions on BannerItem {
 extension ContentExtensions on Content {
   DetailsData transformDetails() {
     return DetailsData(
-        id: id.toString(), title: title, link: link, isCollect: collect);
+        id: id.toString(), title: getTitle(), link: link, isCollect: collect);
   }
 
   String getTitle() => parse(title).body.innerHtml;

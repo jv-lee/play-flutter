@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:playflutter/entity/details.dart';
+import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
-import 'package:playflutter/tools/log_tools.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 /// @author jv.lee
@@ -17,9 +19,13 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsState extends State<DetailsPage> {
+  var progressVisible = true;
+  var progress = 0;
+
   @override
   void initState() {
     super.initState();
+    if (Platform.isAndroid) WebView.platform = AndroidWebView();
   }
 
   @override
@@ -29,6 +35,7 @@ class _DetailsState extends State<DetailsPage> {
         title: Text(widget.detailsData.title),
         actions: [
           PopupMenuButton(
+              offset: const Offset(0, ThemeDimens.toolbar_height),
               itemBuilder: (context) => [
                     PopupMenuItem(
                         onTap: () => {},
@@ -47,10 +54,41 @@ class _DetailsState extends State<DetailsPage> {
                   ])
         ],
       ),
-      body: WebView(
-        initialUrl: widget.detailsData.link,
-        onProgress: (progress) => {},
+      body: Stack(
+        children: [
+          WebView(
+            initialUrl: widget.detailsData.link,
+            javascriptMode: JavascriptMode.unrestricted,
+            gestureNavigationEnabled: true,
+            onProgress: onProgress,
+            onPageFinished: onPageFinished,
+            navigationDelegate: (NavigationRequest request) {
+              if (request.url.startsWith("jianshu://")) {
+                return NavigationDecision.prevent;
+              }
+              return NavigationDecision.navigate;
+            },
+            onWebViewCreated: (controller) {},
+          ),
+          Visibility(
+              visible: progressVisible,
+              child: LinearProgressIndicator(
+                value: (progress / 100),
+              ))
+        ],
       ),
     );
+  }
+
+  void onPageFinished(item) {
+    setState(() {
+      progressVisible = false;
+    });
+  }
+
+  void onProgress(progress) {
+    setState(() {
+      this.progress = progress;
+    });
   }
 }
