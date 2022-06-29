@@ -103,16 +103,21 @@ class _HomeState extends State<HomePage>
 
   Widget buildBanner(Function(BannerItem) onItemClick) {
     var bannerList = Provider.of<HomeViewModel>(context).bannerList;
+    var bannerIndex = Provider.of<HomeViewModel>(context).bannerIndex;
     if (bannerList.isEmpty) {
       return Container();
     } else {
       return SizedBox(
         height: ThemeDimens.banner_height,
         child: Swiper(
+            index: bannerIndex,
             viewportFraction: 0.85,
             autoplay: true,
             duration: 300,
             itemCount: bannerList.length,
+            onIndexChanged: (index) {
+              context.read<HomeViewModel>().changeBannerIndex(index);
+            },
             itemBuilder: (BuildContext context, int index) {
               var item = bannerList[index];
               return Card(

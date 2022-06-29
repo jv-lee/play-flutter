@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/entity/banner.dart';
 import 'package:playflutter/entity/content.dart';
@@ -16,20 +15,18 @@ import 'package:playflutter/widget/status/status_controller.dart';
 class HomeViewModel extends ViewModel {
   final _model = HomeModel();
 
+  int bannerIndex = 0;
   late Paging<Content> paging;
   List<BannerItem> bannerList = [];
   List<HomeCategory> categoryList = [];
 
   @override
-  void bindView(State<dynamic> viewState) {
+  void init() {
     paging = Paging(
         data: [],
         initPage: 0,
-        notify: () {
-          viewState.setState(() {});
-        },
+        notify: postViewState,
         statusController: StatusController(pageStatus: PageStatus.loading));
-
     requestHomeData(LoadStatus.refresh);
   }
 
@@ -51,4 +48,11 @@ class HomeViewModel extends ViewModel {
     paging.requestData(status,
         (page) => _model.getContentDataAsync(page).then((value) => value.data));
   }
+
+  void changeBannerIndex(int index) {
+    setViewState(() {
+      bannerIndex = index;
+    });
+  }
+
 }
