@@ -2,6 +2,10 @@
 /// @date 2022/6/30
 /// @description
 import 'package:flutter/material.dart';
+import 'package:playflutter/view/system/viewmodel/navigation_content_viewmodel.dart';
+import 'package:playflutter/widget/item/navigation_tab_item.dart';
+import 'package:playflutter/widget/status/super_list_view.dart';
+import 'package:provider/provider.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26
@@ -21,25 +25,22 @@ class _NavigationContentState extends State<NavigationContentPage>
   @override
   void initState() {
     super.initState();
+    context.read<NavigationContentViewModel>().bindView(this);
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Center(
-            child: Text("this is NavigationContent",
-                style: TextStyle(color: Theme.of(context).primaryColorLight)),
-          ),
-          Center(
-            child: Text("this is NavigationContent",
-                style: TextStyle(color: Theme.of(context).primaryColorLight)),
-          )
-        ],
-      ),
+    var viewModel = Provider.of<NavigationContentViewModel>(context);
+    return SuperListView(
+      itemCount: viewModel.paging.data.length,
+      statusController: viewModel.paging.statusController,
+      itemBuilder: (context, index) {
+        var item = viewModel.paging.data[index];
+        return NavigationTabItem(
+          navigationTab: item,
+        );
+      },
     );
   }
 }

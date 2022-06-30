@@ -1,7 +1,11 @@
-/// @author jv.lee 
+/// @author jv.lee
 /// @date 2022/6/30
-/// @description 
+/// @description
 import 'package:flutter/material.dart';
+import 'package:playflutter/view/system/viewmodel/system_content_viewmodel.dart';
+import 'package:playflutter/widget/item/parent_tab_item.dart';
+import 'package:playflutter/widget/status/super_list_view.dart';
+import 'package:provider/provider.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26
@@ -21,25 +25,20 @@ class _SystemContentState extends State<SystemContentPage>
   @override
   void initState() {
     super.initState();
+    context.read<SystemContentViewModel>().bindView(this);
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Center(
-            child: Text("this is SystemContent",
-                style: TextStyle(color: Theme.of(context).primaryColorLight)),
-          ),
-          Center(
-            child: Text("this is SystemContent",
-                style: TextStyle(color: Theme.of(context).primaryColorLight)),
-          )
-        ],
-      ),
+    var viewModel = Provider.of<SystemContentViewModel>(context);
+    return SuperListView(
+      itemCount: viewModel.paging.data.length,
+      statusController: viewModel.paging.statusController,
+      itemBuilder: (context, index) {
+        var item = viewModel.paging.data[index];
+        return ParentTabItem(parentTab: item);
+      },
     );
   }
 }

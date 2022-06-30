@@ -28,13 +28,13 @@ class SuperListView extends StatefulWidget {
 
   const SuperListView(
       {Key? key,
-      this.scrollController,
       required this.statusController,
       required this.itemCount,
+      required this.itemBuilder,
+      this.scrollController,
       this.onPageReload,
       this.onItemReload,
       this.onLoadMore,
-      required this.itemBuilder,
       this.pageLoading,
       this.pageEmpty,
       this.pageError,

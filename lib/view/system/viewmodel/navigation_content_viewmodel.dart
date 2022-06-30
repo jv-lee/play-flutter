@@ -1,35 +1,35 @@
 import 'package:playflutter/base/viewmodel.dart';
-import 'package:playflutter/entity/content.dart';
+import 'package:playflutter/entity/navigation_tab.dart';
 import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
-import 'package:playflutter/view/square/model/SquareModel.dart';
+import 'package:playflutter/view/system/model/system_model.dart';
 import 'package:playflutter/widget/status/status.dart';
 import 'package:playflutter/widget/status/status_controller.dart';
 
 /// @author jv.lee
-/// @date 2022/6/29
+/// @date 2022/6/30
 /// @description
-class SquareViewModel extends ViewModel {
-  final _model = SquareModel();
+class NavigationContentViewModel extends ViewModel {
+  final _model = SystemModel();
 
-  late Paging<Content> paging;
+  late Paging<NavigationTab> paging;
 
   @override
   void init() {
     paging = Paging(
         data: [],
-        initPage: 0,
+        initPage: 1,
         notify: postViewState,
         statusController: StatusController(pageStatus: PageStatus.loading));
-    requestData(LoadStatus.refresh);
+    requestData();
   }
 
-  void requestData(LoadStatus status) async {
-    LogTools.log("Square:requestData - $status");
+  void requestData() async {
+    LogTools.log("NavigationContent:requestData");
 
-    // request square list data.
-    paging.requestData(status,
-        (page) => _model.getSquareDataAsync(page).then((value) => value.data));
+    // request systemContent list data.
+    paging.requestData(
+        LoadStatus.refresh, (page) => _model.getNavigationTabAsync());
   }
 }
