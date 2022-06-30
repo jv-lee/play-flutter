@@ -229,7 +229,7 @@ class _SuperListViewState extends State<SuperListView> {
               padding: const EdgeInsets.only(left: 10),
               child: Text("加载中...",
                   style: TextStyle(
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).primaryColorLight,
                       fontSize: _fontSize)),
             ),
           ],
@@ -250,7 +250,8 @@ class _SuperListViewState extends State<SuperListView> {
       child: Center(
         child: Text("没有更多了",
             style: TextStyle(
-                color: Theme.of(context).primaryColorLight, fontSize: _fontSize)),
+                color: Theme.of(context).primaryColorLight,
+                fontSize: _fontSize)),
       ),
     );
   }
@@ -265,7 +266,8 @@ class _SuperListViewState extends State<SuperListView> {
             Text(
               "加载失败",
               style: TextStyle(
-                  color: Theme.of(context).primaryColorLight, fontSize: _fontSize),
+                  color: Theme.of(context).primaryColorLight,
+                  fontSize: _fontSize),
             ),
             GestureDetector(
               child: Container(

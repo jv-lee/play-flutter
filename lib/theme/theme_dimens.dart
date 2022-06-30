@@ -35,4 +35,9 @@ class ThemeDimens {
   // 项目category布局高度
   static const double category_layout_height = 120;
 
+  // 体系tab布局数值
+  static const double system_tab_width = 100;
+  static const double system_tab_height = 24;
+  static const double system_tab_radius = 12;
+
 }

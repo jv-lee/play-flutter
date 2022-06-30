@@ -13,6 +13,7 @@ import 'package:playflutter/view/project/project.dart';
 import 'package:playflutter/view/search/search.dart';
 import 'package:playflutter/view/square/create_share.dart';
 import 'package:playflutter/view/square/viewmodel/square_viewmodel.dart';
+import 'package:playflutter/view/system/viewmodel/system_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -32,7 +33,8 @@ class PlayFlutterApp extends StatelessWidget {
           ChangeNotifierProvider.value(value: DarkModeProvider()),
           // 项目页面viewModel注册监听
           ChangeNotifierProvider(create: (context) => HomeViewModel()),
-          ChangeNotifierProvider(create: (context) => SquareViewModel())
+          ChangeNotifierProvider(create: (context) => SquareViewModel()),
+          ChangeNotifierProvider(create: (context) => SystemViewModel())
         ],
         child:
             Consumer<DarkModeProvider>(builder: (context, darkModeProvider, _) {
