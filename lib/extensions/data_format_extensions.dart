@@ -5,6 +5,7 @@ import 'package:html/parser.dart';
 import 'package:playflutter/entity/banner.dart';
 import 'package:playflutter/entity/content.dart';
 import 'package:playflutter/entity/details.dart';
+import 'package:playflutter/entity/parent_tab.dart';
 import 'package:playflutter/tools/time_tools.dart';
 
 extension BannerExtensions on BannerItem {
@@ -37,5 +38,19 @@ extension ContentExtensions on Content {
     } else {
       return "";
     }
+  }
+}
+
+extension ParentTabExtensions on ParentTab {
+  String formHtmlLabels() {
+    return parse(_buildChildrenLabel()).body.innerHtml;
+  }
+
+  String _buildChildrenLabel() {
+    var buffer = StringBuffer();
+    for (var element in children) {
+      buffer.write("${element.name}  ");
+    }
+    return buffer.toString();
   }
 }

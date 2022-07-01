@@ -19,6 +19,7 @@ class ThemeStrings {
   /// system
   static const String system_system_tab = "体系";
   static const String system_navigation_tab = "导航";
+  static const String system_more_text = "More >";
 
   /// details
   static const String menu_collect = "收藏";

@@ -33,7 +33,8 @@ class ThemeDimens {
   static const double banner_height = 180;
 
   // 项目category布局高度
-  static const double category_layout_height = 120;
+  static const double category_layout_height = 130;
+  static const double category_item_size = 50;
 
   // 体系tab布局数值
   static const double system_tab_width = 100;

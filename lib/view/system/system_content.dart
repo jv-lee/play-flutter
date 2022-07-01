@@ -37,7 +37,10 @@ class _SystemContentState extends State<SystemContentPage>
       statusController: viewModel.paging.statusController,
       itemBuilder: (context, index) {
         var item = viewModel.paging.data[index];
-        return ParentTabItem(parentTab: item);
+        return ParentTabItem(
+          parentTab: item,
+          onItemClick: (parentTab) => {},
+        );
       },
     );
   }

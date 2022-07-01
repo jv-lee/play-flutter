@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/entity/home_category.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
+import 'package:playflutter/widget/common/card_item_container.dart';
 
 /// @author jv.lee
 /// @date 2022/6/27
@@ -22,48 +23,26 @@ class CategoryItem extends StatefulWidget {
 class _CategoryItemState extends State<CategoryItem> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return CardItemContainer(
       width: MediaQuery.of(context).size.width / 2,
-      child: Padding(
-        padding: const EdgeInsets.all(ThemeDimens.offset_small),
-        child: Card(
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                    Radius.circular(ThemeDimens.offset_radius_medium))),
-            color: Theme.of(context).cardColor,
-            child: Material(
-              child: InkWell(
-                onTap: () => {
-                  if (widget.onItemClick != null)
-                    {widget.onItemClick!(widget.category)}
-                },
-                borderRadius:
-                    BorderRadius.circular(ThemeDimens.offset_radius_medium),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      top: ThemeDimens.offset_medium,
-                      bottom: ThemeDimens.offset_medium),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: SvgPicture.asset(widget.category.iconRes),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: ThemeDimens.offset_medium),
-                        child: Text(
-                          widget.category.name,
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColorDark),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            )),
+      onItemClick: () => {
+        if (widget.onItemClick != null) {widget.onItemClick!(widget.category)}
+      },
+      child: Column(
+        children: [
+          SizedBox(
+            width: ThemeDimens.category_item_size,
+            height: ThemeDimens.category_item_size,
+            child: SvgPicture.asset(widget.category.iconRes),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: ThemeDimens.offset_medium),
+            child: Text(
+              widget.category.name,
+              style: TextStyle(color: Theme.of(context).primaryColorDark),
+            ),
+          )
+        ],
       ),
     );
   }
