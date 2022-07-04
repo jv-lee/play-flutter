@@ -3,6 +3,7 @@
 /// @description
 import 'package:flutter/material.dart';
 import 'package:playflutter/view/system/viewmodel/system_content_viewmodel.dart';
+import 'package:playflutter/widget/common/app_header_spacer.dart';
 import 'package:playflutter/widget/item/parent_tab_item.dart';
 import 'package:playflutter/widget/status/super_list_view.dart';
 import 'package:provider/provider.dart';
@@ -35,6 +36,7 @@ class _SystemContentState extends State<SystemContentPage>
     return SuperListView(
       itemCount: viewModel.paging.data.length,
       statusController: viewModel.paging.statusController,
+      headerChildren: const [AppHeaderSpacer()],
       itemBuilder: (context, index) {
         var item = viewModel.paging.data[index];
         return ParentTabItem(

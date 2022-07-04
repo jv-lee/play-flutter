@@ -16,6 +16,14 @@ class AppHeaderSpacer extends StatefulWidget {
   static spacerHeight() {
     return ThemeDimens.toolbar_height + StatusTools.getStatusHeight();
   }
+
+  static Widget appendHeader(int index, Widget widget) {
+    if (index == 0) {
+      return Column(children: [const AppHeaderSpacer(), widget]);
+    } else {
+      return widget;
+    }
+  }
 }
 
 class _AppHeaderSpacerState extends State<AppHeaderSpacer> {

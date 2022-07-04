@@ -40,7 +40,7 @@ class _AppGradientTextBarState extends State<AppGradientTextBar> {
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: ThemeDimens.font_size_large_xx,
-                color: Theme.of(context).primaryColorDark),
+                color: Theme.of(context).primaryColorLight),
           ),
           Material(
             child: InkWell(

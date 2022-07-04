@@ -3,8 +3,8 @@
 /// @description
 import 'package:flutter/material.dart';
 import 'package:playflutter/view/system/viewmodel/navigation_content_viewmodel.dart';
+import 'package:playflutter/widget/common/app_header_spacer.dart';
 import 'package:playflutter/widget/item/navigation_tab_item.dart';
-import 'package:playflutter/widget/status/super_list_view.dart';
 import 'package:provider/provider.dart';
 
 /// @author jv.lee
@@ -32,15 +32,43 @@ class _NavigationContentState extends State<NavigationContentPage>
   Widget build(BuildContext context) {
     super.build(context);
     var viewModel = Provider.of<NavigationContentViewModel>(context);
-    return SuperListView(
-      itemCount: viewModel.paging.data.length,
-      statusController: viewModel.paging.statusController,
-      itemBuilder: (context, index) {
-        var item = viewModel.paging.data[index];
-        return NavigationTabItem(
-          navigationTab: item,
-        );
-      },
+    return Row(
+      children: [
+        Expanded(flex: 1, child: buildTabList(viewModel)),
+        Expanded(flex: 2, child: buildFlowList(viewModel))
+      ],
     );
+  }
+
+  Widget buildTabList(NavigationContentViewModel viewModel) {
+    return NotificationListener<OverscrollIndicatorNotification>(
+        onNotification: (OverscrollIndicatorNotification? overscroll) {
+          overscroll?.disallowIndicator();
+          return true;
+        },
+        child: ListView.builder(
+            padding: EdgeInsets.zero,
+            itemCount: viewModel.paging.data.length,
+            itemBuilder: (context, index) {
+              var item = viewModel.paging.data[index];
+              return AppHeaderSpacer.appendHeader(
+                  index, NavigationTabItem(navigationTab: item));
+            }));
+  }
+
+  Widget buildFlowList(NavigationContentViewModel viewModel) {
+    return NotificationListener<OverscrollIndicatorNotification>(
+        onNotification: (OverscrollIndicatorNotification? overscroll) {
+          overscroll?.disallowIndicator();
+          return true;
+        },
+        child: ListView.builder(
+            padding: EdgeInsets.zero,
+            itemCount: viewModel.paging.data.length,
+            itemBuilder: (context, index) {
+              var item = viewModel.paging.data[index];
+              return AppHeaderSpacer.appendHeader(
+                  index, NavigationTabItem(navigationTab: item));
+            }));
   }
 }

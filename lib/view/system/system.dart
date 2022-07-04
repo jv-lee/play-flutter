@@ -3,6 +3,7 @@ import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/system/viewmodel/system_viewmodel.dart';
 import 'package:playflutter/widget/common/app_header_container.dart';
+import 'package:playflutter/widget/common/app_header_spacer.dart';
 import 'package:provider/provider.dart';
 
 /// @author jv.lee
@@ -30,7 +31,12 @@ class _SystemState extends State<SystemPage>
   Widget build(BuildContext context) {
     super.build(context);
     var viewModel = Provider.of<SystemViewModel>(context);
-    return Column(children: [buildTabHeader(viewModel), buildPage(viewModel)]);
+    return Stack(
+      children: [
+        buildPage(viewModel),
+        buildTabHeader(viewModel)
+      ],
+    );
   }
 
   Widget buildTabHeader(SystemViewModel viewModel) {
@@ -39,10 +45,10 @@ class _SystemState extends State<SystemPage>
       width: double.infinity,
       height: ThemeDimens.toolbar_height,
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        buildTab(ThemeStrings.system_system_tab,
-            viewModel.selectedIndex == 0, () => {viewModel.tabChange(0)}),
+        buildTab(ThemeStrings.system_system_tab, viewModel.selectedIndex == 0,
+            () => {viewModel.pageChange(0)}),
         buildTab(ThemeStrings.system_navigation_tab,
-            viewModel.selectedIndex == 1, () => {viewModel.tabChange(1)})
+            viewModel.selectedIndex == 1, () => {viewModel.pageChange(1)})
       ]),
     ));
   }
@@ -81,14 +87,14 @@ class _SystemState extends State<SystemPage>
   }
 
   Widget buildPage(SystemViewModel viewModel) {
-    return Expanded(
-        child: PageView.builder(
+    return PageView.builder(
       itemCount: viewModel.pageList.length,
       controller: viewModel.pageController,
-      physics: const NeverScrollableScrollPhysics(), //静止PageView滑动
+      // physics: const NeverScrollableScrollPhysics(), //静止PageView滑动
+      onPageChanged: (page) => {viewModel.tabChange(page)},
       itemBuilder: (BuildContext context, int index) {
         return viewModel.pageList[index];
       },
-    ));
+    );
   }
 }

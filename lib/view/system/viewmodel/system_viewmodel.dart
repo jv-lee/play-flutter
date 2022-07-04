@@ -13,11 +13,15 @@ class SystemViewModel extends ViewModel {
 
   @override
   void init() {
-    pageController = PageController(initialPage: selectedIndex);
+    pageController = PageController(initialPage: selectedIndex, keepPage: true);
+  }
+
+  void pageChange(int index) {
+    pageController.jumpToPage(index);
+    setViewState(() => {selectedIndex = index});
   }
 
   void tabChange(int index) {
-    pageController.jumpToPage(index);
     setViewState(() => {selectedIndex = index});
   }
 }
