@@ -40,5 +40,5 @@ class ThemeDimens {
   static const double system_tab_width = 100;
   static const double system_tab_height = 24;
   static const double system_tab_radius = 12;
-
+  static const double system_navigation_tab_height = 56;
 }

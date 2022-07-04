@@ -5,6 +5,7 @@ import 'package:html/parser.dart';
 import 'package:playflutter/entity/banner.dart';
 import 'package:playflutter/entity/content.dart';
 import 'package:playflutter/entity/details.dart';
+import 'package:playflutter/entity/navigation_tab.dart';
 import 'package:playflutter/entity/parent_tab.dart';
 import 'package:playflutter/tools/time_tools.dart';
 
@@ -53,4 +54,13 @@ extension ParentTabExtensions on ParentTab {
     }
     return buffer.toString();
   }
+}
+
+extension ArticlesExtensions on Articles {
+  DetailsData transformDetails() {
+    return DetailsData(
+        id: id.toString(), title: getTitle(), link: link, isCollect: collect);
+  }
+
+  String getTitle() => parse(title).body.innerHtml;
 }

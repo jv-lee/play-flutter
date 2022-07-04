@@ -2,10 +2,13 @@
 /// @date 2022/6/30
 /// @description
 import 'package:flutter/material.dart';
+import 'package:playflutter/extensions/data_format_extensions.dart';
+import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/view/system/viewmodel/navigation_content_viewmodel.dart';
 import 'package:playflutter/widget/common/app_header_spacer.dart';
 import 'package:playflutter/widget/common/overscroll_hide_container.dart';
 import 'package:playflutter/widget/item/navigation_tab_item.dart';
+import 'package:playflutter/widget/item/navigation_tag_item.dart';
 import 'package:provider/provider.dart';
 
 /// @author jv.lee
@@ -33,11 +36,13 @@ class _NavigationContentState extends State<NavigationContentPage>
   Widget build(BuildContext context) {
     super.build(context);
     var viewModel = Provider.of<NavigationContentViewModel>(context);
-    return Row(
-      children: [
-        Expanded(flex: 1, child: buildTabList(viewModel)),
-        Expanded(flex: 2, child: buildFlowList(viewModel))
-      ],
+    return Material(
+      child: Row(
+        children: [
+          Expanded(flex: 1, child: buildTabList(viewModel)),
+          Expanded(flex: 2, child: buildTagList(viewModel))
+        ],
+      ),
     );
   }
 
@@ -49,11 +54,16 @@ class _NavigationContentState extends State<NavigationContentPage>
             itemBuilder: (context, index) {
               var item = viewModel.paging.data[index];
               return AppHeaderSpacer.appendHeader(
-                  index, NavigationTabItem(navigationTab: item));
+                  index,
+                  NavigationTabItem(
+                    navigationTab: item,
+                    isSelected: viewModel.tabSelectedIndex == index,
+                    onItemClick: (content) => {viewModel.changeTabIndex(index)},
+                  ));
             }));
   }
 
-  Widget buildFlowList(NavigationContentViewModel viewModel) {
+  Widget buildTagList(NavigationContentViewModel viewModel) {
     return OverscrollHideContainer(
         scrollChild: ListView.builder(
             padding: EdgeInsets.zero,
@@ -61,7 +71,14 @@ class _NavigationContentState extends State<NavigationContentPage>
             itemBuilder: (context, index) {
               var item = viewModel.paging.data[index];
               return AppHeaderSpacer.appendHeader(
-                  index, NavigationTabItem(navigationTab: item));
+                  index,
+                  NavigationTagItem(
+                    navigationTab: item,
+                    onItemClick: (content) => {
+                      Navigator.pushNamed(context, RouteNames.details,
+                          arguments: content.transformDetails())
+                    },
+                  ));
             }));
   }
 }

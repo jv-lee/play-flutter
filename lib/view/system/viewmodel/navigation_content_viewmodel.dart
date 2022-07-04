@@ -14,6 +14,7 @@ class NavigationContentViewModel extends ViewModel {
   final _model = SystemModel();
 
   late Paging<NavigationTab> paging;
+  var tabSelectedIndex = 0;
 
   @override
   void init() {
@@ -31,5 +32,9 @@ class NavigationContentViewModel extends ViewModel {
     // request systemContent list data.
     paging.requestData(
         LoadStatus.refresh, (page) => _model.getNavigationTabAsync());
+  }
+
+  void changeTabIndex(int index) {
+    setViewState(() => {tabSelectedIndex = index});
   }
 }
