@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/view/system/viewmodel/navigation_content_viewmodel.dart';
 import 'package:playflutter/widget/common/app_header_spacer.dart';
+import 'package:playflutter/widget/common/overscroll_hide_container.dart';
 import 'package:playflutter/widget/item/navigation_tab_item.dart';
 import 'package:provider/provider.dart';
 
@@ -41,12 +42,8 @@ class _NavigationContentState extends State<NavigationContentPage>
   }
 
   Widget buildTabList(NavigationContentViewModel viewModel) {
-    return NotificationListener<OverscrollIndicatorNotification>(
-        onNotification: (OverscrollIndicatorNotification? overscroll) {
-          overscroll?.disallowIndicator();
-          return true;
-        },
-        child: ListView.builder(
+    return OverscrollHideContainer(
+        scrollChild: ListView.builder(
             padding: EdgeInsets.zero,
             itemCount: viewModel.paging.data.length,
             itemBuilder: (context, index) {
@@ -57,12 +54,8 @@ class _NavigationContentState extends State<NavigationContentPage>
   }
 
   Widget buildFlowList(NavigationContentViewModel viewModel) {
-    return NotificationListener<OverscrollIndicatorNotification>(
-        onNotification: (OverscrollIndicatorNotification? overscroll) {
-          overscroll?.disallowIndicator();
-          return true;
-        },
-        child: ListView.builder(
+    return OverscrollHideContainer(
+        scrollChild: ListView.builder(
             padding: EdgeInsets.zero,
             itemCount: viewModel.paging.data.length,
             itemBuilder: (context, index) {
