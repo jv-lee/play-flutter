@@ -1,20 +1,20 @@
-/// flutter_scroll_to_index库直接copy处理空安全
 import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:playflutter/tools/log_tools.dart';
 
-// 滑动到指定位置组件
-class ScrollToIndex extends StatefulWidget {
+/// 滑动到指定位置组件 (flutter_scroll_to_index库直接copy处理空安全,添加firstIndex回调接口)
+class ScrollToIndexList extends StatefulWidget {
   final IndexedWidgetBuilder itemBuilder;
   final List<ScrollToIndexBaseObject> list;
   final Duration? duration;
   final double topDistance;
   final ScrollToIndexController controller;
-  final ViewPortCallback? callback;
+  final ListVisibleItemCallback? callback;
 
-  const ScrollToIndex(
+  const ScrollToIndexList(
       {Key? key,
       required this.list,
       this.duration,
@@ -25,10 +25,10 @@ class ScrollToIndex extends StatefulWidget {
       : super(key: key);
 
   @override
-  _ScrollToIndexState createState() => _ScrollToIndexState();
+  State<StatefulWidget> createState() => _ScrollToIndexListState();
 }
 
-class _ScrollToIndexState extends State<ScrollToIndex> {
+class _ScrollToIndexListState extends State<ScrollToIndexList> {
   final ScrollController _scrollController = ScrollController();
   final GlobalKey _scrollKey = GlobalKey();
 
@@ -46,23 +46,22 @@ class _ScrollToIndexState extends State<ScrollToIndex> {
   @override
   Widget build(BuildContext context) {
     return NotificationListener(
-      onNotification: _onNotification,
-      child: SingleChildScrollView(
-        key: _scrollKey,
-        controller: _scrollController,
-        child: ListView.builder(
-          padding: EdgeInsets.zero,
-          itemBuilder: widget.itemBuilder,
-          itemCount: widget.list.length,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-        ),
-      ),
-    );
+        onNotification: _onNotification,
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          key: _scrollKey,
+          child: ListView.builder(
+            padding: EdgeInsets.zero,
+            itemBuilder: widget.itemBuilder,
+            itemCount: widget.list.length,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+          ),
+        ));
   }
 
   @override
-  void didUpdateWidget(covariant ScrollToIndex oldWidget) {
+  void didUpdateWidget(covariant ScrollToIndexList oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.controller != widget.controller) {
       _bindController();
@@ -73,7 +72,7 @@ class _ScrollToIndexState extends State<ScrollToIndex> {
     if (index > widget.list.length) {
       return;
     }
-    print("scroll to index - $index");
+    LogTools.log("scroll to index - $index");
     ScrollToIndexBaseObject item = widget.list[index];
     if (item.globalKey.currentContext != null) {
       RenderBox? renderBox =
@@ -100,7 +99,7 @@ class _ScrollToIndexState extends State<ScrollToIndex> {
         _scrollController.jumpTo(scrollOffset);
       }
     } else {
-      print(
+      LogTools.log(
           "Please bind the key to the widget in the outermost layer of the Item layout");
     }
   }
@@ -161,13 +160,14 @@ class _ScrollToIndexState extends State<ScrollToIndex> {
 }
 
 class ScrollToIndexController {
-  _ScrollToIndexState? _scrollToIndexState;
+  _ScrollToIndexListState? _scrollToIndexState;
 
-  /// 滑动到指定位置
+  /// 动画滑动到指定位置
   void animateTo(int index) {
     _scrollToIndexState?.scrollTo(index, true);
   }
 
+  /// 直接跳到指定位置
   void jumpTo(int index) {
     _scrollToIndexState?.scrollTo(index, false);
   }
@@ -176,13 +176,15 @@ class ScrollToIndexController {
     _scrollToIndexState = null;
   }
 
-  void _bind(_ScrollToIndexState state) {
+  void _bind(_ScrollToIndexListState state) {
     _scrollToIndexState = state;
   }
 }
 
+/// 构建列表数据实体需要继承该base类提供globalKey查询渲染元素位置
 class ScrollToIndexBaseObject {
   final GlobalKey globalKey = GlobalKey();
 }
 
-typedef ViewPortCallback = void Function(int firstIndex, int lastIndex);
+/// 列表view当前首个显示item下标及最后显示item下标回调callback
+typedef ListVisibleItemCallback = void Function(int firstIndex, int lastIndex);

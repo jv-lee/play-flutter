@@ -79,7 +79,7 @@ class _NavigationContentState extends State<NavigationContentPage>
 
   Widget buildTagList(NavigationContentViewModel viewModel) {
     return OverscrollHideContainer(
-        scrollChild: ScrollToIndex(
+        scrollChild: ScrollToIndexList(
       topDistance: -StatusTools.getStatusHeight(),
       controller: viewModel.tagScrollController,
       list: viewModel.paging.data,

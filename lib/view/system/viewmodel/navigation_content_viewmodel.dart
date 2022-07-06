@@ -47,7 +47,9 @@ class NavigationContentViewModel extends ViewModel {
 
     // request systemContent list data.
     paging.requestData(
-        LoadStatus.refresh, (page) => _model.getNavigationTabAsync());
+        LoadStatus.refresh,
+        (page) => Future.delayed(const Duration(milliseconds: 500),
+            () => _model.getNavigationTabAsync()));
   }
 
   /// tab点击切换index选中状态
