@@ -3,7 +3,7 @@ import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/system/viewmodel/system_viewmodel.dart';
 import 'package:playflutter/widget/common/app_header_container.dart';
-import 'package:playflutter/widget/common/app_header_spacer.dart';
+import 'package:playflutter/widget/common/overscroll_hide_container.dart';
 import 'package:provider/provider.dart';
 
 /// @author jv.lee
@@ -28,14 +28,17 @@ class _SystemState extends State<SystemPage>
   }
 
   @override
+  void dispose() {
+    context.read<SystemViewModel>().unbindView();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
     var viewModel = Provider.of<SystemViewModel>(context);
     return Stack(
-      children: [
-        buildPage(viewModel),
-        buildTabHeader(viewModel)
-      ],
+      children: [buildPage(viewModel), buildTabHeader(viewModel)],
     );
   }
 
@@ -87,7 +90,7 @@ class _SystemState extends State<SystemPage>
   }
 
   Widget buildPage(SystemViewModel viewModel) {
-    return PageView.builder(
+    return OverscrollHideContainer(scrollChild: PageView.builder(
       itemCount: viewModel.pageList.length,
       controller: viewModel.pageController,
       // physics: const NeverScrollableScrollPhysics(), //静止PageView滑动
@@ -95,6 +98,6 @@ class _SystemState extends State<SystemPage>
       itemBuilder: (BuildContext context, int index) {
         return viewModel.pageList[index];
       },
-    );
+    ));
   }
 }

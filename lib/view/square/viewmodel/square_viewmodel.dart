@@ -25,6 +25,11 @@ class SquareViewModel extends ViewModel {
     requestData(LoadStatus.refresh);
   }
 
+  @override
+  void unbindView() {
+    paging.statusController.dispose();
+  }
+
   void requestData(LoadStatus status) async {
     LogTools.log("Square:requestData - $status");
 

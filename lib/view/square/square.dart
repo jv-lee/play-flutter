@@ -34,6 +34,12 @@ class _SquareState extends State<SquarePage>
   }
 
   @override
+  void dispose() {
+    context.read<SquareViewModel>().unbindView();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
     var viewModel = context.read<SquareViewModel>();

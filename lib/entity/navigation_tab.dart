@@ -1,4 +1,5 @@
 import 'package:playflutter/tools/paging/paging_data.dart';
+import 'package:playflutter/widget/scroll/scroll_to_index.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
@@ -39,7 +40,7 @@ class NavigationTabData extends PagingData<NavigationTab> {
   int getPageTotalNumber() => 1;
 }
 
-class NavigationTab {
+class NavigationTab extends ScrollToIndexBaseObject {
   NavigationTab({
     required this.articles,
     required this.cid,

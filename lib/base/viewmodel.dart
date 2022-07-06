@@ -14,6 +14,8 @@ abstract class ViewModel extends ChangeNotifier {
     init();
   }
 
+  void unbindView();
+
   void init();
 
   postViewState() {

@@ -25,6 +25,11 @@ class SystemContentViewModel extends ViewModel {
     requestData();
   }
 
+  @override
+  void unbindView() {
+    paging.statusController.dispose();
+  }
+
   void requestData() async {
     LogTools.log("SystemContent:requestData");
 

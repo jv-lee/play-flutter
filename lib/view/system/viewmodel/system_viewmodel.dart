@@ -16,6 +16,11 @@ class SystemViewModel extends ViewModel {
     pageController = PageController(initialPage: selectedIndex, keepPage: true);
   }
 
+  @override
+  void unbindView() {
+    pageController.dispose();
+  }
+
   void pageChange(int index) {
     pageController.jumpToPage(index);
     setViewState(() => {selectedIndex = index});

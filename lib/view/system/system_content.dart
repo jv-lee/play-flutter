@@ -30,6 +30,12 @@ class _SystemContentState extends State<SystemContentPage>
   }
 
   @override
+  void dispose() {
+    context.read<SystemContentViewModel>().unbindView();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
     var viewModel = Provider.of<SystemContentViewModel>(context);

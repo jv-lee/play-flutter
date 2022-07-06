@@ -41,6 +41,12 @@ class _HomeState extends State<HomePage>
   }
 
   @override
+  void dispose() {
+    context.read<HomeViewModel>().unbindView();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
     var viewModel = context.read<HomeViewModel>();

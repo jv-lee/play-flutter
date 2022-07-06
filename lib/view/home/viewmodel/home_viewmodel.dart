@@ -30,6 +30,11 @@ class HomeViewModel extends ViewModel {
     requestData(LoadStatus.refresh);
   }
 
+  @override
+  void unbindView() {
+    paging.statusController.dispose();
+  }
+
   void requestData(LoadStatus status) async {
     LogTools.log("Home:requestData - $status");
 
@@ -54,5 +59,4 @@ class HomeViewModel extends ViewModel {
       bannerIndex = index;
     });
   }
-
 }
