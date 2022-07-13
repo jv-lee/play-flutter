@@ -9,7 +9,7 @@ import 'package:playflutter/widget/status/status_controller.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
-/// @description
+/// @description 体系tab systemContent数据viewModel
 class SystemContentViewModel extends ViewModel {
   final _model = SystemModel();
 
