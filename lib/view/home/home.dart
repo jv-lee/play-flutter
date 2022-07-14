@@ -7,7 +7,7 @@ import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
-import 'package:playflutter/theme/theme_svg_paths.dart';
+import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/home/viewmodel/home_viewmodel.dart';
 import 'package:playflutter/widget/common/app_gradient_text_bar.dart';
@@ -98,7 +98,7 @@ class _HomeState extends State<HomePage>
         AppHeaderContainer(
             child: AppGradientTextBar(
           title: ThemeStrings.home_header_text,
-          navigationSvgPath: ThemeSvgPaths.svg_search,
+          navigationSvgPath: ThemeImages.common_search_svg,
           onNavigationClick: () {
             Navigator.pushNamed(context, RouteNames.search);
           },
@@ -114,7 +114,7 @@ class _HomeState extends State<HomePage>
       return Container();
     } else {
       return SizedBox(
-        height: ThemeDimens.banner_height,
+        height: ThemeDimens.home_banner_height,
         child: Swiper(
             index: bannerIndex,
             viewportFraction: 0.85,
@@ -167,7 +167,7 @@ class _HomeState extends State<HomePage>
       return Container();
     } else {
       return SizedBox(
-        height: ThemeDimens.category_layout_height,
+        height: ThemeDimens.home_category_layout_height,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: categoryList.length,

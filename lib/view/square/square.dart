@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_strings.dart';
-import 'package:playflutter/theme/theme_svg_paths.dart';
+import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/square/viewmodel/square_viewmodel.dart';
 import 'package:playflutter/widget/common/app_gradient_text_bar.dart';
@@ -84,7 +84,7 @@ class _SquareState extends State<SquarePage>
         AppHeaderContainer(
             child: AppGradientTextBar(
           title: ThemeStrings.square_header_text,
-          navigationSvgPath: ThemeSvgPaths.svg_add,
+          navigationSvgPath: ThemeImages.common_add_svg,
           onNavigationClick: () {
             Navigator.pushNamed(context, RouteNames.create_share);
           },

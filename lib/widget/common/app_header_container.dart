@@ -8,9 +8,15 @@ import 'package:playflutter/widget/common/app_header_spacer.dart';
 class AppHeaderContainer extends StatefulWidget {
   final Widget child;
   final bool headerBrush;
+  final Color backgroundColor;
+  final GestureTapCallback? onTap;
 
   const AppHeaderContainer(
-      {Key? key, required this.child, this.headerBrush = true})
+      {Key? key,
+      required this.child,
+      this.headerBrush = true,
+      this.backgroundColor = Colors.transparent,
+      this.onTap})
       : super(key: key);
 
   @override
@@ -48,7 +54,14 @@ class _AppHeaderContainerState extends State<AppHeaderContainer> {
         child: content,
       );
     } else {
-      return content;
+      return Container(
+          decoration: BoxDecoration(color: widget.backgroundColor),
+          child: Material(
+            child: InkWell(
+              onTap: widget.onTap,
+              child: content,
+            ),
+          ));
     }
   }
 }

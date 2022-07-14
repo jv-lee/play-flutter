@@ -1,6 +1,3 @@
-/// @author jv.lee
-/// @date 2022/6/30
-/// @description
 import 'package:flutter/material.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
@@ -15,7 +12,7 @@ import 'package:playflutter/widget/status/status_page.dart';
 import 'package:provider/provider.dart';
 
 /// @author jv.lee
-/// @date 2022/4/26
+/// @date 2022/6/30
 /// @description 主页体系tab 导航内容页面
 class NavigationContentPage extends StatefulWidget {
   const NavigationContentPage({super.key});

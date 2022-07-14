@@ -64,7 +64,5 @@ flutter:
         - asset: assets/fonts/Avenir.ttf
 
   assets:
-    - assets/svg/ic_official.svg
-    - assets/svg/ic_project.svg
-    - assets/svg/ic_search.svg
-    - assets/svg/ic_add.svg
+    - assets/images/
+    - assets/images/svg/

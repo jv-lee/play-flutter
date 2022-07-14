@@ -1,6 +1,6 @@
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_strings.dart';
-import 'package:playflutter/theme/theme_svg_paths.dart';
+import 'package:playflutter/theme/theme_images.dart';
 
 /// @author jv.lee
 /// @date 2022/6/27
@@ -16,11 +16,11 @@ class HomeCategory {
     var list = <HomeCategory>[];
     list.add(HomeCategory(
         name: ThemeStrings.official_category_name,
-        iconRes: ThemeSvgPaths.svg_official,
+        iconRes: ThemeImages.home_official_svg,
         link: RouteNames.official));
     list.add(HomeCategory(
         name: ThemeStrings.project_category_name,
-        iconRes: ThemeSvgPaths.svg_project,
+        iconRes: ThemeImages.home_project_svg,
         link: RouteNames.project));
     return list;
   }

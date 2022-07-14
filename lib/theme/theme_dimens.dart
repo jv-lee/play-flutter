@@ -29,16 +29,20 @@ class ThemeDimens {
   // 通用圆角线宽度
   static const double border_width = 2;
 
-  // 项目banner高度
-  static const double banner_height = 180;
+  // homeTab布局数值
+  static const double home_banner_height = 180;
+  static const double home_category_layout_height = 130;
+  static const double home_category_item_size = 50;
 
-  // 项目category布局高度
-  static const double category_layout_height = 130;
-  static const double category_item_size = 50;
-
-  // 体系tab布局数值
+  // systemTab布局数值
   static const double system_tab_width = 100;
   static const double system_tab_height = 24;
   static const double system_tab_radius = 12;
   static const double system_navigation_tab_height = 56;
+
+  // meTab布局数值
+  static const double me_header_height = 160;
+  static const double me_header_picture_size = 56;
+  static const double me_header_picture_margin = 36;
+  static const double me_header_content_margin = 26;
 }

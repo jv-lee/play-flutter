@@ -31,8 +31,8 @@ class _CategoryItemState extends State<CategoryItem> {
       child: Column(
         children: [
           SizedBox(
-            width: ThemeDimens.category_item_size,
-            height: ThemeDimens.category_item_size,
+            width: ThemeDimens.home_category_item_size,
+            height: ThemeDimens.home_category_item_size,
             child: SvgPicture.asset(widget.category.iconRes),
           ),
           Padding(
