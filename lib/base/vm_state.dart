@@ -19,11 +19,7 @@ abstract class VMState<V extends StatefulWidget, VM extends ViewModel>
     super.dispose();
   }
 
-  VM readVM() {
-    return context.read<VM>();
-  }
+  VM readVM() => context.read<VM>();
 
-  VM providerOfVM() {
-    return Provider.of<VM>(context);
-  }
+  VM providerOfVM() => Provider.of<VM>(context);
 }
