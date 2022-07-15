@@ -8,6 +8,10 @@ import 'package:flutter/services.dart';
 /// @date 2020/4/30
 /// @description 状态栏操作工具
 class StatusTools {
+  static defaultStatusBar(BuildContext context) {
+    transparentStatusBar(Theme.of(context).brightness);
+  }
+
   //android状态栏沉浸式设置
   static transparentStatusBar(Brightness mode) {
     if (Platform.isAndroid) {

@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:night/night.dart';
+import 'package:playflutter/theme/theme_colors.dart';
+import 'package:playflutter/tools/status_tools.dart';
 import 'package:provider/provider.dart';
 
 /// @author jv.lee
@@ -13,10 +15,15 @@ class DarkModeProvider with ChangeNotifier {
   static const int MODE_SYSTEM = 3; // 跟随系统
   static const int MODE_UN_SYSTEM = 4; //取消跟随系统
 
+  BuildContext context;
   int darkMode = MODE_SYSTEM;
 
-  DarkModeProvider() {
+  late ThemeData lightThemeData;
+  late ThemeData darkThemeData;
+
+  DarkModeProvider({required this.context}) {
     _init();
+    _setThemeData();
   }
 
   _init() async {
@@ -27,6 +34,31 @@ class DarkModeProvider with ChangeNotifier {
       darkMode = await Night.isDarkTheme() ? MODE_DARK : MODE_LIGHT;
     }
     notifyListeners();
+  }
+
+  void _setThemeData() {
+    switch (darkMode) {
+      case DarkModeProvider.MODE_DARK:
+        {
+          StatusTools.transparentStatusBar(Brightness.dark);
+          lightThemeData = ThemeColors.darkThemeData;
+          darkThemeData = ThemeColors.darkThemeData;
+        }
+        break;
+      case DarkModeProvider.MODE_LIGHT:
+        {
+          StatusTools.transparentStatusBar(Brightness.light);
+          lightThemeData = ThemeColors.lightThemeData;
+          darkThemeData = ThemeColors.lightThemeData;
+        }
+        break;
+      default:
+        {
+          StatusTools.defaultStatusBar(context);
+          lightThemeData = ThemeColors.lightThemeData;
+          darkThemeData = ThemeColors.darkThemeData;
+        }
+    }
   }
 
   void _changeMode(int darkMode) async {
@@ -43,14 +75,14 @@ class DarkModeProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  static changeSystem(context, enable) {
-    Provider.of<DarkModeProvider>(context, listen: false)._changeMode(enable
+  static changeSystem(BuildContext context, enable) {
+    context.read<DarkModeProvider>()._changeMode(enable
         ? DarkModeProvider.MODE_SYSTEM
         : DarkModeProvider.MODE_UN_SYSTEM);
   }
 
-  static changeDark(context, enable) {
-    Provider.of<DarkModeProvider>(context, listen: false)._changeMode(
+  static changeDark(BuildContext context, enable) {
+    context.read<DarkModeProvider>()._changeMode(
         enable ? DarkModeProvider.MODE_DARK : DarkModeProvider.MODE_LIGHT);
   }
 }

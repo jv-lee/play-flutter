@@ -24,4 +24,11 @@ class ThemeStrings {
   /// details
   static const String menu_collect = "收藏";
   static const String menu_share = "分享";
+
+  /// me
+  static const String me_item_coin = "我的积分";
+  static const String me_item_collect = "我的收藏";
+  static const String me_item_share = "我的分享";
+  static const String me_item_todo = "TODO";
+  static const String me_item_settings = "系统设置";
 }

@@ -39,7 +39,7 @@ class _CategoryItemState extends State<CategoryItem> {
             padding: const EdgeInsets.only(top: ThemeDimens.offset_medium),
             child: Text(
               widget.category.name,
-              style: TextStyle(color: Theme.of(context).primaryColorDark),
+              style: TextStyle(color: Theme.of(context).primaryColorLight),
             ),
           )
         ],

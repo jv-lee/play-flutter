@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:playflutter/base/vm_state.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_images.dart';
+import 'package:playflutter/view/me/viewmodel/me_viewmodel.dart';
 import 'package:playflutter/widget/common/app_header_container.dart';
+import 'package:playflutter/widget/common/profile_item.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26
@@ -13,15 +17,10 @@ class MePage extends StatefulWidget {
   State<StatefulWidget> createState() => _MeState();
 }
 
-class _MeState extends State<MePage>
+class _MeState extends VMState<MePage, MeViewModel>
     with AutomaticKeepAliveClientMixin<MePage> {
   @override
   bool get wantKeepAlive => true;
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,9 +85,20 @@ class _MeState extends State<MePage>
   }
 
   Widget buildLineItemList() {
-    return Column(
-      children: [],
-    );
+    var widgets = providerOfVM()
+        .meItems
+        .map((e) => Padding(
+              padding: const EdgeInsets.only(top: 1),
+              child: ProfileItem(
+                leftSvgPath: e.iconSvgPath,
+                leftText: e.name,
+                rightSvgPath: e.arrowSvgPath,
+                onItemClick: () => {Navigator.pushNamed(context, e.route)},
+              ),
+            ))
+        .toList();
+
+    return Column(children: widgets);
   }
 
   Widget buildProfileItem() {
