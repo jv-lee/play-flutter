@@ -8,6 +8,7 @@ import 'package:playflutter/view/details/details.dart';
 import 'package:playflutter/view/home/viewmodel/home_viewmodel.dart';
 import 'package:playflutter/view/main.dart';
 import 'package:playflutter/view/me/settings.dart';
+import 'package:playflutter/view/me/viewmodel/me_viewmodel.dart';
 import 'package:playflutter/view/official/project.dart';
 import 'package:playflutter/view/project/project.dart';
 import 'package:playflutter/view/search/search.dart';
@@ -40,6 +41,7 @@ class PlayFlutterApp extends StatelessWidget {
           ChangeNotifierProvider(create: (context) => SystemContentViewModel()),
           ChangeNotifierProvider(
               create: (context) => NavigationContentViewModel()),
+          ChangeNotifierProvider(create: (context) => MeViewModel()),
         ],
         child:
             Consumer<DarkModeProvider>(builder: (context, darkModeProvider, _) {

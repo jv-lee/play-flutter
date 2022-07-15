@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:playflutter/base/vm_state.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
-import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/theme/theme_images.dart';
+import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/square/viewmodel/square_viewmodel.dart';
 import 'package:playflutter/widget/common/app_gradient_text_bar.dart';
@@ -10,7 +11,6 @@ import 'package:playflutter/widget/common/app_header_container.dart';
 import 'package:playflutter/widget/common/app_header_spacer.dart';
 import 'package:playflutter/widget/item/content_item.dart';
 import 'package:playflutter/widget/status/super_list_view.dart';
-import 'package:provider/provider.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26
@@ -22,27 +22,14 @@ class SquarePage extends StatefulWidget {
   State<StatefulWidget> createState() => _SquareState();
 }
 
-class _SquareState extends State<SquarePage>
+class _SquareState extends VMState<SquarePage, SquareViewModel>
     with AutomaticKeepAliveClientMixin<SquarePage> {
   @override
   bool get wantKeepAlive => true;
 
   @override
-  void initState() {
-    super.initState();
-    context.read<SquareViewModel>().bindView(this);
-  }
-
-  @override
-  void dispose() {
-    context.read<SquareViewModel>().unbindView();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     super.build(context);
-    var viewModel = context.read<SquareViewModel>();
     return Stack(
       children: [
         RefreshIndicator(
@@ -51,27 +38,27 @@ class _SquareState extends State<SquarePage>
             color: Theme.of(context).primaryColorLight,
             onRefresh: () async {
               await Future<void>.delayed(const Duration(seconds: 1), () {
-                viewModel.requestData(LoadStatus.refresh);
+                readVM().requestData(LoadStatus.refresh);
               });
             },
             child: SuperListView(
               statusController:
-                  Provider.of<SquareViewModel>(context).paging.statusController,
+                  providerOfVM().paging.statusController,
               itemCount:
-                  Provider.of<SquareViewModel>(context).paging.data.length,
+                  providerOfVM().paging.data.length,
               onPageReload: () {
-                viewModel.requestData(LoadStatus.refresh);
+                readVM().requestData(LoadStatus.refresh);
               },
               onItemReload: () {
-                viewModel.requestData(LoadStatus.reload);
+                readVM().requestData(LoadStatus.reload);
               },
               onLoadMore: () {
-                viewModel.requestData(LoadStatus.loadMore);
+                readVM().requestData(LoadStatus.loadMore);
               },
               headerChildren: const [AppHeaderSpacer()],
               itemBuilder: (BuildContext context, int index) {
                 var item =
-                    Provider.of<SquareViewModel>(context).paging.data[index];
+                    providerOfVM().paging.data[index];
                 return ContentItem(
                   content: item,
                   onItemClick: (item) => {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:playflutter/base/vm_state.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/tools/status_tools.dart';
@@ -9,7 +10,6 @@ import 'package:playflutter/widget/item/navigation_tab_item.dart';
 import 'package:playflutter/widget/item/navigation_tag_item.dart';
 import 'package:playflutter/widget/scroll/scroll_to_index.dart';
 import 'package:playflutter/widget/status/status_page.dart';
-import 'package:provider/provider.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
@@ -21,36 +21,24 @@ class NavigationContentPage extends StatefulWidget {
   State<StatefulWidget> createState() => _NavigationContentState();
 }
 
-class _NavigationContentState extends State<NavigationContentPage>
+class _NavigationContentState
+    extends VMState<NavigationContentPage, NavigationContentViewModel>
     with AutomaticKeepAliveClientMixin<NavigationContentPage> {
   @override
   bool get wantKeepAlive => true;
 
   @override
-  void initState() {
-    super.initState();
-    context.read<NavigationContentViewModel>().bindView(this);
-  }
-
-  @override
-  void dispose() {
-    context.read<NavigationContentViewModel>().unbindView();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     super.build(context);
-    var viewModel = Provider.of<NavigationContentViewModel>(context);
     return Material(
       child: StatusPage(
-        status: viewModel.paging.statusController.pageStatus,
+        status: providerOfVM().paging.statusController.pageStatus,
         child: Padding(
           padding: EdgeInsets.only(top: AppHeaderSpacer.spacerHeight()),
           child: Row(
             children: [
-              Expanded(flex: 1, child: buildTabList(viewModel)),
-              Expanded(flex: 2, child: buildTagList(viewModel))
+              Expanded(flex: 1, child: buildTabList()),
+              Expanded(flex: 2, child: buildTagList())
             ],
           ),
         ),
@@ -58,30 +46,30 @@ class _NavigationContentState extends State<NavigationContentPage>
     );
   }
 
-  Widget buildTabList(NavigationContentViewModel viewModel) {
+  Widget buildTabList() {
     return OverscrollHideContainer(
         scrollChild: ListView.builder(
-            controller: viewModel.tabScrollController,
+            controller: providerOfVM().tabScrollController,
             padding: EdgeInsets.zero,
-            itemCount: viewModel.paging.data.length,
+            itemCount: providerOfVM().paging.data.length,
             itemBuilder: (context, index) {
-              var item = viewModel.paging.data[index];
+              var item = providerOfVM().paging.data[index];
               return NavigationTabItem(
                 navigationTab: item,
-                isSelected: viewModel.tabSelectedIndex == index,
-                onItemClick: (content) => {viewModel.changeTabIndex(index)},
+                isSelected: providerOfVM().tabSelectedIndex == index,
+                onItemClick: (content) => {readVM().changeTabIndex(index)},
               );
             }));
   }
 
-  Widget buildTagList(NavigationContentViewModel viewModel) {
+  Widget buildTagList() {
     return OverscrollHideContainer(
         scrollChild: ScrollToIndexList(
       topDistance: -StatusTools.getStatusHeight(),
-      controller: viewModel.tagScrollController,
-      list: viewModel.paging.data,
+      controller: providerOfVM().tagScrollController,
+      list: providerOfVM().paging.data,
       itemBuilder: (context, index) {
-        var item = viewModel.paging.data[index];
+        var item = providerOfVM().paging.data[index];
         return NavigationTagItem(
           key: item.globalKey,
           navigationTab: item,
@@ -91,7 +79,7 @@ class _NavigationContentState extends State<NavigationContentPage>
           },
         );
       },
-      callback: (first, last) => {viewModel.changeTagIndex(first)},
+      callback: (first, last) => {readVM().changeTagIndex(first)},
     ));
   }
 }

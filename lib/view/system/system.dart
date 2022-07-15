@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:playflutter/base/vm_state.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/system/viewmodel/system_viewmodel.dart';
 import 'package:playflutter/widget/common/app_header_container.dart';
 import 'package:playflutter/widget/common/overscroll_hide_container.dart';
-import 'package:provider/provider.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
@@ -16,42 +16,29 @@ class SystemPage extends StatefulWidget {
   State<StatefulWidget> createState() => _SystemState();
 }
 
-class _SystemState extends State<SystemPage>
+class _SystemState extends VMState<SystemPage, SystemViewModel>
     with AutomaticKeepAliveClientMixin<SystemPage> {
   @override
   bool get wantKeepAlive => true;
 
   @override
-  void initState() {
-    super.initState();
-    context.read<SystemViewModel>().bindView(this);
-  }
-
-  @override
-  void dispose() {
-    context.read<SystemViewModel>().unbindView();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     super.build(context);
-    var viewModel = Provider.of<SystemViewModel>(context);
     return Stack(
-      children: [buildPage(viewModel), buildTabHeader(viewModel)],
+      children: [buildPage(), buildTabHeader()],
     );
   }
 
-  Widget buildTabHeader(SystemViewModel viewModel) {
+  Widget buildTabHeader() {
     return AppHeaderContainer(
         child: SizedBox(
       width: double.infinity,
       height: ThemeDimens.toolbar_height,
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        buildTab(ThemeStrings.system_system_tab, viewModel.selectedIndex == 0,
-            () => {viewModel.pageChange(0)}),
+        buildTab(ThemeStrings.system_system_tab,
+            providerOfVM().selectedIndex == 0, () => {readVM().pageChange(0)}),
         buildTab(ThemeStrings.system_navigation_tab,
-            viewModel.selectedIndex == 1, () => {viewModel.pageChange(1)})
+            providerOfVM().selectedIndex == 1, () => {readVM().pageChange(1)})
       ]),
     ));
   }
@@ -89,14 +76,15 @@ class _SystemState extends State<SystemPage>
     );
   }
 
-  Widget buildPage(SystemViewModel viewModel) {
-    return OverscrollHideContainer(scrollChild: PageView.builder(
-      itemCount: viewModel.pageList.length,
-      controller: viewModel.pageController,
+  Widget buildPage() {
+    return OverscrollHideContainer(
+        scrollChild: PageView.builder(
+      itemCount: providerOfVM().pageList.length,
+      controller: providerOfVM().pageController,
       // physics: const NeverScrollableScrollPhysics(), //静止PageView滑动
-      onPageChanged: (page) => {viewModel.tabChange(page)},
+      onPageChanged: (page) => {readVM().tabChange(page)},
       itemBuilder: (BuildContext context, int index) {
-        return viewModel.pageList[index];
+        return providerOfVM().pageList[index];
       },
     ));
   }

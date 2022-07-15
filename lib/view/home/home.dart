@@ -1,14 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:playflutter/base/vm_state.dart';
 import 'package:playflutter/entity/banner.dart';
-import 'package:playflutter/entity/home_category.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
-import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/theme/theme_images.dart';
+import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
+import 'package:playflutter/view/home/model/home_category.dart';
 import 'package:playflutter/view/home/viewmodel/home_viewmodel.dart';
 import 'package:playflutter/widget/common/app_gradient_text_bar.dart';
 import 'package:playflutter/widget/common/app_header_container.dart';
@@ -28,28 +29,15 @@ class HomePage extends StatefulWidget {
   State<StatefulWidget> createState() => _HomeState();
 }
 
-class _HomeState extends State<HomePage>
+class _HomeState extends VMState<HomePage,HomeViewModel>
     with AutomaticKeepAliveClientMixin<HomePage> {
   @override
   bool get wantKeepAlive =>
       true; // 设置wantKeepAlive = true; pagerView切换时不会重新加载view状态
 
   @override
-  void initState() {
-    super.initState();
-    context.read<HomeViewModel>().bindView(this);
-  }
-
-  @override
-  void dispose() {
-    context.read<HomeViewModel>().unbindView();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     super.build(context);
-    var viewModel = context.read<HomeViewModel>();
     return Stack(
       children: [
         RefreshIndicator(
@@ -58,21 +46,21 @@ class _HomeState extends State<HomePage>
             color: Theme.of(context).primaryColorLight,
             onRefresh: () async {
               await Future<void>.delayed(const Duration(seconds: 1), () {
-                viewModel.requestData(LoadStatus.refresh);
+                readVM().requestData(LoadStatus.refresh);
               });
             },
             child: SuperListView(
               statusController:
-                  Provider.of<HomeViewModel>(context).paging.statusController,
-              itemCount: Provider.of<HomeViewModel>(context).paging.data.length,
+                  providerOfVM().paging.statusController,
+              itemCount: providerOfVM().paging.data.length,
               onPageReload: () {
-                viewModel.requestData(LoadStatus.refresh);
+                readVM().requestData(LoadStatus.refresh);
               },
               onItemReload: () {
-                viewModel.requestData(LoadStatus.reload);
+                readVM().requestData(LoadStatus.reload);
               },
               onLoadMore: () {
-                viewModel.requestData(LoadStatus.loadMore);
+                readVM().requestData(LoadStatus.loadMore);
               },
               headerChildren: [
                 const AppHeaderSpacer(),
@@ -84,8 +72,7 @@ class _HomeState extends State<HomePage>
                     (item) => {Navigator.pushNamed(context, item.link)})
               ],
               itemBuilder: (BuildContext context, int index) {
-                var item =
-                    Provider.of<HomeViewModel>(context).paging.data[index];
+                var item = providerOfVM().paging.data[index];
                 return ContentItem(
                   content: item,
                   onItemClick: (item) => {
@@ -108,8 +95,8 @@ class _HomeState extends State<HomePage>
   }
 
   Widget buildBanner(Function(BannerItem) onItemClick) {
-    var bannerList = Provider.of<HomeViewModel>(context).bannerList;
-    var bannerIndex = Provider.of<HomeViewModel>(context).bannerIndex;
+    var bannerList = providerOfVM().bannerList;
+    var bannerIndex = providerOfVM().bannerIndex;
     if (bannerList.isEmpty) {
       return Container();
     } else {
@@ -122,7 +109,7 @@ class _HomeState extends State<HomePage>
             duration: 300,
             itemCount: bannerList.length,
             onIndexChanged: (index) {
-              context.read<HomeViewModel>().changeBannerIndex(index);
+              readVM().changeBannerIndex(index);
             },
             itemBuilder: (BuildContext context, int index) {
               var item = bannerList[index];
@@ -162,7 +149,7 @@ class _HomeState extends State<HomePage>
   }
 
   Widget buildCategory(Function(HomeCategory) onItemClick) {
-    var categoryList = Provider.of<HomeViewModel>(context).categoryList;
+    var categoryList = providerOfVM().categoryList;
     if (categoryList.isEmpty) {
       return Container();
     } else {
