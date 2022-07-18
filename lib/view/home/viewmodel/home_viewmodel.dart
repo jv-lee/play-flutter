@@ -1,7 +1,7 @@
 import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/entity/banner.dart';
 import 'package:playflutter/entity/content.dart';
-import 'package:playflutter/view/home/model/home_category.dart';
+import 'package:playflutter/view/home/model/entity/home_category.dart';
 import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';

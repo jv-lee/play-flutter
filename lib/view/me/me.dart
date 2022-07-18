@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:playflutter/base/viewmodel_state.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/view/me/viewmodel/me_viewmodel.dart';
-import 'package:playflutter/widget/common/app_header_container.dart';
+import 'package:playflutter/widget/common/header/app_header_container.dart';
 import 'package:playflutter/widget/common/profile_item.dart';
 
 /// @author jv.lee

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:playflutter/view/home/model/home_category.dart';
+import 'package:playflutter/view/home/model/entity/home_category.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/widget/common/card_item_container.dart';
 

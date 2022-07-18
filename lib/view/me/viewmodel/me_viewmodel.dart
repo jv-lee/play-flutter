@@ -1,5 +1,5 @@
 import 'package:playflutter/base/viewmodel.dart';
-import 'package:playflutter/view/me/model/me_item.dart';
+import 'package:playflutter/view/me/model/entity/me_item.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15

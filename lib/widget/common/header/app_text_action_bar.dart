@@ -5,13 +5,13 @@ import 'package:playflutter/theme/theme_dimens.dart';
 
 /// @author jv.lee
 /// @date 2022/6/27
-/// @description app通用title控件 带导航按钮
-class AppGradientTextBar extends StatefulWidget {
+/// @description app通用title控件 带action按钮
+class AppTextActionBar extends StatefulWidget {
   final String title;
   final String navigationSvgPath;
   final Function? onNavigationClick;
 
-  const AppGradientTextBar(
+  const AppTextActionBar(
       {Key? key,
       required this.title,
       required this.navigationSvgPath,
@@ -20,11 +20,11 @@ class AppGradientTextBar extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _AppGradientTextBarState();
+    return _AppTextActionBarState();
   }
 }
 
-class _AppGradientTextBarState extends State<AppGradientTextBar> {
+class _AppTextActionBarState extends State<AppTextActionBar> {
   @override
   Widget build(BuildContext context) {
     return Padding(

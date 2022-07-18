@@ -3,7 +3,7 @@ import 'package:playflutter/base/viewmodel_state.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/system/viewmodel/system_viewmodel.dart';
-import 'package:playflutter/widget/common/app_header_container.dart';
+import 'package:playflutter/widget/common/header/app_header_container.dart';
 import 'package:playflutter/widget/common/overscroll_hide_container.dart';
 
 /// @author jv.lee

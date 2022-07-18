@@ -6,9 +6,9 @@ import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/square/viewmodel/square_viewmodel.dart';
-import 'package:playflutter/widget/common/app_gradient_text_bar.dart';
-import 'package:playflutter/widget/common/app_header_container.dart';
-import 'package:playflutter/widget/common/app_header_spacer.dart';
+import 'package:playflutter/widget/common/header/app_text_action_bar.dart';
+import 'package:playflutter/widget/common/header/app_header_container.dart';
+import 'package:playflutter/widget/common/header/app_header_spacer.dart';
 import 'package:playflutter/widget/item/content_item.dart';
 import 'package:playflutter/widget/status/super_list_view.dart';
 
@@ -69,7 +69,7 @@ class _SquareState extends ViewModelState<SquarePage, SquareViewModel>
               },
             )),
         AppHeaderContainer(
-            child: AppGradientTextBar(
+            child: AppTextActionBar(
           title: ThemeStrings.square_header_text,
           navigationSvgPath: ThemeImages.common_add_svg,
           onNavigationClick: () {

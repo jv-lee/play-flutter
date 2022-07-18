@@ -4,7 +4,7 @@ import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/tools/status_tools.dart';
 import 'package:playflutter/view/system/viewmodel/navigation_content_viewmodel.dart';
-import 'package:playflutter/widget/common/app_header_spacer.dart';
+import 'package:playflutter/widget/common/header/app_header_spacer.dart';
 import 'package:playflutter/widget/common/overscroll_hide_container.dart';
 import 'package:playflutter/widget/item/navigation_tab_item.dart';
 import 'package:playflutter/widget/item/navigation_tag_item.dart';
