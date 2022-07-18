@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/vm_state.dart';
+import 'package:playflutter/base/viewmodel_state.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/system/viewmodel/system_viewmodel.dart';
@@ -16,7 +16,7 @@ class SystemPage extends StatefulWidget {
   State<StatefulWidget> createState() => _SystemState();
 }
 
-class _SystemState extends VMState<SystemPage, SystemViewModel>
+class _SystemState extends ViewModelState<SystemPage, SystemViewModel>
     with AutomaticKeepAliveClientMixin<SystemPage> {
   @override
   bool get wantKeepAlive => true;

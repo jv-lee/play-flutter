@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 /// @author jv.lee
 /// @date 2022/7/15
 /// @description ViewModelState 封装类
-abstract class VMState<V extends StatefulWidget, VM extends ViewModel>
+abstract class ViewModelState<V extends StatefulWidget, VM extends ViewModel>
     extends State<V> {
   @override
   void initState() {

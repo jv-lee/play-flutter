@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/vm_state.dart';
+import 'package:playflutter/base/viewmodel_state.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_images.dart';
@@ -22,7 +22,7 @@ class SquarePage extends StatefulWidget {
   State<StatefulWidget> createState() => _SquareState();
 }
 
-class _SquareState extends VMState<SquarePage, SquareViewModel>
+class _SquareState extends ViewModelState<SquarePage, SquareViewModel>
     with AutomaticKeepAliveClientMixin<SquarePage> {
   @override
   bool get wantKeepAlive => true;

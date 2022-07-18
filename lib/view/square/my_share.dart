@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/vm_state.dart';
+import 'package:playflutter/base/viewmodel_state.dart';
 import 'package:playflutter/view/square/viewmodel/my_share_viewmodel.dart';
 
 /// @author jv.lee
@@ -12,7 +12,7 @@ class MySharePage extends StatefulWidget {
   State<StatefulWidget> createState() => _MySharePageState();
 }
 
-class _MySharePageState extends VMState<MySharePage, MyShareViewModel> {
+class _MySharePageState extends ViewModelState<MySharePage, MyShareViewModel> {
   @override
   Widget build(BuildContext context) {
     return const Center(child: Text("my share page."));

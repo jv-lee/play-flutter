@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/vm_state.dart';
+import 'package:playflutter/base/viewmodel_state.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/tools/status_tools.dart';
@@ -22,7 +22,7 @@ class NavigationContentPage extends StatefulWidget {
 }
 
 class _NavigationContentState
-    extends VMState<NavigationContentPage, NavigationContentViewModel>
+    extends ViewModelState<NavigationContentPage, NavigationContentViewModel>
     with AutomaticKeepAliveClientMixin<NavigationContentPage> {
   @override
   bool get wantKeepAlive => true;

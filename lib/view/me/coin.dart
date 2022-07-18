@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/vm_state.dart';
+import 'package:playflutter/base/viewmodel_state.dart';
 import 'package:playflutter/view/me/viewmodel/coin_viewmodel.dart';
 
 /// @author jv.lee
@@ -12,7 +12,7 @@ class CoinPage extends StatefulWidget {
   State<StatefulWidget> createState() => _CoinPageState();
 }
 
-class _CoinPageState extends VMState<CoinPage, CoinViewModel> {
+class _CoinPageState extends ViewModelState<CoinPage, CoinViewModel> {
   @override
   Widget build(BuildContext context) {
     return const Center(child: Text("Coin Page."));

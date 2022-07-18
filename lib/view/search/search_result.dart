@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/vm_state.dart';
+import 'package:playflutter/base/viewmodel_state.dart';
 import 'package:playflutter/view/search/viewmodel/search_result_viewmodel.dart';
 
 /// @author jv.lee
@@ -12,7 +12,7 @@ class SearchResultPage extends StatefulWidget {
   State<StatefulWidget> createState() => _SearchResultState();
 }
 
-class _SearchResultState extends VMState<SearchResultPage, SearchResultViewModel> {
+class _SearchResultState extends ViewModelState<SearchResultPage, SearchResultViewModel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

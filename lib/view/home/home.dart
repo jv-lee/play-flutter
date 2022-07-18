@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:playflutter/base/vm_state.dart';
+import 'package:playflutter/base/viewmodel_state.dart';
 import 'package:playflutter/entity/banner.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
@@ -29,7 +29,7 @@ class HomePage extends StatefulWidget {
   State<StatefulWidget> createState() => _HomeState();
 }
 
-class _HomeState extends VMState<HomePage,HomeViewModel>
+class _HomeState extends ViewModelState<HomePage,HomeViewModel>
     with AutomaticKeepAliveClientMixin<HomePage> {
   @override
   bool get wantKeepAlive =>

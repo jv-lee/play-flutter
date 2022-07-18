@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/vm_state.dart';
+import 'package:playflutter/base/viewmodel_state.dart';
 import 'package:playflutter/view/todo/viewmodel/todo_viewmodel.dart';
 
 /// @author jv.lee
@@ -12,7 +12,7 @@ class TodoPage extends StatefulWidget {
   State<StatefulWidget> createState() => _TodoPageState();
 }
 
-class _TodoPageState extends VMState<TodoPage, TodoViewModel> {
+class _TodoPageState extends ViewModelState<TodoPage, TodoViewModel> {
   @override
   Widget build(BuildContext context) {
     return const Center(child: Text("todo page."));

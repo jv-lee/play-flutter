@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/vm_state.dart';
+import 'package:playflutter/base/viewmodel_state.dart';
 import 'package:playflutter/view/system/viewmodel/system_content_viewmodel.dart';
 import 'package:playflutter/widget/common/app_header_spacer.dart';
 import 'package:playflutter/widget/item/parent_tab_item.dart';
@@ -15,7 +15,7 @@ class SystemContentPage extends StatefulWidget {
   State<StatefulWidget> createState() => _SystemContentState();
 }
 
-class _SystemContentState extends VMState<SystemContentPage,SystemContentViewModel>
+class _SystemContentState extends ViewModelState<SystemContentPage,SystemContentViewModel>
     with AutomaticKeepAliveClientMixin<SystemContentPage> {
   @override
   bool get wantKeepAlive => true;

@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:playflutter/base/vm_state.dart';
+import 'package:playflutter/base/viewmodel_state.dart';
 import 'package:playflutter/view/account/viewmodel/register_viewmodel.dart';
 
 /// @author jv.lee
@@ -12,7 +12,7 @@ class RegisterPage extends StatefulWidget {
   State<StatefulWidget> createState() => _RegisterPageState();
 }
 
-class _RegisterPageState extends VMState<RegisterPage, RegisterViewModel> {
+class _RegisterPageState extends ViewModelState<RegisterPage, RegisterViewModel> {
   @override
   Widget build(BuildContext context) {
     return const Center(child: Text("register page."));

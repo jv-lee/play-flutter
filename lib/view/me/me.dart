@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:playflutter/base/vm_state.dart';
+import 'package:playflutter/base/viewmodel_state.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/view/me/viewmodel/me_viewmodel.dart';
@@ -17,7 +17,7 @@ class MePage extends StatefulWidget {
   State<StatefulWidget> createState() => _MeState();
 }
 
-class _MeState extends VMState<MePage, MeViewModel>
+class _MeState extends ViewModelState<MePage, MeViewModel>
     with AutomaticKeepAliveClientMixin<MePage> {
   @override
   bool get wantKeepAlive => true;
