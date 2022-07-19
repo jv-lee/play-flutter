@@ -44,7 +44,9 @@ dependencies:
   night: ^0.0.3 #深色模式适配
   cached_network_image: ^3.2.1 #网络图片加载缓存
   html: ^0.14.0+3 #html字符串解析
-  flutter_svg: ^1.1.0
+  flutter_svg: ^1.1.0 #flutterSVG图片加载库
+  sqflite: ^2.0.3 #数据库
+  path: ^1.8.1 #系统path获取
 
 dev_dependencies:
   flutter_test:

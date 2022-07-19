@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:playflutter/db/database_manager.dart';
 import 'package:playflutter/entity/details.dart';
 import 'package:playflutter/provider/dark_mode_provider.dart';
 import 'package:playflutter/route/route_names.dart';
@@ -35,6 +36,7 @@ import 'package:playflutter/view/todo/viewmodel/todo_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  DatabaseManager.getInstance().init();
   runApp(const PlayFlutterApp());
 }
 
@@ -48,14 +50,16 @@ class PlayFlutterApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           // 深色模式状态监听
-          ChangeNotifierProvider.value(value: DarkModeProvider(context: context)),
+          ChangeNotifierProvider.value(
+              value: DarkModeProvider(context: context)),
 
           // 项目页面viewModel注册监听
           ChangeNotifierProvider(create: (context) => HomeViewModel()),
           ChangeNotifierProvider(create: (context) => SquareViewModel()),
           ChangeNotifierProvider(create: (context) => SystemViewModel()),
           ChangeNotifierProvider(create: (context) => SystemContentViewModel()),
-          ChangeNotifierProvider(create: (context) => NavigationContentViewModel()),
+          ChangeNotifierProvider(
+              create: (context) => NavigationContentViewModel()),
           ChangeNotifierProvider(create: (context) => MeViewModel()),
           ChangeNotifierProvider(create: (context) => CoinViewModel()),
           ChangeNotifierProvider(create: (context) => CoinRankViewModel()),
@@ -106,8 +110,10 @@ Route<dynamic> _onGenerateRoute(RouteSettings settings) {
     case RouteNames.todo:
       return MaterialPageRoute(builder: (_) => const TodoPage());
     case RouteNames.details:
-      return MaterialPageRoute(builder: (_) => DetailsPage(
-        detailsData: settings.arguments as DetailsData,));
+      return MaterialPageRoute(
+          builder: (_) => DetailsPage(
+                detailsData: settings.arguments as DetailsData,
+              ));
     case RouteNames.login:
       return MaterialPageRoute(builder: (_) => const LoginPage());
     case RouteNames.register:
