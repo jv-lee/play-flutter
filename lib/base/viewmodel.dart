@@ -14,9 +14,17 @@ abstract class ViewModel extends ChangeNotifier {
     init();
   }
 
-  void unbindView();
+  /// viewModel 解除绑定view视图方法
+  void unBindView() {
+    view = null;
+    unInit();
+  }
 
+  /// viewModel初始化生命周期回调
   void init();
+
+  /// viewModel生命周期销毁回调
+  void unInit();
 
   postViewState() {
     view?.setState(() {});
@@ -27,4 +35,12 @@ abstract class ViewModel extends ChangeNotifier {
       function();
     });
   }
+
+  runViewContext(RunViewContext function) {
+    if (view?.context != null) {
+      function(view?.context as BuildContext);
+    }
+  }
 }
+
+typedef RunViewContext = Function(BuildContext context);

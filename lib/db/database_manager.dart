@@ -20,6 +20,7 @@ class DatabaseManager {
   Database? _database;
 
   init() async {
+    if (_database != null) return;
     var databasePath = await getDatabasesPath();
     String path = join(databasePath, _databaseName);
     _database = await openDatabase(path, version: _databaseVersion,

@@ -36,7 +36,6 @@ import 'package:playflutter/view/todo/viewmodel/todo_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  DatabaseManager.getInstance().init();
   runApp(const PlayFlutterApp());
 }
 
@@ -46,6 +45,7 @@ class PlayFlutterApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    DatabaseManager.getInstance().init();
     // 监听深色模式主题变换 更改主题配置
     return MultiProvider(
         providers: [

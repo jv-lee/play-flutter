@@ -9,7 +9,7 @@ class CollectViewModel extends ViewModel {
   }
 
   @override
-  void unbindView() {
+  void unInit() {
   }
 
 }

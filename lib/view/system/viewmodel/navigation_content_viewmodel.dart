@@ -37,7 +37,7 @@ class NavigationContentViewModel extends ViewModel {
   }
 
   @override
-  void unbindView() {
+  void unInit() {
     tabScrollController.dispose();
     tagScrollController.dispose();
   }

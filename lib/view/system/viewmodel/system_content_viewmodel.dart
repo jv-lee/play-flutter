@@ -26,7 +26,7 @@ class SystemContentViewModel extends ViewModel {
   }
 
   @override
-  void unbindView() {
+  void unInit() {
     paging.statusController.dispose();
   }
 

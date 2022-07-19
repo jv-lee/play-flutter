@@ -9,7 +9,7 @@ class LoginViewModel extends ViewModel {
   }
 
   @override
-  void unbindView() {
+  void unInit() {
   }
 
 }

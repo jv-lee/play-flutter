@@ -9,7 +9,7 @@ class CoinRankViewModel extends ViewModel{
   }
 
   @override
-  void unbindView() {
+  void unInit() {
   }
 
 }

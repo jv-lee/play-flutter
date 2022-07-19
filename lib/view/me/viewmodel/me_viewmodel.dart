@@ -12,5 +12,5 @@ class MeViewModel extends ViewModel {
   void init() {}
 
   @override
-  void unbindView() {}
+  void unInit() {}
 }

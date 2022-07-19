@@ -14,8 +14,8 @@ abstract class ViewModelState<V extends StatefulWidget, VM extends ViewModel>
   }
 
   @override
-  void deactivate(){
-    context.read<VM>().unbindView();
+  void deactivate() {
+    context.read<VM>().unBindView();
     super.deactivate();
   }
 
