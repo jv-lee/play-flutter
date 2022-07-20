@@ -37,4 +37,5 @@ class ThemeStrings {
   static const String search_hot_label = "热门搜索";
   static const String search_history_label = "搜索历史";
   static const String search_clear_text = "清空";
+  static const String search_history_empty_text = "快来搜索感兴趣的内容吧～";
 }

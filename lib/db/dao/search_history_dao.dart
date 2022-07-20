@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart';
 
 /// @author jv.lee
 /// @date 2022/7/19
-/// @description 搜索历史记录操作类
+/// @description 搜索历史记录数据库操作类
 class SearchHistoryDao {
   final Database _database = DatabaseManager.getInstance().getDatabase();
 
@@ -20,6 +20,10 @@ class SearchHistoryDao {
         whereArgs: [searchKey]);
   }
 
+  Future<int> deleteAll() async {
+    return await _database.delete(SearchHistory.TABLE_NAME);
+  }
+
   Future<int> update(SearchHistory searchHistory) async {
     return await _database.update(
         SearchHistory.TABLE_NAME, searchHistory.toMap(),
@@ -28,8 +32,11 @@ class SearchHistoryDao {
   }
 
   Future<List<SearchHistory>> queryAll() async {
-    List<Map<String, dynamic>> history =
-        await _database.query(SearchHistory.TABLE_NAME);
+    //  ORDER BY search_history_time DESC LIMIT 0,5
+    List<Map<String, dynamic>> history = await _database.query(
+        SearchHistory.TABLE_NAME,
+        orderBy: "${SearchHistory.COLUMN_TIME} DESC",
+        limit: 5);
     return List.generate(history.length, (index) {
       return SearchHistory(
           searchKey: history[index][SearchHistory.COLUMN_SEARCH_KEY],
