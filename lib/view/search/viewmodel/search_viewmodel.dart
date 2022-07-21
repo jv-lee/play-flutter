@@ -4,6 +4,7 @@ import 'package:playflutter/db/dao/search_history_dao.dart';
 import 'package:playflutter/db/entity/search_history.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/view/search/model/entity/search_hot.dart';
+import 'package:playflutter/view/search/search.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -25,7 +26,8 @@ class SearchViewModel extends ViewModel {
     runViewContext((context) {
       _dao.insert(SearchHistory.buildSearchHistory(searchKey));
       _requestSearchHistoryList();
-      Navigator.pushNamed(context, RouteNames.search_result);
+      Navigator.pushNamed(context, RouteNames.search_result,
+          arguments: {SearchPage.ARG_SEARCH_KEY: searchKey});
     });
   }
 

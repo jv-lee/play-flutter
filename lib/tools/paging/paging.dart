@@ -1,3 +1,4 @@
+import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/widget/status/status.dart';
 import 'package:playflutter/widget/status/status_controller.dart';
@@ -22,7 +23,7 @@ class Paging<T> {
   }
 
   requestData(LoadStatus status,
-       Future<PagingData<T>> Function(int)  requestBlock) async {
+      Future<PagingData<T>> Function(int) requestBlock) async {
     if (status == LoadStatus.refresh) {
       _page = initPage;
     } else if (status == LoadStatus.loadMore) {
@@ -31,52 +32,54 @@ class Paging<T> {
       // reload直接复用page
     }
 
-    var response =
-        await requestBlock(_page).catchError((onError) => submitFailed());
+    requestBlock(_page).then((response) {
+      // 首页数据
+      if (_page == initPage) {
+        // 首页空数据
+        if (response.getDataSource().isEmpty) {
+          statusController.pageEmpty();
+          notify();
+          return;
+        }
 
-    // 首页数据
-    if (_page == initPage) {
-      // 首页空数据
-      if (response.getDataSource().isEmpty) {
-        statusController.pageEmpty();
+        // 加载首页数据
+        data.clear();
+        data.addAll(response.getDataSource());
+        statusController.pageComplete();
+
+        // 是否只有一页数据
+        if (response.getPageNumber() == response.getPageTotalNumber() ||
+            response.getPageTotalNumber() == 1) {
+          statusController.itemComplete();
+        } else {
+          statusController.itemLoading();
+        }
+
         notify();
         return;
       }
 
-      // 加载首页数据
-      data.clear();
-      data.addAll(response.getDataSource());
-      statusController.pageComplete();
-
-      // 是否只有一页数据
-      if (response.getPageNumber() == response.getPageTotalNumber() ||
-          response.getPageTotalNumber() == 1) {
-        statusController.itemComplete();
-      } else {
+      // 加载更多数据
+      if (response.getPageNumber() < response.getPageTotalNumber()) {
+        data.addAll(response.getDataSource());
         statusController.itemLoading();
+        notify();
+        return;
+      }
+
+      // 加载更多至尾页
+      if (response.getPageNumber() == response.getPageTotalNumber()) {
+        data.addAll(response.getDataSource());
+        statusController.itemComplete();
+        notify();
+        return;
       }
 
       notify();
-      return;
-    }
-
-    // 加载更多数据
-    if (response.getPageNumber() < response.getPageTotalNumber()) {
-      data.addAll(response.getDataSource());
-      statusController.itemLoading();
-      notify();
-      return;
-    }
-
-    // 加载更多至尾页
-    if (response.getPageNumber() == response.getPageTotalNumber()) {
-      data.addAll(response.getDataSource());
-      statusController.itemComplete();
-      notify();
-      return;
-    }
-
-    notify();
+    }).catchError((onError) {
+      LogTools.log(onError);
+      submitFailed();
+    });
   }
 
   submitFailed() {
@@ -86,10 +89,16 @@ class Paging<T> {
         data.isNotEmpty) {
       statusController.itemError();
       // 当前列表数据未加载成功，且数据为空
-    } else if (statusController.pageStatus != PageStatus.completed && data.isEmpty) {
+    } else if (statusController.pageStatus != PageStatus.completed &&
+        data.isEmpty) {
       statusController.pageError();
     }
     notify();
+  }
+
+  dispose() {
+    statusController.dispose();
+    data.clear();
   }
 }
 

@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/viewmodel_state.dart';
 import 'package:playflutter/db/entity/search_history.dart';
@@ -15,6 +17,8 @@ class SearchPage extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => _SearchState();
+
+  static const String ARG_SEARCH_KEY = "searchKey";
 }
 
 class _SearchState extends ViewModelState<SearchPage, SearchViewModel> {

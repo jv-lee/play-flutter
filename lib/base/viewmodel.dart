@@ -41,6 +41,12 @@ abstract class ViewModel extends ChangeNotifier {
       function(view?.context as BuildContext);
     }
   }
+
+  runViewContextDelay(RunViewContext function) {
+    Future.delayed(Duration.zero).then((value) async {
+      runViewContext(function);
+    });
+  }
 }
 
 typedef RunViewContext = Function(BuildContext context);

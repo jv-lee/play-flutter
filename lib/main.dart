@@ -86,40 +86,60 @@ class PlayFlutterApp extends StatelessWidget {
 Route<dynamic> _onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
     case RouteNames.main:
-      return MaterialPageRoute(builder: (_) => const MainPage());
+      return MaterialPageRoute(
+          settings: settings, builder: (_) => const MainPage());
     case RouteNames.search:
-      return MaterialPageRoute(builder: (_) => const SearchPage());
+      return MaterialPageRoute(
+          settings: settings, builder: (_) => const SearchPage());
     case RouteNames.search_result:
-      return MaterialPageRoute(builder: (_) => const SearchResultPage());
+      return MaterialPageRoute(
+          settings: settings,
+          builder: (_) {
+            final arguments = (settings.arguments as Map<String, dynamic>);
+            final searchKey = arguments[SearchPage.ARG_SEARCH_KEY];
+            return SearchResultPage(title: searchKey);
+          });
     case RouteNames.official:
-      return MaterialPageRoute(builder: (_) => const OfficialPage());
+      return MaterialPageRoute(
+          settings: settings, builder: (_) => const OfficialPage());
     case RouteNames.project:
-      return MaterialPageRoute(builder: (_) => const ProjectPage());
+      return MaterialPageRoute(
+          settings: settings, builder: (_) => const ProjectPage());
     case RouteNames.my_share:
-      return MaterialPageRoute(builder: (_) => const MySharePage());
+      return MaterialPageRoute(
+          settings: settings, builder: (_) => const MySharePage());
     case RouteNames.create_share:
-      return MaterialPageRoute(builder: (_) => const CreateSharePage());
+      return MaterialPageRoute(
+          settings: settings, builder: (_) => const CreateSharePage());
     case RouteNames.coin:
-      return MaterialPageRoute(builder: (_) => const CoinPage());
+      return MaterialPageRoute(
+          settings: settings, builder: (_) => const CoinPage());
     case RouteNames.coin_rank:
-      return MaterialPageRoute(builder: (_) => const CoinRankPage());
+      return MaterialPageRoute(
+          settings: settings, builder: (_) => const CoinRankPage());
     case RouteNames.collect:
-      return MaterialPageRoute(builder: (_) => const CollectPage());
+      return MaterialPageRoute(
+          settings: settings, builder: (_) => const CollectPage());
     case RouteNames.settings:
-      return MaterialPageRoute(builder: (_) => const SettingsPage());
+      return MaterialPageRoute(
+          settings: settings, builder: (_) => const SettingsPage());
     case RouteNames.todo:
-      return MaterialPageRoute(builder: (_) => const TodoPage());
+      return MaterialPageRoute(
+          settings: settings, builder: (_) => const TodoPage());
     case RouteNames.details:
       return MaterialPageRoute(
-          builder: (_) => DetailsPage(
-                detailsData: settings.arguments as DetailsData,
-              ));
+          settings: settings,
+          builder: (_) =>
+              DetailsPage(detailsData: settings.arguments as DetailsData));
     case RouteNames.login:
-      return MaterialPageRoute(builder: (_) => const LoginPage());
+      return MaterialPageRoute(
+          settings: settings, builder: (_) => const LoginPage());
     case RouteNames.register:
-      return MaterialPageRoute(builder: (_) => const RegisterPage());
+      return MaterialPageRoute(
+          settings: settings, builder: (_) => const RegisterPage());
 
     default:
-      return MaterialPageRoute(builder: (_) => const MainPage());
+      return MaterialPageRoute(
+          settings: settings, builder: (_) => const MainPage());
   }
 }

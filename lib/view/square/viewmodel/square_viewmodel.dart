@@ -27,7 +27,7 @@ class SquareViewModel extends ViewModel {
 
   @override
   void unInit() {
-    paging.statusController.dispose();
+    paging.dispose();
   }
 
   void requestData(LoadStatus status) async {
