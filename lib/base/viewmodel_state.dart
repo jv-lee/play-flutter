@@ -10,12 +10,13 @@ abstract class ViewModelState<V extends StatefulWidget, VM extends ViewModel>
   @override
   void initState() {
     super.initState();
-    context.read<VM>().bindView(this);
+    readVM().bindView(this);
   }
 
   @override
   void deactivate() {
-    context.read<VM>().unBindView();
+    readVM().unBindView();
+    readVM().dispose();
     super.deactivate();
   }
 
