@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/viewmodel_state.dart';
-import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/search/viewmodel/search_result_viewmodel.dart';
 import 'package:playflutter/widget/item/content_item.dart';
+import 'package:playflutter/widget/item/content_picture_item.dart';
 import 'package:playflutter/widget/status/super_list_view.dart';
 
 /// @author jv.lee
@@ -51,13 +51,15 @@ class _SearchResultState
           },
           itemBuilder: (BuildContext context, int index) {
             var item = providerOfVM().paging.data[index];
-            return ContentItem(
-              content: item,
-              onItemClick: (item) => {
-                Navigator.pushNamed(context, RouteNames.details,
-                    arguments: item.transformDetails())
-              },
-            );
+            itemClick(item) => {
+                  Navigator.pushNamed(context, RouteNames.details,
+                      arguments: item.transformDetails())
+                };
+            if (item.envelopePic.isEmpty) {
+              return ContentItem(content: item, onItemClick: itemClick);
+            } else {
+              return ContentPictureItem(content: item, onItemClick: itemClick);
+            }
           },
         ));
   }
