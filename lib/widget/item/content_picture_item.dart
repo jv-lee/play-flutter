@@ -59,14 +59,17 @@ class _ContentPictureItemState extends State<ContentPictureItem> {
                             left: ThemeDimens.offset_medium,
                             right: ThemeDimens.offset_medium),
                         child: Text(
-                          widget.content.getAuthor(),
+                          widget.content.getTitle(),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               fontSize: ThemeDimens.font_size_medium,
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context).primaryColorLight),
                         ),
                       )),
-                  Padding(
+                  Expanded(
+                      child: Padding(
                     padding: const EdgeInsets.only(
                         top: ThemeDimens.offset_medium,
                         left: ThemeDimens.offset_medium,
@@ -74,18 +77,15 @@ class _ContentPictureItemState extends State<ContentPictureItem> {
                     child: SizedBox(
                         width: double.infinity,
                         child: Text(
-                          widget.content.getTitle(),
+                          widget.content.getDescription(),
+                          maxLines: 4,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               fontSize: ThemeDimens.font_size_small,
                               color: Theme.of(context).primaryColor),
-                          maxLines: 5,
-                          overflow: TextOverflow.ellipsis,
                         )),
-                  ),
-                  Expanded(
-                      child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Padding(
+                  )),
+                  Padding(
                       padding: const EdgeInsets.all(ThemeDimens.offset_medium),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,9 +103,7 @@ class _ContentPictureItemState extends State<ContentPictureItem> {
                                 color: Theme.of(context).primaryColorDark),
                           )
                         ],
-                      ),
-                    ),
-                  ))
+                      ))
                 ],
               ),
             ))

@@ -21,9 +21,9 @@ extension ContentExtensions on Content {
         id: id.toString(), title: getTitle(), link: link, isCollect: collect);
   }
 
-  String getTitle() => parse(title).body.innerHtml;
+  String getTitle() => parse(title).body.text;
 
-  String getDescription() => parse(desc).body.innerHtml;
+  String getDescription() => parse(desc).body.text;
 
   String getAuthor() => author.isEmpty ? shareUser : author;
 
