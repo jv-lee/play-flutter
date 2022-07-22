@@ -16,7 +16,6 @@ abstract class ViewModelState<V extends StatefulWidget, VM extends ViewModel>
   @override
   void deactivate() {
     readVM().unBindView();
-    readVM().dispose();
     super.deactivate();
   }
 
