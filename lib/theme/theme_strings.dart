@@ -16,6 +16,11 @@ class ThemeStrings {
   /// square
   static const String square_header_text = "Recently shared";
   static const String square_create_share_text = "创建分享";
+  static const String square_share_title_text = "分享标题";
+  static const String square_share_link_text = "分享链接";
+  static const String square_share_title_hint = "100字以内";
+  static const String square_share_link_hint = "例如：https://www.wanandorid.com";
+  static const String square_create_share_description = "1. 只要是任何好文都可以分享哈，并不一定要是原创！投递的文章会进入广场 tab;\n2. CSDN，掘金，简书等官方博客站点会直接通过，不需要审核;\n3. 其他个人站点会进入审核阶段，不要投递任何无效链接，测试的请尽快删除，否则可能会对你的账号产生一定影响;\n4. 目前处于测试阶段，如果你发现500等错误，可以向我提交日志，让我们一起使网站变得更好。\n5. 由于本站只有我一个人开发与维护，会尽力保证24小时内审核，当然有可能哪天太累，会延期，请保持佛系…\n";
 
   /// system
   static const String system_system_tab = "体系";

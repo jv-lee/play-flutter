@@ -24,10 +24,14 @@ class SearchPage extends StatefulWidget {
 class _SearchState extends ViewModelState<SearchPage, SearchViewModel> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildSearchAppBar(),
-      body: buildSearchContent(),
-    );
+    return GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          appBar: buildSearchAppBar(),
+          body: buildSearchContent(),
+        ));
   }
 
   PreferredSizeWidget buildSearchAppBar() {
