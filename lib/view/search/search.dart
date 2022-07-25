@@ -32,19 +32,11 @@ class _SearchState extends ViewModelState<SearchPage, SearchViewModel> {
 
   PreferredSizeWidget buildSearchAppBar() {
     return AppBar(
-      title: TextField(
-        onSubmitted: (text) => {readVM().navigationSearchKey(text)},
-        textInputAction: TextInputAction.search,
-        decoration: InputDecoration(
-            hintText: ThemeStrings.search_hint_text,
-            hintStyle: TextStyle(color: Theme.of(context).primaryColor),
-            enabledBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent)),
-            focusedBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent))),
-        cursorColor: Theme.of(context).primaryColorLight,
-      ),
-    );
+        title: TextField(
+            onSubmitted: (text) => {readVM().navigationSearchKey(text)},
+            textInputAction: TextInputAction.search,
+            decoration: const InputDecoration(
+                hintText: ThemeStrings.search_hint_text)));
   }
 
   Widget buildSearchContent() {

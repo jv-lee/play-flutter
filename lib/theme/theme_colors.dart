@@ -66,6 +66,13 @@ class ThemeColors {
         color: lightColorPalette.accent,
         refreshBackgroundColor: lightColorPalette.item),
     fontFamily: "Avenir",
+    inputDecorationTheme: InputDecorationTheme(
+        hintStyle: TextStyle(color: lightColorPalette.primary),
+        enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent)),
+        focusedBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent))),
+    textSelectionTheme: TextSelectionThemeData(cursorColor: lightColorPalette.accent)
   );
 
   static var darkThemeData = ThemeData(
@@ -99,6 +106,13 @@ class ThemeColors {
         color: darkColorPalette.accent,
         refreshBackgroundColor: darkColorPalette.item),
     fontFamily: "Avenir",
+    inputDecorationTheme: InputDecorationTheme(
+        hintStyle: TextStyle(color: darkColorPalette.primary),
+        enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent)),
+        focusedBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent))),
+      textSelectionTheme: TextSelectionThemeData(cursorColor: darkColorPalette.accent)
   );
 }
 
