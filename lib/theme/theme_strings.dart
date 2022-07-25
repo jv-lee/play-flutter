@@ -15,6 +15,7 @@ class ThemeStrings {
 
   /// square
   static const String square_header_text = "Recently shared";
+  static const String square_create_share_text = "创建分享";
 
   /// system
   static const String system_system_tab = "体系";

@@ -33,26 +33,27 @@ import 'package:playflutter/view/system/viewmodel/system_viewmodel.dart';
 import 'package:playflutter/view/todo/todo.dart';
 import 'package:playflutter/view/todo/viewmodel/todo_viewmodel.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 
 // 项目页面viewModel注册监听
-final viewModelProviders = [
-  ChangeNotifierProvider(create: (context) => HomeViewModel()),
-  ChangeNotifierProvider(create: (context) => SquareViewModel()),
-  ChangeNotifierProvider(create: (context) => SystemViewModel()),
-  ChangeNotifierProvider(create: (context) => SystemContentViewModel()),
-  ChangeNotifierProvider(create: (context) => NavigationContentViewModel()),
-  ChangeNotifierProvider(create: (context) => MeViewModel()),
-  ChangeNotifierProvider(create: (context) => CoinViewModel()),
-  ChangeNotifierProvider(create: (context) => CoinRankViewModel()),
-  ChangeNotifierProvider(create: (context) => CollectViewModel()),
-  ChangeNotifierProvider(create: (context) => CreateShareViewModel()),
-  ChangeNotifierProvider(create: (context) => MyShareViewModel()),
-  ChangeNotifierProvider(create: (context) => TodoViewModel()),
-  ChangeNotifierProvider(create: (context) => SearchViewModel()),
-  ChangeNotifierProvider(create: (context) => SearchResultViewModel()),
-  ChangeNotifierProvider(create: (context) => LoginViewModel()),
-  ChangeNotifierProvider(create: (context) => RegisterViewModel())
-];
+List<SingleChildWidget> onGenerateViewModel(BuildContext context) => [
+      ChangeNotifierProvider(create: (context) => HomeViewModel()),
+      ChangeNotifierProvider(create: (context) => SquareViewModel()),
+      ChangeNotifierProvider(create: (context) => SystemViewModel()),
+      ChangeNotifierProvider(create: (context) => SystemContentViewModel()),
+      ChangeNotifierProvider(create: (context) => NavigationContentViewModel()),
+      ChangeNotifierProvider(create: (context) => MeViewModel()),
+      ChangeNotifierProvider(create: (context) => CoinViewModel()),
+      ChangeNotifierProvider(create: (context) => CoinRankViewModel()),
+      ChangeNotifierProvider(create: (context) => CollectViewModel()),
+      ChangeNotifierProvider(create: (context) => CreateShareViewModel()),
+      ChangeNotifierProvider(create: (context) => MyShareViewModel()),
+      ChangeNotifierProvider(create: (context) => TodoViewModel()),
+      ChangeNotifierProvider(create: (context) => SearchViewModel()),
+      ChangeNotifierProvider(create: (context) => SearchResultViewModel()),
+      ChangeNotifierProvider(create: (context) => LoginViewModel()),
+      ChangeNotifierProvider(create: (context) => RegisterViewModel())
+    ];
 
 // 项目页面路由注册
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
