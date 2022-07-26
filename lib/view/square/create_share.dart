@@ -18,6 +18,7 @@ class _CreateShareState
     extends ViewModelState<CreateSharePage, CreateShareViewModel> {
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -40,17 +41,24 @@ class _CreateShareState
             padding: EdgeInsets.only(top: ThemeDimens.offset_medium),
             child: Text(ThemeStrings.square_share_title_text),
           ),
-          const TextField(
-            decoration:
-                InputDecoration(hintText: ThemeStrings.square_share_title_hint),
+          TextField(
+            onChanged: (text) => {readVM().changeShareTitle(text)},
+            textInputAction: TextInputAction.next,
+            decoration: const InputDecoration(
+                hintText: ThemeStrings.square_share_title_hint),
           ),
           const Padding(
             padding: EdgeInsets.only(top: ThemeDimens.offset_medium),
             child: Text(ThemeStrings.square_share_link_text),
           ),
-          const TextField(
-            decoration:
-                InputDecoration(hintText: ThemeStrings.square_share_link_hint),
+          TextField(
+            onChanged: (text) => {readVM().changeShareLink(text)},
+            onSubmitted: (text) => {
+              readVM().submitShare()
+            },
+            textInputAction: TextInputAction.send,
+            decoration: const InputDecoration(
+                hintText: ThemeStrings.square_share_link_hint),
           ),
           Expanded(
               child: Align(
