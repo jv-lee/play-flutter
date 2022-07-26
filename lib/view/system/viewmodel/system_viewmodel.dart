@@ -23,10 +23,12 @@ class SystemViewModel extends ViewModel {
 
   void pageChange(int index) {
     pageController.jumpToPage(index);
-    setViewState(() => {selectedIndex = index});
+    selectedIndex = index;
+    notifyListeners();
   }
 
   void tabChange(int index) {
-    setViewState(() => {selectedIndex = index});
+    selectedIndex = index;
+    notifyListeners();
   }
 }

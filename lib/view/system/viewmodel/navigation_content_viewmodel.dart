@@ -31,7 +31,7 @@ class NavigationContentViewModel extends ViewModel {
     paging = Paging(
         data: [],
         initPage: 1,
-        notify: postViewState,
+        notify: notifyListeners,
         statusController: StatusController(pageStatus: PageStatus.loading));
     requestData();
   }
@@ -56,8 +56,9 @@ class NavigationContentViewModel extends ViewModel {
   void changeTabIndex(int index) {
     isChangeTab = false;
     tagScrollController.jumpTo(index);
-    setViewState(() => {tabSelectedIndex = index});
+    tabSelectedIndex = index;
     isChangeTab = true;
+    notifyListeners();
   }
 
   /// tag列表滚动监听当前显示index动态更新tab选中
@@ -71,7 +72,8 @@ class NavigationContentViewModel extends ViewModel {
       }
 
       tabScrollController.jumpTo(scrollOffset);
-      setViewState(() => {tabSelectedIndex = index});
+      tabSelectedIndex = index;
+      notifyListeners();
     }
   }
 }

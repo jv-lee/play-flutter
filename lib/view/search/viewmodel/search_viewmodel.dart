@@ -23,12 +23,11 @@ class SearchViewModel extends ViewModel {
   void unInit() {}
 
   void navigationSearchKey(String searchKey) {
-    runViewContext((context) {
-      _dao.insert(SearchHistory.buildSearchHistory(searchKey));
-      _requestSearchHistoryList();
-      Navigator.pushNamed(context, RouteNames.search_result,
-          arguments: {SearchPage.ARG_SEARCH_KEY: searchKey});
-    });
+    _dao.insert(SearchHistory.buildSearchHistory(searchKey));
+    _requestSearchHistoryList();
+    runViewContext((context) => Navigator.pushNamed(
+        context, RouteNames.search_result,
+        arguments: {SearchPage.ARG_SEARCH_KEY: searchKey}));
   }
 
   void deleteSearchHistory(SearchHistory history) {
@@ -45,9 +44,8 @@ class SearchViewModel extends ViewModel {
 
   void _requestSearchHistoryList() {
     _dao.queryAll().then((value) {
-      setViewState(() {
-        searchHistoryList = value;
-      });
+      searchHistoryList = value;
+      notifyListeners();
     });
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/viewmodel_state.dart';
+import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/view/system/viewmodel/system_content_viewmodel.dart';
 import 'package:playflutter/widget/common/header/app_header_spacer.dart';
 import 'package:playflutter/widget/item/parent_tab_item.dart';
@@ -15,7 +16,8 @@ class SystemContentPage extends StatefulWidget {
   State<StatefulWidget> createState() => _SystemContentState();
 }
 
-class _SystemContentState extends ViewModelState<SystemContentPage,SystemContentViewModel>
+class _SystemContentState
+    extends ViewModelState<SystemContentPage, SystemContentViewModel>
     with AutomaticKeepAliveClientMixin<SystemContentPage> {
   @override
   bool get wantKeepAlive => true;
@@ -31,7 +33,10 @@ class _SystemContentState extends ViewModelState<SystemContentPage,SystemContent
         var item = providerOfVM().paging.data[index];
         return ParentTabItem(
           parentTab: item,
-          onItemClick: (parentTab) => {},
+          onItemClick: (parentTab) => {
+            Navigator.of(context).pushNamed(RouteNames.system_content_tab,
+                arguments: parentTab.children)
+          },
         );
       },
     );

@@ -22,7 +22,7 @@ class SearchResultViewModel extends ViewModel {
     paging = Paging(
         data: [],
         initPage: 0,
-        notify: postViewState,
+        notify: notifyListeners,
         statusController: StatusController(pageStatus: PageStatus.loading));
 
     runViewContextDelay((context) {

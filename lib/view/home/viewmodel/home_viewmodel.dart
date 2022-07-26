@@ -25,7 +25,7 @@ class HomeViewModel extends ViewModel {
     paging = Paging(
         data: [],
         initPage: 0,
-        notify: postViewState,
+        notify: notifyListeners,
         statusController: StatusController(pageStatus: PageStatus.loading));
     requestData(LoadStatus.refresh);
   }
@@ -55,8 +55,7 @@ class HomeViewModel extends ViewModel {
   }
 
   void changeBannerIndex(int index) {
-    setViewState(() {
-      bannerIndex = index;
-    });
+    bannerIndex = index;
+    notifyListeners();
   }
 }

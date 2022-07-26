@@ -5,18 +5,18 @@ import 'package:flutter/material.dart';
 /// @author jv.lee
 /// @date 2022/6/23
 /// @description 所有viewModel基类
-abstract class ViewModel extends ChangeNotifier {
-  State<dynamic>? view;
+abstract class ViewModel with ChangeNotifier {
+  late BuildContext? _context;
 
   /// viewModel 绑定view视图初始化方法
   void bindView(State<dynamic> viewState) {
-    view = viewState;
+    _context = viewState.context;
     init();
   }
 
   /// viewModel 解除绑定view视图方法
   void unBindView() {
-    view = null;
+    _context = null;
     unInit();
   }
 
@@ -26,19 +26,9 @@ abstract class ViewModel extends ChangeNotifier {
   /// viewModel生命周期销毁回调
   void unInit();
 
-  postViewState() {
-    view?.setState(() {});
-  }
-
-  setViewState(Function function) {
-    view?.setState(() {
-      function();
-    });
-  }
-
   runViewContext(RunViewContext function) {
-    if (view?.context != null) {
-      function(view?.context as BuildContext);
+    if (_context != null) {
+      function(_context as BuildContext);
     }
   }
 

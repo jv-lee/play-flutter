@@ -20,7 +20,7 @@ class SystemContentViewModel extends ViewModel {
     paging = Paging(
         data: [],
         initPage: 1,
-        notify: postViewState,
+        notify: notifyListeners,
         statusController: StatusController(pageStatus: PageStatus.loading));
     requestData();
   }

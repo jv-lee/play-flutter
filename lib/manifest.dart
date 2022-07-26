@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/entity/details.dart';
+import 'package:playflutter/entity/parent_tab.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/view/account/login.dart';
 import 'package:playflutter/view/account/register.dart';
@@ -27,7 +28,9 @@ import 'package:playflutter/view/square/my_share.dart';
 import 'package:playflutter/view/square/viewmodel/create_share_viewmodel.dart';
 import 'package:playflutter/view/square/viewmodel/my_share_viewmodel.dart';
 import 'package:playflutter/view/square/viewmodel/square_viewmodel.dart';
+import 'package:playflutter/view/system/system_content_tab.dart';
 import 'package:playflutter/view/system/viewmodel/navigation_content_viewmodel.dart';
+import 'package:playflutter/view/system/viewmodel/system_content_tab_viewmodel.dart';
 import 'package:playflutter/view/system/viewmodel/system_content_viewmodel.dart';
 import 'package:playflutter/view/system/viewmodel/system_viewmodel.dart';
 import 'package:playflutter/view/todo/todo.dart';
@@ -41,6 +44,7 @@ List<SingleChildWidget> onGenerateViewModel(BuildContext context) => [
       ChangeNotifierProvider(create: (context) => SquareViewModel()),
       ChangeNotifierProvider(create: (context) => SystemViewModel()),
       ChangeNotifierProvider(create: (context) => SystemContentViewModel()),
+      ChangeNotifierProvider(create: (context) => SystemContentTabViewModel()),
       ChangeNotifierProvider(create: (context) => NavigationContentViewModel()),
       ChangeNotifierProvider(create: (context) => MeViewModel()),
       ChangeNotifierProvider(create: (context) => CoinViewModel()),
@@ -65,13 +69,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
           settings: settings, builder: (_) => const SearchPage());
     case RouteNames.search_result:
+      final arguments = (settings.arguments as Map<String, dynamic>);
+      final key = arguments[SearchPage.ARG_SEARCH_KEY];
       return MaterialPageRoute(
-          settings: settings,
-          builder: (_) {
-            final arguments = (settings.arguments as Map<String, dynamic>);
-            final searchKey = arguments[SearchPage.ARG_SEARCH_KEY];
-            return SearchResultPage(title: searchKey);
-          });
+          settings: settings, builder: (_) => SearchResultPage(title: key));
     case RouteNames.official:
       return MaterialPageRoute(
           settings: settings, builder: (_) => const OfficialPage());
@@ -84,6 +85,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case RouteNames.create_share:
       return MaterialPageRoute(
           settings: settings, builder: (_) => const CreateSharePage());
+    case RouteNames.system_content_tab:
+      final arg = settings.arguments as List<Children>;
+      return MaterialPageRoute(
+          settings: settings, builder: (_) => SystemContentTabPage(tabs: arg));
     case RouteNames.coin:
       return MaterialPageRoute(
           settings: settings, builder: (_) => const CoinPage());
@@ -100,10 +105,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
           settings: settings, builder: (_) => const TodoPage());
     case RouteNames.details:
+      final arg = settings.arguments as DetailsData;
       return MaterialPageRoute(
-          settings: settings,
-          builder: (_) =>
-              DetailsPage(detailsData: settings.arguments as DetailsData));
+          settings: settings, builder: (_) => DetailsPage(detailsData: arg));
     case RouteNames.login:
       return MaterialPageRoute(
           settings: settings, builder: (_) => const LoginPage());

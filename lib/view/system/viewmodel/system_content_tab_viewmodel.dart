@@ -1,9 +1,9 @@
 import 'package:playflutter/base/viewmodel.dart';
 
 /// @author jv.lee
-/// @date 2022/7/15
-/// @description 我的分享页面viewModel
-class MyShareViewModel extends ViewModel {
+/// @date 2022/7/26
+/// @description
+class SystemContentTabViewModel extends ViewModel {
 
   @override
   void init() {}
