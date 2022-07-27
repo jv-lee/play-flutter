@@ -98,8 +98,10 @@ class _DetailsState extends State<DetailsPage> {
           onProgress: onProgress,
           onPageFinished: onPageFinished,
           navigationDelegate: (NavigationRequest request) {
-            // 处理简书页面 scheme intent跳转原生逻辑
+            // 处理简书页面,掘金页面 scheme intent跳转原生逻辑
             if (request.url.startsWith("jianshu://")) {
+              return NavigationDecision.prevent;
+            } else if (request.url.startsWith("bytedance://")) {
               return NavigationDecision.prevent;
             }
             return NavigationDecision.navigate;
