@@ -39,6 +39,7 @@ class _DetailsState extends State<DetailsPage> {
           appBar: AppBar(
             title: Text(widget.detailsData.title),
             actions: [buildActionMenu()],
+            leading: BackButton(onPressed: () => {Navigator.pop(context)}),
           ),
           body: buildWebPage(),
         ));
