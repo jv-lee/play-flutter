@@ -11,13 +11,12 @@ import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/home/model/entity/home_category.dart';
 import 'package:playflutter/view/home/viewmodel/home_viewmodel.dart';
-import 'package:playflutter/widget/common/header/app_text_action_bar.dart';
 import 'package:playflutter/widget/common/header/app_header_container.dart';
 import 'package:playflutter/widget/common/header/app_header_spacer.dart';
+import 'package:playflutter/widget/common/header/app_text_action_bar.dart';
 import 'package:playflutter/widget/item/category_item.dart';
 import 'package:playflutter/widget/item/content_item.dart';
 import 'package:playflutter/widget/status/super_list_view.dart';
-import 'package:provider/provider.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26
@@ -29,11 +28,11 @@ class HomePage extends StatefulWidget {
   State<StatefulWidget> createState() => _HomeState();
 }
 
-class _HomeState extends ViewModelState<HomePage,HomeViewModel>
+class _HomeState extends ViewModelState<HomePage, HomeViewModel>
     with AutomaticKeepAliveClientMixin<HomePage> {
+  // 设置wantKeepAlive = true; pagerView切换时不会重新加载view状态
   @override
-  bool get wantKeepAlive =>
-      true; // 设置wantKeepAlive = true; pagerView切换时不会重新加载view状态
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +49,7 @@ class _HomeState extends ViewModelState<HomePage,HomeViewModel>
               });
             },
             child: SuperListView(
-              statusController:
-                  providerOfVM().paging.statusController,
+              statusController: providerOfVM().paging.statusController,
               itemCount: providerOfVM().paging.data.length,
               onPageReload: () {
                 readVM().requestData(LoadStatus.refresh);

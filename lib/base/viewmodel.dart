@@ -6,17 +6,17 @@ import 'package:flutter/material.dart';
 /// @date 2022/6/23
 /// @description 所有viewModel基类
 abstract class ViewModel with ChangeNotifier {
-  late BuildContext? _context;
+  State<dynamic>? view;
 
   /// viewModel 绑定view视图初始化方法
   void bindView(State<dynamic> viewState) {
-    _context = viewState.context;
+    view = viewState;
     init();
   }
 
   /// viewModel 解除绑定view视图方法
   void unBindView() {
-    _context = null;
+    view = null;
     unInit();
   }
 
@@ -26,9 +26,21 @@ abstract class ViewModel with ChangeNotifier {
   /// viewModel生命周期销毁回调
   void unInit();
 
+  /// 通过页面单独创建时 ViewModelStateCreate时调用该方法更新view状态
+  postViewState() {
+    view?.setState(() {});
+  }
+
+  /// 通过页面单独创建时 ViewModelStateCreate时调用该方法更新view状态
+  setViewState(Function function) {
+    view?.setState(() {
+      function();
+    });
+  }
+
   runViewContext(RunViewContext function) {
-    if (_context != null) {
-      function(_context as BuildContext);
+    if (view?.context != null) {
+      function(view?.context as BuildContext);
     }
   }
 

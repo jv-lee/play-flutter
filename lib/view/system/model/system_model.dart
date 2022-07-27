@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
+import 'package:playflutter/entity/content.dart';
 import 'package:playflutter/entity/navigation_tab.dart';
 import 'package:playflutter/entity/parent_tab.dart';
 import 'package:playflutter/http/http_manager.dart';
@@ -31,4 +33,20 @@ class SystemModel {
     throw HttpException(
         response.statusMessage ?? "getNavigationTabAsync http exception.");
   }
+
+  Future<ContentData> getContentDataAsync(page, id) async {
+    var queryParams = <String, dynamic>{"cid": id};
+    var response = await HttpManager.getInstance()
+        .dio
+        .get("/article/list/$page/json", queryParameters: queryParams);
+    if (response.statusCode == 200) {
+      ContentData contentData = ContentData.fromJson(response.data);
+      if (contentData.errorCode == 0) {
+        return contentData;
+      }
+    }
+    throw HttpException(
+        response.statusMessage ?? "getNavigationTabAsync http exception.");
+  }
+
 }

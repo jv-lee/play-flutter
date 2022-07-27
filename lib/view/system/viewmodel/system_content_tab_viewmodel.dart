@@ -6,7 +6,8 @@ import 'package:playflutter/base/viewmodel.dart';
 class SystemContentTabViewModel extends ViewModel {
 
   @override
-  void init() {}
+  void init() {
+  }
 
   @override
   void unInit() {}

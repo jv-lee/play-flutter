@@ -86,9 +86,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
           settings: settings, builder: (_) => const CreateSharePage());
     case RouteNames.system_content_tab:
-      final arg = settings.arguments as List<Children>;
+      final arg = settings.arguments as ParentTab;
       return MaterialPageRoute(
-          settings: settings, builder: (_) => SystemContentTabPage(tabs: arg));
+          settings: settings, builder: (_) => SystemContentTabPage(item: arg));
     case RouteNames.coin:
       return MaterialPageRoute(
           settings: settings, builder: (_) => const CoinPage());

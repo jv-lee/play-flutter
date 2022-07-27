@@ -34,8 +34,8 @@ class _SystemContentState
         return ParentTabItem(
           parentTab: item,
           onItemClick: (parentTab) => {
-            Navigator.of(context).pushNamed(RouteNames.system_content_tab,
-                arguments: parentTab.children)
+            Navigator.of(context)
+                .pushNamed(RouteNames.system_content_tab, arguments: parentTab)
           },
         );
       },
