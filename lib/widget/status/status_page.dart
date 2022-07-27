@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:playflutter/extensions/extensions.dart';
@@ -7,14 +9,14 @@ import 'package:playflutter/widget/status/status.dart';
 /// @date 2020/5/12
 /// @description 状态控制页面容器
 class StatusPage extends StatefulWidget {
-  final PageStatus? status;
+  PageStatus? status;
   final Widget? child;
   final Widget? loading;
   final Widget? empty;
   final Widget? error;
   final Function? reLoadFun;
 
-  const StatusPage(
+  StatusPage(
       {Key? key,
       this.status,
       this.child,
@@ -79,7 +81,10 @@ class _StatusPageState extends State<StatusPage> {
               style: TextStyle(fontSize: 16),
             ),
             onPressed: () {
-              widget.reLoadFun.checkNullInvoke();
+              setState(() {
+                widget.status = PageStatus.loading;
+                widget.reLoadFun.checkNullInvoke();
+              });
             },
           )
         ],

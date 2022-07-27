@@ -47,6 +47,7 @@ dependencies:
   flutter_svg: ^1.1.0 #flutterSVG图片加载库
   sqflite: ^2.0.3 #数据库
   path: ^1.8.1 #系统path获取
+  flutter_screenutil: ^5.5.3+2 #fluuter屏幕适配
 
 dev_dependencies:
   flutter_test:

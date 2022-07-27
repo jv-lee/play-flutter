@@ -36,6 +36,7 @@ class _SystemContentListState extends ViewModelStateCreate<
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: RefreshIndicator(
           color: Theme.of(context).primaryColorLight,

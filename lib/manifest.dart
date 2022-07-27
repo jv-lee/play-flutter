@@ -17,8 +17,10 @@ import 'package:playflutter/view/me/viewmodel/coin_rank_viewmodel.dart';
 import 'package:playflutter/view/me/viewmodel/coin_viewmodel.dart';
 import 'package:playflutter/view/me/viewmodel/collect_viewmodel.dart';
 import 'package:playflutter/view/me/viewmodel/me_viewmodel.dart';
-import 'package:playflutter/view/official/project.dart';
+import 'package:playflutter/view/official/official.dart';
+import 'package:playflutter/view/official/viewmodel/official_viewmodel.dart';
 import 'package:playflutter/view/project/project.dart';
+import 'package:playflutter/view/project/viewmodel/project_viewmodel.dart';
 import 'package:playflutter/view/search/search.dart';
 import 'package:playflutter/view/search/search_result.dart';
 import 'package:playflutter/view/search/viewmodel/search_result_viewmodel.dart';
@@ -41,6 +43,8 @@ import 'package:provider/single_child_widget.dart';
 // 项目页面viewModel注册监听
 List<SingleChildWidget> onGenerateViewModel(BuildContext context) => [
       ChangeNotifierProvider(create: (context) => HomeViewModel()),
+      ChangeNotifierProvider(create: (context) => OfficialViewModel()),
+      ChangeNotifierProvider(create: (context) => ProjectViewModel()),
       ChangeNotifierProvider(create: (context) => SquareViewModel()),
       ChangeNotifierProvider(create: (context) => SystemViewModel()),
       ChangeNotifierProvider(create: (context) => SystemContentViewModel()),

@@ -41,8 +41,13 @@ class _ContentPictureItemState extends State<ContentPictureItem> {
                                 ThemeDimens.offset_radius_medium)),
                         image: DecorationImage(
                             image: imageProvider, fit: BoxFit.cover))),
-                placeholder: (context, url) =>
-                    Container(color: Theme.of(context).splashColor),
+                placeholder: (context, url) => Container(
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).splashColor,
+                          borderRadius: const BorderRadius.horizontal(
+                              left: Radius.circular(
+                                  ThemeDimens.offset_radius_medium))),
+                    ),
                 errorWidget: (context, url, error) => const Icon(Icons.error)),
             Expanded(
                 child: SizedBox(
