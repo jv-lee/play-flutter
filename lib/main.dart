@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:playflutter/db/database_manager.dart';
 import 'package:playflutter/manifest.dart';
 import 'package:playflutter/provider/dark_mode_provider.dart';
@@ -26,17 +25,13 @@ class PlayFlutterApp extends StatelessWidget {
         providers: providers,
         // 监听深色模式主题变换 更改主题配置
         child: Consumer<DarkModeProvider>(builder: (context, provider, widget) {
-          return ScreenUtilInit(
-              designSize: const Size(360, 960),
-              builder: (context, child) {
-                return MaterialApp(
-                  theme: provider.lightThemeData,
-                  darkTheme: provider.darkThemeData,
-                  onGenerateRoute: onGenerateRoute,
-                  initialRoute: '/',
-                  home: const MainPage(),
-                );
-              });
+          return MaterialApp(
+            theme: provider.lightThemeData,
+            darkTheme: provider.darkThemeData,
+            onGenerateRoute: onGenerateRoute,
+            initialRoute: '/',
+            home: const MainPage(),
+          );
         }));
   }
 }
