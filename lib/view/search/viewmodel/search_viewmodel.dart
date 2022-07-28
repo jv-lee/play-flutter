@@ -27,9 +27,9 @@ class SearchViewModel extends ViewModel {
   void navigationSearchKey(String searchKey) {
     _dao.insert(SearchHistory.buildSearchHistory(searchKey));
     _requestSearchHistoryList();
-    runViewContext((context) => Navigator.pushNamed(
+    Navigator.pushNamed(
         context, RouteNames.search_result,
-        arguments: {SearchPage.ARG_SEARCH_KEY: searchKey}));
+        arguments: {SearchPage.ARG_SEARCH_KEY: searchKey});
   }
 
   void deleteSearchHistory(SearchHistory history) {

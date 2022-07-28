@@ -32,27 +32,25 @@ class CreateShareViewModel extends ViewModel {
   }
 
   void submitShare() {
-    runViewContext((context) {
-      if (shareTitle.isEmpty || shareLink.isEmpty) {
-        Toast.show("title || content is empty.", context);
-        return;
-      }
-      // 隐藏输入框 延时发起逻辑
-      FocusManager.instance.primaryFocus?.unfocus();
-      Future.delayed(const Duration(milliseconds: 300), () {
-        // 显示loading弹窗
-        showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (BuildContext context) => const LoadingDialog());
+    if (shareTitle.isEmpty || shareLink.isEmpty) {
+      Toast.show("title || content is empty.", context);
+      return;
+    }
+    // 隐藏输入框 延时发起逻辑
+    FocusManager.instance.primaryFocus?.unfocus();
+    Future.delayed(const Duration(milliseconds: 300), () {
+      // 显示loading弹窗
+      showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context) => const LoadingDialog());
 
-        // 提交请求
-        _model.postShareDataSync(shareTitle, shareLink).then((value) {
-          Toast.show(ThemeStrings.square_share_request_success, context);
-        }).catchError((onError) {
-          Toast.show((onError as HttpException).message, context);
-        }).whenComplete(() => Navigator.of(context).pop());
-      });
+      // 提交请求
+      _model.postShareDataSync(shareTitle, shareLink).then((value) {
+        Toast.show(ThemeStrings.square_share_request_success, context);
+      }).catchError((onError) {
+        Toast.show((onError as HttpException).message, context);
+      }).whenComplete(() => Navigator.of(context).pop());
     });
   }
 }

@@ -24,16 +24,12 @@ abstract class ViewModel with ChangeNotifier {
   /// viewModel生命周期销毁回调
   void unInit();
 
-  runViewContext(RunViewContext function) {
-    function(context);
-  }
-
+  /// 延时执行context函数
   runViewContextDelay(RunViewContext function) {
     Future.delayed(Duration.zero).then((value) async {
-      runViewContext(function);
+      function(context);
     });
   }
-
 }
 
 typedef RunViewContext = Function(BuildContext context);
