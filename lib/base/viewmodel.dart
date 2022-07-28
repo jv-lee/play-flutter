@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_use_of_protected_member
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 /// @author jv.lee
 /// @date 2022/6/23
@@ -33,3 +34,18 @@ abstract class ViewModel with ChangeNotifier {
 }
 
 typedef RunViewContext = Function(BuildContext context);
+
+typedef ViewBuild<T extends ViewModel> = Widget Function(
+    BuildContext context, T viewModel);
+
+class ViewModelCreator {
+  static Widget create<T extends ViewModel>(
+      Create<T> create, ViewBuild<T> viewBuild) {
+    return ChangeNotifierProvider(
+      create: create,
+      child: Consumer<T>(builder: (context, viewModel, child) {
+        return viewBuild(context, viewModel);
+      }),
+    );
+  }
+}

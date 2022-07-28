@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel_create.dart';
+import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/db/entity/search_history.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';

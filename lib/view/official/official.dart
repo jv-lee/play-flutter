@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel_create.dart';
+import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/official/official_list.dart';
 import 'package:playflutter/view/official/viewmodel/official_viewmodel.dart';
