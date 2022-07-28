@@ -15,14 +15,14 @@ class OfficialListViewModel extends ViewModel {
   late int id;
   late Paging<Content> paging;
 
-  OfficialListViewModel(this.id);
+  OfficialListViewModel(super.context,this.id);
 
   @override
   void init() {
     paging = Paging(
         data: [],
         initPage: 1,
-        notify: postViewState,
+        notify: notifyListeners,
         statusController: StatusController(pageStatus: PageStatus.loading));
     requestData(LoadStatus.refresh);
   }

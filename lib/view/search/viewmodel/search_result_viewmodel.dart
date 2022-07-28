@@ -17,6 +17,8 @@ class SearchResultViewModel extends ViewModel {
   late String searchKey = "";
   late Paging<Content> paging;
 
+  SearchResultViewModel(super.context);
+
   @override
   void init() {
     paging = Paging(

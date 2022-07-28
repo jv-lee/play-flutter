@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel_state.dart';
+import 'package:playflutter/base/viewmodel_create.dart';
 import 'package:playflutter/db/entity/search_history.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
@@ -21,46 +21,48 @@ class SearchPage extends StatefulWidget {
   static const String ARG_SEARCH_KEY = "searchKey";
 }
 
-class _SearchState extends ViewModelState<SearchPage, SearchViewModel> {
+class _SearchState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          appBar: buildSearchAppBar(),
-          body: buildSearchContent(),
-        ));
+    return ViewModelCreator.create<SearchViewModel>(
+        (context) => SearchViewModel(context),
+        (context, viewModel) => GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            child: Scaffold(
+              resizeToAvoidBottomInset: false,
+              appBar: buildSearchAppBar(viewModel),
+              body: buildSearchContent(viewModel),
+            )));
   }
 
-  PreferredSizeWidget buildSearchAppBar() {
+  PreferredSizeWidget buildSearchAppBar(SearchViewModel viewModel) {
     return AppBar(
         title: TextField(
-            onSubmitted: (text) => {readVM().navigationSearchKey(text)},
+            onSubmitted: (text) => {viewModel.navigationSearchKey(text)},
             textInputAction: TextInputAction.search,
             decoration: const InputDecoration(
                 hintText: ThemeStrings.search_hint_text)));
   }
 
-  Widget buildSearchContent() {
+  Widget buildSearchContent(SearchViewModel viewModel) {
     return SizedBox(
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [buildSearchHot(), buildSearchHistory()],
+        children: [buildSearchHot(viewModel), buildSearchHistory(viewModel)],
       ),
     );
   }
 
-  Widget buildSearchHot() {
+  Widget buildSearchHot(SearchViewModel viewModel) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [buildSearchHotLabel(), buildSearchHotFlow()],
+      children: [buildSearchHotLabel(viewModel), buildSearchHotFlow(viewModel)],
     );
   }
 
-  Widget buildSearchHotLabel() {
+  Widget buildSearchHotLabel(SearchViewModel viewModel) {
     return Padding(
       padding: const EdgeInsets.all(ThemeDimens.offset_large),
       child: Text(
@@ -72,10 +74,9 @@ class _SearchState extends ViewModelState<SearchPage, SearchViewModel> {
     );
   }
 
-  Widget buildSearchHotFlow() {
-    var widgets = providerOfVM()
-        .searchHots
-        .map((e) => buildSearchHotFlowItem(e))
+  Widget buildSearchHotFlow(SearchViewModel viewModel) {
+    var widgets = viewModel.searchHots
+        .map((e) => buildSearchHotFlowItem(viewModel, e))
         .toList();
 
     return Padding(
@@ -85,7 +86,8 @@ class _SearchState extends ViewModelState<SearchPage, SearchViewModel> {
     );
   }
 
-  Widget buildSearchHotFlowItem(SearchHot searchHot) {
+  Widget buildSearchHotFlowItem(
+      SearchViewModel viewModel, SearchHot searchHot) {
     return Card(
       elevation: 0,
       color: Theme.of(context).hintColor,
@@ -93,7 +95,7 @@ class _SearchState extends ViewModelState<SearchPage, SearchViewModel> {
           borderRadius:
               BorderRadius.circular(ThemeDimens.offset_radius_medium)),
       child: InkWell(
-        onTap: () => {readVM().navigationSearchKey(searchHot.hotKey)},
+        onTap: () => {viewModel.navigationSearchKey(searchHot.hotKey)},
         borderRadius: BorderRadius.circular(ThemeDimens.system_tab_radius),
         child: Padding(
           padding: const EdgeInsets.all(ThemeDimens.offset_medium),
@@ -107,19 +109,19 @@ class _SearchState extends ViewModelState<SearchPage, SearchViewModel> {
     );
   }
 
-  Widget buildSearchHistory() {
+  Widget buildSearchHistory(SearchViewModel viewModel) {
     return Expanded(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        buildSearchHistoryLabel(),
-        buildSearchHistoryEmpty(),
-        buildSearchHistoryList(),
+        buildSearchHistoryLabel(viewModel),
+        buildSearchHistoryEmpty(viewModel),
+        buildSearchHistoryList(viewModel),
       ],
     ));
   }
 
-  Widget buildSearchHistoryLabel() {
+  Widget buildSearchHistoryLabel(SearchViewModel viewModel) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -144,7 +146,7 @@ class _SearchState extends ViewModelState<SearchPage, SearchViewModel> {
             child: Material(
               child: InkWell(
                 onTap: () {
-                  readVM().clearSearchHistory();
+                  viewModel.clearSearchHistory();
                 },
                 child: Text(ThemeStrings.search_clear_text,
                     style: TextStyle(
@@ -156,10 +158,9 @@ class _SearchState extends ViewModelState<SearchPage, SearchViewModel> {
     );
   }
 
-  Widget buildSearchHistoryList() {
-    var searchHistoryList = providerOfVM()
-        .searchHistoryList
-        .map((e) => buildSearchHistoryItem(e))
+  Widget buildSearchHistoryList(SearchViewModel viewModel) {
+    var searchHistoryList = viewModel.searchHistoryList
+        .map((e) => buildSearchHistoryItem(viewModel, e))
         .toList();
 
     return Expanded(
@@ -173,8 +174,8 @@ class _SearchState extends ViewModelState<SearchPage, SearchViewModel> {
             )));
   }
 
-  Widget buildSearchHistoryEmpty() {
-    if (providerOfVM().searchHistoryList.isEmpty) {
+  Widget buildSearchHistoryEmpty(SearchViewModel viewModel) {
+    if (viewModel.searchHistoryList.isEmpty) {
       return SizedBox(
         width: double.infinity,
         child: Padding(
@@ -193,11 +194,12 @@ class _SearchState extends ViewModelState<SearchPage, SearchViewModel> {
     return Container();
   }
 
-  Widget buildSearchHistoryItem(SearchHistory searchHistory) {
+  Widget buildSearchHistoryItem(
+      SearchViewModel viewModel, SearchHistory searchHistory) {
     return Material(
       child: InkWell(
         onTap: () {
-          readVM().navigationSearchKey(searchHistory.searchKey);
+          viewModel.navigationSearchKey(searchHistory.searchKey);
         },
         child: Padding(
           padding: const EdgeInsets.only(
@@ -214,7 +216,7 @@ class _SearchState extends ViewModelState<SearchPage, SearchViewModel> {
               ),
               InkWell(
                 onTap: () {
-                  readVM().deleteSearchHistory(searchHistory);
+                  viewModel.deleteSearchHistory(searchHistory);
                 },
                 child: Icon(
                   Icons.close,

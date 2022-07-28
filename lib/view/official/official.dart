@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel_state.dart';
+import 'package:playflutter/base/viewmodel_create.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/official/official_list.dart';
 import 'package:playflutter/view/official/viewmodel/official_viewmodel.dart';
@@ -15,32 +15,36 @@ class OfficialPage extends StatefulWidget {
   State<StatefulWidget> createState() => _OfficialState();
 }
 
-class _OfficialState extends ViewModelState<OfficialPage, OfficialViewModel> {
+class _OfficialState extends State<OfficialPage> {
   @override
   Widget build(BuildContext context) {
-    TabBar? tabBar;
-    final tabList = providerOfVM().tabList;
-    if (tabList.isNotEmpty) {
-      tabBar = TabBar(
-          isScrollable: true,
-          indicatorSize: TabBarIndicatorSize.label,
-          labelColor: Theme.of(context).primaryColorLight,
-          indicatorColor: Theme.of(context).primaryColorLight,
-          tabs: tabList.map((e) => Tab(text: e.name)).toList());
-    }
-    return DefaultTabController(
-        length: tabList.length,
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text(ThemeStrings.official_category_name),
-            bottom: tabBar,
-          ),
-          body: StatusPage(
-              status: readVM().pageStatus,
-              reLoadFun: () => readVM().requestTabData(),
-              child: TabBarView(
-                  children:
-                      tabList.map((e) => OfficialListPage(id: e.id)).toList())),
-        ));
+    return ViewModelCreator.create<OfficialViewModel>(
+        (context) => OfficialViewModel(context), (context, viewModel) {
+      TabBar? tabBar;
+      final tabList = viewModel.tabList;
+      if (tabList.isNotEmpty) {
+        tabBar = TabBar(
+            isScrollable: true,
+            indicatorSize: TabBarIndicatorSize.label,
+            labelColor: Theme.of(context).primaryColorLight,
+            indicatorColor: Theme.of(context).primaryColorLight,
+            tabs: tabList.map((e) => Tab(text: e.name)).toList());
+      }
+      return DefaultTabController(
+          length: tabList.length,
+          child: Scaffold(
+            appBar: AppBar(
+              title: const Text(ThemeStrings.official_category_name),
+              bottom: tabBar,
+            ),
+            body: StatusPage(
+                status: viewModel.pageStatus,
+                reLoadFun: () => viewModel.requestTabData(),
+                child: TabBarView(
+                    children: tabList
+                        .map((e) => OfficialListPage(id: e.id))
+                        .toList())),
+          ));
+    });
   }
 }

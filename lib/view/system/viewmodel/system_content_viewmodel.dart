@@ -15,6 +15,8 @@ class SystemContentViewModel extends ViewModel {
 
   late Paging<ParentTab> paging;
 
+  SystemContentViewModel(super.context);
+
   @override
   void init() {
     paging = Paging(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:playflutter/base/viewmodel_state_create.dart';
+import 'package:playflutter/base/viewmodel_create.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
@@ -20,51 +20,47 @@ class ProjectListPage extends StatefulWidget {
   State<StatefulWidget> createState() => _ProjectListState();
 }
 
-class _ProjectListState
-    extends ViewModelStateCreate<ProjectListPage, ProjectListViewModel>
+class _ProjectListState extends State<ProjectListPage>
     with AutomaticKeepAliveClientMixin<ProjectListPage> {
   @override
   bool get wantKeepAlive => true;
 
   @override
-  ProjectListViewModel createVM() {
-    return ProjectListViewModel(widget.id);
-  }
-
-  @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Scaffold(
-      body: RefreshIndicator(
-          color: Theme.of(context).primaryColorLight,
-          onRefresh: () async {
-            await Future<void>.delayed(const Duration(seconds: 1), () {
-              findVM().requestData(LoadStatus.refresh);
-            });
-          },
-          child: SuperListView(
-            statusController: findVM().paging.statusController,
-            itemCount: findVM().paging.data.length,
-            onPageReload: () {
-              findVM().requestData(LoadStatus.refresh);
-            },
-            onItemReload: () {
-              findVM().requestData(LoadStatus.reload);
-            },
-            onLoadMore: () {
-              findVM().requestData(LoadStatus.loadMore);
-            },
-            itemBuilder: (BuildContext context, int index) {
-              var item = findVM().paging.data[index];
-              return ContentPictureItem(
-                content: item,
-                onItemClick: (item) => {
-                  Navigator.pushNamed(context, RouteNames.details,
-                      arguments: item.transformDetails())
-                },
-              );
-            },
-          )),
-    );
+    return ViewModelCreator.create<ProjectListViewModel>(
+        (context) => ProjectListViewModel(context, widget.id),
+        (context, viewModel) => Scaffold(
+              body: RefreshIndicator(
+                  color: Theme.of(context).primaryColorLight,
+                  onRefresh: () async {
+                    await Future<void>.delayed(const Duration(seconds: 1), () {
+                      viewModel.requestData(LoadStatus.refresh);
+                    });
+                  },
+                  child: SuperListView(
+                    statusController: viewModel.paging.statusController,
+                    itemCount: viewModel.paging.data.length,
+                    onPageReload: () {
+                      viewModel.requestData(LoadStatus.refresh);
+                    },
+                    onItemReload: () {
+                      viewModel.requestData(LoadStatus.reload);
+                    },
+                    onLoadMore: () {
+                      viewModel.requestData(LoadStatus.loadMore);
+                    },
+                    itemBuilder: (BuildContext context, int index) {
+                      var item = viewModel.paging.data[index];
+                      return ContentPictureItem(
+                        content: item,
+                        onItemClick: (item) => {
+                          Navigator.pushNamed(context, RouteNames.details,
+                              arguments: item.transformDetails())
+                        },
+                      );
+                    },
+                  )),
+            ));
   }
 }

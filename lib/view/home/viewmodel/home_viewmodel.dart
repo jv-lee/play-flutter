@@ -1,10 +1,10 @@
 import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/entity/banner.dart';
 import 'package:playflutter/entity/content.dart';
-import 'package:playflutter/view/home/model/entity/home_category.dart';
 import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
+import 'package:playflutter/view/home/model/entity/home_category.dart';
 import 'package:playflutter/view/home/model/home_model.dart';
 import 'package:playflutter/widget/status/status.dart';
 import 'package:playflutter/widget/status/status_controller.dart';
@@ -19,6 +19,8 @@ class HomeViewModel extends ViewModel {
   late Paging<Content> paging;
   List<BannerItem> bannerList = [];
   List<HomeCategory> categoryList = [];
+
+  HomeViewModel(super.context);
 
   @override
   void init() {

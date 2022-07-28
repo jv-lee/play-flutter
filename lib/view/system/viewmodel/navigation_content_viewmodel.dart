@@ -26,6 +26,8 @@ class NavigationContentViewModel extends ViewModel {
   ScrollToIndexController tagScrollController = ScrollToIndexController();
   late Paging<NavigationTab> paging;
 
+  NavigationContentViewModel(super.context);
+
   @override
   void init() {
     paging = Paging(

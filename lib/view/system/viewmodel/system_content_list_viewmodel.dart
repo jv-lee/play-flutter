@@ -15,14 +15,14 @@ class SystemContentListViewModel extends ViewModel {
   late int id;
   late Paging<Content> paging;
 
-  SystemContentListViewModel(this.id);
+  SystemContentListViewModel(super.context, this.id);
 
   @override
   void init() {
     paging = Paging(
         data: [],
         initPage: 0,
-        notify: postViewState,
+        notify: notifyListeners,
         statusController: StatusController(pageStatus: PageStatus.loading));
     requestData(LoadStatus.refresh);
   }

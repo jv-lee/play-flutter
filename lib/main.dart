@@ -22,8 +22,6 @@ class PlayFlutterApp extends StatelessWidget {
     // 深色模式状态监听
     providers.add(ChangeNotifierProvider.value(
         value: DarkModeProvider(context: context)));
-    // 项目页面viewModel注册监听
-    providers.addAll(onGenerateViewModel(context));
     return MultiProvider(
         providers: providers,
         // 监听深色模式主题变换 更改主题配置

@@ -4,6 +4,7 @@ import 'package:playflutter/base/viewmodel.dart';
 /// @date 2022/7/15
 /// @description 收藏列表viewModel
 class CollectViewModel extends ViewModel {
+  CollectViewModel(super.context);
 
   @override
   void init() {

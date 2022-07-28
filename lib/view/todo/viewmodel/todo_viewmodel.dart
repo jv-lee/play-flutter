@@ -4,6 +4,7 @@ import 'package:playflutter/base/viewmodel.dart';
 /// @date 2022/7/15
 /// @description 笔记本模块viewModel
 class TodoViewModel extends ViewModel {
+  TodoViewModel(super.context);
 
   @override
   void init() {}

@@ -11,6 +11,8 @@ class SystemViewModel extends ViewModel {
   var pageList = const [SystemContentPage(), NavigationContentPage()];
   late PageController pageController;
 
+  SystemViewModel(super.context);
+
   @override
   void init() {
     pageController = PageController(initialPage: selectedIndex, keepPage: true);

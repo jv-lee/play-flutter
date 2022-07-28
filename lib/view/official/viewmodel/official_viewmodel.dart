@@ -11,6 +11,8 @@ class OfficialViewModel extends ViewModel {
   late var pageStatus = PageStatus.loading;
   late var tabList = <Tab>[];
 
+  OfficialViewModel(super.context);
+
   @override
   void init() {
     requestTabData();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel_state.dart';
+import 'package:playflutter/base/viewmodel_create.dart';
+import 'package:playflutter/entity/content.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
@@ -20,38 +21,39 @@ class SearchResultPage extends StatefulWidget {
   State<StatefulWidget> createState() => _SearchResultState();
 }
 
-class _SearchResultState
-    extends ViewModelState<SearchResultPage, SearchResultViewModel> {
+class _SearchResultState extends State<SearchResultPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
-      body: buildSearchResultList(),
-    );
+    return ViewModelCreator.create<SearchResultViewModel>(
+        (context) => SearchResultViewModel(context),
+        (context, viewModel) => Scaffold(
+              appBar: AppBar(title: Text(widget.title)),
+              body: buildSearchResultList(viewModel),
+            ));
   }
 
-  Widget buildSearchResultList() {
+  Widget buildSearchResultList(SearchResultViewModel viewModel) {
     return RefreshIndicator(
         color: Theme.of(context).primaryColorLight,
         onRefresh: () async {
           await Future<void>.delayed(const Duration(seconds: 1), () {
-            readVM().requestData(LoadStatus.refresh);
+            viewModel.requestData(LoadStatus.refresh);
           });
         },
         child: SuperListView(
-          statusController: providerOfVM().paging.statusController,
-          itemCount: providerOfVM().paging.data.length,
+          statusController: viewModel.paging.statusController,
+          itemCount: viewModel.paging.data.length,
           onPageReload: () {
-            readVM().requestData(LoadStatus.refresh);
+            viewModel.requestData(LoadStatus.refresh);
           },
           onItemReload: () {
-            readVM().requestData(LoadStatus.reload);
+            viewModel.requestData(LoadStatus.reload);
           },
           onLoadMore: () {
-            readVM().requestData(LoadStatus.loadMore);
+            viewModel.requestData(LoadStatus.loadMore);
           },
           itemBuilder: (BuildContext context, int index) {
-            var item = providerOfVM().paging.data[index];
+            Content item = viewModel.paging.data[index];
             itemClick(content) {
               Navigator.pushNamed(context, RouteNames.details,
                   arguments: item.transformDetails());

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel_state.dart';
 import 'package:playflutter/entity/parent_tab.dart';
 import 'package:playflutter/view/system/system_content_list.dart';
-import 'package:playflutter/view/system/viewmodel/system_content_tab_viewmodel.dart';
 
 /// @author jv.lee
 /// @date 2022/7/26
@@ -17,7 +15,7 @@ class SystemContentTabPage extends StatefulWidget {
 }
 
 class _SystemContentTabState
-    extends ViewModelState<SystemContentTabPage, SystemContentTabViewModel> {
+    extends State<SystemContentTabPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

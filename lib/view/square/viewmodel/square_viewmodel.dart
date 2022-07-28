@@ -15,6 +15,8 @@ class SquareViewModel extends ViewModel {
 
   late Paging<Content> paging;
 
+  SquareViewModel(super.context);
+
   @override
   void init() {
     paging = Paging(

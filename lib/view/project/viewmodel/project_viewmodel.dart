@@ -11,6 +11,8 @@ class ProjectViewModel extends ViewModel {
   late var pageStatus = PageStatus.loading;
   late var tabList = <Tab>[];
 
+  ProjectViewModel(super.context);
+
   @override
   void init() {
     requestTabData();

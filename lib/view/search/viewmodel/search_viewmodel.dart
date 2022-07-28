@@ -14,6 +14,8 @@ class SearchViewModel extends ViewModel {
   List<SearchHot> searchHots = SearchHot.getSearchHots();
   List<SearchHistory> searchHistoryList = [];
 
+  SearchViewModel(super.context);
+
   @override
   void init() {
     _requestSearchHistoryList();

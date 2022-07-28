@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel_state.dart';
-import 'package:playflutter/view/account/viewmodel/login_viewmodel.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -12,7 +10,7 @@ class LoginPage extends StatefulWidget {
   State<StatefulWidget> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends ViewModelState<LoginPage, LoginViewModel> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return const Center(child: Text("login page."));

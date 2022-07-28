@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:playflutter/base/viewmodel_state.dart';
+import 'package:playflutter/base/viewmodel_create.dart';
 import 'package:playflutter/entity/banner.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
@@ -28,7 +28,7 @@ class HomePage extends StatefulWidget {
   State<StatefulWidget> createState() => _HomeState();
 }
 
-class _HomeState extends ViewModelState<HomePage, HomeViewModel>
+class _HomeState extends State<HomePage>
     with AutomaticKeepAliveClientMixin<HomePage> {
   // 设置wantKeepAlive = true; pagerView切换时不会重新加载view状态
   @override
@@ -37,64 +37,71 @@ class _HomeState extends ViewModelState<HomePage, HomeViewModel>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Stack(
-      children: [
-        RefreshIndicator(
-            displacement: 10,
-            edgeOffset: AppHeaderSpacer.spacerHeight(),
-            color: Theme.of(context).primaryColorLight,
-            onRefresh: () async {
-              await Future<void>.delayed(const Duration(seconds: 1), () {
-                readVM().requestData(LoadStatus.refresh);
-              });
-            },
-            child: SuperListView(
-              statusController: providerOfVM().paging.statusController,
-              itemCount: providerOfVM().paging.data.length,
-              onPageReload: () {
-                readVM().requestData(LoadStatus.refresh);
-              },
-              onItemReload: () {
-                readVM().requestData(LoadStatus.reload);
-              },
-              onLoadMore: () {
-                readVM().requestData(LoadStatus.loadMore);
-              },
-              headerChildren: [
-                const AppHeaderSpacer(),
-                buildBanner((item) => {
-                      Navigator.pushNamed(context, RouteNames.details,
-                          arguments: item.transformDetails())
-                    }),
-                buildCategory(
-                    (item) => {Navigator.pushNamed(context, item.link)})
-              ],
-              itemBuilder: (BuildContext context, int index) {
-                var item = providerOfVM().paging.data[index];
-                return ContentItem(
-                  content: item,
-                  onItemClick: (item) => {
-                    Navigator.pushNamed(context, RouteNames.details,
-                        arguments: item.transformDetails())
+    return ViewModelCreator.create<HomeViewModel>(
+        (context) => HomeViewModel(context),
+        (context, viewModel) => Stack(
+              children: [
+                RefreshIndicator(
+                    displacement: 10,
+                    edgeOffset: AppHeaderSpacer.spacerHeight(),
+                    color: Theme.of(context).primaryColorLight,
+                    onRefresh: () async {
+                      await Future<void>.delayed(const Duration(seconds: 1),
+                          () {
+                        viewModel.requestData(LoadStatus.refresh);
+                      });
+                    },
+                    child: SuperListView(
+                      statusController: viewModel.paging.statusController,
+                      itemCount: viewModel.paging.data.length,
+                      onPageReload: () {
+                        viewModel.requestData(LoadStatus.refresh);
+                      },
+                      onItemReload: () {
+                        viewModel.requestData(LoadStatus.reload);
+                      },
+                      onLoadMore: () {
+                        viewModel.requestData(LoadStatus.loadMore);
+                      },
+                      headerChildren: [
+                        const AppHeaderSpacer(),
+                        buildBanner(
+                            viewModel,
+                            (item) => {
+                                  Navigator.pushNamed(
+                                      context, RouteNames.details,
+                                      arguments: item.transformDetails())
+                                }),
+                        buildCategory(viewModel,
+                            (item) => {Navigator.pushNamed(context, item.link)})
+                      ],
+                      itemBuilder: (BuildContext context, int index) {
+                        var item = viewModel.paging.data[index];
+                        return ContentItem(
+                          content: item,
+                          onItemClick: (item) => {
+                            Navigator.pushNamed(context, RouteNames.details,
+                                arguments: item.transformDetails())
+                          },
+                        );
+                      },
+                    )),
+                AppHeaderContainer(
+                    child: AppTextActionBar(
+                  title: ThemeStrings.home_header_text,
+                  navigationSvgPath: ThemeImages.common_search_svg,
+                  onNavigationClick: () {
+                    Navigator.pushNamed(context, RouteNames.search);
                   },
-                );
-              },
-            )),
-        AppHeaderContainer(
-            child: AppTextActionBar(
-          title: ThemeStrings.home_header_text,
-          navigationSvgPath: ThemeImages.common_search_svg,
-          onNavigationClick: () {
-            Navigator.pushNamed(context, RouteNames.search);
-          },
-        ))
-      ],
-    );
+                ))
+              ],
+            ));
   }
 
-  Widget buildBanner(Function(BannerItem) onItemClick) {
-    var bannerList = providerOfVM().bannerList;
-    var bannerIndex = providerOfVM().bannerIndex;
+  Widget buildBanner(
+      HomeViewModel viewModel, Function(BannerItem) onItemClick) {
+    var bannerList = viewModel.bannerList;
+    var bannerIndex = viewModel.bannerIndex;
     if (bannerList.isEmpty) {
       return Container();
     } else {
@@ -107,7 +114,7 @@ class _HomeState extends ViewModelState<HomePage, HomeViewModel>
             duration: 300,
             itemCount: bannerList.length,
             onIndexChanged: (index) {
-              readVM().changeBannerIndex(index);
+              viewModel.changeBannerIndex(index);
             },
             itemBuilder: (BuildContext context, int index) {
               var item = bannerList[index];
@@ -146,8 +153,9 @@ class _HomeState extends ViewModelState<HomePage, HomeViewModel>
     }
   }
 
-  Widget buildCategory(Function(HomeCategory) onItemClick) {
-    var categoryList = providerOfVM().categoryList;
+  Widget buildCategory(
+      HomeViewModel viewModel, Function(HomeCategory) onItemClick) {
+    var categoryList = viewModel.categoryList;
     if (categoryList.isEmpty) {
       return Container();
     } else {

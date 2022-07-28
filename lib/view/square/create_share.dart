@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel_state.dart';
+import 'package:playflutter/base/viewmodel_create.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/square/viewmodel/create_share_viewmodel.dart';
@@ -14,23 +14,23 @@ class CreateSharePage extends StatefulWidget {
   State<StatefulWidget> createState() => _CreateShareState();
 }
 
-class _CreateShareState
-    extends ViewModelState<CreateSharePage, CreateShareViewModel> {
+class _CreateShareState extends State<CreateSharePage> {
   @override
   Widget build(BuildContext context) {
-
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          appBar:
-              AppBar(title: const Text(ThemeStrings.square_create_share_text)),
-          body: buildCrateShareContent()),
-    );
+    return ViewModelCreator.create<CreateShareViewModel>(
+        (context) => CreateShareViewModel(context),
+        (context, viewModel) => GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+              child: Scaffold(
+                  resizeToAvoidBottomInset: false,
+                  appBar: AppBar(
+                      title: const Text(ThemeStrings.square_create_share_text)),
+                  body: buildCrateShareContent(viewModel)),
+            ));
   }
 
-  Widget buildCrateShareContent() {
+  Widget buildCrateShareContent(CreateShareViewModel viewModel) {
     return Padding(
       padding: const EdgeInsets.only(
           left: ThemeDimens.offset_large, right: ThemeDimens.offset_large),
@@ -42,7 +42,7 @@ class _CreateShareState
             child: Text(ThemeStrings.square_share_title_text),
           ),
           TextField(
-            onChanged: (text) => {readVM().changeShareTitle(text)},
+            onChanged: (text) => {viewModel.changeShareTitle(text)},
             textInputAction: TextInputAction.next,
             decoration: const InputDecoration(
                 hintText: ThemeStrings.square_share_title_hint),
@@ -52,10 +52,8 @@ class _CreateShareState
             child: Text(ThemeStrings.square_share_link_text),
           ),
           TextField(
-            onChanged: (text) => {readVM().changeShareLink(text)},
-            onSubmitted: (text) => {
-              readVM().submitShare()
-            },
+            onChanged: (text) => {viewModel.changeShareLink(text)},
+            onSubmitted: (text) => {viewModel.submitShare()},
             textInputAction: TextInputAction.send,
             decoration: const InputDecoration(
                 hintText: ThemeStrings.square_share_link_hint),

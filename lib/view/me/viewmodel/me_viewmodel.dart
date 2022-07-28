@@ -8,6 +8,8 @@ class MeViewModel extends ViewModel {
 
   List<MeItem> meItems = MeItem.getMeItems();
 
+  MeViewModel(super.context);
+
   @override
   void init() {}
 

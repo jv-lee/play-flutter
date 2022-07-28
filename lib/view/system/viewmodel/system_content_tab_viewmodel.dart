@@ -4,6 +4,8 @@ import 'package:playflutter/base/viewmodel.dart';
 /// @date 2022/7/26
 /// @description
 class SystemContentTabViewModel extends ViewModel {
+  SystemContentTabViewModel(super.context);
+
 
   @override
   void init() {

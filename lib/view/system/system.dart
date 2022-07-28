@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel_state.dart';
+import 'package:playflutter/base/viewmodel_create.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/system/viewmodel/system_viewmodel.dart';
@@ -16,7 +16,7 @@ class SystemPage extends StatefulWidget {
   State<StatefulWidget> createState() => _SystemState();
 }
 
-class _SystemState extends ViewModelState<SystemPage, SystemViewModel>
+class _SystemState extends State<SystemPage>
     with AutomaticKeepAliveClientMixin<SystemPage> {
   @override
   bool get wantKeepAlive => true;
@@ -24,26 +24,29 @@ class _SystemState extends ViewModelState<SystemPage, SystemViewModel>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Stack(
-      children: [buildPage(), buildTabHeader()],
-    );
+    return ViewModelCreator.create<SystemViewModel>(
+        (context) => SystemViewModel(context),
+        (context, viewModel) => Stack(
+              children: [buildPage(viewModel), buildTabHeader(viewModel)],
+            ));
   }
 
-  Widget buildTabHeader() {
+  Widget buildTabHeader(SystemViewModel viewModel) {
     return AppHeaderContainer(
         child: SizedBox(
       width: double.infinity,
       height: ThemeDimens.toolbar_height,
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        buildTab(ThemeStrings.system_system_tab,
-            providerOfVM().selectedIndex == 0, () => {readVM().pageChange(0)}),
-        buildTab(ThemeStrings.system_navigation_tab,
-            providerOfVM().selectedIndex == 1, () => {readVM().pageChange(1)})
+        buildTab(viewModel, ThemeStrings.system_system_tab,
+            viewModel.selectedIndex == 0, () => {viewModel.pageChange(0)}),
+        buildTab(viewModel, ThemeStrings.system_navigation_tab,
+            viewModel.selectedIndex == 1, () => {viewModel.pageChange(1)})
       ]),
     ));
   }
 
-  Widget buildTab(String text, bool isSelected, Function onClick) {
+  Widget buildTab(SystemViewModel viewModel, String text, bool isSelected,
+      Function onClick) {
     Color color;
     Color textColor;
     if (isSelected) {
@@ -76,15 +79,15 @@ class _SystemState extends ViewModelState<SystemPage, SystemViewModel>
     );
   }
 
-  Widget buildPage() {
+  Widget buildPage(SystemViewModel viewModel) {
     return OverscrollHideContainer(
         scrollChild: PageView.builder(
-      itemCount: providerOfVM().pageList.length,
-      controller: providerOfVM().pageController,
+      itemCount: viewModel.pageList.length,
+      controller: viewModel.pageController,
       // physics: const NeverScrollableScrollPhysics(), //静止PageView滑动
-      onPageChanged: (page) => {readVM().tabChange(page)},
+      onPageChanged: (page) => {viewModel.tabChange(page)},
       itemBuilder: (BuildContext context, int index) {
-        return providerOfVM().pageList[index];
+        return viewModel.pageList[index];
       },
     ));
   }

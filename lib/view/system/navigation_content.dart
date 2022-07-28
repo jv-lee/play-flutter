@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel_state.dart';
+import 'package:playflutter/base/viewmodel_create.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/tools/status_tools.dart';
@@ -21,8 +21,7 @@ class NavigationContentPage extends StatefulWidget {
   State<StatefulWidget> createState() => _NavigationContentState();
 }
 
-class _NavigationContentState
-    extends ViewModelState<NavigationContentPage, NavigationContentViewModel>
+class _NavigationContentState extends State<NavigationContentPage>
     with AutomaticKeepAliveClientMixin<NavigationContentPage> {
   @override
   bool get wantKeepAlive => true;
@@ -30,46 +29,48 @@ class _NavigationContentState
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Material(
-      child: StatusPage(
-        status: providerOfVM().paging.statusController.pageStatus,
-        child: Padding(
-          padding: EdgeInsets.only(top: AppHeaderSpacer.spacerHeight()),
-          child: Row(
-            children: [
-              Expanded(flex: 1, child: buildTabList()),
-              Expanded(flex: 2, child: buildTagList())
-            ],
-          ),
-        ),
-      ),
-    );
+    return ViewModelCreator.create<NavigationContentViewModel>(
+        (context) => NavigationContentViewModel(context),
+        (context, viewModel) => Material(
+              child: StatusPage(
+                status: viewModel.paging.statusController.pageStatus,
+                child: Padding(
+                  padding: EdgeInsets.only(top: AppHeaderSpacer.spacerHeight()),
+                  child: Row(
+                    children: [
+                      Expanded(flex: 1, child: buildTabList(viewModel)),
+                      Expanded(flex: 2, child: buildTagList(viewModel))
+                    ],
+                  ),
+                ),
+              ),
+            ));
   }
 
-  Widget buildTabList() {
+  Widget buildTabList(NavigationContentViewModel viewModel) {
     return OverscrollHideContainer(
         scrollChild: ListView.builder(
-            controller: providerOfVM().tabScrollController,
+            controller: viewModel.tabScrollController,
             padding: EdgeInsets.zero,
-            itemCount: providerOfVM().paging.data.length,
+            itemCount: viewModel.paging.data.length,
             itemBuilder: (context, index) {
-              var item = providerOfVM().paging.data[index];
+              var item = viewModel.paging.data[index];
               return NavigationTabItem(
                 navigationTab: item,
-                isSelected: providerOfVM().tabSelectedIndex == index,
-                onItemClick: (content) => {readVM().changeTabIndex(index)},
+                isSelected: viewModel.tabSelectedIndex == index,
+                onItemClick: (content) => {viewModel.changeTabIndex(index)},
               );
             }));
   }
 
-  Widget buildTagList() {
+  Widget buildTagList(NavigationContentViewModel viewModel) {
     return OverscrollHideContainer(
         scrollChild: ScrollToIndexList(
       topDistance: -StatusTools.getStatusHeight(),
-      controller: providerOfVM().tagScrollController,
-      list: providerOfVM().paging.data,
+      controller: viewModel.tagScrollController,
+      list: viewModel.paging.data,
       itemBuilder: (context, index) {
-        var item = providerOfVM().paging.data[index];
+        var item = viewModel.paging.data[index];
         return NavigationTagItem(
           key: item.globalKey,
           navigationTab: item,
@@ -79,7 +80,7 @@ class _NavigationContentState
           },
         );
       },
-      callback: (first, last) => {readVM().changeTagIndex(first)},
+      callback: (first, last) => {viewModel.changeTagIndex(first)},
     ));
   }
 }

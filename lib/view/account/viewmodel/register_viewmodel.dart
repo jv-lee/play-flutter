@@ -5,6 +5,8 @@ import 'package:playflutter/base/viewmodel.dart';
 /// @description 注册页面 viewModel
 class RegisterViewModel extends ViewModel {
 
+  RegisterViewModel(super.context);
+
   @override
   void init() {}
 

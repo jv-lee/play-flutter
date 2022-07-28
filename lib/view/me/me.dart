@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel_state.dart';
+import 'package:playflutter/base/viewmodel_create.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/view/me/viewmodel/me_viewmodel.dart';
@@ -16,7 +16,7 @@ class MePage extends StatefulWidget {
   State<StatefulWidget> createState() => _MeState();
 }
 
-class _MeState extends ViewModelState<MePage, MeViewModel>
+class _MeState extends State<MePage>
     with AutomaticKeepAliveClientMixin<MePage> {
   @override
   bool get wantKeepAlive => true;
@@ -24,9 +24,11 @@ class _MeState extends ViewModelState<MePage, MeViewModel>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Column(
-      children: [buildHeader(), buildLineItemList()],
-    );
+    return ViewModelCreator.create<MeViewModel>(
+        (context) => MeViewModel(context),
+        (context, viewModel) => Column(
+              children: [buildHeader(), buildLineItemList(viewModel)],
+            ));
   }
 
   Widget buildHeader() {
@@ -83,9 +85,8 @@ class _MeState extends ViewModelState<MePage, MeViewModel>
         ));
   }
 
-  Widget buildLineItemList() {
-    var widgets = providerOfVM()
-        .meItems
+  Widget buildLineItemList(MeViewModel viewModel) {
+    var widgets = viewModel.meItems
         .map((e) => Padding(
               padding: const EdgeInsets.only(top: 1),
               child: ProfileItem(

@@ -15,6 +15,8 @@ class CreateShareViewModel extends ViewModel {
   late String shareTitle = "";
   late String shareLink = "";
 
+  CreateShareViewModel(super.context);
+
   @override
   void init() {}
 

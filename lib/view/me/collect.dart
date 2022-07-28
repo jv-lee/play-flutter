@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel_state.dart';
-import 'package:playflutter/view/me/viewmodel/collect_viewmodel.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -12,7 +10,7 @@ class CollectPage extends StatefulWidget {
   State<StatefulWidget> createState() => _CollectPageState();
 }
 
-class _CollectPageState extends ViewModelState<CollectPage, CollectViewModel> {
+class _CollectPageState extends State<CollectPage> {
   @override
   Widget build(BuildContext context) {
     return const Center(child: Text("Collect Page."));

@@ -15,14 +15,14 @@ class ProjectListViewModel extends ViewModel {
   late int id;
   late Paging<Content> paging;
 
-  ProjectListViewModel(this.id);
+  ProjectListViewModel(super.context, this.id);
 
   @override
   void init() {
     paging = Paging(
         data: [],
         initPage: 1,
-        notify: postViewState,
+        notify: notifyListeners,
         statusController: StatusController(pageStatus: PageStatus.loading));
     requestData(LoadStatus.refresh);
   }
