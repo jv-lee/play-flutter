@@ -45,7 +45,7 @@ class NavigationContentViewModel extends ViewModel {
   }
 
   void requestData() async {
-    LogTools.log("NavigationContent:requestData");
+    log("NavigationContent", "requestData");
 
     // request systemContent list data.
     paging.requestData(

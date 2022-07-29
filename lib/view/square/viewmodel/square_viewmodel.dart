@@ -33,7 +33,7 @@ class SquareViewModel extends ViewModel {
   }
 
   void requestData(LoadStatus status) async {
-    LogTools.log("Square:requestData - $status");
+    log("Square", "requestData - $status");
 
     // request square list data.
     paging.requestData(status,

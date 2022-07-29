@@ -15,7 +15,7 @@ class OfficialListViewModel extends ViewModel {
   late int id;
   late Paging<Content> paging;
 
-  OfficialListViewModel(super.context,this.id);
+  OfficialListViewModel(super.context, this.id);
 
   @override
   void init() {
@@ -33,7 +33,7 @@ class OfficialListViewModel extends ViewModel {
   }
 
   void requestData(LoadStatus status) async {
-    LogTools.log("OfficialList:requestData id $id - $status");
+    log("OfficialList", "requestData id $id - $status");
 
     // request square list data.
     paging.requestData(

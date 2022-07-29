@@ -77,7 +77,7 @@ class Paging<T> {
 
       notify();
     }).catchError((onError) {
-      LogTools.log(onError);
+      log("Paging", onError);
       submitFailed();
     });
   }

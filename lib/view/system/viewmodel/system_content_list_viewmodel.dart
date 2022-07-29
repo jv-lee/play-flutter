@@ -33,7 +33,7 @@ class SystemContentListViewModel extends ViewModel {
   }
 
   void requestData(LoadStatus status) async {
-    LogTools.log("SystemContentList:requestData id $id - $status");
+    log("SystemContentList","requestData id $id - $status");
 
     // request square list data.
     paging.requestData(
