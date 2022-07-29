@@ -31,6 +31,7 @@ class SearchResultViewModel extends ViewModel {
       final arguments =
           (ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>);
       searchKey = arguments[SearchPage.ARG_SEARCH_KEY];
+      notifyListeners();
       requestData(LoadStatus.refresh);
     });
   }

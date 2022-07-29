@@ -13,9 +13,7 @@ import 'package:playflutter/widget/status/super_list_view.dart';
 /// @date 2022/6/28
 /// @description 搜索结果页
 class SearchResultPage extends StatefulWidget {
-  final String title;
-
-  const SearchResultPage({super.key, required this.title});
+  const SearchResultPage({super.key});
 
   @override
   State<StatefulWidget> createState() => _SearchResultState();
@@ -27,7 +25,7 @@ class _SearchResultState extends State<SearchResultPage> {
     return ViewModelCreator.create<SearchResultViewModel>(
         (context) => SearchResultViewModel(context),
         (context, viewModel) => Scaffold(
-              appBar: AppBar(title: Text(widget.title)),
+              appBar: AppBar(title: Text(viewModel.searchKey)),
               body: buildSearchResultList(viewModel),
             ));
   }

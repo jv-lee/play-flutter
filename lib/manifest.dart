@@ -29,10 +29,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
           settings: settings, builder: (_) => const SearchPage());
     case RouteNames.search_result:
-      final arguments = (settings.arguments as Map<String, dynamic>);
-      final key = arguments[SearchPage.ARG_SEARCH_KEY];
       return MaterialPageRoute(
-          settings: settings, builder: (_) => SearchResultPage(title: key));
+          settings: settings, builder: (_) => const SearchResultPage());
     case RouteNames.official:
       return MaterialPageRoute(
           settings: settings, builder: (_) => const OfficialPage());
