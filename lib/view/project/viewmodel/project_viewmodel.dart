@@ -1,5 +1,7 @@
 import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/entity/tab.dart';
+import 'package:playflutter/theme/theme_constants.dart';
+import 'package:playflutter/tools/local_tools.dart';
 import 'package:playflutter/view/project/model/project_model.dart';
 import 'package:playflutter/widget/status/status.dart';
 
@@ -22,7 +24,10 @@ class ProjectViewModel extends ViewModel {
   void unInit() {}
 
   void requestTabData() {
-    _model.getProjectTabDataAsync().then((value) {
+    localRequest<TabData>(
+        ThemeConstants.PROJECT_TAB_LOCAL_KEY,
+        (json) => TabData.fromJson(json),
+        _model.getProjectTabDataAsync(), (value) {
       if (value.data.isEmpty) {
         pageStatus = PageStatus.empty;
       } else {
@@ -30,7 +35,7 @@ class ProjectViewModel extends ViewModel {
         pageStatus = PageStatus.completed;
       }
       notifyListeners();
-    }).catchError((onError) {
+    }, (error) {
       pageStatus = PageStatus.error;
       notifyListeners();
     });
