@@ -42,4 +42,6 @@ class ThemeImages {
       "assets/images/ic_splash_light.png";
   static const String splash_dark_png =
       "assets/images/ic_splash_dark.png";
+  static const String splash_ad_png =
+      "assets/images/ic_splash_ad.png";
 }

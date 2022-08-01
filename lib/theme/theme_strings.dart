@@ -7,6 +7,7 @@ class ThemeStrings {
   /// common
   static const String loading = "loading...";
   static const String back_alert_message = "再次点击可退出";
+  static const String splash_time_text = "跳过";
 
   /// home
   static const String home_header_text = "Welcome to Play Flutter";
