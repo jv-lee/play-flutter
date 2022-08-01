@@ -46,7 +46,7 @@ class SplashViewModel extends ViewModel {
   }
 
   String findSplashRes() {
-    final brightness = Theme.of(context).brightness;
+    final brightness = MediaQuery.of(context).platformBrightness;
     if (brightness == Brightness.light) {
       return ThemeImages.splash_light_png;
     } else {
