@@ -12,7 +12,6 @@ class SplashViewModel extends ViewModel {
   SplashViewModel(super.context);
 
   late Timer _timer;
-  bool isToMain = false;
   bool splashAdVisible = false;
   String timeText = "";
 
@@ -31,7 +30,7 @@ class SplashViewModel extends ViewModel {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       readTime--;
       timeText = "${ThemeStrings.splash_time_text}$readTime";
-      if (readTime == 0 && !isToMain) {
+      if (readTime == 0 && _timer.isActive) {
         jumpToMain();
       } else {
         notifyListeners();
@@ -40,7 +39,6 @@ class SplashViewModel extends ViewModel {
   }
 
   void jumpToMain() {
-    isToMain = true;
     _timer.cancel();
     Navigator.pop(context);
   }

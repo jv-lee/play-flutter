@@ -20,7 +20,7 @@ class _SplashState extends State<SplashPage> {
   @override
   void initState() {
     // hide navigationBar
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge,
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: [SystemUiOverlay.top]);
     super.initState();
   }
@@ -28,7 +28,7 @@ class _SplashState extends State<SplashPage> {
   @override
   void dispose() {
     // show statusBar and navigationBar
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge,
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
     super.dispose();
   }
