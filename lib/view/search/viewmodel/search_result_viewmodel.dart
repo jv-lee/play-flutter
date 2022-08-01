@@ -27,7 +27,7 @@ class SearchResultViewModel extends ViewModel {
         notify: notifyListeners,
         statusController: StatusController(pageStatus: PageStatus.loading));
 
-    runViewContextDelay((context) {
+    runViewContext((context) {
       final arguments =
           (ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>);
       searchKey = arguments[SearchPage.ARG_SEARCH_KEY];

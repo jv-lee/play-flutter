@@ -4,6 +4,7 @@
 /// @date 2022/4/26
 /// @description 路由名称常量类
 class RouteNames {
+  static const splash = "/splash";
   static const main = "/main";
   static const home = "/home";
   static const square = "/square";

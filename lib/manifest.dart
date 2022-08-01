@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/entity/details.dart';
 import 'package:playflutter/entity/parent_tab.dart';
+import 'package:playflutter/route/route_animator.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/view/account/login.dart';
 import 'package:playflutter/view/account/register.dart';
 import 'package:playflutter/view/details/details.dart';
-import 'package:playflutter/view/main.dart';
+import 'package:playflutter/view/main/main.dart';
 import 'package:playflutter/view/me/coin.dart';
 import 'package:playflutter/view/me/coin_rank.dart';
 import 'package:playflutter/view/me/collect.dart';
@@ -14,6 +15,7 @@ import 'package:playflutter/view/official/official.dart';
 import 'package:playflutter/view/project/project.dart';
 import 'package:playflutter/view/search/search.dart';
 import 'package:playflutter/view/search/search_result.dart';
+import 'package:playflutter/view/splash/splash.dart';
 import 'package:playflutter/view/square/create_share.dart';
 import 'package:playflutter/view/square/my_share.dart';
 import 'package:playflutter/view/system/system_content_tab.dart';
@@ -22,6 +24,11 @@ import 'package:playflutter/view/todo/todo.dart';
 // 项目页面路由注册
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
+    case RouteNames.splash:
+      return SplashPageRoute(
+        settings: settings,
+        widget: const SplashPage(),
+      );
     case RouteNames.main:
       return MaterialPageRoute(
           settings: settings, builder: (_) => const MainPage());

@@ -6,7 +6,7 @@
              the Flutter engine draws its first frame -->
         <item name="android:statusBarColor">@android:color/transparent
         </item>
-        <item name="android:windowBackground">@drawable/splash_bg</item>
+        <item name="android:windowBackground">@mipmap/ic_splash</item>
         <item name="android:navigationBarColor">@android:color/black</item>
     </style>
 
@@ -21,7 +21,7 @@
      the Flutter engine draws its first frame -->
         <item name="android:statusBarColor">@android:color/transparent
         </item>
-        <item name="android:windowBackground">@drawable/splash_bg</item>
+        <item name="android:windowBackground">@mipmap/ic_splash</item>
         <item name="android:navigationBarColor">@android:color/black</item>
     </style>
 </resources>

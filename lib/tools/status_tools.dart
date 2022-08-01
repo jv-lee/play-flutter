@@ -33,8 +33,13 @@ class StatusTools {
     }
   }
 
-  //android获取状态栏高度
+  // 获取状态栏高度
   static getStatusHeight() {
     return MediaQueryData.fromWindow(window).padding.top;
+  }
+
+  // 获取navigationBar高度
+  static getNavigationHeight() {
+    return MediaQueryData.fromWindow(window).padding.bottom;
   }
 }

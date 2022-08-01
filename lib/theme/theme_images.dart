@@ -38,4 +38,8 @@ class ThemeImages {
   /// ******************************** png ******************************** /
   static const String launcher_round_png =
       "assets/images/ic_launcher_round.png";
+  static const String splash_light_png =
+      "assets/images/ic_splash_light.png";
+  static const String splash_dark_png =
+      "assets/images/ic_splash_dark.png";
 }
