@@ -14,6 +14,8 @@ class CoinRankPage extends StatefulWidget {
 class _CoinRankPageState extends PageState<CoinRankPage> {
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("Coin Rank Page."));
+    return const Scaffold(
+      body: Center(child: Text("Coin Rank Page.")),
+    );
   }
 }

@@ -14,6 +14,8 @@ class MySharePage extends StatefulWidget {
 class _MySharePageState extends PageState<MySharePage> {
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("my share page."));
+    return const Scaffold(
+      body: Center(child: Text("my share page.")),
+    );
   }
 }

@@ -14,6 +14,8 @@ class TodoPage extends StatefulWidget {
 class _TodoPageState extends PageState<TodoPage> {
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("todo page."));
+    return const Scaffold(
+      body: Center(child: Text("todo page.")),
+    );
   }
 }

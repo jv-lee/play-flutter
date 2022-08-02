@@ -14,6 +14,8 @@ class CoinPage extends StatefulWidget {
 class _CoinPageState extends PageState<CoinPage> {
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("Coin Page."));
+    return const Scaffold(
+      body: Center(child: Text("Coin Page.")),
+    );
   }
 }

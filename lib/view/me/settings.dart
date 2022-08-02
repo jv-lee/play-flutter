@@ -14,10 +14,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsState extends PageState<SettingsPage> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

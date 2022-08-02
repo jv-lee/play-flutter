@@ -14,6 +14,8 @@ class CollectPage extends StatefulWidget {
 class _CollectPageState extends PageState<CollectPage> {
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("Collect Page."));
+    return const Scaffold(
+      body: Center(child: Text("Collect Page.")),
+    );
   }
 }

@@ -2,12 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/page_state.dart';
-import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/db/entity/search_history.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
-import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/view/search/model/entity/search_hot.dart';
 import 'package:playflutter/view/search/viewmodel/search_viewmodel.dart';
 import 'package:playflutter/widget/common/overscroll_hide_container.dart';
@@ -25,15 +23,16 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchState extends PageState<SearchPage> {
-
   @override
   Widget build(BuildContext context) {
     return createViewModel<SearchViewModel>(
         (context) => SearchViewModel(context),
         (context, viewModel) => GestureDetector(
             behavior: HitTestBehavior.opaque,
+            // 全页面点击隐藏软键盘
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             child: Scaffold(
+              // 设置该属性使软键盘弹起时直接遮盖页面view
               resizeToAvoidBottomInset: false,
               appBar: buildSearchAppBar(viewModel),
               body: buildSearchContent(viewModel),
