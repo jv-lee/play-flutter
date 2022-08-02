@@ -5,6 +5,7 @@ import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/tools/status_tools.dart';
 import 'package:playflutter/view/splash/viewmodel/splash_viewmodel.dart';
+import 'package:playflutter/widget/common/time_ready_button.dart';
 
 /// @author jv.lee
 /// @date 2022/7/29
@@ -55,45 +56,33 @@ class _SplashState extends State<SplashPage> {
   }
 
   Widget buildSplashAd(SplashViewModel viewModel) {
-    return Stack(
-      children: [
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 0.7,
-          color: Colors.transparent,
-          child: Image.asset(
-            ThemeImages.splash_ad_png,
-            fit: BoxFit.cover,
-          ),
-        ),
-        Align(
-          alignment: Alignment.topRight,
-          child: Padding(
-            padding: EdgeInsets.only(
-                top: StatusTools.getStatusHeight() +
-                    ThemeDimens.offset_small,
-                right: ThemeDimens.offset_large),
-            child: GestureDetector(
-                onTap: () => viewModel.jumpToMain(),
-                child: Container(
-                  width: 68,
-                  height: 32,
-                  decoration: BoxDecoration(
-                      color: Colors.black45,
-                      borderRadius: BorderRadius.circular(
-                          ThemeDimens.offset_radius_medium)),
-                  child: Center(
-                    child: Text(
-                      viewModel.timeText,
-                      style: const TextStyle(
-                          fontSize: ThemeDimens.font_size_medium,
-                          color: Colors.white),
-                    ),
-                  ),
-                )),
-          ),
-        )
-      ],
-    );
+    return Visibility(
+        visible: viewModel.splashAdVisible,
+        child: Stack(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.7,
+              color: Colors.transparent,
+              child: Image.asset(
+                ThemeImages.splash_ad_png,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: EdgeInsets.only(
+                    top: StatusTools.getStatusHeight() +
+                        ThemeDimens.offset_small,
+                    right: ThemeDimens.offset_large),
+                child: TimeReadyButton(
+                  isStart: viewModel.splashAdVisible,
+                  onEnd: () => Navigator.pop(context),
+                ),
+              ),
+            )
+          ],
+        ));
   }
 }

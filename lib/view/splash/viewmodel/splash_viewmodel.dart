@@ -1,19 +1,14 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/theme/theme_images.dart';
-import 'package:playflutter/theme/theme_strings.dart';
 
 /// @author jv.lee
 /// @date 2022/7/29
-/// @description
+/// @description app闪屏页viewModel类
 class SplashViewModel extends ViewModel {
   SplashViewModel(super.context);
 
-  late Timer _timer;
   bool splashAdVisible = false;
-  String timeText = "";
 
   @override
   void init() {
@@ -24,23 +19,7 @@ class SplashViewModel extends ViewModel {
   void unInit() {}
 
   void requestSplashAd() {
-    var readTime = 5;
-    timeText = "${ThemeStrings.splash_time_text}$readTime";
     splashAdVisible = true;
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      readTime--;
-      timeText = "${ThemeStrings.splash_time_text}$readTime";
-      if (readTime == 0 && _timer.isActive) {
-        jumpToMain();
-      } else {
-        notifyListeners();
-      }
-    });
-  }
-
-  void jumpToMain() {
-    _timer.cancel();
-    Navigator.pop(context);
   }
 
   String findSplashRes() {
