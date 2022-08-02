@@ -14,21 +14,6 @@ abstract class PageState<T extends StatefulWidget> extends State<T>
   final _onResumeChange = ChangeNotifier();
   final _onPauseChange = ChangeNotifier();
 
-  void bindResume(Function onResume) {
-    if (_hasAddResumeChange) {
-      _hasAddResumeChange = false;
-      _onResumeChange.addListener(() => onResume());
-      _onResumeChange.notifyListeners();
-    }
-  }
-
-  void bindPause(Function onPause) {
-    if (_hasAddPauseChange) {
-      _hasAddPauseChange = false;
-      _onPauseChange.addListener(() => onPause());
-    }
-  }
-
   @override
   void initState() {
     super.initState();
@@ -52,7 +37,6 @@ abstract class PageState<T extends StatefulWidget> extends State<T>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    log(widget.toString(), "didChangeAppLifecycleState($state)");
     switch (state) {
       case AppLifecycleState.detached:
         // 应用任然托管在flutter引擎上,但是不可见.
@@ -119,8 +103,25 @@ abstract class PageState<T extends StatefulWidget> extends State<T>
     _onPauseChange.notifyListeners();
   }
 
-  /// 页面销毁
+  /// 页面销毁 原则上重写dispose方法也是一样的
   void onDestroy() {
     log(widget.toString(), "onDestroy()");
+  }
+
+  /// 用于绑定viewModel onResume回调 首次绑定直接回调onResume 顺序问题该模式在后
+  void bindResume(Function onResume) {
+    if (_hasAddResumeChange) {
+      _hasAddResumeChange = false;
+      _onResumeChange.addListener(() => onResume());
+      _onResumeChange.notifyListeners();
+    }
+  }
+
+  /// 用于绑定viewModel onPause回调
+  void bindPause(Function onPause) {
+    if (_hasAddPauseChange) {
+      _hasAddPauseChange = false;
+      _onPauseChange.addListener(() => onPause());
+    }
   }
 }

@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 /// @date 2022/8/2
 /// @description PageState扩展函数类
 extension PageStateExtensions on PageState {
-
   /// 创建viewModelWidget树
   /// [create] viewModel构建方法
   /// [viewBuild] widget构建方法
