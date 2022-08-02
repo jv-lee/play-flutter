@@ -7,6 +7,9 @@ import 'package:playflutter/view/main/main.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
+final RouteObserver<ModalRoute<void>> routeObserver =
+    RouteObserver<ModalRoute<void>>();
+
 void main() {
   runApp(const PlayFlutterApp());
 }
@@ -29,6 +32,7 @@ class PlayFlutterApp extends StatelessWidget {
           return MaterialApp(
             theme: provider.lightThemeData,
             darkTheme: provider.darkThemeData,
+            navigatorObservers: [routeObserver],
             onGenerateRoute: onGenerateRoute,
             initialRoute: RouteNames.splash,
             home: const MainPage(),
