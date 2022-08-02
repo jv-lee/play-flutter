@@ -68,7 +68,7 @@ class _ParentTabItemState extends State<ParentTabItem> {
       child: Container(
         width: double.infinity,
         height: 1,
-        color: Theme.of(context).backgroundColor,
+        color: Theme.of(context).scaffoldBackgroundColor,
       ),
     );
   }

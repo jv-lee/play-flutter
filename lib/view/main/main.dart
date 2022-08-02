@@ -31,7 +31,6 @@ class _MainState extends PageState<MainPage> {
   Widget build(BuildContext context) {
     return AppBackPopScope(
         child: Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
       body: PageView.builder(
           itemCount: _pageList.length,
           controller: _pageController,

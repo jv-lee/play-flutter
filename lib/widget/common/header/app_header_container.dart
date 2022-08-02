@@ -44,11 +44,11 @@ class _AppHeaderContainerState extends State<AppHeaderContainer> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-              Theme.of(context).backgroundColor,
-              Theme.of(context).backgroundColor,
-              Theme.of(context).backgroundColor,
-              Theme.of(context).backgroundColor,
-              Theme.of(context).backgroundColor,
+              Theme.of(context).scaffoldBackgroundColor,
+              Theme.of(context).scaffoldBackgroundColor,
+              Theme.of(context).scaffoldBackgroundColor,
+              Theme.of(context).scaffoldBackgroundColor,
+              Theme.of(context).scaffoldBackgroundColor,
               Theme.of(context).canvasColor
             ])),
         child: content,
