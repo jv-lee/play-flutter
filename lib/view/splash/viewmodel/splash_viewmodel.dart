@@ -16,7 +16,7 @@ class SplashViewModel extends ViewModel {
   }
 
   @override
-  void unInit() {}
+  void onCleared() {}
 
   void requestSplashAd() {
     splashAdVisible = true;

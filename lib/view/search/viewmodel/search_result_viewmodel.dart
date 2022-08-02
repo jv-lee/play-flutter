@@ -37,7 +37,7 @@ class SearchResultViewModel extends ViewModel {
   }
 
   @override
-  void unInit() {
+  void onCleared() {
     paging.dispose();
   }
 

@@ -11,7 +11,7 @@ class CollectViewModel extends ViewModel {
   }
 
   @override
-  void unInit() {
+  void onCleared() {
   }
 
 }

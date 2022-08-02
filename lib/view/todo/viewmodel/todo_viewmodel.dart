@@ -10,5 +10,5 @@ class TodoViewModel extends ViewModel {
   void init() {}
 
   @override
-  void unInit() {}
+  void onCleared() {}
 }

@@ -11,7 +11,7 @@ class CoinRankViewModel extends ViewModel{
   }
 
   @override
-  void unInit() {
+  void onCleared() {
   }
 
 }

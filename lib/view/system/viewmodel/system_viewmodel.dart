@@ -19,7 +19,7 @@ class SystemViewModel extends ViewModel {
   }
 
   @override
-  void unInit() {
+  void onCleared() {
     pageController.dispose();
   }
 

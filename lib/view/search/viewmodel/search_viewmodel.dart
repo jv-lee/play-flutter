@@ -22,7 +22,7 @@ class SearchViewModel extends ViewModel {
   }
 
   @override
-  void unInit() {}
+  void onCleared() {}
 
   void navigationSearchKey(String searchKey) {
     _dao.insert(SearchHistory.buildSearchHistory(searchKey));

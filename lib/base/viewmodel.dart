@@ -14,17 +14,24 @@ abstract class ViewModel with ChangeNotifier {
 
   @override
   void dispose() {
-    unInit();
+    onCleared();
     super.dispose();
   }
 
-  /// viewModel初始化生命周期回调
+  /// viewModel初始化
   void init();
 
-  /// viewModel生命周期销毁回调
-  void unInit();
+  /// viewModel销毁时
+  void onCleared();
 
-  /// 执行context函数
+  /// 创建viewModel的页面获得焦点显示时回调
+  void onResume() {}
+
+  /// 创建viewModel的页面失去焦点隐藏时回调
+  void onPause() {}
+
+  /// 执行context函数（一般在viewModel初始化代码方法内调用，通过zero延时达到初始化时期获取路由参数正确）
+  /// [function] 执行函数
   runViewContext(RunViewContext function) {
     Future.delayed(Duration.zero).then((value) async {
       function(context);
@@ -32,17 +39,13 @@ abstract class ViewModel with ChangeNotifier {
   }
 
   /// 延时执行context函数
+  /// [duration] 延时时长
+  /// [function] 执行函数
   runViewContextDelay(Duration duration, RunViewContext function) {
     Future.delayed(duration).then((value) async {
       function(context);
     });
   }
-
-  /// 页面获得焦点显示
-  void onResume() {}
-
-  /// 页面失去焦点隐藏
-  void onPause() {}
 }
 
 typedef RunViewContext = Function(BuildContext context);

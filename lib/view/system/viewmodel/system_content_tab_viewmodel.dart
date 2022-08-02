@@ -12,5 +12,5 @@ class SystemContentTabViewModel extends ViewModel {
   }
 
   @override
-  void unInit() {}
+  void onCleared() {}
 }

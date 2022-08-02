@@ -21,7 +21,7 @@ class OfficialViewModel extends ViewModel {
   }
 
   @override
-  void unInit() {}
+  void onCleared() {}
 
   void requestTabData() {
     localRequest<TabData>(

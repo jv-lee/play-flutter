@@ -36,7 +36,7 @@ class HomeViewModel extends ViewModel {
   }
 
   @override
-  void unInit() {
+  void onCleared() {
     swiperController.dispose();
     paging.dispose();
   }
