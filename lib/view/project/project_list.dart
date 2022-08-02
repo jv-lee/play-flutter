@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:playflutter/base/page_state.dart';
 import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
@@ -20,7 +21,7 @@ class ProjectListPage extends StatefulWidget {
   State<StatefulWidget> createState() => _ProjectListState();
 }
 
-class _ProjectListState extends State<ProjectListPage>
+class _ProjectListState extends PageState<ProjectListPage>
     with AutomaticKeepAliveClientMixin<ProjectListPage> {
   @override
   bool get wantKeepAlive => true;

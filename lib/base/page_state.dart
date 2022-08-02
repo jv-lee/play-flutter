@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/main.dart';
+import 'package:playflutter/tools/log_tools.dart';
 
 /// @author jv.lee
 /// @date 2022/8/2
 /// @description 具有页面生命周期的pageState
 abstract class PageState<T extends StatefulWidget> extends State<T>
     with RouteAware, WidgetsBindingObserver {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    WidgetsBinding.instance.addObserver(this);
     routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
@@ -22,6 +29,7 @@ abstract class PageState<T extends StatefulWidget> extends State<T>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    log(widget.toString(), "didChangeAppLifecycleState($state)");
     switch (state) {
       case AppLifecycleState.detached:
         // 应用任然托管在flutter引擎上,但是不可见.
@@ -77,11 +85,17 @@ abstract class PageState<T extends StatefulWidget> extends State<T>
   }
 
   /// 页面获得焦点显示
-  void onResume() {}
+  void onResume() {
+    log(widget.toString(), "onResume()");
+  }
 
   /// 页面失去焦点隐藏
-  void onPause() {}
+  void onPause() {
+    log(widget.toString(), "onPause()");
+  }
 
   /// 页面销毁
-  void onDestroy() {}
+  void onDestroy() {
+    log(widget.toString(), "onDestroy()");
+  }
 }

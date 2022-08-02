@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:playflutter/base/page_state.dart';
 import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/entity/banner.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
@@ -28,7 +29,7 @@ class HomePage extends StatefulWidget {
   State<StatefulWidget> createState() => _HomeState();
 }
 
-class _HomeState extends State<HomePage>
+class _HomeState extends PageState<HomePage>
     with AutomaticKeepAliveClientMixin<HomePage> {
   // 设置wantKeepAlive = true; pagerView切换时不会重新加载view状态
   @override

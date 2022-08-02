@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:playflutter/base/page_state.dart';
 import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_images.dart';
@@ -17,7 +18,7 @@ class SplashPage extends StatefulWidget {
   State<StatefulWidget> createState() => _SplashState();
 }
 
-class _SplashState extends State<SplashPage> {
+class _SplashState extends PageState<SplashPage> {
   @override
   void initState() {
     // hide navigationBar

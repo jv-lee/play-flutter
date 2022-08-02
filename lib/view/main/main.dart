@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:playflutter/base/page_state.dart';
+import 'package:playflutter/theme/theme_icons.dart';
 import 'package:playflutter/view/home/home.dart';
 import 'package:playflutter/view/me/me.dart';
 import 'package:playflutter/view/square/square.dart';
 import 'package:playflutter/view/system/system.dart';
-import 'package:playflutter/theme/theme_icons.dart';
 import 'package:playflutter/widget/common/app_back_pop_scope.dart';
 
 /// @author jv.lee
@@ -16,7 +17,7 @@ class MainPage extends StatefulWidget {
   State<StatefulWidget> createState() => _MainState();
 }
 
-class _MainState extends State<MainPage> {
+class _MainState extends PageState<MainPage> {
   int _tabIndex = 0;
   final _pageList = const [HomePage(), SquarePage(), SystemPage(), MePage()];
   final PageController _pageController = PageController(initialPage: 0);

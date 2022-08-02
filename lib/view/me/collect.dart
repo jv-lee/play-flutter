@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:playflutter/base/page_state.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -10,7 +11,7 @@ class CollectPage extends StatefulWidget {
   State<StatefulWidget> createState() => _CollectPageState();
 }
 
-class _CollectPageState extends State<CollectPage> {
+class _CollectPageState extends PageState<CollectPage> {
   @override
   Widget build(BuildContext context) {
     return const Center(child: Text("Collect Page."));

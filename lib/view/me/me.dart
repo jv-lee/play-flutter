@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:playflutter/base/page_state.dart';
 import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_images.dart';
@@ -16,7 +17,7 @@ class MePage extends StatefulWidget {
   State<StatefulWidget> createState() => _MeState();
 }
 
-class _MeState extends State<MePage>
+class _MeState extends PageState<MePage>
     with AutomaticKeepAliveClientMixin<MePage> {
   @override
   bool get wantKeepAlive => true;

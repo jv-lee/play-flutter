@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:playflutter/base/page_state.dart';
 import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/entity/parent_tab.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
@@ -21,7 +22,7 @@ class SystemContentListPage extends StatefulWidget {
   State<StatefulWidget> createState() => _SystemContentListState();
 }
 
-class _SystemContentListState extends State<SystemContentListPage>
+class _SystemContentListState extends PageState<SystemContentListPage>
     with AutomaticKeepAliveClientMixin<SystemContentListPage> {
   @override
   bool get wantKeepAlive => true;

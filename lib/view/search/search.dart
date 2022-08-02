@@ -6,6 +6,7 @@ import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/db/entity/search_history.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
+import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/view/search/model/entity/search_hot.dart';
 import 'package:playflutter/view/search/viewmodel/search_viewmodel.dart';
 import 'package:playflutter/widget/common/overscroll_hide_container.dart';

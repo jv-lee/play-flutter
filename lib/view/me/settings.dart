@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:night/night.dart';
+import 'package:playflutter/base/page_state.dart';
 import 'package:playflutter/provider/dark_mode_provider.dart';
 
 /// @author jv.lee
@@ -12,7 +13,7 @@ class SettingsPage extends StatefulWidget {
   State<StatefulWidget> createState() => _SettingsState();
 }
 
-class _SettingsState extends State<SettingsPage> {
+class _SettingsState extends PageState<SettingsPage> {
   @override
   void initState() {
     super.initState();

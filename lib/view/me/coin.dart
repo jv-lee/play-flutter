@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:playflutter/base/page_state.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -10,7 +11,7 @@ class CoinPage extends StatefulWidget {
   State<StatefulWidget> createState() => _CoinPageState();
 }
 
-class _CoinPageState extends State<CoinPage> {
+class _CoinPageState extends PageState<CoinPage> {
   @override
   Widget build(BuildContext context) {
     return const Center(child: Text("Coin Page."));
