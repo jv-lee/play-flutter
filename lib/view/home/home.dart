@@ -1,6 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:playflutter/base/page_state.dart';
 import 'package:playflutter/entity/banner.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
@@ -12,6 +10,7 @@ import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/home/model/entity/home_category.dart';
 import 'package:playflutter/view/home/viewmodel/home_viewmodel.dart';
+import 'package:playflutter/widget/common/app_banner.dart';
 import 'package:playflutter/widget/common/header/app_header_container.dart';
 import 'package:playflutter/widget/common/header/app_header_spacer.dart';
 import 'package:playflutter/widget/common/header/app_text_action_bar.dart';
@@ -106,51 +105,13 @@ class _HomeState extends PageState<HomePage>
     if (bannerList.isEmpty) {
       return Container();
     } else {
-      return SizedBox(
-        height: ThemeDimens.home_banner_height,
-        child: Swiper(
-            index: bannerIndex,
-            viewportFraction: 0.85,
-            autoplay: true,
-            duration: 300,
-            itemCount: bannerList.length,
-            onIndexChanged: (index) {
-              viewModel.changeBannerIndex(index);
-            },
-            itemBuilder: (BuildContext context, int index) {
-              var item = bannerList[index];
-              return Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                        ThemeDimens.offset_radius_medium)),
-                child: Material(
-                  child: InkWell(
-                    onTap: () => {onItemClick(item)},
-                    borderRadius:
-                        BorderRadius.circular(ThemeDimens.offset_radius_medium),
-                    child: CachedNetworkImage(
-                        imageUrl: item.imagePath,
-                        imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                    ThemeDimens.offset_radius_medium),
-                                image: DecorationImage(
-                                    image: imageProvider, fit: BoxFit.cover))),
-                        placeholder: (context, url) =>
-                            Container(color: Theme.of(context).splashColor),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error)),
-                  ),
-                ),
-              );
-            },
-            pagination: const SwiperPagination(
-                builder: DotSwiperPaginationBuilder(
-                    activeSize: 6,
-                    size: 6,
-                    color: Colors.grey,
-                    activeColor: Colors.white))),
-      );
+      return AppBanner(
+          controller: viewModel.swiperController,
+          index: bannerIndex,
+          count: bannerList.length,
+          onIndexChanged: (index) => viewModel.changeBannerIndex(index),
+          onIndexTap: (index) => onItemClick(bannerList[index]),
+          findPath: (index) => bannerList[index].imagePath);
     }
   }
 

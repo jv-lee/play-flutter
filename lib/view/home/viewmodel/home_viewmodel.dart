@@ -1,3 +1,4 @@
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/entity/banner.dart';
 import 'package:playflutter/entity/content.dart';
@@ -15,8 +16,9 @@ import 'package:playflutter/widget/status/status_controller.dart';
 class HomeViewModel extends ViewModel {
   final _model = HomeModel();
 
-  int bannerIndex = 0;
+  late SwiperController swiperController;
   late Paging<Content> paging;
+  int bannerIndex = 0;
   List<BannerItem> bannerList = [];
   List<HomeCategory> categoryList = [];
 
@@ -24,6 +26,7 @@ class HomeViewModel extends ViewModel {
 
   @override
   void init() {
+    swiperController = SwiperController();
     paging = Paging(
         data: [],
         initPage: 0,
@@ -34,7 +37,18 @@ class HomeViewModel extends ViewModel {
 
   @override
   void unInit() {
+    swiperController.dispose();
     paging.dispose();
+  }
+
+  @override
+  void onResume() {
+    swiperController.startAutoplay();
+  }
+
+  @override
+  void onPause() {
+    swiperController.stopAutoplay();
   }
 
   void requestData(LoadStatus status) async {
