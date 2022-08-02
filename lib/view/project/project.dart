@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/page_state.dart';
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/project/project_list.dart';
 import 'package:playflutter/view/project/viewmodel/project_viewmodel.dart';
@@ -19,7 +19,7 @@ class ProjectPage extends StatefulWidget {
 class _ProjectState extends PageState<ProjectPage> {
   @override
   Widget build(BuildContext context) {
-    return ViewModelCreator.create<ProjectViewModel>(
+    return createViewModel<ProjectViewModel>(
         (context) => ProjectViewModel(context), (context, viewModel) {
       TabBar? tabBar;
       final tabList = viewModel.tabList;

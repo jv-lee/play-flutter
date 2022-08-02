@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/page_state.dart';
-import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/entity/content.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
+import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/search/viewmodel/search_result_viewmodel.dart';
@@ -23,7 +23,7 @@ class SearchResultPage extends StatefulWidget {
 class _SearchResultState extends PageState<SearchResultPage> {
   @override
   Widget build(BuildContext context) {
-    return ViewModelCreator.create<SearchResultViewModel>(
+    return createViewModel<SearchResultViewModel>(
         (context) => SearchResultViewModel(context),
         (context, viewModel) => Scaffold(
               appBar: AppBar(title: Text(viewModel.searchKey)),

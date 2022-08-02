@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:playflutter/extensions/extensions.dart';
+import 'package:playflutter/extensions/common_extensions.dart';
 import 'package:playflutter/widget/status/status.dart';
 import 'package:playflutter/widget/status/status_controller.dart';
 

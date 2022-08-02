@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/base/page_state.dart';
 import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
+import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/theme/theme_strings.dart';
@@ -31,7 +32,7 @@ class _SquareState extends PageState<SquarePage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return ViewModelCreator.create<SquareViewModel>(
+    return createViewModel<SquareViewModel>(
         (context) => SquareViewModel(context),
         (context, viewModel) => Stack(
               children: [

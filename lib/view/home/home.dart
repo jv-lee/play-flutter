@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:playflutter/base/page_state.dart';
-import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/entity/banner.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
+import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_images.dart';
@@ -38,7 +38,7 @@ class _HomeState extends PageState<HomePage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return ViewModelCreator.create<HomeViewModel>(
+    return createViewModel<HomeViewModel>(
         (context) => HomeViewModel(context),
         (context, viewModel) => Stack(
               children: [

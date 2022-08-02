@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/base/page_state.dart';
 import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/db/entity/search_history.dart';
+import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/tools/log_tools.dart';
@@ -27,7 +28,7 @@ class _SearchState extends PageState<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelCreator.create<SearchViewModel>(
+    return createViewModel<SearchViewModel>(
         (context) => SearchViewModel(context),
         (context, viewModel) => GestureDetector(
             behavior: HitTestBehavior.opaque,

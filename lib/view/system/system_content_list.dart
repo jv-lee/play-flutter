@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/page_state.dart';
-import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/entity/parent_tab.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
+import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/system/viewmodel/system_content_list_viewmodel.dart';
@@ -30,7 +30,7 @@ class _SystemContentListState extends PageState<SystemContentListPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return ViewModelCreator.create<SystemContentListViewModel>(
+    return createViewModel<SystemContentListViewModel>(
         (context) => SystemContentListViewModel(context, widget.children.id),
         (context, viewModel) => Scaffold(
               body: RefreshIndicator(

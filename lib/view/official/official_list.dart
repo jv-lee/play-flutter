@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/page_state.dart';
-import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
+import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/official/viewmodel/official_list_viewmodel.dart';
@@ -28,7 +28,7 @@ class _OfficialListState extends PageState<OfficialListPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return ViewModelCreator.create<OfficialListViewModel>(
+    return createViewModel<OfficialListViewModel>(
         (context) => OfficialListViewModel(context, widget.id),
         (context, viewModel) => Scaffold(
               body: RefreshIndicator(

@@ -2,7 +2,7 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:playflutter/extensions/extensions.dart';
+import 'package:playflutter/extensions/common_extensions.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 
 /// @author jv.lee

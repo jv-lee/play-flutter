@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/page_state.dart';
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/official/official_list.dart';
 import 'package:playflutter/view/official/viewmodel/official_viewmodel.dart';
@@ -19,7 +19,7 @@ class OfficialPage extends StatefulWidget {
 class _OfficialState extends PageState<OfficialPage> {
   @override
   Widget build(BuildContext context) {
-    return ViewModelCreator.create<OfficialViewModel>(
+    return createViewModel<OfficialViewModel>(
         (context) => OfficialViewModel(context), (context, viewModel) {
       TabBar? tabBar;
       final tabList = viewModel.tabList;

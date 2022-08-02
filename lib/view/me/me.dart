@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/page_state.dart';
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/view/me/viewmodel/me_viewmodel.dart';
@@ -25,7 +25,7 @@ class _MeState extends PageState<MePage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return ViewModelCreator.create<MeViewModel>(
+    return createViewModel<MeViewModel>(
         (context) => MeViewModel(context),
         (context, viewModel) => Column(
               children: [buildHeader(), buildLineItemList(viewModel)],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/page_state.dart';
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/square/viewmodel/create_share_viewmodel.dart';
@@ -18,7 +18,7 @@ class CreateSharePage extends StatefulWidget {
 class _CreateShareState extends PageState<CreateSharePage> {
   @override
   Widget build(BuildContext context) {
-    return ViewModelCreator.create<CreateShareViewModel>(
+    return createViewModel<CreateShareViewModel>(
         (context) => CreateShareViewModel(context),
         (context, viewModel) => GestureDetector(
               behavior: HitTestBehavior.opaque,

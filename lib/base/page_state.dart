@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+
 import 'package:flutter/material.dart';
 import 'package:playflutter/main.dart';
 import 'package:playflutter/tools/log_tools.dart';
@@ -7,6 +9,25 @@ import 'package:playflutter/tools/log_tools.dart';
 /// @description 具有页面生命周期的pageState
 abstract class PageState<T extends StatefulWidget> extends State<T>
     with RouteAware, WidgetsBindingObserver {
+  var _hasAddResumeChange = true;
+  var _hasAddPauseChange = true;
+  final _onResumeChange = ChangeNotifier();
+  final _onPauseChange = ChangeNotifier();
+
+  void bindResume(Function onResume) {
+    if (_hasAddResumeChange) {
+      _hasAddResumeChange = false;
+      _onResumeChange.addListener(() => onResume());
+      _onResumeChange.notifyListeners();
+    }
+  }
+
+  void bindPause(Function onPause) {
+    if (_hasAddPauseChange) {
+      _hasAddPauseChange = false;
+      _onPauseChange.addListener(() => onPause());
+    }
+  }
 
   @override
   void initState() {
@@ -24,6 +45,8 @@ abstract class PageState<T extends StatefulWidget> extends State<T>
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     routeObserver.unsubscribe(this);
+    _onResumeChange.dispose();
+    _onPauseChange.dispose();
     super.dispose();
   }
 
@@ -87,11 +110,13 @@ abstract class PageState<T extends StatefulWidget> extends State<T>
   /// 页面获得焦点显示
   void onResume() {
     log(widget.toString(), "onResume()");
+    _onResumeChange.notifyListeners();
   }
 
   /// 页面失去焦点隐藏
   void onPause() {
     log(widget.toString(), "onPause()");
+    _onPauseChange.notifyListeners();
   }
 
   /// 页面销毁

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/page_state.dart';
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/view/system/viewmodel/system_content_viewmodel.dart';
 import 'package:playflutter/widget/common/header/app_header_spacer.dart';
@@ -25,7 +25,7 @@ class _SystemContentState extends PageState<SystemContentPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return ViewModelCreator.create<SystemContentViewModel>(
+    return createViewModel<SystemContentViewModel>(
         (context) => SystemContentViewModel(context),
         (context, viewModel) => SuperListView(
               itemCount: viewModel.paging.data.length,

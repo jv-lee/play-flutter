@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/page_state.dart';
-import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
+import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/tools/status_tools.dart';
 import 'package:playflutter/view/system/viewmodel/navigation_content_viewmodel.dart';
@@ -30,7 +30,7 @@ class _NavigationContentState extends PageState<NavigationContentPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return ViewModelCreator.create<NavigationContentViewModel>(
+    return createViewModel<NavigationContentViewModel>(
         (context) => NavigationContentViewModel(context),
         (context, viewModel) => Material(
               child: StatusPage(

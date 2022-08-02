@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:playflutter/base/page_state.dart';
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/tools/status_tools.dart';
@@ -37,7 +37,7 @@ class _SplashState extends PageState<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelCreator.create<SplashViewModel>(
+    return createViewModel<SplashViewModel>(
         (context) => SplashViewModel(context),
         (context, viewModel) => Scaffold(
                 body: Stack(
