@@ -43,8 +43,6 @@ class HttpManager {
         LocalTools.save<String>(_SAVE_TOKEN_KEY, cookie);
       }
       handler.next(response);
-    }, onError: (error, handler) {
-      handler.next(error);
     }));
   }
 }

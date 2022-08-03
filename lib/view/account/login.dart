@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/base/page_state.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
@@ -32,7 +33,11 @@ class _LoginPageState extends PageState<LoginPage> {
                 alignment: Alignment.center,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [buildTitle(), buildInputContent(), buildFooter()],
+                  children: [
+                    buildTitle(),
+                    buildInputContent(viewModel),
+                    buildFooter(viewModel)
+                  ],
                 ),
               ),
             )));
@@ -48,7 +53,7 @@ class _LoginPageState extends PageState<LoginPage> {
     );
   }
 
-  Widget buildInputContent() {
+  Widget buildInputContent(LoginViewModel viewModel) {
     return Padding(
       padding: const EdgeInsets.all(ThemeDimens.offset_large),
       child: SizedBox(
@@ -62,7 +67,7 @@ class _LoginPageState extends PageState<LoginPage> {
             child: Column(
               children: [
                 TextField(
-                    onSubmitted: (text) => {},
+                    onChanged: (text) => viewModel.changeUserName(text),
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                         icon: SvgPicture.asset(ThemeImages.account_username_svg,
@@ -70,8 +75,10 @@ class _LoginPageState extends PageState<LoginPage> {
                         hintText: ThemeStrings.account_username_text)),
                 buildSpacer(),
                 TextField(
-                    onSubmitted: (text) => {},
+                    onChanged: (text) => viewModel.changePassword(text),
+                    onSubmitted: (text) => viewModel.requestLogin(),
                     textInputAction: TextInputAction.done,
+                    obscureText: true,
                     decoration: InputDecoration(
                         icon: SvgPicture.asset(ThemeImages.account_password_svg,
                             width: 24, height: 24),
@@ -84,9 +91,9 @@ class _LoginPageState extends PageState<LoginPage> {
     );
   }
 
-  Widget buildFooter() {
+  Widget buildFooter(LoginViewModel viewModel) {
     Color buttonColor;
-    if (true) {
+    if (viewModel.viewStates.isLoginEnable) {
       buttonColor = Theme.of(context).focusColor;
     } else {
       buttonColor = Colors.grey;
@@ -101,8 +108,7 @@ class _LoginPageState extends PageState<LoginPage> {
           children: [
             Material(
                 child: InkWell(
-                    onTap: () =>
-                        Navigator.pushNamed(context, RouteNames.register),
+                    onTap: () => viewModel.navigationRegister(),
                     child: Text(ThemeStrings.account_go_to_register_text,
                         style:
                             TextStyle(color: Theme.of(context).focusColor)))),
@@ -113,7 +119,7 @@ class _LoginPageState extends PageState<LoginPage> {
                             ThemeDimens.offset_radius_medium))),
                     backgroundColor: MaterialStateColor.resolveWith(
                         (states) => buttonColor)),
-                onPressed: () {},
+                onPressed: () => viewModel.requestLogin(),
                 child: const Text(
                   ThemeStrings.account_login_button,
                   style: TextStyle(color: Colors.white),

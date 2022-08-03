@@ -31,7 +31,11 @@ class _RegisterPageState extends PageState<RegisterPage> {
                 alignment: Alignment.center,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [buildTitle(), buildInputContent(), buildFooter()],
+                  children: [
+                    buildTitle(),
+                    buildInputContent(viewModel),
+                    buildFooter(viewModel)
+                  ],
                 ),
               ),
             )));
@@ -47,7 +51,7 @@ class _RegisterPageState extends PageState<RegisterPage> {
     );
   }
 
-  Widget buildInputContent() {
+  Widget buildInputContent(RegisterViewModel viewModel) {
     return Padding(
       padding: const EdgeInsets.all(ThemeDimens.offset_large),
       child: SizedBox(
@@ -61,7 +65,7 @@ class _RegisterPageState extends PageState<RegisterPage> {
             child: Column(
               children: [
                 TextField(
-                    onSubmitted: (text) => {},
+                    onChanged: (text) => viewModel.changeUserName(text),
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                         icon: SvgPicture.asset(ThemeImages.account_username_svg,
@@ -69,16 +73,19 @@ class _RegisterPageState extends PageState<RegisterPage> {
                         hintText: ThemeStrings.account_username_text)),
                 buildSpacer(),
                 TextField(
-                    onSubmitted: (text) => {},
+                    onChanged: (text) => viewModel.changePassword(text),
                     textInputAction: TextInputAction.next,
+                    obscureText: true,
                     decoration: InputDecoration(
                         icon: SvgPicture.asset(ThemeImages.account_password_svg,
                             width: 24, height: 24),
                         hintText: ThemeStrings.account_password_text)),
                 buildSpacer(),
                 TextField(
-                    onSubmitted: (text) => {},
+                    onChanged: (text) => viewModel.changeRePassword(text),
+                    onSubmitted: (text) => viewModel.requestRegister(),
                     textInputAction: TextInputAction.done,
+                    obscureText: true,
                     decoration: InputDecoration(
                         icon: SvgPicture.asset(ThemeImages.account_password_svg,
                             width: 24, height: 24),
@@ -91,9 +98,9 @@ class _RegisterPageState extends PageState<RegisterPage> {
     );
   }
 
-  Widget buildFooter() {
+  Widget buildFooter(RegisterViewModel viewModel) {
     Color buttonColor;
-    if (true) {
+    if (viewModel.viewStates.isRegisterEnable) {
       buttonColor = Theme.of(context).focusColor;
     } else {
       buttonColor = Colors.grey;
@@ -119,7 +126,7 @@ class _RegisterPageState extends PageState<RegisterPage> {
                             ThemeDimens.offset_radius_medium))),
                     backgroundColor: MaterialStateColor.resolveWith(
                         (states) => buttonColor)),
-                onPressed: () {},
+                onPressed: () => viewModel.requestRegister(),
                 child: const Text(
                   ThemeStrings.account_register_button,
                   style: TextStyle(color: Colors.white),
