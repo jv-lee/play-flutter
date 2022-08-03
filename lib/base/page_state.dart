@@ -42,6 +42,7 @@ abstract class PageState<T extends StatefulWidget> extends State<T>
         // 应用任然托管在flutter引擎上,但是不可见.
         // 当应用处于这个状态时,引擎没有视图的运行.要不就是当引擎第一次初始化时处于attach视
         // 要不就是由于导航弹出导致的视图销毁后
+        onDestroy();
         break;
       case AppLifecycleState.inactive:
         // 应用在一个不活跃的状态,不会收到用户的输入
