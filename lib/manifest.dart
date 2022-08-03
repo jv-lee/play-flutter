@@ -5,6 +5,7 @@ import 'package:playflutter/route/route_animator.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/view/account/login.dart';
 import 'package:playflutter/view/account/register.dart';
+import 'package:playflutter/view/account/service/account_service.dart';
 import 'package:playflutter/view/details/details.dart';
 import 'package:playflutter/view/main/main.dart';
 import 'package:playflutter/view/me/coin.dart';
@@ -20,6 +21,13 @@ import 'package:playflutter/view/square/create_share.dart';
 import 'package:playflutter/view/square/my_share.dart';
 import 'package:playflutter/view/system/system_content_tab.dart';
 import 'package:playflutter/view/todo/todo.dart';
+import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
+
+// 项目全局服务注册监听
+List<SingleChildWidget> onGenerateService(BuildContext context) => [
+      ChangeNotifierProvider(create: (context) => AccountService(context)),
+    ];
 
 // 项目页面路由注册
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
