@@ -35,6 +35,10 @@ class ThemeImages {
   static const String me_rank_no3_svg = "assets/images/svg/ic_me_rank_no3.svg";
   static const String me_settings_svg = "assets/images/svg/ic_me_settings.svg";
 
+  // account
+  static const String account_username_svg = "assets/images/svg/ic_account_username.svg";
+  static const String account_password_svg = "assets/images/svg/ic_account_password.svg";
+
   /// ******************************** png ******************************** /
   static const String launcher_round_png =
       "assets/images/ic_launcher_round.png";

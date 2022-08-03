@@ -46,4 +46,16 @@ class ThemeStrings {
   static const String search_history_label = "搜索历史";
   static const String search_clear_text = "清空";
   static const String search_history_empty_text = "快来搜索感兴趣的内容吧～";
+
+  /// account
+  static const String account_login_title = "Login";
+  static const String account_register_title = "Register";
+  static const String account_login_button = "LOGIN";
+  static const String account_register_button = "REGISTER";
+  static const String account_username_text = "username";
+  static const String account_password_text = "password";
+  static const String account_re_password_text = "repassword";
+  static const String account_go_to_register_text = "没有账号，去注册？";
+  static const String account_go_to_login_text = "已有账号，去登陆？";
+  static const String account_logout_success = "已退出当前账号";
 }
