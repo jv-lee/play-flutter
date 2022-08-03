@@ -24,7 +24,7 @@ class OfficialViewModel extends ViewModel {
   void onCleared() {}
 
   void requestTabData() {
-    localRequest<TabData>(
+    LocalTools.localRequest<TabData>(
         ThemeConstants.OFFICIAL_TAB_LOCAL_KEY,
         (json) => TabData.fromJson(json),
         _model.getOfficialTabDataAsync(), (value) {

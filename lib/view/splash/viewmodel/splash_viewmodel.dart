@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/theme/theme_images.dart';
+import 'package:playflutter/view/account/service/account_service.dart';
+import 'package:provider/provider.dart';
 
 /// @author jv.lee
 /// @date 2022/7/29
@@ -18,7 +20,10 @@ class SplashViewModel extends ViewModel {
   @override
   void onCleared() {}
 
-  void requestSplashAd() {
+  void requestSplashAd() async {
+    // 获取账户配置
+    context.read<AccountService>().requestAccountData();
+    // 显示splashAd
     splashAdVisible = true;
   }
 
