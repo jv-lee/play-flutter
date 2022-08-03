@@ -32,6 +32,7 @@ dependencies:
 
   cupertino_icons: ^0.1.2 #icon库
   dio: ^4.0.6 #网络库
+  dio_cookie_manager: ^2.0.0 #网络库cookie管理器
   toast: ^0.1.5 #toast提示
   flutter_swiper: ^1.1.6 #banner
   screen_ratio_adapter: ^3.0.0 #屏幕适配
