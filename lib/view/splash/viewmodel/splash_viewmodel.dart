@@ -25,6 +25,7 @@ class SplashViewModel extends ViewModel {
     context.read<AccountService>().requestAccountData();
     // 显示splashAd
     splashAdVisible = true;
+    notifyListeners();
   }
 
   String findSplashRes() {

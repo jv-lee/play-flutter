@@ -52,7 +52,7 @@ class LoginViewModel extends ViewModel {
     Future.delayed(const Duration(milliseconds: 300), () {
       if (viewStates.username.isEmpty || viewStates.password.isEmpty) {
         Navigator.pop(context);
-        Toast.show("username || password is empty.", context);
+        Toast.show("username || password is empty.");
         return;
       }
 
@@ -63,7 +63,7 @@ class LoginViewModel extends ViewModel {
         context.read<AccountService>().updateAccountStatus(accountData, true);
         Navigator.pop(context);
       }).catchError((onError) {
-        Toast.show((onError as HttpException).message, context);
+        Toast.show((onError as HttpException).message);
       }).whenComplete(() => Navigator.pop(context));
     });
   }

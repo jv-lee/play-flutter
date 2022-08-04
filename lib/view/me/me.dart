@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/page_state.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
-import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
-import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/view/me/viewmodel/me_viewmodel.dart';
 import 'package:playflutter/widget/common/header/app_header_container.dart';
 import 'package:playflutter/widget/common/profile_item.dart';
@@ -29,13 +27,13 @@ class _MeState extends PageState<MePage>
     return createViewModel<MeViewModel>(
         (context) => MeViewModel(context),
         (context, viewModel) => Column(
-              children: [buildHeader(), buildLineItemList(viewModel)],
+              children: [buildHeader(viewModel), buildLineItemList(viewModel)],
             ));
   }
 
-  Widget buildHeader() {
+  Widget buildHeader(MeViewModel viewModel) {
     return AppHeaderContainer(
-        onTap: () => Navigator.pushNamed(context, RouteNames.login),
+        onTap: () => viewModel.headerClick(),
         backgroundColor: Theme.of(context).cardColor,
         headerBrush: false,
         child: SizedBox(
@@ -54,7 +52,7 @@ class _MeState extends PageState<MePage>
                             ThemeDimens.me_header_picture_size / 2),
                         border: Border.all(
                             width: 2, color: Theme.of(context).focusColor)),
-                    child: Image.asset(ThemeImages.launcher_round_png)),
+                    child: viewModel.viewStates.headerWidget),
               ),
               Padding(
                 padding: const EdgeInsets.only(
@@ -66,19 +64,22 @@ class _MeState extends PageState<MePage>
                     Padding(
                       padding: const EdgeInsets.all(ThemeDimens.offset_small),
                       child: Text(
-                        "username",
+                        viewModel.viewStates.userName,
                         style: TextStyle(
                             color: Theme.of(context).primaryColorLight,
                             fontSize: ThemeDimens.font_size_large),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(ThemeDimens.offset_small),
-                      child: Text("rank",
-                          style: TextStyle(
-                              color: Theme.of(context).focusColor,
-                              fontSize: ThemeDimens.font_size_small)),
-                    )
+                    Visibility(
+                        visible: viewModel.viewStates.isLogin,
+                        child: Padding(
+                          padding:
+                              const EdgeInsets.all(ThemeDimens.offset_small),
+                          child: Text(viewModel.viewStates.userDesc,
+                              style: TextStyle(
+                                  color: Theme.of(context).focusColor,
+                                  fontSize: ThemeDimens.font_size_small)),
+                        ))
                   ],
                 ),
               )
@@ -95,7 +96,7 @@ class _MeState extends PageState<MePage>
                 leftSvgPath: e.iconSvgPath,
                 leftText: e.name,
                 rightSvgPath: e.arrowSvgPath,
-                onItemClick: () => {Navigator.pushNamed(context, e.route)},
+                onItemClick: () => viewModel.itemClick(e.route),
               ),
             ))
         .toList();

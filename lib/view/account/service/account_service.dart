@@ -12,7 +12,7 @@ import 'package:toast/toast.dart';
 /// @description
 class AccountService extends ModuleService {
   final _model = AccountModel();
-  final viewStates = _AccountViewState();
+  final viewStates = AccountViewState();
 
   AccountService(super.context);
 
@@ -37,9 +37,9 @@ class AccountService extends ModuleService {
   void requestLogout() {
     _model.getLogoutAsync().then((value) {
       updateAccountStatus(null, false);
-      Toast.show("登出成功", context);
+      Toast.show("登出成功");
     }).catchError((onError) {
-      Toast.show((onError as HttpException).message, context);
+      Toast.show((onError as HttpException).message);
     });
   }
 
@@ -51,7 +51,7 @@ class AccountService extends ModuleService {
   }
 }
 
-class _AccountViewState {
+class AccountViewState {
   AccountData? accountData;
   bool isLogin = false;
 }

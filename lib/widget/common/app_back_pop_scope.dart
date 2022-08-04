@@ -33,7 +33,7 @@ class _AppBackPopScopeState extends State<AppBackPopScope> {
         var secondTime = DateTime.now().millisecondsSinceEpoch;
         // 如果两次back事件时间间隔大于限制时间内，则拦截掉back事件
         if ((secondTime - firstTime) > widget.limitMillisecond) {
-          Toast.show(widget.alertMessage, context);
+          Toast.show(widget.alertMessage);
           firstTime = secondTime;
           return false;
         }

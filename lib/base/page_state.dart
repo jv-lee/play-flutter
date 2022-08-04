@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/main.dart';
 import 'package:playflutter/tools/log_tools.dart';
+import 'package:toast/toast.dart';
 
 /// @author jv.lee
 /// @date 2022/8/2
@@ -18,6 +19,7 @@ abstract class PageState<T extends StatefulWidget> extends State<T>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    ToastContext().init(context);
   }
 
   @override

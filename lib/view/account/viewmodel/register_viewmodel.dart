@@ -59,7 +59,7 @@ class RegisterViewModel extends ViewModel {
           viewStates.password.isEmpty ||
           viewStates.rePassword.isEmpty) {
         Navigator.pop(context);
-        Toast.show("username || password || repassword is empty.", context);
+        Toast.show("username || password || repassword is empty.");
         return;
       }
 
@@ -71,7 +71,7 @@ class RegisterViewModel extends ViewModel {
         context.read<AccountService>().updateAccountStatus(accountData, true);
         Navigator.pop(context);
       }).catchError((onError) {
-        Toast.show((onError as HttpException).message, context);
+        Toast.show((onError as HttpException).message);
         // 携带参数回调登陆页面
       }).whenComplete(() => Navigator.pop(context, true));
     });

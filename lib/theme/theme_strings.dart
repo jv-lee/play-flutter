@@ -8,6 +8,7 @@ class ThemeStrings {
   static const String loading = "loading...";
   static const String back_alert_message = "再次点击可退出";
   static const String splash_time_text = "跳过";
+  static const String login_alert = "请先登陆";
 
   /// home
   static const String home_header_text = "Welcome to Play Flutter";
@@ -34,6 +35,8 @@ class ThemeStrings {
   static const String menu_share = "分享";
 
   /// me
+  static const String me_account_default_text = "未登陆";
+  static const String me_account_info_text = "等级：A 排名：B";
   static const String me_item_coin = "我的积分";
   static const String me_item_collect = "我的收藏";
   static const String me_item_share = "我的分享";

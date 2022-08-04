@@ -74,9 +74,7 @@ class _SquareState extends PageState<SquarePage>
                     child: AppTextActionBar(
                   title: ThemeStrings.square_header_text,
                   navigationSvgPath: ThemeImages.common_add_svg,
-                  onNavigationClick: () {
-                    Navigator.pushNamed(context, RouteNames.create_share);
-                  },
+                  onNavigationClick: () => viewModel.navigationCreateShared(),
                 ))
               ],
             ));

@@ -43,16 +43,16 @@ class CreateShareViewModel extends ViewModel {
     Future.delayed(const Duration(milliseconds: 300), () {
       if (shareTitle.isEmpty || shareLink.isEmpty) {
         Navigator.of(context).pop();
-        Toast.show("title || content is empty.", context);
+        Toast.show("title || content is empty.");
         return;
       }
 
       // 提交请求
       _model.postShareDataSync(shareTitle, shareLink).then((value) {
-        Toast.show(ThemeStrings.square_share_request_success, context);
+        Toast.show(ThemeStrings.square_share_request_success);
         Navigator.of(context).pop();
       }).catchError((onError) {
-        Toast.show((onError as HttpException).message, context);
+        Toast.show((onError as HttpException).message);
       }).whenComplete(() => Navigator.of(context).pop());
     });
   }
