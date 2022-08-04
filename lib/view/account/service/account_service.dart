@@ -22,17 +22,17 @@ class AccountService extends ModuleService {
 
   void requestAccountData() async {
     LocalTools.localRequest<AccountData>(
-        ThemeConstants.ACCOUNT_DATA_LOCAL_KEY,
-        (json) => AccountData.fromJson(json),
-        _model.getAccountInfoAsync(), (value) {
-      updateAccountStatus(value, true);
-    }, (error) {
-      // 登陆token失效
-      if (error is HttpException &&
-          error.message == ApiConstants.REQUEST_TOKEN_ERROR_MESSAGE) {
-        updateAccountStatus(null, false);
-      }
-    });
+        localKey: ThemeConstants.ACCOUNT_DATA_LOCAL_KEY,
+        createJson: (json) => AccountData.fromJson(json),
+        requestFuture: _model.getAccountInfoAsync(),
+        callback: (value) => updateAccountStatus(value, true),
+        onError: (error) {
+          // 登陆token失效
+          if (error is HttpException &&
+              error.message == ApiConstants.REQUEST_TOKEN_ERROR_MESSAGE) {
+            updateAccountStatus(null, false);
+          }
+        });
   }
 
   void requestLogout() {

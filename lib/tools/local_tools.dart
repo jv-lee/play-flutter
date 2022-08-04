@@ -69,11 +69,11 @@ class LocalTools {
   }
 
   static void localRequest<T>(
-      String localKey,
-      CreateJson<T> createJson,
-      Future<T> requestFuture,
-      Function(T value) callback,
-      Function(dynamic error) onError) async {
+      {required String localKey,
+      required CreateJson<T> createJson,
+      required Future<T> requestFuture,
+      required Function(T value) callback,
+      required Function(dynamic error) onError}) async {
     // 本地缓存获取
     T? data = await localData(localKey, createJson);
     if (data != null) {

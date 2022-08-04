@@ -25,19 +25,21 @@ class ProjectViewModel extends ViewModel {
 
   void requestTabData() {
     LocalTools.localRequest<TabData>(
-        ThemeConstants.PROJECT_TAB_LOCAL_KEY,
-        (json) => TabData.fromJson(json),
-        _model.getProjectTabDataAsync(), (value) {
-      if (value.data.isEmpty) {
-        pageStatus = PageStatus.empty;
-      } else {
-        tabList = value.data;
-        pageStatus = PageStatus.completed;
-      }
-      notifyListeners();
-    }, (error) {
-      pageStatus = PageStatus.error;
-      notifyListeners();
-    });
+        localKey: ThemeConstants.PROJECT_TAB_LOCAL_KEY,
+        createJson: (json) => TabData.fromJson(json),
+        requestFuture: _model.getProjectTabDataAsync(),
+        callback: (value) {
+          if (value.data.isEmpty) {
+            pageStatus = PageStatus.empty;
+          } else {
+            tabList = value.data;
+            pageStatus = PageStatus.completed;
+          }
+          notifyListeners();
+        },
+        onError: (error) {
+          pageStatus = PageStatus.error;
+          notifyListeners();
+        });
   }
 }

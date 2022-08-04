@@ -25,19 +25,21 @@ class OfficialViewModel extends ViewModel {
 
   void requestTabData() {
     LocalTools.localRequest<TabData>(
-        ThemeConstants.OFFICIAL_TAB_LOCAL_KEY,
-        (json) => TabData.fromJson(json),
-        _model.getOfficialTabDataAsync(), (value) {
-      if (value.data.isEmpty) {
-        pageStatus = PageStatus.empty;
-      } else {
-        tabList = value.data;
-        pageStatus = PageStatus.completed;
-      }
-      notifyListeners();
-    }, (error) {
-      pageStatus = PageStatus.error;
-      notifyListeners();
-    });
+        localKey: ThemeConstants.OFFICIAL_TAB_LOCAL_KEY,
+        createJson: (json) => TabData.fromJson(json),
+        requestFuture: _model.getOfficialTabDataAsync(),
+        callback: (value) {
+          if (value.data.isEmpty) {
+            pageStatus = PageStatus.empty;
+          } else {
+            tabList = value.data;
+            pageStatus = PageStatus.completed;
+          }
+          notifyListeners();
+        },
+        onError: (error) {
+          pageStatus = PageStatus.error;
+          notifyListeners();
+        });
   }
 }
