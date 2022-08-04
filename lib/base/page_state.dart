@@ -96,19 +96,19 @@ abstract class PageState<T extends StatefulWidget> extends State<T>
 
   /// 页面获得焦点显示
   void onResume() {
-    log(widget.toString(), "onResume()");
+    LogTools.log(widget.toString(), "onResume()");
     _onResumeChange.notifyListeners();
   }
 
   /// 页面失去焦点隐藏
   void onPause() {
-    log(widget.toString(), "onPause()");
+    LogTools.log(widget.toString(), "onPause()");
     _onPauseChange.notifyListeners();
   }
 
   /// 页面销毁 原则上重写dispose方法也是一样的
   void onDestroy() {
-    log(widget.toString(), "onDestroy()");
+    LogTools.log(widget.toString(), "onDestroy()");
   }
 
   /// 用于绑定viewModel onResume回调 首次绑定直接回调onResume 顺序问题该模式在后

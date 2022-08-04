@@ -33,7 +33,7 @@ class OfficialListViewModel extends ViewModel {
   }
 
   void requestData(LoadStatus status) async {
-    log("OfficialList", "requestData id $id - $status");
+    LogTools.log("OfficialList", "requestData id $id - $status");
 
     // request square list data.
     paging.requestData(

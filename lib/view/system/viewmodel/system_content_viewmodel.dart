@@ -33,7 +33,7 @@ class SystemContentViewModel extends ViewModel {
   }
 
   void requestData() async {
-    log("SystemContent","requestData");
+    LogTools.log("SystemContent","requestData");
 
     // request systemContent list data.
     paging.requestData(LoadStatus.reload, (page) => _model.getParentTabAsync());

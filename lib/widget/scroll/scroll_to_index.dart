@@ -72,7 +72,7 @@ class _ScrollToIndexListState extends State<ScrollToIndexList> {
     if (index > widget.list.length) {
       return;
     }
-    log("ScrollToIndex", "scroll to index - $index");
+    LogTools.log("ScrollToIndex", "scroll to index - $index");
     ScrollToIndexBaseObject item = widget.list[index];
     if (item.globalKey.currentContext != null) {
       RenderBox? renderBox =
@@ -99,7 +99,7 @@ class _ScrollToIndexListState extends State<ScrollToIndexList> {
         _scrollController.jumpTo(scrollOffset);
       }
     } else {
-      log("ScrollToIndex",
+      LogTools.log("ScrollToIndex",
           "Please bind the key to the widget in the outermost layer of the Item layout");
     }
   }

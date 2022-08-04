@@ -33,7 +33,7 @@ class ProjectListViewModel extends ViewModel {
   }
 
   void requestData(LoadStatus status) async {
-    log("ProjectList","requestData id $id - $status");
+    LogTools.log("ProjectList","requestData id $id - $status");
 
     // request square list data.
     paging.requestData(

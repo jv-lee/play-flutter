@@ -52,7 +52,7 @@ class HomeViewModel extends ViewModel {
   }
 
   void requestData(LoadStatus status) async {
-    log("Home", "requestData - $status");
+    LogTools.log("Home", "requestData - $status");
 
     if (status == LoadStatus.refresh) {
       BannerData banner = await _model
