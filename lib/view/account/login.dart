@@ -91,12 +91,6 @@ class _LoginPageState extends PageState<LoginPage> {
   }
 
   Widget buildFooter(LoginViewModel viewModel) {
-    Color buttonColor;
-    if (viewModel.viewStates.isLoginEnable) {
-      buttonColor = Theme.of(context).focusColor;
-    } else {
-      buttonColor = Colors.grey;
-    }
     return SizedBox(
       width: double.infinity,
       child: Padding(
@@ -117,7 +111,7 @@ class _LoginPageState extends PageState<LoginPage> {
                         borderRadius: BorderRadius.circular(
                             ThemeDimens.offset_radius_medium))),
                     backgroundColor: MaterialStateColor.resolveWith(
-                        (states) => buttonColor)),
+                        (states) => viewModel.viewStates.stateColor)),
                 onPressed: () => viewModel.requestLogin(),
                 child: const Text(
                   ThemeStrings.account_login_button,

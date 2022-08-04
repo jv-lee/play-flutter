@@ -99,12 +99,6 @@ class _RegisterPageState extends PageState<RegisterPage> {
   }
 
   Widget buildFooter(RegisterViewModel viewModel) {
-    Color buttonColor;
-    if (viewModel.viewStates.isRegisterEnable) {
-      buttonColor = Theme.of(context).focusColor;
-    } else {
-      buttonColor = Colors.grey;
-    }
     return SizedBox(
       width: double.infinity,
       child: Padding(
@@ -125,7 +119,7 @@ class _RegisterPageState extends PageState<RegisterPage> {
                         borderRadius: BorderRadius.circular(
                             ThemeDimens.offset_radius_medium))),
                     backgroundColor: MaterialStateColor.resolveWith(
-                        (states) => buttonColor)),
+                        (states) => viewModel.viewStates.stateColor)),
                 onPressed: () => viewModel.requestRegister(),
                 child: const Text(
                   ThemeStrings.account_register_button,

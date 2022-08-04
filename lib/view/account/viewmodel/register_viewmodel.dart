@@ -39,9 +39,11 @@ class RegisterViewModel extends ViewModel {
   }
 
   void _changeRegisterEnable() {
-    viewStates.isRegisterEnable = viewStates.username.isNotEmpty &&
-        viewStates.password.isNotEmpty &&
-        viewStates.rePassword.isNotEmpty;
+    viewStates.stateColor = (viewStates.username.isNotEmpty &&
+            viewStates.password.isNotEmpty &&
+            viewStates.rePassword.isNotEmpty)
+        ? Theme.of(context).focusColor
+        : Colors.grey;
     notifyListeners();
   }
 
@@ -82,5 +84,5 @@ class _RegisterViewState {
   String username = "";
   String password = "";
   String rePassword = "";
-  bool isRegisterEnable = false;
+  Color stateColor = Colors.grey;
 }

@@ -35,8 +35,10 @@ class LoginViewModel extends ViewModel {
   }
 
   void _changeLoginEnable() {
-    viewStates.isLoginEnable =
-        viewStates.username.isNotEmpty && viewStates.password.isNotEmpty;
+    viewStates.stateColor =
+        (viewStates.username.isNotEmpty && viewStates.password.isNotEmpty)
+            ? Theme.of(context).focusColor
+            : Colors.grey;
     notifyListeners();
   }
 
@@ -81,5 +83,5 @@ class LoginViewModel extends ViewModel {
 class _LoginViewState {
   String username = "";
   String password = "";
-  bool isLoginEnable = false;
+  Color stateColor = Colors.grey;
 }
