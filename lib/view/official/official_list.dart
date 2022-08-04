@@ -29,8 +29,8 @@ class _OfficialListState extends PageState<OfficialListPage>
   Widget build(BuildContext context) {
     super.build(context);
     return createViewModel<OfficialListViewModel>(
-        (context) => OfficialListViewModel(context, widget.id),
-        (context, viewModel) => Scaffold(
+        create: (context) => OfficialListViewModel(context, widget.id),
+        viewBuild: (context, viewModel) => Scaffold(
               body: RefreshIndicator(
                   color: Theme.of(context).primaryColorLight,
                   onRefresh: () async {

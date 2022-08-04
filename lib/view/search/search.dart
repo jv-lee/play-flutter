@@ -26,8 +26,8 @@ class _SearchState extends PageState<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return createViewModel<SearchViewModel>(
-        (context) => SearchViewModel(context),
-        (context, viewModel) => GestureDetector(
+        create: (context) => SearchViewModel(context),
+        viewBuild: (context, viewModel) => GestureDetector(
             behavior: HitTestBehavior.opaque,
             // 全页面点击隐藏软键盘
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),

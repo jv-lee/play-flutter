@@ -26,8 +26,8 @@ class _SystemContentState extends PageState<SystemContentPage>
   Widget build(BuildContext context) {
     super.build(context);
     return createViewModel<SystemContentViewModel>(
-        (context) => SystemContentViewModel(context),
-        (context, viewModel) => SuperListView(
+        create: (context) => SystemContentViewModel(context),
+        viewBuild: (context, viewModel) => SuperListView(
               itemCount: viewModel.paging.data.length,
               statusController: viewModel.paging.statusController,
               headerChildren: const [AppHeaderSpacer()],

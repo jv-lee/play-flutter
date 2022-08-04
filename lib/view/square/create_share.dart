@@ -19,8 +19,8 @@ class _CreateShareState extends PageState<CreateSharePage> {
   @override
   Widget build(BuildContext context) {
     return createViewModel<CreateShareViewModel>(
-        (context) => CreateShareViewModel(context),
-        (context, viewModel) => GestureDetector(
+        create: (context) => CreateShareViewModel(context),
+        viewBuild: (context, viewModel) => GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
               child: Scaffold(

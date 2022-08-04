@@ -31,8 +31,9 @@ class _SystemContentListState extends PageState<SystemContentListPage>
   Widget build(BuildContext context) {
     super.build(context);
     return createViewModel<SystemContentListViewModel>(
-        (context) => SystemContentListViewModel(context, widget.children.id),
-        (context, viewModel) => Scaffold(
+        create: (context) =>
+            SystemContentListViewModel(context, widget.children.id),
+        viewBuild: (context, viewModel) => Scaffold(
               body: RefreshIndicator(
                   color: Theme.of(context).primaryColorLight,
                   onRefresh: () async {

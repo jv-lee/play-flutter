@@ -26,8 +26,8 @@ class _SystemState extends PageState<SystemPage>
   Widget build(BuildContext context) {
     super.build(context);
     return createViewModel<SystemViewModel>(
-        (context) => SystemViewModel(context),
-        (context, viewModel) => Stack(
+        create: (context) => SystemViewModel(context),
+        viewBuild: (context, viewModel) => Stack(
               children: [buildPage(viewModel), buildTabHeader(viewModel)],
             ));
   }

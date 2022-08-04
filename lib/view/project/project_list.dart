@@ -30,8 +30,8 @@ class _ProjectListState extends PageState<ProjectListPage>
   Widget build(BuildContext context) {
     super.build(context);
     return createViewModel<ProjectListViewModel>(
-        (context) => ProjectListViewModel(context, widget.id),
-        (context, viewModel) => Scaffold(
+        create: (context) => ProjectListViewModel(context, widget.id),
+        viewBuild: (context, viewModel) => Scaffold(
               body: RefreshIndicator(
                   color: Theme.of(context).primaryColorLight,
                   onRefresh: () async {

@@ -24,8 +24,8 @@ class _SearchResultState extends PageState<SearchResultPage> {
   @override
   Widget build(BuildContext context) {
     return createViewModel<SearchResultViewModel>(
-        (context) => SearchResultViewModel(context),
-        (context, viewModel) => Scaffold(
+        create: (context) => SearchResultViewModel(context),
+        viewBuild: (context, viewModel) => Scaffold(
               appBar: AppBar(title: Text(viewModel.searchKey)),
               body: buildSearchResultList(viewModel),
             ));

@@ -31,8 +31,8 @@ class _NavigationContentState extends PageState<NavigationContentPage>
   Widget build(BuildContext context) {
     super.build(context);
     return createViewModel<NavigationContentViewModel>(
-        (context) => NavigationContentViewModel(context),
-        (context, viewModel) => Material(
+        create: (context) => NavigationContentViewModel(context),
+        viewBuild: (context, viewModel) => Material(
               child: StatusPage(
                 status: viewModel.paging.statusController.pageStatus,
                 child: Padding(

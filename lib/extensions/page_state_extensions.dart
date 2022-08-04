@@ -11,7 +11,7 @@ extension PageStateExtensions on PageState {
   /// [create] viewModel构建方法
   /// [viewBuild] widget构建方法
   Widget createViewModel<T extends ViewModel>(
-      Create<T> create, ViewBuild<T> viewBuild) {
+      {required Create<T> create, required ViewBuild<T> viewBuild}) {
     return ChangeNotifierProvider(
       create: create,
       child: Consumer<T>(builder: (context, viewModel, child) {

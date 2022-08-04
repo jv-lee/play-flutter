@@ -19,8 +19,8 @@ class _MainState extends PageState<MainPage> {
   @override
   Widget build(BuildContext context) {
     return createViewModel<MainViewModel>(
-        (context) => MainViewModel(context),
-        (context, viewModel) => AppBackPopScope(
+        create: (context) => MainViewModel(context),
+        viewBuild: (context, viewModel) => AppBackPopScope(
             child: Scaffold(
                 body: PageView.builder(
                     itemCount: viewModel.mainTabPages.length,

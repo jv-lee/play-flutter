@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/base/page_state.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
-import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/theme/theme_strings.dart';
@@ -23,8 +22,8 @@ class _LoginPageState extends PageState<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return createViewModel<LoginViewModel>(
-        (context) => LoginViewModel(context),
-        (context, viewModel) => GestureDetector(
+        create: (context) => LoginViewModel(context),
+        viewBuild: (context, viewModel) => GestureDetector(
             behavior: HitTestBehavior.opaque,
             // 全页面点击隐藏软键盘
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),

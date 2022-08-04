@@ -38,8 +38,8 @@ class _HomeState extends PageState<HomePage>
   Widget build(BuildContext context) {
     super.build(context);
     return createViewModel<HomeViewModel>(
-        (context) => HomeViewModel(context),
-        (context, viewModel) => Stack(
+        create: (context) => HomeViewModel(context),
+        viewBuild: (context, viewModel) => Stack(
               children: [
                 RefreshIndicator(
                     displacement: 10,

@@ -21,8 +21,8 @@ class _RegisterPageState extends PageState<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return createViewModel<RegisterViewModel>(
-        (context) => RegisterViewModel(context),
-        (context, viewModel) => GestureDetector(
+        create: (context) => RegisterViewModel(context),
+        viewBuild: (context, viewModel) => GestureDetector(
             behavior: HitTestBehavior.opaque,
             // 全页面点击隐藏软键盘
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),

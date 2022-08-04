@@ -19,8 +19,8 @@ class _SettingsState extends PageState<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return createViewModel<SettingsViewModel>(
-        (context) => SettingsViewModel(context),
-        (context, viewModel) => Scaffold(
+        create: (context) => SettingsViewModel(context),
+        viewBuild: (context, viewModel) => Scaffold(
               body: Center(
                 child: GestureDetector(
                   child: Text(
