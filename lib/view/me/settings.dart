@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:night/night.dart';
 import 'package:playflutter/base/page_state.dart';
+import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/provider/dark_mode_provider.dart';
+import 'package:playflutter/view/me/viewmodel/settings_viewmodel.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26
@@ -14,22 +16,24 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsState extends PageState<SettingsPage> {
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: GestureDetector(
-          child: Text(
-            "this is Settings",
-            style: TextStyle(color: Theme.of(context).primaryColorLight),
-          ),
-          onTap: () => {
-            Night.isDarkTheme()
-                .then((value) => DarkModeProvider.changeDark(context, !value))
-          },
-        ),
-      ),
-    );
+    return createViewModel<SettingsViewModel>(
+        (context) => SettingsViewModel(context),
+        (context, viewModel) => Scaffold(
+              body: Center(
+                child: GestureDetector(
+                  child: Text(
+                    "this is Settings",
+                    style:
+                        TextStyle(color: Theme.of(context).primaryColorLight),
+                  ),
+                  onTap: () => {
+                    Night.isDarkTheme().then(
+                        (value) => DarkModeProvider.changeDark(context, !value))
+                  },
+                ),
+              ),
+            ));
   }
 }

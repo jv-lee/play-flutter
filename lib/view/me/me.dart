@@ -104,7 +104,4 @@ class _MeState extends PageState<MePage>
     return Column(children: widgets);
   }
 
-  Widget buildProfileItem() {
-    return Container();
-  }
 }
