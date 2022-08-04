@@ -44,6 +44,11 @@ class LocalTools {
     return data;
   }
 
+  static void remove(String key) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove(key);
+  }
+
   static void localSave<T>(String localKey, T? data) async {
     final prefs = await SharedPreferences.getInstance();
     if (data == null) {
