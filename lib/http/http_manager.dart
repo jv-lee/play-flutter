@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:playflutter/http/AppInterceptor.dart';
+import 'package:playflutter/http/constants/api_constants.dart';
+import 'package:playflutter/http/interceptor/app_cookie_interceptor.dart';
 
 /// @author jv.lee
 /// @date 2020/5/8
@@ -15,12 +16,12 @@ class HttpManager {
 
   HttpManager._internal() {
     dio = Dio(BaseOptions(
-        baseUrl: "https://www.wanandroid.com",
+        baseUrl: ApiConstants.BASE_URI,
         connectTimeout: 5000,
         receiveTimeout: 3000,
         contentType: Headers.formUrlEncodedContentType,
         responseType: ResponseType.json));
     dio.interceptors.add(LogInterceptor(responseBody: true));
-    dio.interceptors.add(AppInterceptor());
+    dio.interceptors.add(AppCookieInterceptor());
   }
 }

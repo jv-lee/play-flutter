@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:playflutter/base/model_service.dart';
 import 'package:playflutter/entity/account.dart';
+import 'package:playflutter/http/constants/api_constants.dart';
 import 'package:playflutter/theme/theme_constants.dart';
 import 'package:playflutter/tools/local_tools.dart';
 import 'package:playflutter/view/account/model/account_model.dart';
@@ -28,7 +29,7 @@ class AccountService extends ModuleService {
     }, (error) {
       // 登陆token失效
       if (error is HttpException &&
-          error.message == ThemeConstants.REQUEST_TOKEN_ERROR_MESSAGE) {
+          error.message == ApiConstants.REQUEST_TOKEN_ERROR_MESSAGE) {
         updateAccountStatus(null, false);
       }
     });

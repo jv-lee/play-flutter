@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/db/database_manager.dart';
+import 'package:playflutter/http/http_manager.dart';
 import 'package:playflutter/manifest.dart';
 import 'package:playflutter/provider/dark_mode_provider.dart';
 import 'package:playflutter/route/route_names.dart';
@@ -21,6 +22,7 @@ class PlayFlutterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DatabaseManager.getInstance().init();
+    HttpManager.getInstance();
     final providers = <SingleChildWidget>[];
     // 深色模式状态监听
     providers.add(ChangeNotifierProvider.value(

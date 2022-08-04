@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:playflutter/entity/account.dart';
+import 'package:playflutter/http/constants/api_constants.dart';
 import 'package:playflutter/http/http_manager.dart';
-import 'package:playflutter/theme/theme_constants.dart';
 
 /// @author jv.lee
 /// @date 2022/8/3
@@ -14,10 +14,10 @@ class AccountModel {
         await HttpManager.getInstance().dio.get("/user/lg/userinfo/json");
     if (response.statusCode == 200) {
       AccountData data = AccountData.fromJson(response.data);
-      if (data.errorCode == ThemeConstants.REQUEST_OK) {
+      if (data.errorCode == ApiConstants.REQUEST_OK) {
         return data;
-      } else if (data.errorCode == ThemeConstants.REQUEST_TOKEN_ERROR) {
-        throw const HttpException(ThemeConstants.REQUEST_TOKEN_ERROR_MESSAGE);
+      } else if (data.errorCode == ApiConstants.REQUEST_TOKEN_ERROR) {
+        throw const HttpException(ApiConstants.REQUEST_TOKEN_ERROR_MESSAGE);
       } else {
         throw HttpException(data.errorMsg);
       }
@@ -31,7 +31,7 @@ class AccountModel {
         data: FormData.fromMap({"username": username, "password": password}));
     if (response.statusCode == 200) {
       UserData data = UserData.fromJson(response.data);
-      if (data.errorCode == ThemeConstants.REQUEST_OK) {
+      if (data.errorCode == ApiConstants.REQUEST_OK) {
         return data;
       } else {
         throw HttpException(data.errorMsg);
@@ -50,7 +50,7 @@ class AccountModel {
         }));
     if (response.statusCode == 200) {
       UserData data = UserData.fromJson(response.data);
-      if (data.errorCode == ThemeConstants.REQUEST_OK) {
+      if (data.errorCode == ApiConstants.REQUEST_OK) {
         return data;
       } else {
         throw HttpException(data.errorMsg);
@@ -64,7 +64,7 @@ class AccountModel {
     var response = await HttpManager.getInstance().dio.get("/user/logout/json");
     if (response.statusCode == 200) {
       UserData data = UserData.fromJson(response.data);
-      if (data.errorCode == ThemeConstants.REQUEST_OK) {
+      if (data.errorCode == ApiConstants.REQUEST_OK) {
         return data;
       } else {
         throw HttpException(data.errorMsg);
