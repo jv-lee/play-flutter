@@ -1,28 +1,34 @@
 // ignore_for_file: prefer_const_declarations, non_constant_identifier_names
 import 'package:dio/dio.dart';
+import 'package:playflutter/http/constants/api_constants.dart';
 import 'package:playflutter/tools/local_tools.dart';
-import 'package:toast/toast.dart';
 
 /// @author jv.lee
 /// @date 2022/8/4
 /// @description app登陆cookie设置拦截器
 class AppCookieInterceptor extends Interceptor {
-  static final _SAVE_USER_LOGIN_KEY = "user/login";
-  static final _SAVE_USER_REGISTER_KEY = "user/register";
-  static final _REMOVE_USER_LOGOUT_KEY = "user/logout";
-  static final _SAVE_TOKEN_KEY = "save_token_key";
-  String cookie = "";
+  static final _HEADER_COOKIE_KEY = "Cookie"; // 请求头设置cookie键名
+  static final _SET_COOKIE_KEY = "set-cookie"; // 包含cookie的response取值键名
+  static final _CONTAINER_COOKIE_URI = "lg/"; // 链接中包含lg则需要设置cookie
+  static final _SAVE_TOKEN_KEY = "save-token"; // 保存cookie 键名
 
-  AppCookieInterceptor() {
-    LocalTools.get<String>(_SAVE_TOKEN_KEY)
-        .then((value) => cookie = value ?? "");
-  }
+  static final _CONTAINER_LOGIN_URI = "user/login";
+  static final _CONTAINER_REGISTER_URI = "user/register";
+  static final _CONTAINER_LOGOUT_URI = "user/logout";
+
+  String cookie = "";
 
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    if (cookie.isNotEmpty) {
-      options.headers["Cookie"] = cookie;
+    final uri = options.uri.toString();
+    // 当前请求为baseUri 且包含校验cookie的链接时获取缓存cookie设置header
+    if (uri.contains(ApiConstants.BASE_URI) &&
+        uri.contains(_CONTAINER_COOKIE_URI)) {
+      if (cookie.isEmpty) {
+        cookie = await LocalTools.get<String>(_SAVE_TOKEN_KEY) ?? "";
+      }
+      options.headers[_HEADER_COOKIE_KEY] = cookie;
     }
     handler.next(options);
   }
@@ -30,11 +36,13 @@ class AppCookieInterceptor extends Interceptor {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) async {
     final uri = response.realUri.toString();
-    if (uri.contains(RegExp(_SAVE_USER_LOGIN_KEY)) ||
-        uri.contains(RegExp(_SAVE_USER_REGISTER_KEY))) {
-      final setCookie = response.headers.map["set-cookie"].toString();
+    // 登陆注册时保存登陆 cookie作为token校验接口header参数
+    if (uri.contains(RegExp(_CONTAINER_LOGIN_URI)) ||
+        uri.contains(RegExp(_CONTAINER_REGISTER_URI))) {
+      final setCookie = response.headers.map[_SET_COOKIE_KEY].toString();
       saveCookie(setCookie);
-    } else if (uri.contains(RegExp(_REMOVE_USER_LOGOUT_KEY))) {
+      // 登出时清除登陆cookie等信息
+    } else if (uri.contains(RegExp(_CONTAINER_LOGOUT_URI))) {
       clearCookie();
     }
     handler.next(response);
