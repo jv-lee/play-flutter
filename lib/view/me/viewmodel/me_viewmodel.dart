@@ -14,7 +14,7 @@ import 'package:toast/toast.dart';
 /// @description
 class MeViewModel extends ViewModel {
   late AccountService accountService;
-  late VoidCallback accountListener;
+  late VoidCallback _accountListener;
   List<MeItem> meItems = MeItem.getMeItems();
   var viewStates = _MeViewState();
 
@@ -24,7 +24,7 @@ class MeViewModel extends ViewModel {
   void init() {
     accountService = context.read<AccountService>();
     _changeViewState();
-    accountService.addListener(accountListener = () {
+    accountService.addListener(_accountListener = () {
       _changeViewState();
       notifyListeners();
     });
@@ -32,7 +32,7 @@ class MeViewModel extends ViewModel {
 
   @override
   void onCleared() {
-    accountService.removeListener(accountListener);
+    accountService.removeListener(_accountListener);
   }
 
   void headerClick() {

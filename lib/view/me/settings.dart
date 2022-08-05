@@ -31,8 +31,8 @@ class _SettingsState extends PageState<SettingsPage> {
                 children: [
                   buildDarkModeSystemItem(),
                   buildDarkModeNightItem(),
-                  buildClearCacheItem(),
-                  buildLogoutItem()
+                  buildClearCacheItem(viewModel),
+                  buildLogoutItem(viewModel)
                 ],
               ),
             ));
@@ -65,25 +65,29 @@ class _SettingsState extends PageState<SettingsPage> {
     );
   }
 
-  Widget buildClearCacheItem() {
-    return const Padding(
-      padding: EdgeInsets.only(top: ThemeDimens.offset_medium),
+  Widget buildClearCacheItem(SettingsViewModel viewModel) {
+    return Padding(
+      padding: const EdgeInsets.only(top: ThemeDimens.offset_medium),
       child: ProfileItem(
         leftText: ThemeStrings.settings_clear_text,
-        rightText: "12.34kb",
+        rightText: viewModel.viewStates.cacheSize,
         rightSvgPath: ThemeImages.common_arrow_svg,
+        onItemClick: () => viewModel.clearCache(),
       ),
     );
   }
 
-  Widget buildLogoutItem() {
-    return const Padding(
-      padding: EdgeInsets.only(top: ThemeDimens.offset_medium),
-      child: ProfileItem(
-        leftText: ThemeStrings.settings_logout,
-        leftSvgPath: ThemeImages.me_logout_svg,
-        rightSvgPath: ThemeImages.common_arrow_svg,
-      ),
-    );
+  Widget buildLogoutItem(SettingsViewModel viewModel) {
+    return Visibility(
+        visible: viewModel.accountService.viewStates.isLogin,
+        child: Padding(
+          padding: const EdgeInsets.only(top: ThemeDimens.offset_medium),
+          child: ProfileItem(
+            leftText: ThemeStrings.settings_logout,
+            leftSvgPath: ThemeImages.me_logout_svg,
+            rightSvgPath: ThemeImages.common_arrow_svg,
+            onItemClick: () => viewModel.logout(),
+          ),
+        ));
   }
 }

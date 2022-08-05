@@ -19,7 +19,7 @@ import 'package:toast/toast.dart';
 class SquareViewModel extends ViewModel {
   final _model = SquareModel();
   late AccountService accountService;
-  late VoidCallback accountListener;
+  late VoidCallback _accountListener;
   late Paging<Content> paging;
 
   SquareViewModel(super.context);
@@ -27,7 +27,7 @@ class SquareViewModel extends ViewModel {
   @override
   void init() {
     accountService = context.read<AccountService>();
-    accountService.addListener(accountListener = () => notifyListeners());
+    accountService.addListener(_accountListener = () => notifyListeners());
     paging = Paging(
         data: [],
         initPage: 0,
@@ -38,7 +38,7 @@ class SquareViewModel extends ViewModel {
 
   @override
   void onCleared() {
-    accountService.removeListener(accountListener);
+    accountService.removeListener(_accountListener);
     paging.dispose();
   }
 
