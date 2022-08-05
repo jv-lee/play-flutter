@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:night/night.dart';
 import 'package:playflutter/base/page_state.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/provider/dark_mode_provider.dart';
@@ -21,17 +20,34 @@ class _SettingsState extends PageState<SettingsPage> {
     return createViewModel<SettingsViewModel>(
         create: (context) => SettingsViewModel(context),
         viewBuild: (context, viewModel) => Scaffold(
+              appBar: AppBar(
+                title: const Text('Plugin example app'),
+              ),
               body: Center(
-                child: GestureDetector(
-                  child: Text(
-                    "this is Settings",
-                    style:
-                        TextStyle(color: Theme.of(context).primaryColorLight),
-                  ),
-                  onTap: () => {
-                    Night.isDarkTheme().then(
-                        (value) => DarkModeProvider.changeDark(context, !value))
-                  },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text("跟随系统:"),
+                        Switch(
+                            value: DarkModeProvider.isSystemTheme(context),
+                            onChanged: (enable) =>
+                                DarkModeProvider.changeSystem(context, enable))
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text("深色模式:"),
+                        Switch(
+                            value: DarkModeProvider.isDarkTheme(context),
+                            onChanged: (enable) =>
+                                DarkModeProvider.changeDark(context, enable))
+                      ],
+                    )
+                  ],
                 ),
               ),
             ));

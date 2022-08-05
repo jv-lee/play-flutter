@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/provider/dark_mode_provider.dart';
 import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/view/account/service/account_service.dart';
 import 'package:provider/provider.dart';
@@ -29,11 +29,10 @@ class SplashViewModel extends ViewModel {
   }
 
   String findSplashRes() {
-    final brightness = MediaQuery.of(context).platformBrightness;
-    if (brightness == Brightness.light) {
-      return ThemeImages.splash_light_png;
-    } else {
+    if (DarkModeProvider.isDarkTheme(context)) {
       return ThemeImages.splash_dark_png;
+    } else {
+      return ThemeImages.splash_light_png;
     }
   }
 }

@@ -1,8 +1,9 @@
-// ignore_for_file: constant_identifier_names
+// ignore_for_file: constant_identifier_names, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:night/night.dart';
 import 'package:playflutter/theme/theme_colors.dart';
+import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/status_tools.dart';
 import 'package:provider/provider.dart';
 
@@ -10,79 +11,72 @@ import 'package:provider/provider.dart';
 /// @date 2020/6/1
 /// @description 深色模式内容监听器工具类
 class DarkModeProvider with ChangeNotifier {
-  static const int MODE_LIGHT = 1; // 亮色模式
-  static const int MODE_DARK = 2; // 深色模式
-  static const int MODE_SYSTEM = 3; // 跟随系统
-  static const int MODE_UN_SYSTEM = 4; //取消跟随系统
-
-  BuildContext context;
-  int darkMode = MODE_SYSTEM;
-
+  final String TAG = "DarkModeProvider";
+  late BuildContext context;
   late ThemeData lightThemeData;
   late ThemeData darkThemeData;
+  var _isSystem = true;
+  var _isDark = false;
 
   DarkModeProvider({required this.context}) {
-    _init();
-    _setThemeData();
+    _initTheme();
+    _changeTheme();
   }
 
-  _init() async {
-    var isSystem = await Night.isSystemTheme;
-    if (isSystem) {
-      darkMode = MODE_SYSTEM;
+  void _initTheme() {
+    StatusTools.defaultStatusBar(context);
+    lightThemeData = ThemeColors.lightThemeData;
+    darkThemeData = ThemeColors.darkThemeData;
+  }
+
+  void _changeTheme() async {
+    _isSystem = await Night.isSystemTheme();
+    _isDark = await Night.isDarkTheme();
+    LogTools.log(TAG, "changeTheme:$_isSystem,$_isDark");
+    if (_isSystem) {
+      StatusTools.defaultStatusBar(context);
+      lightThemeData = ThemeColors.lightThemeData;
+      darkThemeData = ThemeColors.darkThemeData;
     } else {
-      darkMode = await Night.isDarkTheme() ? MODE_DARK : MODE_LIGHT;
+      if (_isDark) {
+        StatusTools.transparentStatusBar(Brightness.dark);
+        lightThemeData = ThemeColors.darkThemeData;
+        darkThemeData = ThemeColors.darkThemeData;
+      } else {
+        StatusTools.transparentStatusBar(Brightness.light);
+        lightThemeData = ThemeColors.lightThemeData;
+        darkThemeData = ThemeColors.lightThemeData;
+      }
     }
     notifyListeners();
   }
 
-  void _setThemeData() {
-    switch (darkMode) {
-      case DarkModeProvider.MODE_DARK:
-        {
-          StatusTools.transparentStatusBar(Brightness.dark);
-          lightThemeData = ThemeColors.darkThemeData;
-          darkThemeData = ThemeColors.darkThemeData;
-        }
-        break;
-      case DarkModeProvider.MODE_LIGHT:
-        {
-          StatusTools.transparentStatusBar(Brightness.light);
-          lightThemeData = ThemeColors.lightThemeData;
-          darkThemeData = ThemeColors.lightThemeData;
-        }
-        break;
-      default:
-        {
-          StatusTools.defaultStatusBar(context);
-          lightThemeData = ThemeColors.lightThemeData;
-          darkThemeData = ThemeColors.darkThemeData;
-        }
-    }
+  void _updateSystemTheme(enable) {
+    Night.updateSystemTheme(enable);
+    _changeTheme();
   }
 
-  void _changeMode(int darkMode) async {
-    this.darkMode = darkMode;
-    if (darkMode == MODE_DARK) {
-      Night.updateNightTheme(true);
-    } else if (darkMode == MODE_LIGHT) {
-      Night.updateNightTheme(false);
-    } else if (darkMode == MODE_SYSTEM) {
-      Night.updateSystemTheme(true);
-    } else if (darkMode == MODE_UN_SYSTEM) {
-      Night.updateSystemTheme(false);
-    }
-    notifyListeners();
+  void _updateDarkTheme(enable) {
+    Night.updateDarkTheme(enable);
+    _changeTheme();
+  }
+
+  static isSystemTheme(BuildContext context) {
+    return Provider.of<DarkModeProvider>(context)._isSystem;
+  }
+
+  static isDarkTheme(BuildContext context) {
+    return Provider.of<DarkModeProvider>(context)._isDark;
   }
 
   static changeSystem(BuildContext context, enable) {
-    context.read<DarkModeProvider>()._changeMode(enable
-        ? DarkModeProvider.MODE_SYSTEM
-        : DarkModeProvider.MODE_UN_SYSTEM);
+    context.read<DarkModeProvider>()._updateSystemTheme(enable);
   }
 
   static changeDark(BuildContext context, enable) {
-    context.read<DarkModeProvider>()._changeMode(
-        enable ? DarkModeProvider.MODE_DARK : DarkModeProvider.MODE_LIGHT);
+    final provider = context.read<DarkModeProvider>();
+    if(!provider._isSystem) {
+      context.read<DarkModeProvider>()._updateDarkTheme(enable);
+    }
   }
 }
