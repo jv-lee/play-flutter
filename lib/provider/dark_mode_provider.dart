@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:night/night.dart';
 import 'package:playflutter/theme/theme_colors.dart';
-import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/status_tools.dart';
 import 'package:provider/provider.dart';
 
@@ -11,7 +10,6 @@ import 'package:provider/provider.dart';
 /// @date 2020/6/1
 /// @description 深色模式内容监听器工具类
 class DarkModeProvider with ChangeNotifier {
-  final String TAG = "DarkModeProvider";
   late BuildContext context;
   late ThemeData lightThemeData;
   late ThemeData darkThemeData;
@@ -32,7 +30,6 @@ class DarkModeProvider with ChangeNotifier {
   void _changeTheme() async {
     _isSystem = await Night.isSystemTheme();
     _isDark = await Night.isDarkTheme();
-    LogTools.log(TAG, "changeTheme:$_isSystem,$_isDark");
     if (_isSystem) {
       StatusTools.defaultStatusBar(context);
       lightThemeData = ThemeColors.lightThemeData;

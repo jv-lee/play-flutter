@@ -42,6 +42,24 @@ class ThemeStrings {
   static const String me_item_share = "我的分享";
   static const String me_item_todo = "TODO";
   static const String me_item_settings = "系统设置";
+  // coin
+  static const String coin_title_label_text = "每天登陆赚取积分 ";
+  static const String coin_total_description = "当前积分总数 ";
+  static const String coin_default_value = "0 ";
+  static const String coin_to_rank_text = "查看积分排行榜 ";
+  static const String coin_rank_title = "积分排行榜 ";
+  static const String coin_help_title = "本站积分规则 ";
+  // collect
+  static const String collect_remove_item_success = "移除收藏成功 ";
+  // settings
+  static const String settings_dark_mode_system = "夜间模式跟随系统设置 ";
+  static const String settings_dark_mode_night = "夜间模式 ";
+  static const String settings_clear_text = "清除缓存 ";
+  static const String settings_logout = "退出登陆 ";
+  static const String settings_clear_title = "确认清除缓存? ";
+  static const String settings_clear_success = "清除成功 ";
+  static const String settings_clear_failed = "清除失败 ";
+  static const String settings_logout_title = "确认退出登陆? ";
 
   /// search
   static const String search_hint_text = "发现更多内容";

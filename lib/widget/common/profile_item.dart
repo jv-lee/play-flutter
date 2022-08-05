@@ -26,7 +26,7 @@ class ProfileItem extends StatefulWidget {
       this.leftText,
       this.rightText,
       this.switchVisible = false,
-      this.switchEnable = false,
+      this.switchEnable = true,
       this.switchChecked = false,
       this.onCheckedChange,
       this.onItemClick})
@@ -39,6 +39,9 @@ class ProfileItem extends StatefulWidget {
 class _ProfileItemState extends State<ProfileItem> {
   @override
   Widget build(BuildContext context) {
+    var lockSwitchColor = widget.switchEnable
+        ? null
+        : MaterialStateColor.resolveWith((states) => Colors.grey);
     return Container(
       height: 50,
       width: double.infinity,
@@ -81,8 +84,15 @@ class _ProfileItemState extends State<ProfileItem> {
                                     fontSize: ThemeDimens.font_size_small)),
                           )),
                       widget.switchVisible.isVisible(Switch(
+                          trackColor: lockSwitchColor,
+                          thumbColor: lockSwitchColor,
                           value: widget.switchChecked,
-                          onChanged: widget.onCheckedChange)),
+                          onChanged: (enable) {
+                            if (widget.switchEnable &&
+                                widget.onCheckedChange != null) {
+                              widget.onCheckedChange!(enable);
+                            }
+                          })),
                       widget.rightSvgPath.hasVisible(
                         (object) => SizedBox(
                           width: 24,
