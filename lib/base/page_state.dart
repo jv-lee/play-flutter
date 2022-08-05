@@ -19,7 +19,6 @@ abstract class PageState<T extends StatefulWidget> extends State<T>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    ToastContext().init(context);
   }
 
   @override
@@ -96,6 +95,7 @@ abstract class PageState<T extends StatefulWidget> extends State<T>
 
   /// 页面获得焦点显示
   void onResume() {
+    ToastContext().init(context);
     LogTools.log(widget.toString(), "onResume()");
     _onResumeChange.notifyListeners();
   }
