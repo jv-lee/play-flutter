@@ -38,9 +38,10 @@ class _CreateShareState extends PageState<CreateSharePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(top: ThemeDimens.offset_medium),
-            child: Text(ThemeStrings.square_share_title_text),
+          Padding(
+            padding: const EdgeInsets.only(top: ThemeDimens.offset_medium),
+            child: Text(ThemeStrings.square_share_title_text,
+                style: TextStyle(color: Theme.of(context).primaryColorLight)),
           ),
           TextField(
             onChanged: (text) => {viewModel.changeShareTitle(text)},
@@ -48,9 +49,10 @@ class _CreateShareState extends PageState<CreateSharePage> {
             decoration: const InputDecoration(
                 hintText: ThemeStrings.square_share_title_hint),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: ThemeDimens.offset_medium),
-            child: Text(ThemeStrings.square_share_link_text),
+          Padding(
+            padding: const EdgeInsets.only(top: ThemeDimens.offset_medium),
+            child: Text(ThemeStrings.square_share_link_text,
+                style: TextStyle(color: Theme.of(context).primaryColorLight)),
           ),
           TextField(
             onChanged: (text) => {viewModel.changeShareLink(text)},

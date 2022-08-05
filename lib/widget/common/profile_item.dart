@@ -86,6 +86,8 @@ class _ProfileItemState extends State<ProfileItem> {
                       widget.switchVisible.isVisible(Switch(
                           trackColor: lockSwitchColor,
                           thumbColor: lockSwitchColor,
+                          activeColor: Theme.of(context).focusColor,
+                          activeTrackColor: Theme.of(context).hoverColor,
                           value: widget.switchChecked,
                           onChanged: (enable) {
                             if (widget.switchEnable &&
