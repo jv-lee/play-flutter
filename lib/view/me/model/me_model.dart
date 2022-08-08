@@ -6,7 +6,7 @@ import 'package:playflutter/model/entity/data.dart';
 /// @author jv.lee
 /// @date 2022/8/5
 /// @description
-class CollectModel extends BaseModel {
+class MeModel extends BaseModel {
   ///  收藏文章
   ///  [id] 文章id
   Future<Data> postCollectAsync(id) async {

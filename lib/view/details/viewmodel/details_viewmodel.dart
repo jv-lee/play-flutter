@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/model/entity/details.dart';
 import 'package:playflutter/theme/theme_strings.dart';
-import 'package:playflutter/view/me/model/collect_model.dart';
+import 'package:playflutter/view/me/model/me_model.dart';
 import 'package:share/share.dart';
 import 'package:toast/toast.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -14,7 +14,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 /// @date 2022/8/8
 /// @description
 class DetailsViewModel extends BaseViewModel {
-  final _model = CollectModel();
+  final _model = MeModel();
   final viewStates = _DetailsViewState();
   final DetailsData detailsData;
 

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_page_state.dart';
+import 'package:playflutter/extensions/page_state_extensions.dart';
+import 'package:playflutter/theme/theme_strings.dart';
+import 'package:playflutter/view/me/viewmodel/coin_viewmodel.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -14,8 +17,13 @@ class CoinPage extends StatefulWidget {
 class _CoinPageState extends BasePageState<CoinPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("Coin Page.")),
-    );
+    return buildViewModel<CoinViewModel>(
+        create: (context) => CoinViewModel(context),
+        viewBuild: (context, viewModel) => Scaffold(
+              appBar: AppBar(
+                title: const Text(ThemeStrings.me_item_coin),
+              ),
+              body: const Center(child: Text("Coin Page.")),
+            ));
   }
 }
