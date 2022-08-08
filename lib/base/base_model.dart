@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:playflutter/model/entity/base/base_data.dart';
+import 'package:playflutter/model/http/constants/api_constants.dart';
 import 'package:playflutter/model/http/http_manager.dart';
 
 /// @author jv.lee
@@ -23,8 +24,10 @@ abstract class BaseModel {
         onReceiveProgress: onReceiveProgress);
     if (response.statusCode == 200) {
       T entity = create(response.data);
-      if (entity.responseCode() == 0) {
+      if (entity.responseCode() == ApiConstants.REQUEST_OK) {
         return entity;
+      } else if (entity.responseCode() == ApiConstants.REQUEST_TOKEN_ERROR) {
+        throw const HttpException(ApiConstants.REQUEST_TOKEN_ERROR_MESSAGE);
       } else {
         throw HttpException(entity.responseMessage());
       }
@@ -52,8 +55,10 @@ abstract class BaseModel {
         onReceiveProgress: onReceiveProgress);
     if (response.statusCode == 200) {
       T entity = create(response.data);
-      if (entity.responseCode() == 0) {
+      if (entity.responseCode() == ApiConstants.REQUEST_OK) {
         return entity;
+      } else if (entity.responseCode() == ApiConstants.REQUEST_TOKEN_ERROR) {
+        throw const HttpException(ApiConstants.REQUEST_TOKEN_ERROR_MESSAGE);
       } else {
         throw HttpException(entity.responseMessage());
       }

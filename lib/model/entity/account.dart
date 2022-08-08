@@ -37,7 +37,7 @@ class AccountData extends BaseData {
   String responseMessage() => errorMsg;
 }
 
-class UserData {
+class UserData extends BaseData {
   UserData({
     required this.data,
     required this.errorCode,
@@ -63,6 +63,12 @@ class UserData {
     _data['errorMsg'] = errorMsg;
     return _data;
   }
+
+  @override
+  int responseCode() => errorCode;
+
+  @override
+  String responseMessage() => errorMsg;
 }
 
 class AccountInfo {
