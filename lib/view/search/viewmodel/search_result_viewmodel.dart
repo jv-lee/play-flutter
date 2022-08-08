@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/entity/content.dart';
 import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
@@ -9,7 +9,7 @@ import 'package:playflutter/view/search/search.dart';
 /// @author jv.lee
 /// @date 2022/7/15
 /// @description 搜索结果页viewModel
-class SearchResultViewModel extends ViewModel {
+class SearchResultViewModel extends BaseViewModel {
   final _model = SearchModel();
 
   late String searchKey = "";

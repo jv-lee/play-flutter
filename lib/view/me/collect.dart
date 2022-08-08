@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/page_state.dart';
+import 'package:playflutter/base/base_page_state.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
@@ -19,7 +19,7 @@ class CollectPage extends StatefulWidget {
   State<StatefulWidget> createState() => _CollectPageState();
 }
 
-class _CollectPageState extends PageState<CollectPage> {
+class _CollectPageState extends BasePageState<CollectPage> {
   @override
   Widget build(BuildContext context) {
     return buildViewModel<CollectViewModel>(

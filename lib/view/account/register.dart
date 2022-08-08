@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:playflutter/base/page_state.dart';
+import 'package:playflutter/base/base_page_state.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_images.dart';
@@ -17,7 +17,7 @@ class RegisterPage extends StatefulWidget {
   State<StatefulWidget> createState() => _RegisterPageState();
 }
 
-class _RegisterPageState extends PageState<RegisterPage> {
+class _RegisterPageState extends BasePageState<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return buildViewModel<RegisterViewModel>(

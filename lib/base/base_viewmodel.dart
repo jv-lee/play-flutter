@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 /// @author jv.lee
 /// @date 2022/6/23
 /// @description 所有viewModel基类
-abstract class ViewModel with ChangeNotifier {
+abstract class BaseViewModel with ChangeNotifier {
   final BuildContext context;
 
-  ViewModel(this.context) {
+  BaseViewModel(this.context) {
     init();
   }
 
@@ -50,5 +50,5 @@ abstract class ViewModel with ChangeNotifier {
 
 typedef RunViewContext = Function(BuildContext context);
 
-typedef ViewBuild<T extends ViewModel> = Widget Function(
+typedef ViewBuild<T extends BaseViewModel> = Widget Function(
     BuildContext context, T viewModel);

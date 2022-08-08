@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/page_state.dart';
+import 'package:playflutter/base/base_page_state.dart';
 import 'package:playflutter/db/entity/search_history.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
@@ -22,7 +22,7 @@ class SearchPage extends StatefulWidget {
   static const String ARG_SEARCH_KEY = "searchKey";
 }
 
-class _SearchState extends PageState<SearchPage> {
+class _SearchState extends BasePageState<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return buildViewModel<SearchViewModel>(

@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:path_provider/path_provider.dart';
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/tools/cache_tools.dart';
 import 'package:playflutter/view/account/service/account_service.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 /// @author jv.lee
 /// @date 2022/8/4
 /// @description app设置页面viewModel
-class SettingsViewModel extends ViewModel {
+class SettingsViewModel extends BaseViewModel {
   late AccountService accountService;
   late VoidCallback _accountListener;
   final viewStates = _SettingsViewState();

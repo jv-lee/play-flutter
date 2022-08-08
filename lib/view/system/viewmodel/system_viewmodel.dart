@@ -1,12 +1,12 @@
 import 'package:flutter/widgets.dart';
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/view/system/navigation_content.dart';
 import 'package:playflutter/view/system/system_content.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
 /// @description 体系tab viewModel
-class SystemViewModel extends ViewModel {
+class SystemViewModel extends BaseViewModel {
   var selectedIndex = 0;
   var pageList = const [SystemContentPage(), NavigationContentPage()];
   late PageController pageController;

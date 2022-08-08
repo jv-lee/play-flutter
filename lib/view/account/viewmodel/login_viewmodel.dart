@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/view/account/model/account_model.dart';
 import 'package:playflutter/view/account/service/account_service.dart';
@@ -12,7 +12,7 @@ import 'package:toast/toast.dart';
 /// @author jv.lee
 /// @date 2022/7/15
 /// @description 登陆页面 viewModel
-class LoginViewModel extends ViewModel {
+class LoginViewModel extends BaseViewModel {
   LoginViewModel(super.context);
 
   final accountModel = AccountModel();

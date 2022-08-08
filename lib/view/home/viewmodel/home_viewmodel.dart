@@ -1,5 +1,5 @@
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/entity/banner.dart';
 import 'package:playflutter/entity/content.dart';
 import 'package:playflutter/tools/log_tools.dart';
@@ -11,7 +11,7 @@ import 'package:playflutter/view/home/model/home_model.dart';
 /// @author jv.lee
 /// @date 2022/6/23
 /// @description home页面viewModel
-class HomeViewModel extends ViewModel {
+class HomeViewModel extends BaseViewModel {
   final _model = HomeModel();
 
   late SwiperController swiperController;

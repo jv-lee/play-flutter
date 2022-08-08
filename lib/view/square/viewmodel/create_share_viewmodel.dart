@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/square/model/square_model.dart';
 import 'package:playflutter/widget/dialog/loading_dialog.dart';
@@ -10,7 +10,7 @@ import 'package:toast/toast.dart';
 /// @author jv.lee
 /// @date 2022/7/22
 /// @description 创建分享内容viewModel
-class CreateShareViewModel extends ViewModel {
+class CreateShareViewModel extends BaseViewModel {
   final SquareModel _model = SquareModel();
   late String shareTitle = "";
   late String shareLink = "";

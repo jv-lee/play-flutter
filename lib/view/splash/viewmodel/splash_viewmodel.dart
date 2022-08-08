@@ -1,4 +1,4 @@
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/provider/dark_mode_provider.dart';
 import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/view/account/service/account_service.dart';
@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 /// @author jv.lee
 /// @date 2022/7/29
 /// @description app闪屏页viewModel类
-class SplashViewModel extends ViewModel {
+class SplashViewModel extends BaseViewModel {
   SplashViewModel(super.context);
 
   bool splashAdVisible = false;

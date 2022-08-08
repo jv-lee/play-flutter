@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/db/dao/search_history_dao.dart';
 import 'package:playflutter/db/entity/search_history.dart';
 import 'package:playflutter/route/route_names.dart';
@@ -9,7 +9,7 @@ import 'package:playflutter/view/search/search.dart';
 /// @author jv.lee
 /// @date 2022/7/15
 /// @description 搜索页面viewModel
-class SearchViewModel extends ViewModel {
+class SearchViewModel extends BaseViewModel {
   final SearchHistoryDao _dao = SearchHistoryDao();
   List<SearchHot> searchHots = SearchHot.getSearchHots();
   List<SearchHistory> searchHistoryList = [];

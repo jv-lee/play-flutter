@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/page_state.dart';
+import 'package:playflutter/base/base_page_state.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -11,7 +11,7 @@ class CoinPage extends StatefulWidget {
   State<StatefulWidget> createState() => _CoinPageState();
 }
 
-class _CoinPageState extends PageState<CoinPage> {
+class _CoinPageState extends BasePageState<CoinPage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

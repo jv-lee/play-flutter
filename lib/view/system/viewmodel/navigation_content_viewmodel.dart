@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/entity/navigation_tab.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/tools/log_tools.dart';
@@ -11,7 +11,7 @@ import 'package:playflutter/widget/scroll/scroll_to_index.dart';
 /// @author jv.lee
 /// @date 2022/6/30
 /// @description 体系tab navigationContent数据viewModel
-class NavigationContentViewModel extends ViewModel {
+class NavigationContentViewModel extends BaseViewModel {
   final _model = SystemModel();
 
   // 当前tab选中index

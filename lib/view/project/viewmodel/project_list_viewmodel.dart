@@ -1,4 +1,4 @@
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/entity/content.dart';
 import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/paging.dart';
@@ -8,7 +8,7 @@ import 'package:playflutter/view/project/model/project_model.dart';
 /// @author jv.lee
 /// @date 2022/7/26
 /// @description
-class ProjectListViewModel extends ViewModel {
+class ProjectListViewModel extends BaseViewModel {
   final ProjectModel _model = ProjectModel();
   late int id;
   late Paging<Content> paging;

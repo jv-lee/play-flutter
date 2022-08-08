@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/entity/content.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_strings.dart';
@@ -14,7 +14,7 @@ import 'package:toast/toast.dart';
 /// @author jv.lee
 /// @date 2022/6/29
 /// @description
-class SquareViewModel extends ViewModel {
+class SquareViewModel extends BaseViewModel {
   final _model = SquareModel();
   late AccountService accountService;
   late VoidCallback _accountListener;

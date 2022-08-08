@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/page_state.dart';
+import 'package:playflutter/base/base_page_state.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/provider/dark_mode_provider.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
@@ -18,7 +18,7 @@ class SettingsPage extends StatefulWidget {
   State<StatefulWidget> createState() => _SettingsState();
 }
 
-class _SettingsState extends PageState<SettingsPage> {
+class _SettingsState extends BasePageState<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return buildViewModel<SettingsViewModel>(

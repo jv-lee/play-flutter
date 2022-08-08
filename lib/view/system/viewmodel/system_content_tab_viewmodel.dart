@@ -1,9 +1,9 @@
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 
 /// @author jv.lee
 /// @date 2022/7/26
 /// @description
-class SystemContentTabViewModel extends ViewModel {
+class SystemContentTabViewModel extends BaseViewModel {
   SystemContentTabViewModel(super.context);
 
 

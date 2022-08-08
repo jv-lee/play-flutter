@@ -1,9 +1,9 @@
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
 /// @description 积分页面viewModel
-class CoinViewModel extends ViewModel{
+class CoinViewModel extends BaseViewModel{
   CoinViewModel(super.context);
 
   @override

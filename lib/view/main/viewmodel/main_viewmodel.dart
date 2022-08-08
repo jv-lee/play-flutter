@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/view/main/model/entity/main_tab_page.dart';
 
 /// @author jv.lee
 /// @date 2022/8/2
 /// @description
-class MainViewModel extends ViewModel {
+class MainViewModel extends BaseViewModel {
   MainViewModel(super.context);
 
   int tabIndex = 0;

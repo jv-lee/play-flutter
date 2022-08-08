@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/page_state.dart';
+import 'package:playflutter/base/base_page_state.dart';
 import 'package:playflutter/entity/parent_tab.dart';
 import 'package:playflutter/view/system/system_content_list.dart';
 
@@ -16,7 +16,7 @@ class SystemContentTabPage extends StatefulWidget {
 }
 
 class _SystemContentTabState
-    extends PageState<SystemContentTabPage> {
+    extends BasePageState<SystemContentTabPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

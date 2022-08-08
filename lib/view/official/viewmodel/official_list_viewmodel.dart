@@ -1,4 +1,4 @@
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/entity/content.dart';
 import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/paging.dart';
@@ -8,7 +8,7 @@ import 'package:playflutter/view/official/model/official_model.dart';
 /// @author jv.lee
 /// @date 2022/7/26
 /// @description
-class OfficialListViewModel extends ViewModel {
+class OfficialListViewModel extends BaseViewModel {
   final OfficialModel _model = OfficialModel();
   late int id;
   late Paging<Content> paging;

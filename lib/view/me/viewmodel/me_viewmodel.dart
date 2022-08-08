@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/theme/theme_strings.dart';
@@ -12,7 +12,7 @@ import 'package:toast/toast.dart';
 /// @author jv.lee
 /// @date 2022/7/15
 /// @description
-class MeViewModel extends ViewModel {
+class MeViewModel extends BaseViewModel {
   late AccountService accountService;
   late VoidCallback _accountListener;
   List<MeItem> meItems = MeItem.getMeItems();

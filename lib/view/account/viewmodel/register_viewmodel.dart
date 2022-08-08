@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/view/account/model/account_model.dart';
 import 'package:playflutter/view/account/service/account_service.dart';
 import 'package:playflutter/widget/dialog/loading_dialog.dart';
@@ -11,7 +11,7 @@ import 'package:toast/toast.dart';
 /// @author jv.lee
 /// @date 2022/7/15
 /// @description 注册页面 viewModel
-class RegisterViewModel extends ViewModel {
+class RegisterViewModel extends BaseViewModel {
   final accountModel = AccountModel();
   final viewStates = _RegisterViewState();
 

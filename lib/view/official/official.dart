@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/page_state.dart';
+import 'package:playflutter/base/base_page_state.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/official/official_list.dart';
@@ -16,7 +16,7 @@ class OfficialPage extends StatefulWidget {
   State<StatefulWidget> createState() => _OfficialState();
 }
 
-class _OfficialState extends PageState<OfficialPage> {
+class _OfficialState extends BasePageState<OfficialPage> {
   @override
   Widget build(BuildContext context) {
     return buildViewModel<OfficialViewModel>(

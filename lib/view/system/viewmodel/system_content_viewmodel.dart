@@ -1,4 +1,4 @@
-import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/entity/parent_tab.dart';
 import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/paging.dart';
@@ -8,7 +8,7 @@ import 'package:playflutter/view/system/model/system_model.dart';
 /// @author jv.lee
 /// @date 2022/6/30
 /// @description 体系tab systemContent数据viewModel
-class SystemContentViewModel extends ViewModel {
+class SystemContentViewModel extends BaseViewModel {
   final _model = SystemModel();
 
   late Paging<ParentTab> paging;

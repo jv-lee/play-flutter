@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/page_state.dart';
+import 'package:playflutter/base/base_page_state.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/view/main/viewmodel/main_viewmodel.dart';
 import 'package:playflutter/widget/common/app_back_pop_scope.dart';
@@ -14,7 +14,7 @@ class MainPage extends StatefulWidget {
   State<StatefulWidget> createState() => _MainState();
 }
 
-class _MainState extends PageState<MainPage> {
+class _MainState extends BasePageState<MainPage> {
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/page_state.dart';
+import 'package:playflutter/base/base_page_state.dart';
 import 'package:playflutter/entity/details.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
@@ -21,7 +21,7 @@ class DetailsPage extends StatefulWidget {
   State<StatefulWidget> createState() => _DetailsState();
 }
 
-class _DetailsState extends PageState<DetailsPage> {
+class _DetailsState extends BasePageState<DetailsPage> {
   WebViewController? webViewController;
   var progressVisible = true;
   var progress = 0;

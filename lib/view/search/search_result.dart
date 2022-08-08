@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/page_state.dart';
+import 'package:playflutter/base/base_page_state.dart';
 import 'package:playflutter/entity/content.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
@@ -20,7 +20,7 @@ class SearchResultPage extends StatefulWidget {
   State<StatefulWidget> createState() => _SearchResultState();
 }
 
-class _SearchResultState extends PageState<SearchResultPage> {
+class _SearchResultState extends BasePageState<SearchResultPage> {
   @override
   Widget build(BuildContext context) {
     return buildViewModel<SearchResultViewModel>(

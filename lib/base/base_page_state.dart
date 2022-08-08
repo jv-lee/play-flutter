@@ -8,7 +8,7 @@ import 'package:toast/toast.dart';
 /// @author jv.lee
 /// @date 2022/8/2
 /// @description 具有页面生命周期的pageState
-abstract class PageState<T extends StatefulWidget> extends State<T>
+abstract class BasePageState<T extends StatefulWidget> extends State<T>
     with RouteAware, WidgetsBindingObserver {
   var _hasAddResumeChange = true;
   var _hasAddPauseChange = true;

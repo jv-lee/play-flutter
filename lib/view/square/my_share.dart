@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/page_state.dart';
+import 'package:playflutter/base/base_page_state.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
@@ -19,7 +19,7 @@ class MySharePage extends StatefulWidget {
   State<StatefulWidget> createState() => _MySharePageState();
 }
 
-class _MySharePageState extends PageState<MySharePage> {
+class _MySharePageState extends BasePageState<MySharePage> {
   @override
   Widget build(BuildContext context) {
     return buildViewModel<MyShareViewModel>(
