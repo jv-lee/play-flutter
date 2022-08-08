@@ -4,8 +4,6 @@ import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/project/model/project_model.dart';
-import 'package:playflutter/widget/status/status.dart';
-import 'package:playflutter/widget/status/status_controller.dart';
 
 /// @author jv.lee
 /// @date 2022/7/26
@@ -19,11 +17,7 @@ class ProjectListViewModel extends ViewModel {
 
   @override
   void init() {
-    paging = Paging(
-        data: [],
-        initPage: 1,
-        notify: notifyListeners,
-        statusController: StatusController(pageStatus: PageStatus.loading));
+    paging = Paging.build(notifier: this, initPage: 1);
     requestData(LoadStatus.refresh);
   }
 
@@ -33,7 +27,7 @@ class ProjectListViewModel extends ViewModel {
   }
 
   void requestData(LoadStatus status) async {
-    LogTools.log("ProjectList","requestData id $id - $status");
+    LogTools.log("ProjectList", "requestData id $id - $status");
 
     // request square list data.
     paging.requestData(

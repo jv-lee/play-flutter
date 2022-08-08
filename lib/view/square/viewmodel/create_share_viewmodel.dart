@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/viewmodel.dart';
 import 'package:playflutter/theme/theme_strings.dart';
-import 'package:playflutter/view/square/model/SquareModel.dart';
+import 'package:playflutter/view/square/model/square_model.dart';
 import 'package:playflutter/widget/dialog/loading_dialog.dart';
 import 'package:toast/toast.dart';
 

@@ -1,3 +1,6 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+
+import 'package:flutter/material.dart';
 import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/widget/status/status.dart';
@@ -20,6 +23,19 @@ class Paging<T> {
     required this.statusController,
   }) {
     _page = initPage;
+  }
+
+  static Paging<T> build<T>(
+      {required ChangeNotifier notifier,
+      List<T>? data,
+      int? initPage,
+      StatusController? statusController}) {
+    return Paging(
+        data: data ?? [],
+        initPage: initPage ?? 0,
+        notify: notifier.notifyListeners,
+        statusController: statusController ??
+            StatusController(pageStatus: PageStatus.loading));
   }
 
   requestData(LoadStatus status,

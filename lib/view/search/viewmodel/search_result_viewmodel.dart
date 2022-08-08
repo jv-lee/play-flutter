@@ -5,8 +5,6 @@ import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/search/model/search_model.dart';
 import 'package:playflutter/view/search/search.dart';
-import 'package:playflutter/widget/status/status.dart';
-import 'package:playflutter/widget/status/status_controller.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -21,11 +19,7 @@ class SearchResultViewModel extends ViewModel {
 
   @override
   void init() {
-    paging = Paging(
-        data: [],
-        initPage: 0,
-        notify: notifyListeners,
-        statusController: StatusController(pageStatus: PageStatus.loading));
+    paging = Paging.build(notifier: this);
 
     runViewContext((context) {
       final arguments =

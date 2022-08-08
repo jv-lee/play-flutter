@@ -7,9 +7,7 @@ import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/account/service/account_service.dart';
-import 'package:playflutter/view/square/model/SquareModel.dart';
-import 'package:playflutter/widget/status/status.dart';
-import 'package:playflutter/widget/status/status_controller.dart';
+import 'package:playflutter/view/square/model/square_model.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 
@@ -28,11 +26,7 @@ class SquareViewModel extends ViewModel {
   void init() {
     accountService = context.read<AccountService>();
     accountService.addListener(_accountListener = () => notifyListeners());
-    paging = Paging(
-        data: [],
-        initPage: 0,
-        notify: notifyListeners,
-        statusController: StatusController(pageStatus: PageStatus.loading));
+    paging = Paging.build(notifier: this);
     requestData(LoadStatus.refresh);
   }
 

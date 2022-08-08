@@ -50,7 +50,10 @@ class ContentDataPage extends PagingData<Content> {
 
   ContentDataPage.fromJson(Map<String, dynamic> json) {
     curPage = json['curPage'];
-    datas = List.from(json['datas']).map((e) => Content.fromJson(e)).toList();
+    var dataJson = json['datas'];
+    datas = dataJson == null
+        ? []
+        : List.from(dataJson).map((e) => Content.fromJson(e)).toList();
     offset = json['offset'];
     over = json['over'];
     pageCount = json['pageCount'];
@@ -158,39 +161,42 @@ class Content {
   late final int zan;
 
   Content.fromJson(Map<String, dynamic> json) {
-    apkLink = json['apkLink'];
-    audit = json['audit'];
-    author = json['author'];
-    canEdit = json['canEdit'];
-    chapterId = json['chapterId'];
-    chapterName = json['chapterName'];
-    collect = json['collect'];
-    courseId = json['courseId'];
-    desc = json['desc'];
-    descMd = json['descMd'];
-    envelopePic = json['envelopePic'];
-    fresh = json['fresh'];
-    host = json['host'];
-    id = json['id'];
-    link = json['link'];
-    niceDate = json['niceDate'];
-    niceShareDate = json['niceShareDate'];
-    origin = json['origin'];
-    prefix = json['prefix'];
-    projectLink = json['projectLink'];
-    publishTime = json['publishTime'];
-    realSuperChapterId = json['realSuperChapterId'];
-    selfVisible = json['selfVisible'];
-    shareDate = json['shareDate'];
-    shareUser = json['shareUser'];
-    superChapterId = json['superChapterId'];
-    superChapterName = json['superChapterName'];
-    tags = List.from(json['tags']).map((e) => Tags.fromJson(e)).toList();
-    title = json['title'];
-    type = json['type'];
-    userId = json['userId'];
-    visible = json['visible'];
-    zan = json['zan'];
+    apkLink = json['apkLink'] ?? "";
+    audit = json['audit'] ?? 0;
+    author = json['author'] ?? "";
+    canEdit = json['canEdit'] ?? false;
+    chapterId = json['chapterId'] ?? 0;
+    chapterName = json['chapterName'] ?? "";
+    collect = json['collect'] ?? false;
+    courseId = json['courseId'] ?? 0;
+    desc = json['desc'] ?? "";
+    descMd = json['descMd'] ?? "";
+    envelopePic = json['envelopePic'] ?? "";
+    fresh = json['fresh'] ?? false;
+    host = json['host'] ?? "";
+    id = json['id'] ?? 0;
+    link = json['link'] ?? "";
+    niceDate = json['niceDate'] ?? "";
+    niceShareDate = json['niceShareDate'] ?? "";
+    origin = json['origin'] ?? "";
+    prefix = json['prefix'] ?? "";
+    projectLink = json['projectLink'] ?? "";
+    publishTime = json['publishTime'] ?? 0;
+    realSuperChapterId = json['realSuperChapterId'] ?? 0;
+    selfVisible = json['selfVisible'] ?? 0;
+    shareDate = json['shareDate'] ?? 0;
+    shareUser = json['shareUser'] ?? "";
+    superChapterId = json['superChapterId'] ?? 0;
+    superChapterName = json['superChapterName'] ?? "";
+    var tagsJson = json['tags'];
+    tags = tagsJson == null
+        ? []
+        : List.from(tagsJson).map((e) => Tags.fromJson(e)).toList();
+    title = json['title'] ?? "";
+    type = json['type'] ?? 0;
+    userId = json['userId'] ?? 0;
+    visible = json['visible'] ?? 0;
+    zan = json['zan'] ?? 0;
   }
 
   Map<String, dynamic> toJson() {

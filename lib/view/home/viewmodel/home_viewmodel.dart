@@ -7,8 +7,6 @@ import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/home/model/entity/home_category.dart';
 import 'package:playflutter/view/home/model/home_model.dart';
-import 'package:playflutter/widget/status/status.dart';
-import 'package:playflutter/widget/status/status_controller.dart';
 
 /// @author jv.lee
 /// @date 2022/6/23
@@ -27,11 +25,7 @@ class HomeViewModel extends ViewModel {
   @override
   void init() {
     swiperController = SwiperController();
-    paging = Paging(
-        data: [],
-        initPage: 0,
-        notify: notifyListeners,
-        statusController: StatusController(pageStatus: PageStatus.loading));
+    paging = Paging.build(notifier: this);
     requestData(LoadStatus.refresh);
   }
 
