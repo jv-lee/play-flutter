@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:playflutter/base/base_model_service.dart';
+import 'package:playflutter/base/base_module_service.dart';
 import 'package:playflutter/model/entity/account.dart';
 import 'package:playflutter/model/http/constants/api_constants.dart';
 import 'package:playflutter/theme/theme_constants.dart';
@@ -14,8 +14,8 @@ import '../../../widget/dialog/loading_dialog.dart';
 
 /// @author jv.lee
 /// @date 2022/8/3
-/// @description
-class AccountService extends ModuleService {
+/// @description 账户服务，应用存活期间常驻，全模块可调用账户服务
+class AccountService extends BaseModuleService {
   final _model = AccountModel();
   final viewStates = AccountViewState();
 
