@@ -1,15 +1,35 @@
 import 'package:playflutter/base/viewmodel.dart';
+import 'package:playflutter/entity/content.dart';
+import 'package:playflutter/tools/log_tools.dart';
+import 'package:playflutter/tools/paging/paging.dart';
+import 'package:playflutter/tools/paging/paging_data.dart';
+import 'package:playflutter/view/square/model/square_model.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
 /// @description 我的分享页面viewModel
 class MyShareViewModel extends ViewModel {
+  final _model = SquareModel();
+  late Paging<Content> paging;
+
   MyShareViewModel(super.context);
 
+  @override
+  void init() {
+    paging = Paging.build(notifier: this, initPage: 1);
+    requestData(LoadStatus.refresh);
+  }
 
   @override
-  void init() {}
+  void onCleared() {
+    paging.dispose();
+  }
 
-  @override
-  void onCleared() {}
+  void requestData(LoadStatus status) async {
+    LogTools.log("MyShare", "requestData - $status");
+
+    // request square list data.
+    paging.requestData(status,
+        (page) => _model.getMyShareDataSync(page).then((value) => value.data));
+  }
 }
