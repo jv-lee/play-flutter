@@ -13,15 +13,7 @@ import 'package:playflutter/widget/scroll/scroll_to_index.dart';
 /// @description 体系tab navigationContent数据viewModel
 class NavigationContentViewModel extends BaseViewModel {
   final _model = SystemModel();
-
-  // 当前tab选中index
-  var tabSelectedIndex = 0;
-
-  // 当前tab点击锁定状态（锁定后滚动监听事件不处理）
-  var isChangeTab = true;
-
-  ScrollController tabScrollController = ScrollController();
-  ScrollToIndexController tagScrollController = ScrollToIndexController();
+  final viewStates = _NavigationContentViewState();
   late Paging<NavigationTab> paging;
 
   NavigationContentViewModel(super.context);
@@ -34,8 +26,8 @@ class NavigationContentViewModel extends BaseViewModel {
 
   @override
   void onCleared() {
-    tabScrollController.dispose();
-    tagScrollController.dispose();
+    viewStates.tabScrollController.dispose();
+    viewStates.tagScrollController.dispose();
   }
 
   void requestData() async {
@@ -50,26 +42,34 @@ class NavigationContentViewModel extends BaseViewModel {
 
   /// tab点击切换index选中状态
   void changeTabIndex(int index) {
-    isChangeTab = false;
-    tagScrollController.jumpTo(index);
-    tabSelectedIndex = index;
-    isChangeTab = true;
+    viewStates.isChangeTab = false;
+    viewStates.tagScrollController.jumpTo(index);
+    viewStates.tabSelectedIndex = index;
+    viewStates.isChangeTab = true;
     notifyListeners();
   }
 
   /// tag列表滚动监听当前显示index动态更新tab选中
   void changeTagIndex(int index) {
     // 当前tab点击切换锁定滚动状态时 和 index重复change时不进行处理
-    if (isChangeTab && index != tabSelectedIndex) {
+    if (viewStates.isChangeTab && index != viewStates.tabSelectedIndex) {
       var scrollOffset = ThemeDimens.system_navigation_tab_height * index;
       // 限制滚动最大值
-      if (scrollOffset >= tabScrollController.position.maxScrollExtent) {
-        scrollOffset = tabScrollController.position.maxScrollExtent;
+      if (scrollOffset >=
+          viewStates.tabScrollController.position.maxScrollExtent) {
+        scrollOffset = viewStates.tabScrollController.position.maxScrollExtent;
       }
 
-      tabScrollController.jumpTo(scrollOffset);
-      tabSelectedIndex = index;
+      viewStates.tabScrollController.jumpTo(scrollOffset);
+      viewStates.tabSelectedIndex = index;
       notifyListeners();
     }
   }
+}
+
+class _NavigationContentViewState {
+  var tabSelectedIndex = 0; // 当前tab选中index
+  var isChangeTab = true; // 当前tab点击锁定状态（锁定后滚动监听事件不处理）
+  ScrollController tabScrollController = ScrollController();
+  ScrollToIndexController tagScrollController = ScrollToIndexController();
 }

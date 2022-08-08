@@ -23,22 +23,22 @@ class _MainState extends BasePageState<MainPage> {
         viewBuild: (context, viewModel) => AppBackPopScope(
             child: Scaffold(
                 body: PageView.builder(
-                    itemCount: viewModel.mainTabPages.length,
-                    controller: viewModel.pageController,
+                    itemCount: viewModel.viewStates.mainTabPages.length,
+                    controller: viewModel.viewStates.pageController,
                     physics: const NeverScrollableScrollPhysics(),
                     //静止PageView滑动
                     itemBuilder: (BuildContext context, int index) {
-                      return viewModel.mainTabPages[index].page;
+                      return viewModel.viewStates.mainTabPages[index].page;
                     }),
                 bottomNavigationBar: BottomNavigationBar(
-                    items: viewModel.mainTabPages
+                    items: viewModel.viewStates.mainTabPages
                         .map((e) => BottomNavigationBarItem(
                             icon: Icon(e.normalIcon),
                             activeIcon: Icon(e.pressIcon),
                             label: e.label))
                         .toList(),
                     type: BottomNavigationBarType.fixed,
-                    currentIndex: viewModel.tabIndex,
+                    currentIndex: viewModel.viewStates.tabIndex,
                     iconSize: 28.0,
                     showSelectedLabels: false,
                     showUnselectedLabels: false,

@@ -23,7 +23,7 @@ class _ProjectState extends BasePageState<ProjectPage> {
         create: (context) => ProjectViewModel(context),
         viewBuild: (context, viewModel) {
           TabBar? tabBar;
-          final tabList = viewModel.tabList;
+          final tabList = viewModel.viewStates.tabList;
           if (tabList.isNotEmpty) {
             tabBar = TabBar(
                 isScrollable: true,
@@ -40,7 +40,7 @@ class _ProjectState extends BasePageState<ProjectPage> {
                   bottom: tabBar,
                 ),
                 body: StatusPage(
-                    status: viewModel.pageStatus,
+                    status: viewModel.viewStates.pageStatus,
                     reLoadFun: () => viewModel.requestTabData(),
                     child: TabBarView(
                         children: tabList

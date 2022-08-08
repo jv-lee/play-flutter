@@ -78,7 +78,7 @@ class _SearchState extends BasePageState<SearchPage> {
   }
 
   Widget buildSearchHotFlow(SearchViewModel viewModel) {
-    var widgets = viewModel.searchHots
+    var widgets = viewModel.viewStates.searchHots
         .map((e) => buildSearchHotFlowItem(viewModel, e))
         .toList();
 
@@ -162,7 +162,7 @@ class _SearchState extends BasePageState<SearchPage> {
   }
 
   Widget buildSearchHistoryList(SearchViewModel viewModel) {
-    var searchHistoryList = viewModel.searchHistoryList
+    var searchHistoryList = viewModel.viewStates.searchHistoryList
         .map((e) => buildSearchHistoryItem(viewModel, e))
         .toList();
 
@@ -178,7 +178,7 @@ class _SearchState extends BasePageState<SearchPage> {
   }
 
   Widget buildSearchHistoryEmpty(SearchViewModel viewModel) {
-    if (viewModel.searchHistoryList.isEmpty) {
+    if (viewModel.viewStates.searchHistoryList.isEmpty) {
       return SizedBox(
         width: double.infinity,
         child: Padding(

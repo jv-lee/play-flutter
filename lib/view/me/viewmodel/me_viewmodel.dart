@@ -15,7 +15,7 @@ import 'package:toast/toast.dart';
 class MeViewModel extends BaseViewModel {
   late AccountService accountService;
   late VoidCallback _accountListener;
-  List<MeItem> meItems = MeItem.getMeItems();
+
   var viewStates = _MeViewState();
 
   MeViewModel(super.context);
@@ -78,4 +78,5 @@ class _MeViewState {
   String userName = ThemeStrings.me_account_default_text;
   String userDesc = "";
   bool isLogin = false;
+  List<MeItem> meItems = MeItem.getMeItems();
 }

@@ -51,14 +51,14 @@ class _NavigationContentState extends BasePageState<NavigationContentPage>
   Widget buildTabList(NavigationContentViewModel viewModel) {
     return OverscrollHideContainer(
         scrollChild: ListView.builder(
-            controller: viewModel.tabScrollController,
+            controller: viewModel.viewStates.tabScrollController,
             padding: EdgeInsets.zero,
             itemCount: viewModel.paging.data.length,
             itemBuilder: (context, index) {
               var item = viewModel.paging.data[index];
               return NavigationTabItem(
                 navigationTab: item,
-                isSelected: viewModel.tabSelectedIndex == index,
+                isSelected: viewModel.viewStates.tabSelectedIndex == index,
                 onItemClick: (content) => {viewModel.changeTabIndex(index)},
               );
             }));
@@ -68,7 +68,7 @@ class _NavigationContentState extends BasePageState<NavigationContentPage>
     return OverscrollHideContainer(
         scrollChild: ScrollToIndexList(
       topDistance: -StatusTools.getStatusHeight(),
-      controller: viewModel.tagScrollController,
+      controller: viewModel.viewStates.tagScrollController,
       list: viewModel.paging.data,
       itemBuilder: (context, index) {
         var item = viewModel.paging.data[index];

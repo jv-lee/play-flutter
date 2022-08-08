@@ -10,8 +10,7 @@ import 'package:playflutter/widget/status/status.dart';
 /// @description
 class OfficialViewModel extends BaseViewModel {
   final OfficialModel _model = OfficialModel();
-  late var pageStatus = PageStatus.loading;
-  late var tabList = <Tab>[];
+  final viewStates = _OfficialViewState();
 
   OfficialViewModel(super.context);
 
@@ -30,16 +29,21 @@ class OfficialViewModel extends BaseViewModel {
         requestFuture: _model.getOfficialTabDataAsync(),
         callback: (value) {
           if (value.data.isEmpty) {
-            pageStatus = PageStatus.empty;
+            viewStates.pageStatus = PageStatus.empty;
           } else {
-            tabList = value.data;
-            pageStatus = PageStatus.completed;
+            viewStates.tabList = value.data;
+            viewStates.pageStatus = PageStatus.completed;
           }
           notifyListeners();
         },
         onError: (error) {
-          pageStatus = PageStatus.error;
+          viewStates.pageStatus = PageStatus.error;
           notifyListeners();
         });
   }
+}
+
+class _OfficialViewState {
+  var pageStatus = PageStatus.loading;
+  var tabList = <Tab>[];
 }

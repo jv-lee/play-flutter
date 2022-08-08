@@ -13,36 +13,31 @@ import 'package:playflutter/view/home/model/home_model.dart';
 /// @description home页面viewModel
 class HomeViewModel extends BaseViewModel {
   final _model = HomeModel();
-
-  late SwiperController swiperController;
+  final viewStates = _HomeViewState();
   late Paging<Content> paging;
-  int bannerIndex = 0;
-  List<BannerItem> bannerList = [];
-  List<HomeCategory> categoryList = [];
 
   HomeViewModel(super.context);
 
   @override
   void init() {
-    swiperController = SwiperController();
     paging = Paging.build(notifier: this);
     requestData(LoadStatus.refresh);
   }
 
   @override
   void onCleared() {
-    swiperController.dispose();
+    viewStates.swiperController.dispose();
     paging.dispose();
   }
 
   @override
   void onResume() {
-    swiperController.startAutoplay();
+    viewStates.swiperController.startAutoplay();
   }
 
   @override
   void onPause() {
-    swiperController.stopAutoplay();
+    viewStates.swiperController.stopAutoplay();
   }
 
   void requestData(LoadStatus status) async {
@@ -52,11 +47,11 @@ class HomeViewModel extends BaseViewModel {
       BannerData banner = await _model
           .getBannerDataAsync()
           .catchError((error) => paging.submitFailed());
-      bannerList.clear();
-      bannerList.addAll(banner.data);
+      viewStates.bannerList.clear();
+      viewStates.bannerList.addAll(banner.data);
 
-      categoryList.clear();
-      categoryList.addAll(HomeCategory.getHomeCategory());
+      viewStates.categoryList.clear();
+      viewStates.categoryList.addAll(HomeCategory.getHomeCategory());
     }
 
     // request content list data.
@@ -65,7 +60,14 @@ class HomeViewModel extends BaseViewModel {
   }
 
   void changeBannerIndex(int index) {
-    bannerIndex = index;
+    viewStates.bannerIndex = index;
     notifyListeners();
   }
+}
+
+class _HomeViewState {
+  int bannerIndex = 0;
+  List<BannerItem> bannerList = [];
+  List<HomeCategory> categoryList = [];
+  SwiperController swiperController = SwiperController();
 }

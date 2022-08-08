@@ -58,7 +58,7 @@ class _SplashState extends BasePageState<SplashPage> {
 
   Widget buildSplashAd(SplashViewModel viewModel) {
     return Visibility(
-        visible: viewModel.splashAdVisible,
+        visible: viewModel.viewStates.splashAdVisible,
         child: Stack(
           children: [
             Container(
@@ -78,7 +78,7 @@ class _SplashState extends BasePageState<SplashPage> {
                         ThemeDimens.offset_small,
                     right: ThemeDimens.offset_large),
                 child: TimeReadyButton(
-                  isStart: viewModel.splashAdVisible,
+                  isStart: viewModel.viewStates.splashAdVisible,
                   onEnd: () => Navigator.pop(context),
                 ),
               ),

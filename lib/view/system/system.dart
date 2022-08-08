@@ -39,9 +39,9 @@ class _SystemState extends BasePageState<SystemPage>
       height: ThemeDimens.toolbar_height,
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         buildTab(viewModel, ThemeStrings.system_system_tab,
-            viewModel.selectedIndex == 0, () => {viewModel.pageChange(0)}),
+            viewModel.viewStates.selectedIndex == 0, () => {viewModel.pageChange(0)}),
         buildTab(viewModel, ThemeStrings.system_navigation_tab,
-            viewModel.selectedIndex == 1, () => {viewModel.pageChange(1)})
+            viewModel.viewStates.selectedIndex == 1, () => {viewModel.pageChange(1)})
       ]),
     ));
   }
@@ -83,12 +83,12 @@ class _SystemState extends BasePageState<SystemPage>
   Widget buildPage(SystemViewModel viewModel) {
     return OverscrollHideContainer(
         scrollChild: PageView.builder(
-      itemCount: viewModel.pageList.length,
-      controller: viewModel.pageController,
+      itemCount: viewModel.viewStates.pageList.length,
+      controller: viewModel.viewStates.pageController,
       // physics: const NeverScrollableScrollPhysics(), //静止PageView滑动
       onPageChanged: (page) => {viewModel.tabChange(page)},
       itemBuilder: (BuildContext context, int index) {
-        return viewModel.pageList[index];
+        return viewModel.viewStates.pageList[index];
       },
     ));
   }

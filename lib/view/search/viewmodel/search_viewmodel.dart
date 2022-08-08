@@ -11,8 +11,7 @@ import 'package:playflutter/view/search/search.dart';
 /// @description 搜索页面viewModel
 class SearchViewModel extends BaseViewModel {
   final SearchHistoryDao _dao = SearchHistoryDao();
-  List<SearchHot> searchHots = SearchHot.getSearchHots();
-  List<SearchHistory> searchHistoryList = [];
+  final viewStates = _SearchViewState();
 
   SearchViewModel(super.context);
 
@@ -32,21 +31,26 @@ class SearchViewModel extends BaseViewModel {
   }
 
   void deleteSearchHistory(SearchHistory history) {
-    if (searchHistoryList.isEmpty) return;
+    if (viewStates.searchHistoryList.isEmpty) return;
     _dao.delete(history.searchKey);
     _requestSearchHistoryList();
   }
 
   void clearSearchHistory() {
-    if (searchHistoryList.isEmpty) return;
+    if (viewStates.searchHistoryList.isEmpty) return;
     _dao.deleteAll();
     _requestSearchHistoryList();
   }
 
   void _requestSearchHistoryList() {
     _dao.queryAll().then((value) {
-      searchHistoryList = value;
+      viewStates.searchHistoryList = value;
       notifyListeners();
     });
   }
+}
+
+class _SearchViewState {
+  List<SearchHot> searchHots = SearchHot.getSearchHots();
+  List<SearchHistory> searchHistoryList = [];
 }

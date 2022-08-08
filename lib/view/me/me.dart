@@ -89,7 +89,7 @@ class _MeState extends BasePageState<MePage>
   }
 
   Widget buildLineItemList(MeViewModel viewModel) {
-    var widgets = viewModel.meItems
+    var widgets = viewModel.viewStates.meItems
         .map((e) => Padding(
               padding: const EdgeInsets.only(top: 1),
               child: ProfileItem(

@@ -100,13 +100,13 @@ class _HomeState extends BasePageState<HomePage>
 
   Widget buildBanner(
       HomeViewModel viewModel, Function(BannerItem) onItemClick) {
-    var bannerList = viewModel.bannerList;
-    var bannerIndex = viewModel.bannerIndex;
+    var bannerList = viewModel.viewStates.bannerList;
+    var bannerIndex = viewModel.viewStates.bannerIndex;
     if (bannerList.isEmpty) {
       return Container();
     } else {
       return AppBanner(
-          controller: viewModel.swiperController,
+          controller: viewModel.viewStates.swiperController,
           index: bannerIndex,
           count: bannerList.length,
           onIndexChanged: (index) => viewModel.changeBannerIndex(index),
@@ -117,7 +117,7 @@ class _HomeState extends BasePageState<HomePage>
 
   Widget buildCategory(
       HomeViewModel viewModel, Function(HomeCategory) onItemClick) {
-    var categoryList = viewModel.categoryList;
+    var categoryList = viewModel.viewStates.categoryList;
     if (categoryList.isEmpty) {
       return Container();
     } else {

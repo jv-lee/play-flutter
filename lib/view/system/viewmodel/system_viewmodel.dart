@@ -7,30 +7,38 @@ import 'package:playflutter/view/system/system_content.dart';
 /// @date 2022/6/30
 /// @description 体系tab viewModel
 class SystemViewModel extends BaseViewModel {
-  var selectedIndex = 0;
-  var pageList = const [SystemContentPage(), NavigationContentPage()];
-  late PageController pageController;
+  final viewStates = _SystemViewState(initIndex: 0);
 
   SystemViewModel(super.context);
 
   @override
-  void init() {
-    pageController = PageController(initialPage: selectedIndex, keepPage: true);
-  }
+  void init() {}
 
   @override
   void onCleared() {
-    pageController.dispose();
+    viewStates.pageController.dispose();
   }
 
   void pageChange(int index) {
-    pageController.jumpToPage(index);
-    selectedIndex = index;
+    viewStates.pageController.jumpToPage(index);
+    viewStates.selectedIndex = index;
     notifyListeners();
   }
 
   void tabChange(int index) {
-    selectedIndex = index;
+    viewStates.selectedIndex = index;
     notifyListeners();
+  }
+}
+
+class _SystemViewState {
+  late var selectedIndex = 0;
+  late List<Widget> pageList;
+  late PageController pageController;
+
+  _SystemViewState({required int initIndex}) {
+    selectedIndex = initIndex;
+    pageList = const [SystemContentPage(), NavigationContentPage()];
+    pageController = PageController(initialPage: selectedIndex, keepPage: true);
   }
 }

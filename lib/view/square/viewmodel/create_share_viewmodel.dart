@@ -12,8 +12,7 @@ import 'package:toast/toast.dart';
 /// @description 创建分享内容viewModel
 class CreateShareViewModel extends BaseViewModel {
   final SquareModel _model = SquareModel();
-  late String shareTitle = "";
-  late String shareLink = "";
+  final viewStates = _CreateShareViewState();
 
   CreateShareViewModel(super.context);
 
@@ -24,11 +23,11 @@ class CreateShareViewModel extends BaseViewModel {
   void onCleared() {}
 
   void changeShareTitle(text) {
-    shareTitle = text;
+    viewStates.shareTitle = text;
   }
 
   void changeShareLink(text) {
-    shareLink = text;
+    viewStates.shareLink = text;
   }
 
   void submitShare() {
@@ -41,14 +40,15 @@ class CreateShareViewModel extends BaseViewModel {
     // 隐藏输入框 延时发起逻辑
     FocusManager.instance.primaryFocus?.unfocus();
     Future.delayed(const Duration(milliseconds: 300), () {
-      if (shareTitle.isEmpty || shareLink.isEmpty) {
+      if (viewStates.shareTitle.isEmpty || viewStates.shareLink.isEmpty) {
         Navigator.of(context).pop();
         Toast.show("title || content is empty.");
         return;
       }
 
       // 提交请求
-      _model.postShareDataSync(shareTitle, shareLink).then((value) {
+      _model.postShareDataSync(viewStates.shareTitle, viewStates.shareLink)
+          .then((value) {
         Toast.show(ThemeStrings.square_share_request_success);
         Navigator.of(context).pop();
       }).catchError((onError) {
@@ -56,4 +56,9 @@ class CreateShareViewModel extends BaseViewModel {
       }).whenComplete(() => Navigator.of(context).pop());
     });
   }
+}
+
+class _CreateShareViewState {
+  String shareTitle = "";
+  String shareLink = "";
 }

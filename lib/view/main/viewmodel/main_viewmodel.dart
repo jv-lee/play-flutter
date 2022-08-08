@@ -8,23 +8,25 @@ import 'package:playflutter/view/main/model/entity/main_tab_page.dart';
 class MainViewModel extends BaseViewModel {
   MainViewModel(super.context);
 
-  int tabIndex = 0;
-  late PageController pageController;
-  final mainTabPages = MainTabPage.getMainTabPages();
+  final viewStates = _MainViewState();
 
   @override
-  void init() {
-    pageController = PageController(initialPage: 0);
-  }
+  void init() {}
 
   @override
   void onCleared() {
-    pageController.dispose();
+    viewStates.pageController.dispose();
   }
 
   void changeTab(index) {
-    tabIndex = index;
-    pageController.jumpToPage(index);
+    viewStates.tabIndex = index;
+    viewStates.pageController.jumpToPage(index);
     notifyListeners();
   }
+}
+
+class _MainViewState {
+  int tabIndex = 0;
+  PageController pageController = PageController(initialPage: 0);
+  final mainTabPages = MainTabPage.getMainTabPages();
 }

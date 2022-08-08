@@ -13,10 +13,10 @@ import 'package:toast/toast.dart';
 /// @date 2022/7/15
 /// @description 登陆页面 viewModel
 class LoginViewModel extends BaseViewModel {
-  LoginViewModel(super.context);
-
   final accountModel = AccountModel();
   final viewStates = _LoginViewState();
+
+  LoginViewModel(super.context);
 
   @override
   void init() {}

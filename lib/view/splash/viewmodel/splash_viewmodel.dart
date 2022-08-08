@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 class SplashViewModel extends BaseViewModel {
   SplashViewModel(super.context);
 
-  bool splashAdVisible = false;
+  final viewStates = _SplashViewState();
 
   @override
   void init() {
@@ -24,7 +24,7 @@ class SplashViewModel extends BaseViewModel {
     // 获取账户配置
     context.read<AccountService>().requestAccountData();
     // 显示splashAd
-    splashAdVisible = true;
+    viewStates.splashAdVisible = true;
     notifyListeners();
   }
 
@@ -35,4 +35,8 @@ class SplashViewModel extends BaseViewModel {
       return ThemeImages.splash_light_png;
     }
   }
+}
+
+class _SplashViewState {
+  var splashAdVisible = false;
 }
