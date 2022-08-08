@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:playflutter/base/base_model.dart';
-import 'package:playflutter/entity/account.dart';
-import 'package:playflutter/http/constants/api_constants.dart';
-import 'package:playflutter/http/http_manager.dart';
+import 'package:playflutter/model/entity/account.dart';
+import 'package:playflutter/model/http/constants/api_constants.dart';
+import 'package:playflutter/model/http/http_manager.dart';
 
 /// @author jv.lee
 /// @date 2022/8/3

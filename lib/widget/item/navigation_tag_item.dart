@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/entity/navigation_tab.dart';
+import 'package:playflutter/model/entity/navigation_tab.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 
 /// @author jv.lee

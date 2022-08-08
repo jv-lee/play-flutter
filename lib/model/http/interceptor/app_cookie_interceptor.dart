@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_declarations, non_constant_identifier_names
 import 'package:dio/dio.dart';
-import 'package:playflutter/http/constants/api_constants.dart';
+import 'package:playflutter/model/http/constants/api_constants.dart';
 import 'package:playflutter/tools/local_tools.dart';
 
 /// @author jv.lee

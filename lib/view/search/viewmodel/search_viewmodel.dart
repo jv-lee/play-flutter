@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
-import 'package:playflutter/db/dao/search_history_dao.dart';
-import 'package:playflutter/db/entity/search_history.dart';
+import 'package:playflutter/model/db/dao/search_history_dao.dart';
+import 'package:playflutter/model/db/entity/search_history.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/view/search/model/entity/search_hot.dart';
 import 'package:playflutter/view/search/search.dart';

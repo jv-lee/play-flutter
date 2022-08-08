@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_page_state.dart';
-import 'package:playflutter/entity/parent_tab.dart';
+import 'package:playflutter/model/entity/parent_tab.dart';
 import 'package:playflutter/view/system/system_content_list.dart';
 
 /// @author jv.lee

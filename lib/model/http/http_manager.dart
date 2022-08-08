@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:playflutter/http/constants/api_constants.dart';
-import 'package:playflutter/http/interceptor/app_cookie_interceptor.dart';
+import 'package:playflutter/model/http/constants/api_constants.dart';
+import 'package:playflutter/model/http/interceptor/app_cookie_interceptor.dart';
 
 /// @author jv.lee
 /// @date 2020/5/8

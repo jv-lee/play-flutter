@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/entity/content.dart';
+import 'package:playflutter/model/entity/content.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/widget/common/card_item_container.dart';

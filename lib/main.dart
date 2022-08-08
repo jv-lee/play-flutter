@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/db/database_manager.dart';
-import 'package:playflutter/http/http_manager.dart';
+import 'package:playflutter/model/db/database_manager.dart';
+import 'package:playflutter/model/http/http_manager.dart';
 import 'package:playflutter/manifest.dart';
 import 'package:playflutter/provider/dark_mode_provider.dart';
 import 'package:playflutter/route/route_names.dart';

@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:playflutter/base/base_model.dart';
-import 'package:playflutter/entity/content.dart';
-import 'package:playflutter/entity/navigation_tab.dart';
-import 'package:playflutter/entity/parent_tab.dart';
-import 'package:playflutter/http/http_manager.dart';
+import 'package:playflutter/model/entity/content.dart';
+import 'package:playflutter/model/entity/navigation_tab.dart';
+import 'package:playflutter/model/entity/parent_tab.dart';
+import 'package:playflutter/model/http/http_manager.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30

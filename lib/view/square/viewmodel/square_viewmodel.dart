@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
-import 'package:playflutter/entity/content.dart';
+import 'package:playflutter/model/entity/content.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/tools/log_tools.dart';

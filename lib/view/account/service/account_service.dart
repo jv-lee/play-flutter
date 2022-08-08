@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_model_service.dart';
-import 'package:playflutter/entity/account.dart';
-import 'package:playflutter/http/constants/api_constants.dart';
+import 'package:playflutter/model/entity/account.dart';
+import 'package:playflutter/model/http/constants/api_constants.dart';
 import 'package:playflutter/theme/theme_constants.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/tools/local_tools.dart';

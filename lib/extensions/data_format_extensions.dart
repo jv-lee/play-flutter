@@ -2,11 +2,11 @@
 /// @date 2022/6/28
 /// @description 数据实体转换扩展函数
 import 'package:html/parser.dart';
-import 'package:playflutter/entity/banner.dart';
-import 'package:playflutter/entity/content.dart';
-import 'package:playflutter/entity/details.dart';
-import 'package:playflutter/entity/navigation_tab.dart';
-import 'package:playflutter/entity/parent_tab.dart';
+import 'package:playflutter/model/entity/banner.dart';
+import 'package:playflutter/model/entity/content.dart';
+import 'package:playflutter/model/entity/details.dart';
+import 'package:playflutter/model/entity/navigation_tab.dart';
+import 'package:playflutter/model/entity/parent_tab.dart';
 import 'package:playflutter/tools/time_tools.dart';
 
 extension BannerExtensions on BannerItem {

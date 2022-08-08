@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/entity/parent_tab.dart';
+import 'package:playflutter/model/entity/parent_tab.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';

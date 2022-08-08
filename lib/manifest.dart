@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/entity/details.dart';
-import 'package:playflutter/entity/parent_tab.dart';
+import 'package:playflutter/model/entity/details.dart';
+import 'package:playflutter/model/entity/parent_tab.dart';
 import 'package:playflutter/route/route_animator.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/view/account/login.dart';

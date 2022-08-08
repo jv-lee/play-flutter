@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
-import 'package:playflutter/entity/navigation_tab.dart';
+import 'package:playflutter/model/entity/navigation_tab.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/paging.dart';

@@ -1,5 +1,5 @@
 import 'package:playflutter/base/base_viewmodel.dart';
-import 'package:playflutter/entity/content.dart';
+import 'package:playflutter/model/entity/content.dart';
 import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';

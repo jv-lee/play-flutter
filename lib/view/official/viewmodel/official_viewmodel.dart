@@ -1,5 +1,5 @@
 import 'package:playflutter/base/base_viewmodel.dart';
-import 'package:playflutter/entity/tab.dart';
+import 'package:playflutter/model/entity/tab.dart';
 import 'package:playflutter/theme/theme_constants.dart';
 import 'package:playflutter/tools/local_tools.dart';
 import 'package:playflutter/view/official/model/official_model.dart';

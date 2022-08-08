@@ -1,5 +1,5 @@
-import 'package:playflutter/db/database_manager.dart';
-import 'package:playflutter/db/entity/search_history.dart';
+import 'package:playflutter/model/db/database_manager.dart';
+import 'package:playflutter/model/db/entity/search_history.dart';
 import 'package:sqflite/sqflite.dart';
 
 /// @author jv.lee
