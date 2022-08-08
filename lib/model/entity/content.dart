@@ -1,9 +1,10 @@
+import 'package:playflutter/model/entity/base/base_data.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 
 /// @author jv.lee
 /// @date 2022/6/27
 /// @description 项目通用内容实体
-class ContentData {
+class ContentData extends BaseData {
   ContentData({
     required this.data,
     required this.errorCode,
@@ -27,6 +28,12 @@ class ContentData {
     _data['errorMsg'] = errorMsg;
     return _data;
   }
+
+  @override
+  int responseCode() => errorCode;
+
+  @override
+  String responseMessage() => errorMsg;
 }
 
 class ContentDataPage extends PagingData<Content> {

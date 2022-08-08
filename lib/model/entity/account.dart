@@ -1,7 +1,9 @@
+import 'package:playflutter/model/entity/base/base_data.dart';
+
 /// @author jv.lee
 /// @date 2022/8/3
 /// @description
-class AccountData {
+class AccountData extends BaseData {
   AccountData({
     required this.data,
     required this.errorCode,
@@ -27,6 +29,12 @@ class AccountData {
     _data['errorMsg'] = errorMsg;
     return _data;
   }
+
+  @override
+  int responseCode() => errorCode;
+
+  @override
+  String responseMessage() => errorMsg;
 }
 
 class UserData {

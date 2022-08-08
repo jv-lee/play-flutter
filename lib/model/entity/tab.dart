@@ -1,29 +1,38 @@
-/// @author jv.lee 
+import 'package:playflutter/model/entity/base/base_data.dart';
+
+/// @author jv.lee
 /// @date 2022/7/27
-/// @description 
-class TabData {
+/// @description
+class TabData extends BaseData {
   TabData({
     required this.data,
     required this.errorCode,
     required this.errorMsg,
   });
+
   late final List<Tab> data;
   late final int errorCode;
   late final String errorMsg;
 
-  TabData.fromJson(Map<String, dynamic> json){
-    data = List.from(json['data']).map((e)=>Tab.fromJson(e)).toList();
+  TabData.fromJson(Map<String, dynamic> json) {
+    data = List.from(json['data']).map((e) => Tab.fromJson(e)).toList();
     errorCode = json['errorCode'];
     errorMsg = json['errorMsg'];
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['data'] = data.map((e)=>e.toJson()).toList();
+    _data['data'] = data.map((e) => e.toJson()).toList();
     _data['errorCode'] = errorCode;
     _data['errorMsg'] = errorMsg;
     return _data;
   }
+
+  @override
+  int responseCode() => errorCode;
+
+  @override
+  String responseMessage() => errorMsg;
 }
 
 class Tab {
@@ -42,6 +51,7 @@ class Tab {
     required this.userControlSetTop,
     required this.visible,
   });
+
   late final String author;
   late final List<dynamic> children;
   late final int courseId;
@@ -56,7 +66,7 @@ class Tab {
   late final bool userControlSetTop;
   late final int visible;
 
-  Tab.fromJson(Map<String, dynamic> json){
+  Tab.fromJson(Map<String, dynamic> json) {
     author = json['author'];
     children = List.castFrom<dynamic, dynamic>(json['children']);
     courseId = json['courseId'];

@@ -1,7 +1,9 @@
+import 'package:playflutter/model/entity/base/base_data.dart';
+
 /// @author jv.lee
 /// @date 2022/6/27
 /// @description 通用api返回data
-class Data {
+class Data extends BaseData{
   Data({
     required this.data,
     required this.errorCode,
@@ -25,4 +27,10 @@ class Data {
     _data['errorMsg'] = errorMsg;
     return _data;
   }
+
+  @override
+  int responseCode() => errorCode;
+
+  @override
+  String responseMessage() => errorMsg;
 }

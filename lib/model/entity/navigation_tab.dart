@@ -1,10 +1,11 @@
+import 'package:playflutter/model/entity/base/base_data.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/widget/scroll/scroll_to_index.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
 /// @description
-class NavigationTabData extends PagingData<NavigationTab> {
+class NavigationTabData extends BaseData with PagingData<NavigationTab> {
   NavigationTabData({
     required this.data,
     required this.errorCode,
@@ -29,6 +30,12 @@ class NavigationTabData extends PagingData<NavigationTab> {
     _data['errorMsg'] = errorMsg;
     return _data;
   }
+
+  @override
+  int responseCode() => errorCode;
+
+  @override
+  String responseMessage() => errorMsg;
 
   @override
   List<NavigationTab> getDataSource() => data;

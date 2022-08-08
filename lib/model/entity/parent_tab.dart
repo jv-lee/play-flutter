@@ -1,9 +1,10 @@
+import 'package:playflutter/model/entity/base/base_data.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
 /// @description
-class ParentTabData extends PagingData<ParentTab> {
+class ParentTabData extends BaseData with PagingData<ParentTab> {
   ParentTabData({
     required this.data,
     required this.errorCode,
@@ -28,6 +29,12 @@ class ParentTabData extends PagingData<ParentTab> {
     _data['errorMsg'] = errorMsg;
     return _data;
   }
+
+  @override
+  int responseCode() => errorCode;
+
+  @override
+  String responseMessage() => errorMsg;
 
   @override
   List<ParentTab> getDataSource() => data;

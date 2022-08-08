@@ -1,7 +1,9 @@
+import 'package:playflutter/model/entity/base/base_data.dart';
+
 /// @author jv.lee
 /// @date 2022/6/27
 /// @description 首页banner数据实体
-class BannerData {
+class BannerData extends BaseData{
   BannerData({
     required this.data,
     required this.errorCode,
@@ -24,6 +26,12 @@ class BannerData {
     _data['errorMsg'] = errorMsg;
     return _data;
   }
+
+  @override
+  int responseCode() => errorCode;
+
+  @override
+  String responseMessage() => errorMsg;
 }
 
 class BannerItem {
