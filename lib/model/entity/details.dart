@@ -6,7 +6,7 @@ class DetailsData {
   late final String id;
   late final String title;
   late final String link;
-  late final bool isCollect;
+  late bool isCollect;
 
   DetailsData(
       {this.id = empty_id,

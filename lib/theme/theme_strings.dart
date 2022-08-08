@@ -33,6 +33,8 @@ class ThemeStrings {
   /// details
   static const String menu_collect = "收藏";
   static const String menu_share = "分享";
+  static const String menu_collect_completed = "已收藏该内容";
+  static const String menu_collect_complete = "内容收藏成功";
 
   /// me
   static const String me_account_default_text = "未登陆";
