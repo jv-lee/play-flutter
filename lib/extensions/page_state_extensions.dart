@@ -8,9 +8,9 @@ import 'package:provider/provider.dart';
 /// @description PageState扩展函数类
 extension PageStateExtensions on PageState {
   /// 创建viewModelWidget树
-  /// [create] viewModel构建方法
+  /// [create] viewModel构建实例
   /// [viewBuild] widget构建方法
-  Widget createViewModel<T extends ViewModel>(
+  Widget buildViewModel<T extends ViewModel>(
       {required Create<T> create, required ViewBuild<T> viewBuild}) {
     return ChangeNotifierProvider(
       create: create,

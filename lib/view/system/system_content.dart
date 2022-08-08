@@ -25,7 +25,7 @@ class _SystemContentState extends PageState<SystemContentPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return createViewModel<SystemContentViewModel>(
+    return buildViewModel<SystemContentViewModel>(
         create: (context) => SystemContentViewModel(context),
         viewBuild: (context, viewModel) => SuperListView(
               itemCount: viewModel.paging.data.length,

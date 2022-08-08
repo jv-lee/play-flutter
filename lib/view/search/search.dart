@@ -25,7 +25,7 @@ class SearchPage extends StatefulWidget {
 class _SearchState extends PageState<SearchPage> {
   @override
   Widget build(BuildContext context) {
-    return createViewModel<SearchViewModel>(
+    return buildViewModel<SearchViewModel>(
         create: (context) => SearchViewModel(context),
         viewBuild: (context, viewModel) => GestureDetector(
             behavior: HitTestBehavior.opaque,

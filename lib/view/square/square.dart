@@ -32,7 +32,7 @@ class _SquareState extends PageState<SquarePage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return createViewModel<SquareViewModel>(
+    return buildViewModel<SquareViewModel>(
         create: (context) => SquareViewModel(context),
         viewBuild: (context, viewModel) => Stack(
               children: [

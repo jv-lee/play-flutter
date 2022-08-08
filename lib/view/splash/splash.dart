@@ -37,7 +37,7 @@ class _SplashState extends PageState<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return createViewModel<SplashViewModel>(
+    return buildViewModel<SplashViewModel>(
         create: (context) => SplashViewModel(context),
         viewBuild: (context, viewModel) => Scaffold(
                 body: Stack(

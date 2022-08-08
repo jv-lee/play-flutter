@@ -24,7 +24,7 @@ class _MeState extends PageState<MePage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return createViewModel<MeViewModel>(
+    return buildViewModel<MeViewModel>(
         create: (context) => MeViewModel(context),
         viewBuild: (context, viewModel) => Column(
               children: [buildHeader(viewModel), buildLineItemList(viewModel)],

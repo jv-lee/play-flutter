@@ -21,7 +21,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends PageState<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    return createViewModel<LoginViewModel>(
+    return buildViewModel<LoginViewModel>(
         create: (context) => LoginViewModel(context),
         viewBuild: (context, viewModel) => GestureDetector(
             behavior: HitTestBehavior.opaque,

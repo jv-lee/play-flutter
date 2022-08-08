@@ -21,7 +21,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsState extends PageState<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    return createViewModel<SettingsViewModel>(
+    return buildViewModel<SettingsViewModel>(
         create: (context) => SettingsViewModel(context),
         viewBuild: (context, viewModel) => Scaffold(
               appBar: AppBar(

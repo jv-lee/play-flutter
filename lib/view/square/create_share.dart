@@ -18,7 +18,7 @@ class CreateSharePage extends StatefulWidget {
 class _CreateShareState extends PageState<CreateSharePage> {
   @override
   Widget build(BuildContext context) {
-    return createViewModel<CreateShareViewModel>(
+    return buildViewModel<CreateShareViewModel>(
         create: (context) => CreateShareViewModel(context),
         viewBuild: (context, viewModel) => GestureDetector(
               behavior: HitTestBehavior.opaque,

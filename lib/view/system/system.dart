@@ -25,7 +25,7 @@ class _SystemState extends PageState<SystemPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return createViewModel<SystemViewModel>(
+    return buildViewModel<SystemViewModel>(
         create: (context) => SystemViewModel(context),
         viewBuild: (context, viewModel) => Stack(
               children: [buildPage(viewModel), buildTabHeader(viewModel)],

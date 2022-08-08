@@ -37,7 +37,7 @@ class _HomeState extends PageState<HomePage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return createViewModel<HomeViewModel>(
+    return buildViewModel<HomeViewModel>(
         create: (context) => HomeViewModel(context),
         viewBuild: (context, viewModel) => Stack(
               children: [

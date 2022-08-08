@@ -30,7 +30,7 @@ class _NavigationContentState extends PageState<NavigationContentPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return createViewModel<NavigationContentViewModel>(
+    return buildViewModel<NavigationContentViewModel>(
         create: (context) => NavigationContentViewModel(context),
         viewBuild: (context, viewModel) => Material(
               child: StatusPage(

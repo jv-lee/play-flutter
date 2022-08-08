@@ -22,7 +22,7 @@ class CollectPage extends StatefulWidget {
 class _CollectPageState extends PageState<CollectPage> {
   @override
   Widget build(BuildContext context) {
-    return createViewModel<CollectViewModel>(
+    return buildViewModel<CollectViewModel>(
         create: (context) => CollectViewModel(context),
         viewBuild: (context, viewModel) => Scaffold(
               appBar: AppBar(title: const Text(ThemeStrings.me_item_collect)),

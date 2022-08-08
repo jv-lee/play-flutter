@@ -19,7 +19,7 @@ class ProjectPage extends StatefulWidget {
 class _ProjectState extends PageState<ProjectPage> {
   @override
   Widget build(BuildContext context) {
-    return createViewModel<ProjectViewModel>(
+    return buildViewModel<ProjectViewModel>(
         create: (context) => ProjectViewModel(context),
         viewBuild: (context, viewModel) {
           TabBar? tabBar;

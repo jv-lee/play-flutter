@@ -30,7 +30,7 @@ class _SystemContentListState extends PageState<SystemContentListPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return createViewModel<SystemContentListViewModel>(
+    return buildViewModel<SystemContentListViewModel>(
         create: (context) =>
             SystemContentListViewModel(context, widget.children.id),
         viewBuild: (context, viewModel) => Scaffold(

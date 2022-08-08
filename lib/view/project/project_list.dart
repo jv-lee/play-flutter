@@ -29,7 +29,7 @@ class _ProjectListState extends PageState<ProjectListPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return createViewModel<ProjectListViewModel>(
+    return buildViewModel<ProjectListViewModel>(
         create: (context) => ProjectListViewModel(context, widget.id),
         viewBuild: (context, viewModel) => Scaffold(
               body: RefreshIndicator(

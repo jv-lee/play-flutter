@@ -20,7 +20,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends PageState<RegisterPage> {
   @override
   Widget build(BuildContext context) {
-    return createViewModel<RegisterViewModel>(
+    return buildViewModel<RegisterViewModel>(
         create: (context) => RegisterViewModel(context),
         viewBuild: (context, viewModel) => GestureDetector(
             behavior: HitTestBehavior.opaque,

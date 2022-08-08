@@ -19,7 +19,7 @@ class OfficialPage extends StatefulWidget {
 class _OfficialState extends PageState<OfficialPage> {
   @override
   Widget build(BuildContext context) {
-    return createViewModel<OfficialViewModel>(
+    return buildViewModel<OfficialViewModel>(
         create: (context) => OfficialViewModel(context),
         viewBuild: (context, viewModel) {
           TabBar? tabBar;

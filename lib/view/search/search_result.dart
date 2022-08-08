@@ -23,7 +23,7 @@ class SearchResultPage extends StatefulWidget {
 class _SearchResultState extends PageState<SearchResultPage> {
   @override
   Widget build(BuildContext context) {
-    return createViewModel<SearchResultViewModel>(
+    return buildViewModel<SearchResultViewModel>(
         create: (context) => SearchResultViewModel(context),
         viewBuild: (context, viewModel) => Scaffold(
               appBar: AppBar(title: Text(viewModel.searchKey)),

@@ -28,7 +28,7 @@ class _OfficialListState extends PageState<OfficialListPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return createViewModel<OfficialListViewModel>(
+    return buildViewModel<OfficialListViewModel>(
         create: (context) => OfficialListViewModel(context, widget.id),
         viewBuild: (context, viewModel) => Scaffold(
               body: RefreshIndicator(

@@ -22,7 +22,7 @@ class MySharePage extends StatefulWidget {
 class _MySharePageState extends PageState<MySharePage> {
   @override
   Widget build(BuildContext context) {
-    return createViewModel<MyShareViewModel>(
+    return buildViewModel<MyShareViewModel>(
         create: (context) => MyShareViewModel(context),
         viewBuild: (context, viewModel) => Scaffold(
               appBar: AppBar(title: const Text(ThemeStrings.me_item_share)),
