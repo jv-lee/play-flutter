@@ -1,10 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_page_state.dart';
+import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/model/entity/details.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
+import 'package:playflutter/view/details/viewmodel/details_viewmodel.dart';
 import 'package:playflutter/widget/common/app_popup_menu_divider.dart';
 import 'package:share/share.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -22,38 +22,20 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsState extends BasePageState<DetailsPage> {
-  WebViewController? webViewController;
-  var progressVisible = true;
-  var progress = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    if (Platform.isAndroid) WebView.platform = AndroidWebView();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-        onWillPop: onBackChange,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(widget.detailsData.title),
-            actions: [buildActionMenu()],
-            leading: BackButton(onPressed: () => {Navigator.pop(context)}),
-          ),
-          body: buildWebPage(),
-        ));
-  }
-
-  /// 监听webView是否可回退拦截back事件处理web回退逻辑
-  Future<bool> onBackChange() async {
-    var canGoBack = await webViewController?.canGoBack() ?? false;
-    if (canGoBack) {
-      webViewController?.goBack();
-      return false;
-    }
-    return true;
+    return buildViewModel<DetailsViewModel>(
+        create: (context) => DetailsViewModel(context),
+        viewBuild: (context, viewModel) => WillPopScope(
+            onWillPop: viewModel.onBackChange,
+            child: Scaffold(
+              appBar: AppBar(
+                title: Text(widget.detailsData.title),
+                actions: [buildActionMenu()],
+                leading: BackButton(onPressed: () => {Navigator.pop(context)}),
+              ),
+              body: buildWebPage(viewModel),
+            )));
   }
 
   /// 构建更多菜单按钮弹窗
@@ -90,15 +72,15 @@ class _DetailsState extends BasePageState<DetailsPage> {
   }
 
   /// 构建webView页面
-  Widget buildWebPage() {
+  Widget buildWebPage(DetailsViewModel viewModel) {
     return Stack(
       children: [
         WebView(
           initialUrl: widget.detailsData.link,
           javascriptMode: JavascriptMode.unrestricted,
           gestureNavigationEnabled: true,
-          onProgress: onProgress,
-          onPageFinished: onPageFinished,
+          onProgress: viewModel.onProgress,
+          onPageFinished: viewModel.onPageFinished,
           navigationDelegate: (NavigationRequest request) {
             // 处理简书页面,掘金页面 scheme intent跳转原生逻辑
             if (request.url.startsWith("jianshu://")) {
@@ -109,27 +91,15 @@ class _DetailsState extends BasePageState<DetailsPage> {
             return NavigationDecision.navigate;
           },
           onWebViewCreated: (controller) {
-            webViewController = controller;
+            viewModel.viewStates.webViewController = controller;
           },
         ),
         Visibility(
-            visible: progressVisible,
+            visible: viewModel.viewStates.progressVisible,
             child: LinearProgressIndicator(
-              value: (progress / 100),
+              value: (viewModel.viewStates.progress / 100),
             ))
       ],
     );
-  }
-
-  void onPageFinished(item) {
-    setState(() {
-      progressVisible = false;
-    });
-  }
-
-  void onProgress(progress) {
-    setState(() {
-      this.progress = progress;
-    });
   }
 }

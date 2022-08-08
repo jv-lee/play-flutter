@@ -15,6 +15,7 @@ extension PageStateExtensions on BasePageState {
     return ChangeNotifierProvider(
       create: create,
       child: Consumer<T>(builder: (context, viewModel, child) {
+        viewModel.bindViewState(this);
         bindResume(() => viewModel.onResume());
         bindPause(() => viewModel.onPause());
         return viewBuild(context, viewModel);

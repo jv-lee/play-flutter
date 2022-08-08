@@ -1,12 +1,14 @@
 // ignore_for_file: invalid_use_of_protected_member
 
 import 'package:flutter/material.dart';
+import 'package:playflutter/base/base_page_state.dart';
 
 /// @author jv.lee
 /// @date 2022/6/23
 /// @description 所有viewModel基类
 abstract class BaseViewModel with ChangeNotifier {
   final BuildContext context;
+  BasePageState? state;
 
   BaseViewModel(this.context) {
     init();
@@ -14,6 +16,7 @@ abstract class BaseViewModel with ChangeNotifier {
 
   @override
   void dispose() {
+    state = null;
     onCleared();
     super.dispose();
   }
@@ -29,6 +32,13 @@ abstract class BaseViewModel with ChangeNotifier {
 
   /// 创建viewModel的页面失去焦点隐藏时回调
   void onPause() {}
+
+  void bindViewState(BasePageState state) {
+    this.state = state;
+  }
+
+  /// 判断当前持有viewModel的view树是否已经解绑
+  bool isMounted() => state?.mounted ?? false;
 
   /// 执行context函数（一般在viewModel初始化代码方法内调用，通过zero延时达到初始化时期获取路由参数正确）
   /// [function] 执行函数
