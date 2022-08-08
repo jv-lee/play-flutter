@@ -1,13 +1,14 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:playflutter/base/base_model.dart';
 import 'package:playflutter/entity/content.dart';
 import 'package:playflutter/http/http_manager.dart';
 
 /// @author jv.lee
 /// @date 2022/7/21
 /// @description
-class SearchModel {
+class SearchModel extends BaseModel {
   Future<ContentData> getSearchDataAsync(int page, String searchKey) async {
     var response = await HttpManager.getInstance().dio.post(
         "/article/query/$page/json",

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:playflutter/base/base_model.dart';
 import 'package:playflutter/entity/content.dart';
 import 'package:playflutter/entity/tab.dart';
 import 'package:playflutter/http/http_manager.dart';
@@ -7,7 +8,7 @@ import 'package:playflutter/http/http_manager.dart';
 /// @author jv.lee
 /// @date 2022/7/27
 /// @description
-class ProjectModel {
+class ProjectModel extends BaseModel {
   Future<TabData> getProjectTabDataAsync() async {
     var response =
         await HttpManager.getInstance().dio.get("/project/tree/json");

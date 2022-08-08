@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:playflutter/base/base_model.dart';
 import 'package:playflutter/entity/content.dart';
 import 'package:playflutter/entity/tab.dart';
 import 'package:playflutter/http/http_manager.dart';
@@ -7,7 +8,7 @@ import 'package:playflutter/http/http_manager.dart';
 /// @author jv.lee
 /// @date 2022/7/27
 /// @description
-class OfficialModel {
+class OfficialModel extends BaseModel {
 
   Future<TabData> getOfficialTabDataAsync() async {
     var response =

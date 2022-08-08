@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:playflutter/base/base_model.dart';
 import 'package:playflutter/entity/content.dart';
 import 'package:playflutter/entity/data.dart';
 import 'package:playflutter/http/constants/api_constants.dart';
@@ -9,7 +10,7 @@ import 'package:playflutter/http/http_manager.dart';
 /// @author jv.lee
 /// @date 2022/8/5
 /// @description
-class CollectModel {
+class CollectModel extends BaseModel {
   ///  收藏文章
   ///  [id] 文章id
   Future<Data> postCollectAsync(id) async {

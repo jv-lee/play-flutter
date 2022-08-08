@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:playflutter/base/base_model.dart';
 import 'package:playflutter/entity/banner.dart';
 import 'package:playflutter/entity/content.dart';
 import 'package:playflutter/http/http_manager.dart';
@@ -7,7 +8,7 @@ import 'package:playflutter/http/http_manager.dart';
 /// @author jv.lee
 /// @date 2022/6/23
 /// @description home页面数据处理类
-class HomeModel {
+class HomeModel extends BaseModel {
   Future<BannerData> getBannerDataAsync() async {
     var response = await HttpManager.getInstance().dio.get("/banner/json");
     if (response.statusCode == 200) {

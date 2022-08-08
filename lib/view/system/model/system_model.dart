@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:dio/dio.dart';
+import 'package:playflutter/base/base_model.dart';
 import 'package:playflutter/entity/content.dart';
 import 'package:playflutter/entity/navigation_tab.dart';
 import 'package:playflutter/entity/parent_tab.dart';
@@ -9,7 +9,7 @@ import 'package:playflutter/http/http_manager.dart';
 /// @author jv.lee
 /// @date 2022/6/30
 /// @description
-class SystemModel {
+class SystemModel extends BaseModel {
   Future<ParentTabData> getParentTabAsync() async {
     var response = await HttpManager.getInstance().dio.get("/tree/json");
     if (response.statusCode == 200) {
