@@ -8,6 +8,9 @@ class ApiConstants {
   static const REQUEST_TOKEN_ERROR = -1001; // 未登陆 错误码
   static const REQUEST_TOKEN_ERROR_MESSAGE = "TOKEN-ERROR"; // 登陆token失效错误自负
 
+  // 积分规则地址
+  static const URI_COIN_HELP = "https://www.wanandroid.com/blog/show/2653";
+
   // 简书页面,掘金页面,知乎
   static const WEB_SCHEME_LIST = ["jianshu://", "bytedance://", "zhihu://"];
 }
