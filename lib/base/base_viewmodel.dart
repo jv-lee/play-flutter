@@ -9,6 +9,7 @@ import 'package:playflutter/base/base_page_state.dart';
 abstract class BaseViewModel with ChangeNotifier {
   final BuildContext context;
   BasePageState? state;
+  bool isDispose = false;
 
   BaseViewModel(this.context) {
     init();
@@ -16,6 +17,7 @@ abstract class BaseViewModel with ChangeNotifier {
 
   @override
   void dispose() {
+    isDispose = true;
     state = null;
     onCleared();
     super.dispose();
@@ -35,6 +37,18 @@ abstract class BaseViewModel with ChangeNotifier {
 
   void bindViewState(BasePageState state) {
     this.state = state;
+  }
+
+  @override
+  void notifyListeners() {
+    if (isDispose) return;
+    super.notifyListeners();
+  }
+
+  void notifyUi() {
+    if (isMounted()) {
+      notifyListeners();
+    }
   }
 
   /// 判断当前持有viewModel的view树是否已经解绑

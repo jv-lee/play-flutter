@@ -15,6 +15,7 @@ class Paging<T> {
   int _page = 0;
   Function notify;
   StatusController statusController;
+  bool isDispose = false;
 
   Paging({
     required this.data,
@@ -49,6 +50,7 @@ class Paging<T> {
     }
 
     requestBlock(_page).then((response) {
+      if (isDispose) return;
       // 首页数据
       if (_page == initPage) {
         // 首页空数据
@@ -113,6 +115,7 @@ class Paging<T> {
   }
 
   dispose() {
+    isDispose = true;
     statusController.dispose();
     data.clear();
   }

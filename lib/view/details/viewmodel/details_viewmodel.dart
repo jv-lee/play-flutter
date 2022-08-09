@@ -62,17 +62,13 @@ class DetailsViewModel extends BaseViewModel {
   }
 
   void onPageFinished(item) {
-    if (isMounted()) {
-      viewStates.progressVisible = false;
-      notifyListeners();
-    }
+    viewStates.progressVisible = false;
+    notifyListeners();
   }
 
   void onProgress(progress) {
-    if (isMounted()) {
-      viewStates.progress = progress;
-      notifyListeners();
-    }
+    viewStates.progress = progress;
+    notifyListeners();
   }
 }
 
