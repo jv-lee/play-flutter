@@ -22,7 +22,7 @@ class DarkModeProvider with ChangeNotifier {
   }
 
   void _initTheme() {
-    StatusTools.defaultStatusBar(context);
+    StatusTools.defaultSystemBar(context);
     lightThemeData = ThemeColors.lightThemeData;
     darkThemeData = ThemeColors.darkThemeData;
   }
@@ -31,16 +31,16 @@ class DarkModeProvider with ChangeNotifier {
     _isSystem = await Night.isSystemTheme();
     _isDark = await Night.isDarkTheme();
     if (_isSystem) {
-      StatusTools.defaultStatusBar(context);
+      StatusTools.defaultSystemBar(context);
       lightThemeData = ThemeColors.lightThemeData;
       darkThemeData = ThemeColors.darkThemeData;
     } else {
       if (_isDark) {
-        StatusTools.transparentStatusBar(Brightness.dark);
+        StatusTools.transparentSystemBar(Brightness.dark);
         lightThemeData = ThemeColors.darkThemeData;
         darkThemeData = ThemeColors.darkThemeData;
       } else {
-        StatusTools.transparentStatusBar(Brightness.light);
+        StatusTools.transparentSystemBar(Brightness.light);
         lightThemeData = ThemeColors.lightThemeData;
         darkThemeData = ThemeColors.lightThemeData;
       }

@@ -11,6 +11,7 @@ import 'package:playflutter/view/square/viewmodel/square_viewmodel.dart';
 import 'package:playflutter/widget/common/header/app_header_container.dart';
 import 'package:playflutter/widget/common/header/app_header_spacer.dart';
 import 'package:playflutter/widget/common/header/app_text_action_bar.dart';
+import 'package:playflutter/widget/common/transparent_scaffold.dart';
 import 'package:playflutter/widget/item/content_item.dart';
 import 'package:playflutter/widget/status/super_list_view.dart';
 
@@ -34,7 +35,8 @@ class _SquareState extends BasePageState<SquarePage>
     super.build(context);
     return buildViewModel<SquareViewModel>(
         create: (context) => SquareViewModel(context),
-        viewBuild: (context, viewModel) => Stack(
+        viewBuild: (context, viewModel) => TransparentScaffold(
+                child: Stack(
               children: [
                 RefreshIndicator(
                     displacement: 10,
@@ -77,6 +79,6 @@ class _SquareState extends BasePageState<SquarePage>
                   onNavigationClick: () => viewModel.navigationCreateShared(),
                 ))
               ],
-            ));
+            )));
   }
 }

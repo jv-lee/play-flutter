@@ -6,6 +6,7 @@ import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/system/viewmodel/system_viewmodel.dart';
 import 'package:playflutter/widget/common/header/app_header_container.dart';
 import 'package:playflutter/widget/common/overscroll_hide_container.dart';
+import 'package:playflutter/widget/common/transparent_scaffold.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
@@ -27,9 +28,10 @@ class _SystemState extends BasePageState<SystemPage>
     super.build(context);
     return buildViewModel<SystemViewModel>(
         create: (context) => SystemViewModel(context),
-        viewBuild: (context, viewModel) => Stack(
+        viewBuild: (context, viewModel) => TransparentScaffold(
+                child: Stack(
               children: [buildPage(viewModel), buildTabHeader(viewModel)],
-            ));
+            )));
   }
 
   Widget buildTabHeader(SystemViewModel viewModel) {
@@ -38,10 +40,16 @@ class _SystemState extends BasePageState<SystemPage>
       width: double.infinity,
       height: ThemeDimens.toolbar_height,
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        buildTab(viewModel, ThemeStrings.system_system_tab,
-            viewModel.viewStates.selectedIndex == 0, () => {viewModel.pageChange(0)}),
-        buildTab(viewModel, ThemeStrings.system_navigation_tab,
-            viewModel.viewStates.selectedIndex == 1, () => {viewModel.pageChange(1)})
+        buildTab(
+            viewModel,
+            ThemeStrings.system_system_tab,
+            viewModel.viewStates.selectedIndex == 0,
+            () => {viewModel.pageChange(0)}),
+        buildTab(
+            viewModel,
+            ThemeStrings.system_navigation_tab,
+            viewModel.viewStates.selectedIndex == 1,
+            () => {viewModel.pageChange(1)})
       ]),
     ));
   }

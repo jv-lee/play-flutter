@@ -14,6 +14,7 @@ import 'package:playflutter/widget/common/app_banner.dart';
 import 'package:playflutter/widget/common/header/app_header_container.dart';
 import 'package:playflutter/widget/common/header/app_header_spacer.dart';
 import 'package:playflutter/widget/common/header/app_text_action_bar.dart';
+import 'package:playflutter/widget/common/transparent_scaffold.dart';
 import 'package:playflutter/widget/item/category_item.dart';
 import 'package:playflutter/widget/item/content_item.dart';
 import 'package:playflutter/widget/status/super_list_view.dart';
@@ -39,7 +40,8 @@ class _HomeState extends BasePageState<HomePage>
     super.build(context);
     return buildViewModel<HomeViewModel>(
         create: (context) => HomeViewModel(context),
-        viewBuild: (context, viewModel) => Stack(
+        viewBuild: (context, viewModel) => TransparentScaffold(
+                child: Stack(
               children: [
                 RefreshIndicator(
                     displacement: 10,
@@ -95,7 +97,7 @@ class _HomeState extends BasePageState<HomePage>
                   },
                 ))
               ],
-            ));
+            )));
   }
 
   Widget buildBanner(

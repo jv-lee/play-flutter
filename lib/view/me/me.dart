@@ -5,6 +5,7 @@ import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/view/me/viewmodel/me_viewmodel.dart';
 import 'package:playflutter/widget/common/header/app_header_container.dart';
 import 'package:playflutter/widget/common/profile_item.dart';
+import 'package:playflutter/widget/common/transparent_scaffold.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26
@@ -26,9 +27,11 @@ class _MeState extends BasePageState<MePage>
     super.build(context);
     return buildViewModel<MeViewModel>(
         create: (context) => MeViewModel(context),
-        viewBuild: (context, viewModel) => Column(
+        viewBuild: (context, viewModel) => TransparentScaffold(
+            color: Theme.of(context).cardColor,
+            child: Column(
               children: [buildHeader(viewModel), buildLineItemList(viewModel)],
-            ));
+            )));
   }
 
   Widget buildHeader(MeViewModel viewModel) {
@@ -103,5 +106,4 @@ class _MeState extends BasePageState<MePage>
 
     return Column(children: widgets);
   }
-
 }
