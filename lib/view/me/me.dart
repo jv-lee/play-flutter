@@ -28,7 +28,6 @@ class _MeState extends BasePageState<MePage>
     return buildViewModel<MeViewModel>(
         create: (context) => MeViewModel(context),
         viewBuild: (context, viewModel) => TransparentScaffold(
-            color: Theme.of(context).cardColor,
             child: Column(
               children: [buildHeader(viewModel), buildLineItemList(viewModel)],
             )));
