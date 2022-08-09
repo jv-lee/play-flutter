@@ -5,13 +5,26 @@ import 'package:playflutter/widget/status/status.dart';
 /// @date 2020/5/14
 /// @description 分页加载状态控制器
 class StatusController extends ChangeNotifier {
+  PageStatus pageStatus;
+  ItemStatus itemStatus;
+  bool _isDispose = false;
+
   StatusController({
     this.pageStatus = PageStatus.completed,
     this.itemStatus = ItemStatus.empty,
   });
 
-  PageStatus pageStatus;
-  ItemStatus itemStatus;
+  @override
+  void dispose() {
+    _isDispose = true;
+    super.dispose();
+  }
+
+  @override
+  void notifyListeners() {
+    if (_isDispose) return;
+    super.notifyListeners();
+  }
 
   StatusController pageLoading() {
     pageStatus = PageStatus.loading;
@@ -60,5 +73,4 @@ class StatusController extends ChangeNotifier {
     notifyListeners();
     return this;
   }
-
 }

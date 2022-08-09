@@ -46,9 +46,8 @@ class DetailsViewModel extends BaseViewModel {
 
   /// 分享该文章链接
   void onShare() {
-    if (isMounted()) {
-      Share.share("${detailsData.title}:${detailsData.link}");
-    }
+    if (isDispose()) return;
+    Share.share("${detailsData.title}:${detailsData.link}");
   }
 
   /// 监听webView是否可回退拦截back事件处理web回退逻辑
