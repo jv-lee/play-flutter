@@ -37,7 +37,7 @@ class _LoadingDialogState extends State<_LoadingDialogWidget> {
               decoration: BoxDecoration(
                   color: Theme.of(context).scaffoldBackgroundColor,
                   borderRadius: const BorderRadius.all(
-                      Radius.circular(ThemeDimens.offset_radius_medium))),
+                      Radius.circular(ThemeDimens.offsetRadiusMedium))),
               child: const Center(child: CircularProgressIndicator()),
             ),
           ),

@@ -58,7 +58,7 @@ class ThemeColors {
         backgroundColor: lightColorPalette.item,
         foregroundColor: lightColorPalette.accent,
         titleTextStyle: TextStyle(
-            fontSize: ThemeDimens.font_size_large,
+            fontSize: ThemeDimens.fontSizeLarge,
             fontWeight: FontWeight.bold,
             fontFamily: "Avenir",
             color: lightColorPalette.accent)),
@@ -98,7 +98,7 @@ class ThemeColors {
         backgroundColor: darkColorPalette.item,
         foregroundColor: darkColorPalette.accent,
         titleTextStyle: TextStyle(
-            fontSize: ThemeDimens.font_size_large,
+            fontSize: ThemeDimens.fontSizeLarge,
             fontWeight: FontWeight.bold,
             fontFamily: "Avenir",
             color: darkColorPalette.accent)),

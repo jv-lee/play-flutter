@@ -36,7 +36,7 @@ class _ProjectState extends BasePageState<ProjectPage> {
               length: tabList.length,
               child: Scaffold(
                 appBar: AppBar(
-                  title: const Text(ThemeStrings.project_category_name),
+                  title: const Text(ThemeStrings.homeProjectCategoryName),
                   bottom: tabBar,
                 ),
                 body: StatusPage(

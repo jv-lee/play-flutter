@@ -21,7 +21,7 @@ class _CoinRankPageState extends BasePageState<CoinRankPage> {
         create: (context) => CoinRankViewModel(context),
         viewBuild: (context, viewModel) => Scaffold(
               appBar: AppBar(
-                title: const Text(ThemeStrings.coin_rank_title),
+                title: const Text(ThemeStrings.coinRankTitle),
               ),
               body: const Center(child: Text("Coin Rank Page.")),
             ));

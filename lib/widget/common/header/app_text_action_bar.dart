@@ -29,17 +29,17 @@ class _AppTextActionBarState extends State<AppTextActionBar> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-          left: ThemeDimens.offset_large, right: ThemeDimens.offset_large),
+          left: ThemeDimens.offsetLarge, right: ThemeDimens.offsetLarge),
       child: SizedBox(
         width: double.infinity,
-        height: ThemeDimens.toolbar_height,
+        height: ThemeDimens.toolbarHeight,
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Text(
             widget.title,
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: ThemeDimens.font_size_large_xx,
+                fontSize: ThemeDimens.fontSizeLargeXX,
                 color: Theme.of(context).primaryColorLight),
           ),
           Material(

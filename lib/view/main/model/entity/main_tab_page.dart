@@ -23,26 +23,26 @@ class MainTabPage {
   static List<MainTabPage> getMainTabPages() {
     var list = <MainTabPage>[];
     list.add(MainTabPage(
-        normalIcon: ThemeIcons.home_normal,
-        pressIcon: ThemeIcons.home_press,
+        normalIcon: ThemeIcons.homeNormal,
+        pressIcon: ThemeIcons.homePress,
         label: "home",
         page: const HomePage()));
 
     list.add(MainTabPage(
-        normalIcon: ThemeIcons.square_normal,
-        pressIcon: ThemeIcons.square_press,
+        normalIcon: ThemeIcons.squareNormal,
+        pressIcon: ThemeIcons.squarePress,
         label: "square",
         page: const SquarePage()));
 
     list.add(MainTabPage(
-        normalIcon: ThemeIcons.system_normal,
-        pressIcon: ThemeIcons.system_press,
+        normalIcon: ThemeIcons.systemNormal,
+        pressIcon: ThemeIcons.systemPress,
         label: "system",
         page: const SystemPage()));
 
     list.add(MainTabPage(
-        normalIcon: ThemeIcons.me_normal,
-        pressIcon: ThemeIcons.me_press,
+        normalIcon: ThemeIcons.meNormal,
+        pressIcon: ThemeIcons.mePress,
         label: "me",
         page: const MePage()));
 

@@ -26,7 +26,7 @@ class _CreateShareState extends BasePageState<CreateSharePage> {
               child: Scaffold(
                   resizeToAvoidBottomInset: false,
                   appBar: AppBar(
-                      title: const Text(ThemeStrings.square_create_share_text)),
+                      title: const Text(ThemeStrings.squareCreateShareText)),
                   body: buildCrateShareContent(viewModel)),
             ));
   }
@@ -34,24 +34,24 @@ class _CreateShareState extends BasePageState<CreateSharePage> {
   Widget buildCrateShareContent(CreateShareViewModel viewModel) {
     return Padding(
       padding: const EdgeInsets.only(
-          left: ThemeDimens.offset_large, right: ThemeDimens.offset_large),
+          left: ThemeDimens.offsetLarge, right: ThemeDimens.offsetLarge),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: ThemeDimens.offset_medium),
-            child: Text(ThemeStrings.square_share_title_text,
+            padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
+            child: Text(ThemeStrings.squareShareTitleText,
                 style: TextStyle(color: Theme.of(context).primaryColorLight)),
           ),
           TextField(
             onChanged: (text) => {viewModel.changeShareTitle(text)},
             textInputAction: TextInputAction.next,
             decoration: const InputDecoration(
-                hintText: ThemeStrings.square_share_title_hint),
+                hintText: ThemeStrings.squareShareTitleHint),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: ThemeDimens.offset_medium),
-            child: Text(ThemeStrings.square_share_link_text,
+            padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
+            child: Text(ThemeStrings.squareShareLinkText,
                 style: TextStyle(color: Theme.of(context).primaryColorLight)),
           ),
           TextField(
@@ -59,16 +59,16 @@ class _CreateShareState extends BasePageState<CreateSharePage> {
             onSubmitted: (text) => {viewModel.submitShare()},
             textInputAction: TextInputAction.send,
             decoration: const InputDecoration(
-                hintText: ThemeStrings.square_share_link_hint),
+                hintText: ThemeStrings.squareShareLinkHint),
           ),
           Expanded(
               child: Align(
             alignment: Alignment.bottomLeft,
             child: Text(
-              ThemeStrings.square_create_share_description,
+              ThemeStrings.squareCreateShareDescription,
               style: TextStyle(
-                  letterSpacing: ThemeDimens.offset_small,
-                  fontSize: ThemeDimens.font_size_small,
+                  letterSpacing: ThemeDimens.offsetSmall,
+                  fontSize: ThemeDimens.fontSizeSmall,
                   color: Theme.of(context).primaryColor),
             ),
           ))

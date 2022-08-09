@@ -15,30 +15,30 @@ class MeItem {
       {required this.route,
       required this.name,
       required this.iconSvgPath,
-      this.arrowSvgPath = ThemeImages.common_arrow_svg});
+      this.arrowSvgPath = ThemeImages.commonArrowSvg});
 
   static List<MeItem> getMeItems() {
     var list = <MeItem>[];
     list.add(MeItem(
         route: RouteNames.coin,
-        name: ThemeStrings.me_item_coin,
-        iconSvgPath: ThemeImages.me_coin_svg));
+        name: ThemeStrings.meItemCoin,
+        iconSvgPath: ThemeImages.meCoinSvg));
     list.add(MeItem(
         route: RouteNames.collect,
-        name: ThemeStrings.me_item_collect,
-        iconSvgPath: ThemeImages.me_collect_svg));
+        name: ThemeStrings.meItemCollect,
+        iconSvgPath: ThemeImages.meCollectSvg));
     list.add(MeItem(
         route: RouteNames.my_share,
-        name: ThemeStrings.me_item_share,
-        iconSvgPath: ThemeImages.me_share_svg));
+        name: ThemeStrings.meItemShare,
+        iconSvgPath: ThemeImages.meShareSvg));
     list.add(MeItem(
         route: RouteNames.todo,
-        name: ThemeStrings.me_item_todo,
-        iconSvgPath: ThemeImages.me_todo_svg));
+        name: ThemeStrings.meItemTodo,
+        iconSvgPath: ThemeImages.meTodoSvg));
     list.add(MeItem(
         route: RouteNames.settings,
-        name: ThemeStrings.me_item_settings,
-        iconSvgPath: ThemeImages.me_settings_svg));
+        name: ThemeStrings.meItemSettings,
+        iconSvgPath: ThemeImages.meSettingsSvg));
     return list;
   }
 }

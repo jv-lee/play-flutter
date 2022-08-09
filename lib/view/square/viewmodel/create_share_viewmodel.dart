@@ -49,7 +49,7 @@ class CreateShareViewModel extends BaseViewModel {
       // 提交请求
       _model.postShareDataSync(viewStates.shareTitle, viewStates.shareLink)
           .then((value) {
-        Toast.show(ThemeStrings.square_share_request_success);
+        Toast.show(ThemeStrings.squareShareRequestSuccess);
         Navigator.of(context).pop();
       }).catchError((onError) {
         Toast.show((onError as HttpException).message);

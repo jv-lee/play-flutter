@@ -49,7 +49,7 @@ class SquareViewModel extends BaseViewModel {
     if (accountService.viewStates.isLogin) {
       Navigator.pushNamed(context, RouteNames.create_share);
     } else {
-      Toast.show(ThemeStrings.login_alert);
+      Toast.show(ThemeStrings.loginAlert);
       Navigator.pushNamed(context, RouteNames.login);
     }
   }

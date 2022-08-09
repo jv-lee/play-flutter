@@ -38,16 +38,16 @@ class _SystemState extends BasePageState<SystemPage>
     return AppHeaderContainer(
         child: SizedBox(
       width: double.infinity,
-      height: ThemeDimens.toolbar_height,
+      height: ThemeDimens.toolbarHeight,
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         buildTab(
             viewModel,
-            ThemeStrings.system_system_tab,
+            ThemeStrings.systemSystemTab,
             viewModel.viewStates.selectedIndex == 0,
             () => {viewModel.pageChange(0)}),
         buildTab(
             viewModel,
-            ThemeStrings.system_navigation_tab,
+            ThemeStrings.systemNavigationTab,
             viewModel.viewStates.selectedIndex == 1,
             () => {viewModel.pageChange(1)})
       ]),
@@ -67,22 +67,22 @@ class _SystemState extends BasePageState<SystemPage>
     }
     return Padding(
       padding: const EdgeInsets.only(
-          left: ThemeDimens.offset_medium, right: ThemeDimens.offset_medium),
+          left: ThemeDimens.offsetMedium, right: ThemeDimens.offsetMedium),
       child: InkWell(
         onTap: () => {onClick()},
         child: Container(
-            width: ThemeDimens.system_tab_width,
-            height: ThemeDimens.system_tab_height,
+            width: ThemeDimens.systemTabWidth,
+            height: ThemeDimens.systemTabHeight,
             alignment: Alignment.center,
             decoration: ShapeDecoration(
                 color: color,
                 shape: RoundedRectangleBorder(
                     borderRadius:
-                        BorderRadius.circular(ThemeDimens.system_tab_radius))),
+                        BorderRadius.circular(ThemeDimens.systemTabRadius))),
             child: Text(
               text,
               style: TextStyle(
-                  color: textColor, fontSize: ThemeDimens.font_size_medium),
+                  color: textColor, fontSize: ThemeDimens.fontSizeMedium),
             )),
       ),
     );

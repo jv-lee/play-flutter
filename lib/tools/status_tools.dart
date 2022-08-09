@@ -59,6 +59,6 @@ class StatusTools {
 
   // 获取appBarLayoutHeight - 2 校正
   static getAppBarLayoutHeight() {
-    return ThemeDimens.toolbar_height + getStatusHeight() - 2;
+    return ThemeDimens.toolbarHeight + getStatusHeight() - 2;
   }
 }

@@ -90,8 +90,8 @@ class _HomeState extends BasePageState<HomePage>
                     )),
                 AppHeaderContainer(
                     child: AppTextActionBar(
-                  title: ThemeStrings.home_header_text,
-                  navigationSvgPath: ThemeImages.common_search_svg,
+                  title: ThemeStrings.homeHeaderText,
+                  navigationSvgPath: ThemeImages.commonSearchSvg,
                   onNavigationClick: () {
                     Navigator.pushNamed(context, RouteNames.search);
                   },
@@ -124,7 +124,7 @@ class _HomeState extends BasePageState<HomePage>
       return Container();
     } else {
       return SizedBox(
-        height: ThemeDimens.home_category_layout_height,
+        height: ThemeDimens.homeCategoryLayoutHeight,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: categoryList.length,

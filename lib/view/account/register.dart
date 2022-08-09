@@ -43,7 +43,7 @@ class _RegisterPageState extends BasePageState<RegisterPage> {
 
   Widget buildTitle() {
     return Text(
-      ThemeStrings.account_register_title,
+      ThemeStrings.accountRegisterTitle,
       style: TextStyle(
           fontSize: 26,
           fontWeight: FontWeight.bold,
@@ -53,33 +53,33 @@ class _RegisterPageState extends BasePageState<RegisterPage> {
 
   Widget buildInputContent(RegisterViewModel viewModel) {
     return Padding(
-      padding: const EdgeInsets.all(ThemeDimens.offset_large),
+      padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
       child: SizedBox(
         width: double.infinity,
         child: Card(
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(ThemeDimens.offset_large)),
+              borderRadius: BorderRadius.circular(ThemeDimens.offsetLarge)),
           color: Theme.of(context).cardColor,
           child: Padding(
-            padding: const EdgeInsets.all(ThemeDimens.offset_medium),
+            padding: const EdgeInsets.all(ThemeDimens.offsetMedium),
             child: Column(
               children: [
                 TextField(
                     onChanged: (text) => viewModel.changeUserName(text),
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
-                        icon: SvgPicture.asset(ThemeImages.account_username_svg,
+                        icon: SvgPicture.asset(ThemeImages.accountUsernameSvg,
                             width: 24, height: 24),
-                        hintText: ThemeStrings.account_username_text)),
+                        hintText: ThemeStrings.accountUsernameText)),
                 buildSpacer(),
                 TextField(
                     onChanged: (text) => viewModel.changePassword(text),
                     textInputAction: TextInputAction.next,
                     obscureText: true,
                     decoration: InputDecoration(
-                        icon: SvgPicture.asset(ThemeImages.account_password_svg,
+                        icon: SvgPicture.asset(ThemeImages.accountPasswordSvg,
                             width: 24, height: 24),
-                        hintText: ThemeStrings.account_password_text)),
+                        hintText: ThemeStrings.accountPasswordText)),
                 buildSpacer(),
                 TextField(
                     onChanged: (text) => viewModel.changeRePassword(text),
@@ -87,9 +87,9 @@ class _RegisterPageState extends BasePageState<RegisterPage> {
                     textInputAction: TextInputAction.done,
                     obscureText: true,
                     decoration: InputDecoration(
-                        icon: SvgPicture.asset(ThemeImages.account_password_svg,
+                        icon: SvgPicture.asset(ThemeImages.accountPasswordSvg,
                             width: 24, height: 24),
-                        hintText: ThemeStrings.account_re_password_text)),
+                        hintText: ThemeStrings.accountRePasswordText)),
               ],
             ),
           ),
@@ -103,26 +103,26 @@ class _RegisterPageState extends BasePageState<RegisterPage> {
       width: double.infinity,
       child: Padding(
         padding: const EdgeInsets.symmetric(
-            horizontal: ThemeDimens.offset_large * 2),
+            horizontal: ThemeDimens.offsetLarge * 2),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Material(
                 child: InkWell(
                     onTap: () => Navigator.pop(context),
-                    child: Text(ThemeStrings.account_go_to_login_text,
+                    child: Text(ThemeStrings.accountGoToLoginText,
                         style:
                             TextStyle(color: Theme.of(context).focusColor)))),
             ElevatedButton(
                 style: ButtonStyle(
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
-                            ThemeDimens.offset_radius_medium))),
+                            ThemeDimens.offsetRadiusMedium))),
                     backgroundColor: MaterialStateColor.resolveWith(
                         (states) => viewModel.viewStates.stateColor)),
                 onPressed: () => viewModel.requestRegister(),
                 child: const Text(
-                  ThemeStrings.account_register_button,
+                  ThemeStrings.accountRegisterButton,
                   style: TextStyle(color: Colors.white),
                 ))
           ],
@@ -134,7 +134,7 @@ class _RegisterPageState extends BasePageState<RegisterPage> {
   Widget buildSpacer() {
     return Padding(
       padding: const EdgeInsets.only(
-          left: ThemeDimens.offset_medium, right: ThemeDimens.offset_medium),
+          left: ThemeDimens.offsetMedium, right: ThemeDimens.offsetMedium),
       child: Container(
           width: double.infinity,
           height: 1,

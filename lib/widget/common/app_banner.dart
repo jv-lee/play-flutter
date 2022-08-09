@@ -32,7 +32,7 @@ class _AppBannerState extends State<AppBanner> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: ThemeDimens.home_banner_height,
+      height: ThemeDimens.homeBannerHeight,
       child: Swiper(
           controller: widget.controller,
           index: widget.index,
@@ -45,18 +45,18 @@ class _AppBannerState extends State<AppBanner> {
             return Card(
               shape: RoundedRectangleBorder(
                   borderRadius:
-                      BorderRadius.circular(ThemeDimens.offset_radius_medium)),
+                      BorderRadius.circular(ThemeDimens.offsetRadiusMedium)),
               child: Material(
                 child: InkWell(
                   onTap: () => widget.onIndexTap(index),
                   borderRadius:
-                      BorderRadius.circular(ThemeDimens.offset_radius_medium),
+                      BorderRadius.circular(ThemeDimens.offsetRadiusMedium),
                   child: CachedNetworkImage(
                       imageUrl: widget.findPath(index),
                       imageBuilder: (context, imageProvider) => Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(
-                                  ThemeDimens.offset_radius_medium),
+                                  ThemeDimens.offsetRadiusMedium),
                               image: DecorationImage(
                                   image: imageProvider, fit: BoxFit.cover))),
                       placeholder: (context, url) =>

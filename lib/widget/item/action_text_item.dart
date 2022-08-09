@@ -34,38 +34,38 @@ class _ActionTextItemState extends State<ActionTextItem> {
                 child: Text(
                   widget.content.getAuthor(),
                   style: TextStyle(
-                      fontSize: ThemeDimens.font_size_medium,
+                      fontSize: ThemeDimens.fontSizeMedium,
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).primaryColorLight),
                 )),
             Padding(
-              padding: const EdgeInsets.only(top: ThemeDimens.offset_medium),
+              padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
               child: SizedBox(
                   width: double.infinity,
                   child: Text(
                     widget.content.getTitle(),
                     style: TextStyle(
-                        fontSize: ThemeDimens.font_size_small,
+                        fontSize: ThemeDimens.fontSizeSmall,
                         color: Theme.of(context).primaryColor),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   )),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: ThemeDimens.offset_medium),
+              padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     widget.content.getCategory(),
                     style: TextStyle(
-                        fontSize: ThemeDimens.font_size_small_x,
+                        fontSize: ThemeDimens.fontSizeSmallX,
                         color: Theme.of(context).focusColor),
                   ),
                   Text(
                     widget.content.getDateFormat(),
                     style: TextStyle(
-                        fontSize: ThemeDimens.font_size_small_x,
+                        fontSize: ThemeDimens.fontSizeSmallX,
                         color: Theme.of(context).primaryColorDark),
                   )
                 ],

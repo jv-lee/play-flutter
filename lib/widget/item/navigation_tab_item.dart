@@ -39,28 +39,28 @@ class _NavigationTabItemState extends State<NavigationTabItem> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
-          height: ThemeDimens.system_navigation_tab_height,
+          height: ThemeDimens.systemNavigationTabHeight,
           child: Padding(
             padding: const EdgeInsets.only(
-                top: ThemeDimens.offset_medium,
-                bottom: ThemeDimens.offset_medium),
+                top: ThemeDimens.offsetMedium,
+                bottom: ThemeDimens.offsetMedium),
             child: InkWell(
               onTap: () => {
                 if (widget.onItemClick != null)
                   {widget.onItemClick!(widget.navigationTab)}
               },
               borderRadius:
-                  BorderRadius.circular(ThemeDimens.system_tab_radius),
+                  BorderRadius.circular(ThemeDimens.systemTabRadius),
               child: Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                     color: tabColor,
                     borderRadius:
-                        BorderRadius.circular(ThemeDimens.system_tab_radius)),
+                        BorderRadius.circular(ThemeDimens.systemTabRadius)),
                 child: Padding(
                   padding: const EdgeInsets.only(
-                      left: ThemeDimens.offset_medium,
-                      right: ThemeDimens.offset_medium),
+                      left: ThemeDimens.offsetMedium,
+                      right: ThemeDimens.offsetMedium),
                   child: Text(
                     widget.navigationTab.name,
                     style: TextStyle(color: textColor),

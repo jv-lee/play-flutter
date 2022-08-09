@@ -34,13 +34,13 @@ class DetailsViewModel extends BaseViewModel {
   void onCollect() {
     // 校验是否已收藏
     if (detailsData.isCollect) {
-      Toast.show(ThemeStrings.menu_collect_completed);
+      Toast.show(ThemeStrings.menuCollectCompleted);
       return;
     }
 
     _model.postCollectAsync(detailsData.id).then((value) {
       detailsData.isCollect = true;
-      Toast.show(ThemeStrings.menu_collect_complete);
+      Toast.show(ThemeStrings.menuCollectComplete);
     }).catchError((onError) => {
           if (onError is HttpException) {Toast.show(onError.message)}
         });

@@ -52,7 +52,7 @@ class MeViewModel extends BaseViewModel {
     if (viewStates.isLogin) {
       Navigator.pushNamed(context, route);
     } else {
-      Toast.show(ThemeStrings.login_alert);
+      Toast.show(ThemeStrings.loginAlert);
       Navigator.pushNamed(context, RouteNames.login);
     }
   }
@@ -61,7 +61,7 @@ class MeViewModel extends BaseViewModel {
     viewStates.isLogin = accountService.viewStates.isLogin;
     if (accountService.viewStates.isLogin) {
       final accountData = accountService.viewStates.accountData?.data;
-      viewStates.headerWidget = Image.asset(ThemeImages.launcher_round_png);
+      viewStates.headerWidget = Image.asset(ThemeImages.launcherRoundPng);
       viewStates.userName = accountData?.userInfo.nickname ?? "";
       viewStates.userDesc =
           "等级：${accountData?.coinInfo.level} 排名：${accountData?.coinInfo.rank}";
@@ -74,8 +74,8 @@ class MeViewModel extends BaseViewModel {
 class _MeViewState {
   Widget headerWidget = Padding(
       padding: const EdgeInsets.all(6),
-      child: SvgPicture.asset(ThemeImages.me_account_svg));
-  String userName = ThemeStrings.me_account_default_text;
+      child: SvgPicture.asset(ThemeImages.meAccountSvg));
+  String userName = ThemeStrings.meAccountDefaultText;
   String userDesc = "";
   bool isLogin = false;
   List<MeItem> meItems = MeItem.getMeItems();

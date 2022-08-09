@@ -27,10 +27,10 @@ class _TimeReadyButtonState extends State<TimeReadyButton> {
     super.initState();
     if (widget.isStart) {
       var readTime = 5;
-      timeText = "${ThemeStrings.splash_time_text}$readTime";
+      timeText = "${ThemeStrings.splashTimeText}$readTime";
       _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
         readTime--;
-        timeText = "${ThemeStrings.splash_time_text}$readTime";
+        timeText = "${ThemeStrings.splashTimeText}$readTime";
         if (readTime == 0 && _timer?.isActive == true) {
           _timer?.cancel();
           widget.onEnd();
@@ -54,12 +54,12 @@ class _TimeReadyButtonState extends State<TimeReadyButton> {
           decoration: BoxDecoration(
               color: Colors.black45,
               borderRadius:
-                  BorderRadius.circular(ThemeDimens.offset_radius_medium)),
+                  BorderRadius.circular(ThemeDimens.offsetRadiusMedium)),
           child: Center(
             child: Text(
               timeText,
               style: const TextStyle(
-                  fontSize: ThemeDimens.font_size_medium, color: Colors.white),
+                  fontSize: ThemeDimens.fontSizeMedium, color: Colors.white),
             ),
           ),
         ));

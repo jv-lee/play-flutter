@@ -14,7 +14,7 @@ class AppBackPopScope extends StatefulWidget {
       {Key? key,
       required this.child,
       this.limitMillisecond = 2000,
-      this.alertMessage = ThemeStrings.back_alert_message})
+      this.alertMessage = ThemeStrings.backAlertMessage})
       : super(key: key);
 
   @override

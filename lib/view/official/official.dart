@@ -36,7 +36,7 @@ class _OfficialState extends BasePageState<OfficialPage> {
               length: tabList.length,
               child: Scaffold(
                 appBar: AppBar(
-                  title: const Text(ThemeStrings.official_category_name),
+                  title: const Text(ThemeStrings.homeOfficialCategoryName),
                   bottom: tabBar,
                 ),
                 body: StatusPage(

@@ -25,7 +25,7 @@ class _SettingsState extends BasePageState<SettingsPage> {
         create: (context) => SettingsViewModel(context),
         viewBuild: (context, viewModel) => Scaffold(
               appBar: AppBar(
-                title: const Text(ThemeStrings.me_item_settings),
+                title: const Text(ThemeStrings.meItemSettings),
               ),
               body: Column(
                 children: [
@@ -40,9 +40,9 @@ class _SettingsState extends BasePageState<SettingsPage> {
 
   Widget buildDarkModeSystemItem() {
     return Padding(
-      padding: const EdgeInsets.only(top: ThemeDimens.offset_medium),
+      padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
       child: ProfileItem(
-        leftText: ThemeStrings.settings_dark_mode_system,
+        leftText: ThemeStrings.settingsDarkModeSystem,
         switchVisible: true,
         switchChecked: DarkModeProvider.isSystemTheme(context),
         onCheckedChange: (enable) =>
@@ -55,7 +55,7 @@ class _SettingsState extends BasePageState<SettingsPage> {
     return Padding(
       padding: const EdgeInsets.only(top: 1),
       child: ProfileItem(
-        leftText: ThemeStrings.settings_dark_mode_night,
+        leftText: ThemeStrings.settingsDarkModeNight,
         switchVisible: true,
         switchChecked: DarkModeProvider.isDarkTheme(context),
         switchEnable: !DarkModeProvider.isSystemTheme(context),
@@ -67,11 +67,11 @@ class _SettingsState extends BasePageState<SettingsPage> {
 
   Widget buildClearCacheItem(SettingsViewModel viewModel) {
     return Padding(
-      padding: const EdgeInsets.only(top: ThemeDimens.offset_medium),
+      padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
       child: ProfileItem(
-        leftText: ThemeStrings.settings_clear_text,
+        leftText: ThemeStrings.settingsClearText,
         rightText: viewModel.viewStates.cacheSize,
-        rightSvgPath: ThemeImages.common_arrow_svg,
+        rightSvgPath: ThemeImages.commonArrowSvg,
         onItemClick: () => viewModel.clearCache(),
       ),
     );
@@ -81,11 +81,11 @@ class _SettingsState extends BasePageState<SettingsPage> {
     return Visibility(
         visible: viewModel.accountService.viewStates.isLogin,
         child: Padding(
-          padding: const EdgeInsets.only(top: ThemeDimens.offset_medium),
+          padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
           child: ProfileItem(
-            leftText: ThemeStrings.settings_logout,
-            leftSvgPath: ThemeImages.me_logout_svg,
-            rightSvgPath: ThemeImages.common_arrow_svg,
+            leftText: ThemeStrings.settingsLogout,
+            leftSvgPath: ThemeImages.meLogoutSvg,
+            rightSvgPath: ThemeImages.commonArrowSvg,
             onItemClick: () => viewModel.logout(),
           ),
         ));

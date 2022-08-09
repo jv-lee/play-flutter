@@ -45,7 +45,7 @@ class _SearchState extends BasePageState<SearchPage> {
             onSubmitted: (text) => {viewModel.navigationSearchKey(text)},
             textInputAction: TextInputAction.search,
             decoration: const InputDecoration(
-                hintText: ThemeStrings.search_hint_text)));
+                hintText: ThemeStrings.searchHintText)));
   }
 
   Widget buildSearchContent(SearchViewModel viewModel) {
@@ -67,12 +67,12 @@ class _SearchState extends BasePageState<SearchPage> {
 
   Widget buildSearchHotLabel(SearchViewModel viewModel) {
     return Padding(
-      padding: const EdgeInsets.all(ThemeDimens.offset_large),
+      padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
       child: Text(
-        ThemeStrings.search_hot_label,
+        ThemeStrings.searchHotLabel,
         style: TextStyle(
             color: Theme.of(context).primaryColorLight,
-            fontSize: ThemeDimens.font_size_medium),
+            fontSize: ThemeDimens.fontSizeMedium),
       ),
     );
   }
@@ -84,7 +84,7 @@ class _SearchState extends BasePageState<SearchPage> {
 
     return Padding(
       padding: const EdgeInsets.only(
-          left: ThemeDimens.offset_large, right: ThemeDimens.offset_large),
+          left: ThemeDimens.offsetLarge, right: ThemeDimens.offsetLarge),
       child: Wrap(spacing: -4, runSpacing: -2, children: widgets),
     );
   }
@@ -96,16 +96,16 @@ class _SearchState extends BasePageState<SearchPage> {
       color: Theme.of(context).hintColor,
       shape: RoundedRectangleBorder(
           borderRadius:
-              BorderRadius.circular(ThemeDimens.offset_radius_medium)),
+              BorderRadius.circular(ThemeDimens.offsetRadiusMedium)),
       child: InkWell(
         onTap: () => {viewModel.navigationSearchKey(searchHot.hotKey)},
-        borderRadius: BorderRadius.circular(ThemeDimens.system_tab_radius),
+        borderRadius: BorderRadius.circular(ThemeDimens.systemTabRadius),
         child: Padding(
-          padding: const EdgeInsets.all(ThemeDimens.offset_medium),
+          padding: const EdgeInsets.all(ThemeDimens.offsetMedium),
           child: Text(
             searchHot.hotKey,
             style: TextStyle(
-                fontSize: ThemeDimens.font_size_small, color: searchHot.color),
+                fontSize: ThemeDimens.fontSizeSmall, color: searchHot.color),
           ),
         ),
       ),
@@ -130,31 +130,31 @@ class _SearchState extends BasePageState<SearchPage> {
       children: [
         Padding(
             padding: const EdgeInsets.only(
-                left: ThemeDimens.offset_large,
-                top: ThemeDimens.offset_large,
-                right: ThemeDimens.offset_large,
-                bottom: ThemeDimens.offset_medium),
+                left: ThemeDimens.offsetLarge,
+                top: ThemeDimens.offsetLarge,
+                right: ThemeDimens.offsetLarge,
+                bottom: ThemeDimens.offsetMedium),
             child: Text(
-              ThemeStrings.search_history_label,
+              ThemeStrings.searchHistoryLabel,
               style: TextStyle(
                   color: Theme.of(context).primaryColorLight,
-                  fontSize: ThemeDimens.font_size_medium),
+                  fontSize: ThemeDimens.fontSizeMedium),
             )),
         Padding(
             padding: const EdgeInsets.only(
-                left: ThemeDimens.offset_large,
-                top: ThemeDimens.offset_large,
-                right: ThemeDimens.offset_large,
-                bottom: ThemeDimens.offset_medium),
+                left: ThemeDimens.offsetLarge,
+                top: ThemeDimens.offsetLarge,
+                right: ThemeDimens.offsetLarge,
+                bottom: ThemeDimens.offsetMedium),
             child: Material(
               child: InkWell(
                 onTap: () {
                   viewModel.clearSearchHistory();
                 },
-                child: Text(ThemeStrings.search_clear_text,
+                child: Text(ThemeStrings.searchClearText,
                     style: TextStyle(
                         color: Theme.of(context).primaryColor,
-                        fontSize: ThemeDimens.font_size_medium)),
+                        fontSize: ThemeDimens.fontSizeMedium)),
               ),
             )),
       ],
@@ -169,8 +169,8 @@ class _SearchState extends BasePageState<SearchPage> {
     return Expanded(
         child: Padding(
             padding: const EdgeInsets.only(
-                left: ThemeDimens.offset_large,
-                right: ThemeDimens.offset_large),
+                left: ThemeDimens.offsetLarge,
+                right: ThemeDimens.offsetLarge),
             child: OverscrollHideContainer(
               scrollChild:
                   ListView(shrinkWrap: true, children: searchHistoryList),
@@ -185,10 +185,10 @@ class _SearchState extends BasePageState<SearchPage> {
           padding: const EdgeInsets.only(top: 26),
           child: Center(
             child: Text(
-              ThemeStrings.search_history_empty_text,
+              ThemeStrings.searchHistoryEmptyText,
               style: TextStyle(
                   color: Theme.of(context).primaryColor,
-                  fontSize: ThemeDimens.font_size_medium),
+                  fontSize: ThemeDimens.fontSizeMedium),
             ),
           ),
         ),
@@ -206,8 +206,8 @@ class _SearchState extends BasePageState<SearchPage> {
         },
         child: Padding(
           padding: const EdgeInsets.only(
-              top: ThemeDimens.offset_medium,
-              bottom: ThemeDimens.offset_medium),
+              top: ThemeDimens.offsetMedium,
+              bottom: ThemeDimens.offsetMedium),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -215,7 +215,7 @@ class _SearchState extends BasePageState<SearchPage> {
                 searchHistory.searchKey,
                 style: TextStyle(
                     color: Theme.of(context).primaryColor,
-                    fontSize: ThemeDimens.font_size_small),
+                    fontSize: ThemeDimens.fontSizeSmall),
               ),
               InkWell(
                 onTap: () {

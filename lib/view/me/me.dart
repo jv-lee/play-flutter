@@ -40,47 +40,47 @@ class _MeState extends BasePageState<MePage>
         headerBrush: false,
         child: SizedBox(
           width: double.infinity,
-          height: ThemeDimens.me_header_height,
+          height: ThemeDimens.meHeaderHeight,
           child: Row(
             children: [
               Padding(
                 padding: const EdgeInsets.only(
-                    left: ThemeDimens.me_header_picture_margin),
+                    left: ThemeDimens.meHeaderPictureMargin),
                 child: Container(
-                    width: ThemeDimens.me_header_picture_size,
-                    height: ThemeDimens.me_header_picture_size,
+                    width: ThemeDimens.meHeaderPictureSize,
+                    height: ThemeDimens.meHeaderPictureSize,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(
-                            ThemeDimens.me_header_picture_size / 2),
+                            ThemeDimens.meHeaderPictureSize / 2),
                         border: Border.all(
                             width: 2, color: Theme.of(context).focusColor)),
                     child: viewModel.viewStates.headerWidget),
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                    left: ThemeDimens.me_header_content_margin),
+                    left: ThemeDimens.meHeaderContentMargin),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(ThemeDimens.offset_small),
+                      padding: const EdgeInsets.all(ThemeDimens.offsetSmall),
                       child: Text(
                         viewModel.viewStates.userName,
                         style: TextStyle(
                             color: Theme.of(context).primaryColorLight,
-                            fontSize: ThemeDimens.font_size_large),
+                            fontSize: ThemeDimens.fontSizeLarge),
                       ),
                     ),
                     Visibility(
                         visible: viewModel.viewStates.isLogin,
                         child: Padding(
                           padding:
-                              const EdgeInsets.all(ThemeDimens.offset_small),
+                              const EdgeInsets.all(ThemeDimens.offsetSmall),
                           child: Text(viewModel.viewStates.userDesc,
                               style: TextStyle(
                                   color: Theme.of(context).focusColor,
-                                  fontSize: ThemeDimens.font_size_small)),
+                                  fontSize: ThemeDimens.fontSizeSmall)),
                         ))
                   ],
                 ),

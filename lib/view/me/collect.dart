@@ -25,7 +25,7 @@ class _CollectPageState extends BasePageState<CollectPage> {
     return buildViewModel<CollectViewModel>(
         create: (context) => CollectViewModel(context),
         viewBuild: (context, viewModel) => Scaffold(
-              appBar: AppBar(title: const Text(ThemeStrings.me_item_collect)),
+              appBar: AppBar(title: const Text(ThemeStrings.meItemCollect)),
               body: RefreshIndicator(
                   color: Theme.of(context).primaryColorLight,
                   onRefresh: () async {

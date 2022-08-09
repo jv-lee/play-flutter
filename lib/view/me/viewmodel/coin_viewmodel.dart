@@ -65,5 +65,5 @@ class CoinViewModel extends BaseViewModel {
 
 class _CoinViewState {
   var detailsData = DetailsData(
-      title: ThemeStrings.coin_help_title, link: ApiConstants.URI_COIN_HELP);
+      title: ThemeStrings.coinHelpTitle, link: ApiConstants.URI_COIN_HELP);
 }

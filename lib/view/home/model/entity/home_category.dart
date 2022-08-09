@@ -15,12 +15,12 @@ class HomeCategory {
   static List<HomeCategory> getHomeCategory() {
     var list = <HomeCategory>[];
     list.add(HomeCategory(
-        name: ThemeStrings.official_category_name,
-        iconRes: ThemeImages.home_official_svg,
+        name: ThemeStrings.homeOfficialCategoryName,
+        iconRes: ThemeImages.homeOfficialSvg,
         link: RouteNames.official));
     list.add(HomeCategory(
-        name: ThemeStrings.project_category_name,
-        iconRes: ThemeImages.home_project_svg,
+        name: ThemeStrings.homeProjectCategoryName,
+        iconRes: ThemeImages.homeProjectSvg,
         link: RouteNames.project));
     return list;
   }

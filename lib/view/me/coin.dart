@@ -43,14 +43,14 @@ class _CoinPageState extends BasePageState<CoinPage> {
     return Stack(
       children: [
         AppBar(
-            title: const Text(ThemeStrings.me_item_coin,
+            title: const Text(ThemeStrings.meItemCoin,
                 style: TextStyle(color: Colors.white)),
             actions: [
               IconButton(
                   onPressed: () => Navigator.pushNamed(
                       context, RouteNames.details,
                       arguments: viewModel.viewStates.detailsData),
-                  icon: SvgPicture.asset(ThemeImages.common_help_svg))
+                  icon: SvgPicture.asset(ThemeImages.commonHelpSvg))
             ],
             backgroundColor: Theme.of(context).focusColor,
             foregroundColor: Colors.white,
@@ -68,7 +68,7 @@ class _CoinPageState extends BasePageState<CoinPage> {
   Widget buildHeaderBackground() {
     return Container(
       width: double.infinity,
-      height: ThemeDimens.me_coin_header_bg_height,
+      height: ThemeDimens.meCoinHeaderBgHeight,
       decoration: BoxDecoration(
           color: Theme.of(context).focusColor,
           borderRadius: const BorderRadius.only(
@@ -80,14 +80,14 @@ class _CoinPageState extends BasePageState<CoinPage> {
   Widget buildHeaderContent(CoinViewModel viewModel) {
     return Padding(
       padding: const EdgeInsets.only(
-          left: ThemeDimens.offset_large,
-          right: ThemeDimens.offset_large,
-          top: ThemeDimens.offset_medium),
+          left: ThemeDimens.offsetLarge,
+          right: ThemeDimens.offsetLarge,
+          top: ThemeDimens.offsetMedium),
       child: Card(
         color: Theme.of(context).cardColor,
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
-                Radius.circular(ThemeDimens.offset_radius_medium))),
+                Radius.circular(ThemeDimens.offsetRadiusMedium))),
         child: SizedBox(
           width: double.infinity,
           height: 180,
@@ -100,27 +100,27 @@ class _CoinPageState extends BasePageState<CoinPage> {
                   color: Theme.of(context).hoverColor,
                   borderRadius: const BorderRadius.only(
                       topLeft:
-                          Radius.circular(ThemeDimens.offset_radius_medium),
+                          Radius.circular(ThemeDimens.offsetRadiusMedium),
                       topRight:
-                          Radius.circular(ThemeDimens.offset_radius_medium))),
+                          Radius.circular(ThemeDimens.offsetRadiusMedium))),
               child: Align(
                 alignment: Alignment.center,
-                child: Text(ThemeStrings.coin_title_label_text,
+                child: Text(ThemeStrings.coinTitleLabelText,
                     style: TextStyle(
-                        fontSize: ThemeDimens.font_size_small,
+                        fontSize: ThemeDimens.fontSizeSmall,
                         color: Theme.of(context).focusColor)),
               ),
             ),
             // 当前积分总数 item
             Padding(
-                padding: const EdgeInsets.all(ThemeDimens.offset_large),
-                child: Text(ThemeStrings.coin_total_description,
+                padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
+                child: Text(ThemeStrings.coinTotalDescription,
                     style: TextStyle(
-                        fontSize: ThemeDimens.font_size_small_x,
+                        fontSize: ThemeDimens.fontSizeSmallX,
                         color: Theme.of(context).primaryColor))),
             // 积分数值显示 item
             Padding(
-                padding: const EdgeInsets.all(ThemeDimens.offset_medium),
+                padding: const EdgeInsets.all(ThemeDimens.offsetMedium),
                 child: Text(viewModel.findCoinCount(),
                     style: TextStyle(
                         fontSize: 26,
@@ -129,9 +129,9 @@ class _CoinPageState extends BasePageState<CoinPage> {
             // 间隔线 item
             Padding(
                 padding: const EdgeInsets.only(
-                    left: ThemeDimens.offset_large,
-                    right: ThemeDimens.offset_large,
-                    top: ThemeDimens.offset_medium),
+                    left: ThemeDimens.offsetLarge,
+                    right: ThemeDimens.offsetLarge,
+                    top: ThemeDimens.offsetMedium),
                 child:
                     Container(height: 1, color: Theme.of(context).hoverColor)),
             // 查看积分排行榜 item
@@ -144,21 +144,21 @@ class _CoinPageState extends BasePageState<CoinPage> {
                         {Navigator.pushNamed(context, RouteNames.coin_rank)},
                     borderRadius: const BorderRadius.only(
                         bottomLeft:
-                            Radius.circular(ThemeDimens.offset_radius_medium),
+                            Radius.circular(ThemeDimens.offsetRadiusMedium),
                         bottomRight:
-                            Radius.circular(ThemeDimens.offset_radius_medium)),
+                            Radius.circular(ThemeDimens.offsetRadiusMedium)),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: ThemeDimens.offset_large),
+                          horizontal: ThemeDimens.offsetLarge),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(ThemeStrings.coin_to_rank_text,
+                          Text(ThemeStrings.coinToRankText,
                               style: TextStyle(
-                                  fontSize: ThemeDimens.font_size_medium,
+                                  fontSize: ThemeDimens.fontSizeMedium,
                                   color: Theme.of(context).primaryColorLight)),
                           SvgPicture.asset(
-                            ThemeImages.common_arrow_svg,
+                            ThemeImages.commonArrowSvg,
                             width: 24,
                             height: 24,
                             color: Theme.of(context).primaryColorLight,
@@ -203,19 +203,19 @@ class _CoinPageState extends BasePageState<CoinPage> {
 
   Widget buildRecordItem(CoinRecord record) {
     return Padding(
-      padding: const EdgeInsets.only(top: ThemeDimens.offset_medium),
+      padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
       child: Container(
         width: double.infinity,
         color: Theme.of(context).cardColor,
         child: Padding(
-          padding: const EdgeInsets.all(ThemeDimens.offset_large),
+          padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
           child: Align(
               alignment: Alignment.center,
               child: Text(
                 record.desc,
                 maxLines: 1,
                 style: TextStyle(
-                    fontSize: ThemeDimens.font_size_small,
+                    fontSize: ThemeDimens.fontSizeSmall,
                     color: Theme.of(context).primaryColorLight,
                     overflow: TextOverflow.ellipsis),
               )),

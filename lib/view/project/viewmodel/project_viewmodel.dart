@@ -24,7 +24,7 @@ class ProjectViewModel extends BaseViewModel {
 
   void requestTabData() {
     LocalTools.localRequest<TabData>(
-        localKey: ThemeConstants.PROJECT_TAB_LOCAL_KEY,
+        localKey: ThemeConstants.localKeyProjectTab,
         createJson: (json) => TabData.fromJson(json),
         requestFuture: _model.getProjectTabDataAsync(),
         callback: (value) {

@@ -30,9 +30,9 @@ class SplashViewModel extends BaseViewModel {
 
   String findSplashRes() {
     if (DarkModeProvider.isDarkTheme(context)) {
-      return ThemeImages.splash_dark_png;
+      return ThemeImages.splashDarkPng;
     } else {
-      return ThemeImages.splash_light_png;
+      return ThemeImages.splashLightPng;
     }
   }
 }

@@ -66,7 +66,7 @@ class _SplashState extends BasePageState<SplashPage> {
               height: MediaQuery.of(context).size.height * 0.7,
               color: Colors.transparent,
               child: Image.asset(
-                ThemeImages.splash_ad_png,
+                ThemeImages.splashAdPng,
                 fit: BoxFit.cover,
               ),
             ),
@@ -75,8 +75,8 @@ class _SplashState extends BasePageState<SplashPage> {
               child: Padding(
                 padding: EdgeInsets.only(
                     top: StatusTools.getStatusHeight() +
-                        ThemeDimens.offset_small,
-                    right: ThemeDimens.offset_large),
+                        ThemeDimens.offsetSmall,
+                    right: ThemeDimens.offsetLarge),
                 child: TimeReadyButton(
                   isStart: viewModel.viewStates.splashAdVisible,
                   onEnd: () => Navigator.pop(context),

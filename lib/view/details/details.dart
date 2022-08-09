@@ -44,9 +44,9 @@ class _DetailsState extends BasePageState<DetailsPage> {
     return PopupMenuButton(
         shape: RoundedRectangleBorder(
             borderRadius:
-                BorderRadius.circular(ThemeDimens.offset_radius_medium)),
+                BorderRadius.circular(ThemeDimens.offsetRadiusMedium)),
         constraints: const BoxConstraints(maxWidth: 75),
-        offset: const Offset(0, ThemeDimens.toolbar_height),
+        offset: const Offset(0, ThemeDimens.toolbarHeight),
         itemBuilder: (context) => [
               PopupMenuItem(
                   height: 30,
@@ -54,7 +54,7 @@ class _DetailsState extends BasePageState<DetailsPage> {
                   child: Container(
                     width: double.infinity,
                     alignment: Alignment.center,
-                    child: const Text(ThemeStrings.menu_collect),
+                    child: const Text(ThemeStrings.menuCollect),
                   )),
               AppPopupMenuDivider(
                   height: 1, color: Theme.of(context).primaryColorLight),
@@ -64,7 +64,7 @@ class _DetailsState extends BasePageState<DetailsPage> {
                   child: Container(
                     width: double.infinity,
                     alignment: Alignment.center,
-                    child: const Text(ThemeStrings.menu_share),
+                    child: const Text(ThemeStrings.menuShare),
                   ))
             ]);
   }

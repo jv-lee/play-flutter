@@ -44,7 +44,7 @@ class _LoginPageState extends BasePageState<LoginPage> {
 
   Widget buildTitle() {
     return Text(
-      ThemeStrings.account_login_title,
+      ThemeStrings.accountLoginTitle,
       style: TextStyle(
           fontSize: 26,
           fontWeight: FontWeight.bold,
@@ -54,24 +54,24 @@ class _LoginPageState extends BasePageState<LoginPage> {
 
   Widget buildInputContent(LoginViewModel viewModel) {
     return Padding(
-      padding: const EdgeInsets.all(ThemeDimens.offset_large),
+      padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
       child: SizedBox(
         width: double.infinity,
         child: Card(
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(ThemeDimens.offset_large)),
+              borderRadius: BorderRadius.circular(ThemeDimens.offsetLarge)),
           color: Theme.of(context).cardColor,
           child: Padding(
-            padding: const EdgeInsets.all(ThemeDimens.offset_medium),
+            padding: const EdgeInsets.all(ThemeDimens.offsetMedium),
             child: Column(
               children: [
                 TextField(
                     onChanged: (text) => viewModel.changeUserName(text),
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
-                        icon: SvgPicture.asset(ThemeImages.account_username_svg,
+                        icon: SvgPicture.asset(ThemeImages.accountUsernameSvg,
                             width: 24, height: 24),
-                        hintText: ThemeStrings.account_username_text)),
+                        hintText: ThemeStrings.accountUsernameText)),
                 buildSpacer(),
                 TextField(
                     onChanged: (text) => viewModel.changePassword(text),
@@ -79,9 +79,9 @@ class _LoginPageState extends BasePageState<LoginPage> {
                     textInputAction: TextInputAction.done,
                     obscureText: true,
                     decoration: InputDecoration(
-                        icon: SvgPicture.asset(ThemeImages.account_password_svg,
+                        icon: SvgPicture.asset(ThemeImages.accountPasswordSvg,
                             width: 24, height: 24),
-                        hintText: ThemeStrings.account_password_text))
+                        hintText: ThemeStrings.accountPasswordText))
               ],
             ),
           ),
@@ -95,26 +95,26 @@ class _LoginPageState extends BasePageState<LoginPage> {
       width: double.infinity,
       child: Padding(
         padding: const EdgeInsets.symmetric(
-            horizontal: ThemeDimens.offset_large * 2),
+            horizontal: ThemeDimens.offsetLarge * 2),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Material(
                 child: InkWell(
                     onTap: () => viewModel.navigationRegister(),
-                    child: Text(ThemeStrings.account_go_to_register_text,
+                    child: Text(ThemeStrings.accountGoToRegisterText,
                         style:
                             TextStyle(color: Theme.of(context).focusColor)))),
             ElevatedButton(
                 style: ButtonStyle(
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
-                            ThemeDimens.offset_radius_medium))),
+                            ThemeDimens.offsetRadiusMedium))),
                     backgroundColor: MaterialStateColor.resolveWith(
                         (states) => viewModel.viewStates.stateColor)),
                 onPressed: () => viewModel.requestLogin(),
                 child: const Text(
-                  ThemeStrings.account_login_button,
+                  ThemeStrings.accountLoginButton,
                   style: TextStyle(color: Colors.white),
                 ))
           ],
@@ -126,7 +126,7 @@ class _LoginPageState extends BasePageState<LoginPage> {
   Widget buildSpacer() {
     return Padding(
       padding: const EdgeInsets.only(
-          left: ThemeDimens.offset_medium, right: ThemeDimens.offset_medium),
+          left: ThemeDimens.offsetMedium, right: ThemeDimens.offsetMedium),
       child: Container(
           width: double.infinity,
           height: 1,

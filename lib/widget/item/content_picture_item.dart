@@ -38,7 +38,7 @@ class _ContentPictureItemState extends State<ContentPictureItem> {
                     decoration: BoxDecoration(
                         borderRadius: const BorderRadius.horizontal(
                             left: Radius.circular(
-                                ThemeDimens.offset_radius_medium)),
+                                ThemeDimens.offsetRadiusMedium)),
                         image: DecorationImage(
                             image: imageProvider, fit: BoxFit.cover))),
                 placeholder: (context, url) => Container(
@@ -46,7 +46,7 @@ class _ContentPictureItemState extends State<ContentPictureItem> {
                           color: Theme.of(context).splashColor,
                           borderRadius: const BorderRadius.horizontal(
                               left: Radius.circular(
-                                  ThemeDimens.offset_radius_medium))),
+                                  ThemeDimens.offsetRadiusMedium))),
                     ),
                 errorWidget: (context, url, error) => const Icon(Icons.error)),
             Expanded(
@@ -60,15 +60,15 @@ class _ContentPictureItemState extends State<ContentPictureItem> {
                       width: double.infinity,
                       child: Padding(
                         padding: const EdgeInsets.only(
-                            top: ThemeDimens.offset_medium,
-                            left: ThemeDimens.offset_medium,
-                            right: ThemeDimens.offset_medium),
+                            top: ThemeDimens.offsetMedium,
+                            left: ThemeDimens.offsetMedium,
+                            right: ThemeDimens.offsetMedium),
                         child: Text(
                           widget.content.getTitle(),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                              fontSize: ThemeDimens.font_size_medium,
+                              fontSize: ThemeDimens.fontSizeMedium,
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context).primaryColorLight),
                         ),
@@ -76,9 +76,9 @@ class _ContentPictureItemState extends State<ContentPictureItem> {
                   Expanded(
                       child: Padding(
                     padding: const EdgeInsets.only(
-                        top: ThemeDimens.offset_medium,
-                        left: ThemeDimens.offset_medium,
-                        right: ThemeDimens.offset_medium),
+                        top: ThemeDimens.offsetMedium,
+                        left: ThemeDimens.offsetMedium,
+                        right: ThemeDimens.offsetMedium),
                     child: SizedBox(
                         width: double.infinity,
                         child: Text(
@@ -86,25 +86,25 @@ class _ContentPictureItemState extends State<ContentPictureItem> {
                           maxLines: 4,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                              fontSize: ThemeDimens.font_size_small,
+                              fontSize: ThemeDimens.fontSizeSmall,
                               color: Theme.of(context).primaryColor),
                         )),
                   )),
                   Padding(
-                      padding: const EdgeInsets.all(ThemeDimens.offset_medium),
+                      padding: const EdgeInsets.all(ThemeDimens.offsetMedium),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             widget.content.getCategory(),
                             style: TextStyle(
-                                fontSize: ThemeDimens.font_size_small_x,
+                                fontSize: ThemeDimens.fontSizeSmallX,
                                 color: Theme.of(context).focusColor),
                           ),
                           Text(
                             widget.content.getDateFormat(),
                             style: TextStyle(
-                                fontSize: ThemeDimens.font_size_small_x,
+                                fontSize: ThemeDimens.fontSizeSmallX,
                                 color: Theme.of(context).primaryColorDark),
                           )
                         ],

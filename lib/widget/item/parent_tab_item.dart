@@ -35,7 +35,7 @@ class _ParentTabItemState extends State<ParentTabItem> {
               widget.parentTab.name,
               style: TextStyle(
                   color: Theme.of(context).primaryColorLight,
-                  fontSize: ThemeDimens.font_size_medium,
+                  fontSize: ThemeDimens.fontSizeMedium,
                   fontWeight: FontWeight.bold),
             ),
             _buildDivider(),
@@ -43,16 +43,16 @@ class _ParentTabItemState extends State<ParentTabItem> {
               widget.parentTab.formHtmlLabels(),
               style: TextStyle(
                   color: Theme.of(context).primaryColor,
-                  fontSize: ThemeDimens.font_size_small),
+                  fontSize: ThemeDimens.fontSizeSmall),
             ),
             _buildDivider(),
             SizedBox(
               width: double.infinity,
               child: Text(
-                ThemeStrings.system_more_text,
+                ThemeStrings.systemMoreText,
                 style: TextStyle(
                     color: Theme.of(context).focusColor,
-                    fontSize: ThemeDimens.font_size_small_x,
+                    fontSize: ThemeDimens.fontSizeSmallX,
                     fontWeight: FontWeight.bold),
                 textAlign: TextAlign.end,
               ),
@@ -64,7 +64,7 @@ class _ParentTabItemState extends State<ParentTabItem> {
   Widget _buildDivider() {
     return Padding(
       padding: const EdgeInsets.only(
-          top: ThemeDimens.offset_medium, bottom: ThemeDimens.offset_medium),
+          top: ThemeDimens.offsetMedium, bottom: ThemeDimens.offsetMedium),
       child: Container(
         width: double.infinity,
         height: 1,

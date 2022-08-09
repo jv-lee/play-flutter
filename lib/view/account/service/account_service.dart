@@ -26,7 +26,7 @@ class AccountService extends BaseModuleService {
 
   void requestAccountData() async {
     LocalTools.localRequest<AccountData>(
-        localKey: ThemeConstants.ACCOUNT_DATA_LOCAL_KEY,
+        localKey: ThemeConstants.localKeyAccountData,
         createJson: (json) => AccountData.fromJson(json),
         requestFuture: _model.getAccountInfoAsync(),
         callback: (value) => updateAccountStatus(value, true),
@@ -48,14 +48,14 @@ class AccountService extends BaseModuleService {
 
     _model.getLogoutAsync().then((value) {
       updateAccountStatus(null, false);
-      Toast.show(ThemeStrings.account_logout_success);
+      Toast.show(ThemeStrings.accountLogoutSuccess);
     }).catchError((onError) {
       Toast.show((onError as HttpException).message);
     }).whenComplete(() => Navigator.pop(context));
   }
 
   void updateAccountStatus(AccountData? accountData, bool isLogin) {
-    LocalTools.localSave(ThemeConstants.ACCOUNT_DATA_LOCAL_KEY, accountData);
+    LocalTools.localSave(ThemeConstants.localKeyAccountData, accountData);
     viewStates.accountData = accountData;
     viewStates.isLogin = isLogin;
     notifyListeners();

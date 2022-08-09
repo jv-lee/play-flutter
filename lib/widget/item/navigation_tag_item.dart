@@ -23,7 +23,7 @@ class _NavigationTagItemState extends State<NavigationTagItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(ThemeDimens.offset_large),
+      padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -33,11 +33,11 @@ class _NavigationTagItemState extends State<NavigationTagItem> {
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
                 color: Theme.of(context).primaryColorLight,
-                fontSize: ThemeDimens.font_size_medium,
+                fontSize: ThemeDimens.fontSizeMedium,
                 fontWeight: FontWeight.bold),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: ThemeDimens.offset_medium),
+            padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
             child: buildTagFlowList(),
           )
         ],
@@ -53,18 +53,18 @@ class _NavigationTagItemState extends State<NavigationTagItem> {
           elevation: 0,
           shape: RoundedRectangleBorder(
               borderRadius:
-                  BorderRadius.circular(ThemeDimens.system_tab_radius)),
+                  BorderRadius.circular(ThemeDimens.systemTabRadius)),
           child: InkWell(
             onTap: () => {
               if (widget.onItemClick != null) {widget.onItemClick!(element)}
             },
-            borderRadius: BorderRadius.circular(ThemeDimens.system_tab_radius),
+            borderRadius: BorderRadius.circular(ThemeDimens.systemTabRadius),
             child: Padding(
-              padding: const EdgeInsets.all(ThemeDimens.offset_medium),
+              padding: const EdgeInsets.all(ThemeDimens.offsetMedium),
               child: Text(
                 element.title,
                 style: TextStyle(
-                    fontSize: ThemeDimens.font_size_small,
+                    fontSize: ThemeDimens.fontSizeSmall,
                     color: Theme.of(context).primaryColor),
               ),
             ),

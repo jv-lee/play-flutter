@@ -54,7 +54,7 @@ class NavigationContentViewModel extends BaseViewModel {
   void changeTagIndex(int index) {
     // 当前tab点击切换锁定滚动状态时 和 index重复change时不进行处理
     if (viewStates.isChangeTab && index != viewStates.tabSelectedIndex) {
-      var scrollOffset = ThemeDimens.system_navigation_tab_height * index;
+      var scrollOffset = ThemeDimens.systemNavigationTabHeight * index;
       // 限制滚动最大值
       if (scrollOffset >=
           viewStates.tabScrollController.position.maxScrollExtent) {

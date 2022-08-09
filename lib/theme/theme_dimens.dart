@@ -1,50 +1,48 @@
-// ignore_for_file: constant_identifier_names
-
 /// @author jv.lee
 /// @date 2022/6/24
 /// @description 项目主题数值参数
 class ThemeDimens {
   // 全局通用组件数值
-  static const double toolbar_height = 56;
-  static const double list_state_item_height = 60;
+  static const double toolbarHeight = 56;
+  static const double listStateItemHeight = 60;
 
   // 全局通用radius值
-  static const double offset_radius_large = 32;
-  static const double offset_radius_medium = 16;
-  static const double offset_radius_small = 8;
+  static const double offsetRadiusLarge = 32;
+  static const double offsetRadiusMedium = 16;
+  static const double offsetRadiusSmall = 8;
 
   // 全局通用样式 （统一全局margin padding radius值）
-  static const double offset_large = 16;
-  static const double offset_medium = 8;
-  static const double offset_small = 4;
+  static const double offsetLarge = 16;
+  static const double offsetMedium = 8;
+  static const double offsetSmall = 4;
 
   // 全局通用字体size值
-  static const double font_size_large_xx = 20;
-  static const double font_size_large_x = 18;
-  static const double font_size_large = 16;
-  static const double font_size_medium = 14;
-  static const double font_size_small = 12;
-  static const double font_size_small_x = 10;
+  static const double fontSizeLargeXX = 20;
+  static const double fontSizeLargeX = 18;
+  static const double fontSizeLarge = 16;
+  static const double fontSizeMedium = 14;
+  static const double fontSizeSmall = 12;
+  static const double fontSizeSmallX = 10;
 
   // 通用圆角线宽度
-  static const double border_width = 2;
+  static const double borderWidth = 2;
 
   // homeTab布局数值
-  static const double home_banner_height = 180;
-  static const double home_category_layout_height = 130;
-  static const double home_category_item_size = 50;
+  static const double homeBannerHeight = 180;
+  static const double homeCategoryLayoutHeight = 130;
+  static const double homeCategoryItemSize = 50;
 
   // systemTab布局数值
-  static const double system_tab_width = 100;
-  static const double system_tab_height = 24;
-  static const double system_tab_radius = 12;
-  static const double system_navigation_tab_height = 56;
+  static const double systemTabWidth = 100;
+  static const double systemTabHeight = 24;
+  static const double systemTabRadius = 12;
+  static const double systemNavigationTabHeight = 56;
 
   // meTab布局数值
-  static const double me_header_height = 160;
-  static const double me_header_picture_size = 56;
-  static const double me_header_picture_margin = 36;
-  static const double me_header_content_margin = 26;
-  static const double me_coin_header_height = 180;
-  static const double me_coin_header_bg_height = 120;
+  static const double meHeaderHeight = 160;
+  static const double meHeaderPictureSize = 56;
+  static const double meHeaderPictureMargin = 36;
+  static const double meHeaderContentMargin = 26;
+  static const double meCoinHeaderHeight = 180;
+  static const double meCoinHeaderBgHeight = 120;
 }

@@ -15,7 +15,7 @@ class CardItemContainer extends StatefulWidget {
       {Key? key,
       required this.child,
       this.width = 0,
-      this.contentPadding = ThemeDimens.offset_large,
+      this.contentPadding = ThemeDimens.offsetLarge,
       this.onItemClick})
       : super(key: key);
 
@@ -27,16 +27,16 @@ class _CardItemContainerState extends State<CardItemContainer> {
   @override
   Widget build(BuildContext context) {
     var content = Padding(
-      padding: const EdgeInsets.all(ThemeDimens.offset_small),
+      padding: const EdgeInsets.all(ThemeDimens.offsetSmall),
       child: Card(
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
-                Radius.circular(ThemeDimens.offset_radius_medium))),
+                Radius.circular(ThemeDimens.offsetRadiusMedium))),
         child: Material(
           child: InkWell(
             onTap: () => {widget.onItemClick.checkNullInvoke()},
             borderRadius:
-                BorderRadius.circular(ThemeDimens.offset_radius_medium),
+                BorderRadius.circular(ThemeDimens.offsetRadiusMedium),
             child: Padding(
                 padding: EdgeInsets.all(widget.contentPadding),
                 child: widget.child),

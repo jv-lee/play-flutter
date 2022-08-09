@@ -69,7 +69,7 @@ class _ProfileItemState extends State<ProfileItem> {
                             child: Text(object.toString(),
                                 style: TextStyle(
                                     color: Theme.of(context).primaryColorLight,
-                                    fontSize: ThemeDimens.font_size_medium)),
+                                    fontSize: ThemeDimens.fontSizeMedium)),
                           ))
                     ],
                   ),
@@ -81,7 +81,7 @@ class _ProfileItemState extends State<ProfileItem> {
                             child: Text(object.toString(),
                                 style: TextStyle(
                                     color: Theme.of(context).primaryColor,
-                                    fontSize: ThemeDimens.font_size_small)),
+                                    fontSize: ThemeDimens.fontSizeSmall)),
                           )),
                       widget.switchVisible.isVisible(Switch(
                           trackColor: lockSwitchColor,

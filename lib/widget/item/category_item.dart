@@ -31,12 +31,12 @@ class _CategoryItemState extends State<CategoryItem> {
       child: Column(
         children: [
           SizedBox(
-            width: ThemeDimens.home_category_item_size,
-            height: ThemeDimens.home_category_item_size,
+            width: ThemeDimens.homeCategoryItemSize,
+            height: ThemeDimens.homeCategoryItemSize,
             child: SvgPicture.asset(widget.category.iconRes),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: ThemeDimens.offset_medium),
+            padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
             child: Text(
               widget.category.name,
               style: TextStyle(color: Theme.of(context).primaryColorLight),

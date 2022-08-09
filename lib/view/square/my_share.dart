@@ -25,7 +25,7 @@ class _MySharePageState extends BasePageState<MySharePage> {
     return buildViewModel<MyShareViewModel>(
         create: (context) => MyShareViewModel(context),
         viewBuild: (context, viewModel) => Scaffold(
-              appBar: AppBar(title: const Text(ThemeStrings.me_item_share)),
+              appBar: AppBar(title: const Text(ThemeStrings.meItemShare)),
               body: RefreshIndicator(
                   color: Theme.of(context).primaryColorLight,
                   onRefresh: () async {
