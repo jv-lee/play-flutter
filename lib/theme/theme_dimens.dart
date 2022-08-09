@@ -45,4 +45,6 @@ class ThemeDimens {
   static const double me_header_picture_size = 56;
   static const double me_header_picture_margin = 36;
   static const double me_header_content_margin = 26;
+  static const double me_coin_header_height = 180;
+  static const double me_coin_header_bg_height = 120;
 }
