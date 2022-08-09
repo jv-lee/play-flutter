@@ -28,6 +28,7 @@ class NavigationContentViewModel extends BaseViewModel {
   void onCleared() {
     viewStates.tabScrollController.dispose();
     viewStates.tagScrollController.dispose();
+    _model.dispose();
   }
 
   void requestData() async {

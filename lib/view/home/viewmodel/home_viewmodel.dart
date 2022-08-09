@@ -28,6 +28,7 @@ class HomeViewModel extends BaseViewModel {
   void onCleared() {
     viewStates.swiperController.dispose();
     paging.dispose();
+    _model.dispose();
   }
 
   @override

@@ -26,7 +26,9 @@ class DetailsViewModel extends BaseViewModel {
   }
 
   @override
-  void onCleared() {}
+  void onCleared() {
+    _model.dispose();
+  }
 
   /// 收藏该文章
   void onCollect() {

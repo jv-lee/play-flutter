@@ -24,6 +24,7 @@ class SystemContentViewModel extends BaseViewModel {
   @override
   void onCleared() {
     paging.dispose();
+    _model.dispose();
   }
 
   void requestData() async {

@@ -9,6 +9,13 @@ import 'package:playflutter/model/http/http_manager.dart';
 /// @date 2022/8/8
 /// @description 所有model类基类
 abstract class BaseModel {
+  CancelToken token = CancelToken();
+
+  /// 页面销毁时调用dispose取消所有请求
+  void dispose() {
+    token.cancel("page destroy,cancel request.");
+  }
+
   Future<T> requestGet<T extends BaseData>({
     required String path,
     required CreateEntity<T> create,
@@ -20,7 +27,7 @@ abstract class BaseModel {
     var response = await HttpManager.getInstance().dio.get(path,
         queryParameters: queryParameters,
         options: options,
-        cancelToken: cancelToken,
+        cancelToken: cancelToken ?? token,
         onReceiveProgress: onReceiveProgress);
     if (response.statusCode == 200) {
       T entity = create(response.data);
@@ -50,7 +57,7 @@ abstract class BaseModel {
         data: data,
         queryParameters: queryParameters,
         options: options,
-        cancelToken: cancelToken,
+        cancelToken: cancelToken ?? token,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress);
     if (response.statusCode == 200) {
@@ -70,3 +77,4 @@ abstract class BaseModel {
 
 typedef CreateEntity<T> = T Function(dynamic resouse);
 typedef RequestResult<T> = bool Function(T);
+typedef ChangeError<T> = Future<T> Function();

@@ -1,4 +1,4 @@
-// ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+// ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:playflutter/tools/log_tools.dart';
@@ -10,6 +10,8 @@ import 'package:playflutter/widget/status/status_controller.dart';
 /// @date 2020/5/14
 /// @description 分页加载工具
 class Paging<T> {
+  final String _TAG = "Paging";
+
   List<T> data;
   int initPage;
   int _page = 0;
@@ -95,7 +97,8 @@ class Paging<T> {
 
       notify();
     }).catchError((onError) {
-      LogTools.log("Paging", onError);
+      if (isDispose) return;
+      LogTools.log(_TAG, onError);
       submitFailed();
     });
   }

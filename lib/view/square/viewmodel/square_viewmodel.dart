@@ -34,6 +34,7 @@ class SquareViewModel extends BaseViewModel {
   void onCleared() {
     accountService.removeListener(_accountListener);
     paging.dispose();
+    _model.dispose();
   }
 
   void requestData(LoadStatus status) async {

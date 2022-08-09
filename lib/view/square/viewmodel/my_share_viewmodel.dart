@@ -23,6 +23,7 @@ class MyShareViewModel extends BaseViewModel {
   @override
   void onCleared() {
     paging.dispose();
+    _model.dispose();
   }
 
   void requestData(LoadStatus status) async {
