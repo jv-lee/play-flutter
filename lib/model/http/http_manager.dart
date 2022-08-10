@@ -8,9 +8,7 @@ import 'package:playflutter/model/http/interceptor/app_cookie_interceptor.dart';
 class HttpManager {
   static final HttpManager _instance = HttpManager._internal();
 
-  static HttpManager getInstance() {
-    return _instance;
-  }
+  static HttpManager getInstance() => _instance;
 
   late Dio dio;
 
