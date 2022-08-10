@@ -44,8 +44,8 @@ class _SearchState extends BasePageState<SearchPage> {
         title: TextField(
             onSubmitted: (text) => {viewModel.navigationSearchKey(text)},
             textInputAction: TextInputAction.search,
-            decoration: const InputDecoration(
-                hintText: ThemeStrings.searchHintText)));
+            decoration:
+                const InputDecoration(hintText: ThemeStrings.searchHintText)));
   }
 
   Widget buildSearchContent(SearchViewModel viewModel) {
@@ -95,8 +95,7 @@ class _SearchState extends BasePageState<SearchPage> {
       elevation: 0,
       color: Theme.of(context).hintColor,
       shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(ThemeDimens.offsetRadiusMedium)),
+          borderRadius: BorderRadius.circular(ThemeDimens.offsetRadiusMedium)),
       child: InkWell(
         onTap: () => {viewModel.navigationSearchKey(searchHot.hotKey)},
         borderRadius: BorderRadius.circular(ThemeDimens.systemTabRadius),
@@ -169,8 +168,7 @@ class _SearchState extends BasePageState<SearchPage> {
     return Expanded(
         child: Padding(
             padding: const EdgeInsets.only(
-                left: ThemeDimens.offsetLarge,
-                right: ThemeDimens.offsetLarge),
+                left: ThemeDimens.offsetLarge, right: ThemeDimens.offsetLarge),
             child: OverscrollHideContainer(
               scrollChild:
                   ListView(shrinkWrap: true, children: searchHistoryList),
@@ -206,8 +204,7 @@ class _SearchState extends BasePageState<SearchPage> {
         },
         child: Padding(
           padding: const EdgeInsets.only(
-              top: ThemeDimens.offsetMedium,
-              bottom: ThemeDimens.offsetMedium),
+              top: ThemeDimens.offsetMedium, bottom: ThemeDimens.offsetMedium),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

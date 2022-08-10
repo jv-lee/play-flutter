@@ -36,84 +36,90 @@ class ThemeColors {
       const Color(0xFF575757));
 
   static var lightThemeData = ThemeData(
-    primaryColor: lightColorPalette.primary,
-    primaryColorDark: lightColorPalette.primaryDark,
-    primaryColorLight: lightColorPalette.accent,
-    focusColor: lightColorPalette.focus,
-    hoverColor: lightColorPalette.onFocus,
-    scaffoldBackgroundColor: lightColorPalette.background,
-    backgroundColor: lightColorPalette.window,
-    canvasColor: lightColorPalette.backgroundTransparent,
-    dividerColor: lightColorPalette.divider,
-    cardColor: lightColorPalette.item,
-    shadowColor: lightColorPalette.shadow,
-    splashColor: lightColorPalette.placeholder,
-    hintColor: lightColorPalette.label,
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: lightColorPalette.item,
-        selectedIconTheme: IconThemeData(color: lightColorPalette.focus),
-        unselectedIconTheme: IconThemeData(color: lightColorPalette.primary)),
-    appBarTheme: AppBarTheme(
-        centerTitle: true,
-        backgroundColor: lightColorPalette.item,
-        foregroundColor: lightColorPalette.accent,
-        titleTextStyle: TextStyle(
-            fontSize: ThemeDimens.fontSizeLarge,
-            fontWeight: FontWeight.bold,
-            fontFamily: "Avenir",
-            color: lightColorPalette.accent)),
-    progressIndicatorTheme: ProgressIndicatorThemeData(
-        color: lightColorPalette.accent,
-        refreshBackgroundColor: lightColorPalette.item),
-    fontFamily: "Avenir",
-    inputDecorationTheme: InputDecorationTheme(
-        hintStyle: TextStyle(color: lightColorPalette.primary),
-        enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent)),
-        focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent))),
-    textSelectionTheme: TextSelectionThemeData(cursorColor: lightColorPalette.accent)
-  );
+      primaryColor: lightColorPalette.primary,
+      primaryColorDark: lightColorPalette.primaryDark,
+      primaryColorLight: lightColorPalette.accent,
+      focusColor: lightColorPalette.focus,
+      hoverColor: lightColorPalette.onFocus,
+      scaffoldBackgroundColor: lightColorPalette.background,
+      backgroundColor: lightColorPalette.window,
+      canvasColor: lightColorPalette.backgroundTransparent,
+      dividerColor: lightColorPalette.divider,
+      cardColor: lightColorPalette.item,
+      shadowColor: lightColorPalette.shadow,
+      splashColor: lightColorPalette.placeholder,
+      hintColor: lightColorPalette.label,
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: lightColorPalette.item,
+          selectedIconTheme: IconThemeData(color: lightColorPalette.focus),
+          unselectedIconTheme: IconThemeData(color: lightColorPalette.primary)),
+      appBarTheme: AppBarTheme(
+          centerTitle: true,
+          backgroundColor: lightColorPalette.item,
+          foregroundColor: lightColorPalette.accent,
+          titleTextStyle: TextStyle(
+              fontSize: ThemeDimens.fontSizeLarge,
+              fontWeight: FontWeight.bold,
+              fontFamily: "Avenir",
+              color: lightColorPalette.accent)),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+          color: lightColorPalette.accent,
+          refreshBackgroundColor: lightColorPalette.item),
+      fontFamily: "Avenir",
+      textTheme:
+          // TextField text color
+          TextTheme(subtitle1: TextStyle(color: lightColorPalette.accent)),
+      inputDecorationTheme: InputDecorationTheme(
+          hintStyle: TextStyle(color: lightColorPalette.primary),
+          enabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent)),
+          focusedBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent))),
+      textSelectionTheme:
+          TextSelectionThemeData(cursorColor: lightColorPalette.accent));
 
   static var darkThemeData = ThemeData(
-    primaryColor: darkColorPalette.primary,
-    primaryColorDark: darkColorPalette.primaryDark,
-    primaryColorLight: darkColorPalette.accent,
-    focusColor: darkColorPalette.focus,
-    hoverColor: darkColorPalette.onFocus,
-    scaffoldBackgroundColor: darkColorPalette.window,
-    backgroundColor: darkColorPalette.background,
-    canvasColor: darkColorPalette.backgroundTransparent,
-    dividerColor: darkColorPalette.divider,
-    cardColor: darkColorPalette.item,
-    shadowColor: darkColorPalette.shadow,
-    splashColor: darkColorPalette.placeholder,
-    hintColor: darkColorPalette.label,
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: darkColorPalette.item,
-        selectedIconTheme: IconThemeData(color: darkColorPalette.focus),
-        unselectedIconTheme: IconThemeData(color: darkColorPalette.primary)),
-    appBarTheme: AppBarTheme(
-        centerTitle: true,
-        backgroundColor: darkColorPalette.item,
-        foregroundColor: darkColorPalette.accent,
-        titleTextStyle: TextStyle(
-            fontSize: ThemeDimens.fontSizeLarge,
-            fontWeight: FontWeight.bold,
-            fontFamily: "Avenir",
-            color: darkColorPalette.accent)),
-    progressIndicatorTheme: ProgressIndicatorThemeData(
-        color: darkColorPalette.accent,
-        refreshBackgroundColor: darkColorPalette.item),
-    fontFamily: "Avenir",
-    inputDecorationTheme: InputDecorationTheme(
-        hintStyle: TextStyle(color: darkColorPalette.primary),
-        enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent)),
-        focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent))),
-      textSelectionTheme: TextSelectionThemeData(cursorColor: darkColorPalette.accent)
-  );
+      primaryColor: darkColorPalette.primary,
+      primaryColorDark: darkColorPalette.primaryDark,
+      primaryColorLight: darkColorPalette.accent,
+      focusColor: darkColorPalette.focus,
+      hoverColor: darkColorPalette.onFocus,
+      scaffoldBackgroundColor: darkColorPalette.window,
+      backgroundColor: darkColorPalette.background,
+      canvasColor: darkColorPalette.backgroundTransparent,
+      dividerColor: darkColorPalette.divider,
+      cardColor: darkColorPalette.item,
+      shadowColor: darkColorPalette.shadow,
+      splashColor: darkColorPalette.placeholder,
+      hintColor: darkColorPalette.label,
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: darkColorPalette.item,
+          selectedIconTheme: IconThemeData(color: darkColorPalette.focus),
+          unselectedIconTheme: IconThemeData(color: darkColorPalette.primary)),
+      appBarTheme: AppBarTheme(
+          centerTitle: true,
+          backgroundColor: darkColorPalette.item,
+          foregroundColor: darkColorPalette.accent,
+          titleTextStyle: TextStyle(
+              fontSize: ThemeDimens.fontSizeLarge,
+              fontWeight: FontWeight.bold,
+              fontFamily: "Avenir",
+              color: darkColorPalette.accent)),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+          color: darkColorPalette.accent,
+          refreshBackgroundColor: darkColorPalette.item),
+      fontFamily: "Avenir",
+      textTheme:
+          // TextField text color
+          TextTheme(subtitle1: TextStyle(color: darkColorPalette.accent)),
+      inputDecorationTheme: InputDecorationTheme(
+          hintStyle: TextStyle(color: darkColorPalette.primary),
+          enabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent)),
+          focusedBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent))),
+      textSelectionTheme:
+          TextSelectionThemeData(cursorColor: darkColorPalette.accent));
 }
 
 class AppColors {
