@@ -15,13 +15,18 @@ class HttpManager {
   late Dio dio;
 
   HttpManager._internal() {
-    dio = Dio(BaseOptions(
-        baseUrl: ApiConstants.BASE_URI,
+    dio = createDio(ApiConstants.BASE_URI);
+  }
+
+  static Dio createDio(String baseUri) {
+    Dio dio = Dio(BaseOptions(
+        baseUrl: baseUri,
         connectTimeout: 5000,
         receiveTimeout: 3000,
         contentType: Headers.formUrlEncodedContentType,
         responseType: ResponseType.json));
     dio.interceptors.add(LogInterceptor(responseBody: true));
     dio.interceptors.add(AppCookieInterceptor());
+    return dio;
   }
 }

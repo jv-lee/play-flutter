@@ -9,7 +9,16 @@ import 'package:playflutter/model/http/http_manager.dart';
 /// @date 2022/8/8
 /// @description 所有model类基类
 abstract class BaseModel {
+  late Dio dio;
   CancelToken token = CancelToken();
+
+  /// 子类如需替换域名地址可以在构造函数中创建新的dio替换
+  ///   ChildModel() {
+  ///     super.dio = HttpManager.createDio(baseUri);
+  ///   }
+  BaseModel({Dio? dio}) {
+    this.dio = dio ?? HttpManager.getInstance().dio;
+  }
 
   /// 页面销毁时调用dispose取消所有请求
   void dispose() {
@@ -24,14 +33,14 @@ abstract class BaseModel {
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
   }) async {
-    var response = await HttpManager.getInstance().dio.get(path,
+    var response = await dio.get(path,
         queryParameters: queryParameters,
         options: options,
         cancelToken: cancelToken ?? token,
         onReceiveProgress: onReceiveProgress);
     if (response.statusCode == 200) {
       T entity = create(response.data);
-      if (entity.responseCode() == ApiConstants.REQUEST_OK) {
+      if (entity.responseIsSuccess()) {
         return entity;
       } else if (entity.responseCode() == ApiConstants.REQUEST_TOKEN_ERROR) {
         throw const HttpException(ApiConstants.REQUEST_TOKEN_ERROR_MESSAGE);
@@ -53,7 +62,7 @@ abstract class BaseModel {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    var response = await HttpManager.getInstance().dio.post(path,
+    var response = await dio.post(path,
         data: data,
         queryParameters: queryParameters,
         options: options,
@@ -62,7 +71,7 @@ abstract class BaseModel {
         onReceiveProgress: onReceiveProgress);
     if (response.statusCode == 200) {
       T entity = create(response.data);
-      if (entity.responseCode() == ApiConstants.REQUEST_OK) {
+      if (entity.responseIsSuccess()) {
         return entity;
       } else if (entity.responseCode() == ApiConstants.REQUEST_TOKEN_ERROR) {
         throw const HttpException(ApiConstants.REQUEST_TOKEN_ERROR_MESSAGE);
