@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/model/entity/content.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
-import 'package:playflutter/widget/common/card_item_container.dart';
 
 /// @author jv.lee
 /// @date 2022/8/5
@@ -24,54 +23,41 @@ class ActionTextItem extends StatefulWidget {
 class _ActionTextItemState extends State<ActionTextItem> {
   @override
   Widget build(BuildContext context) {
-    return CardItemContainer(
-        onItemClick: () => {widget.onItemClick(widget.content)},
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            SizedBox(
-                width: double.infinity,
-                child: Text(
-                  widget.content.getAuthor(),
-                  style: TextStyle(
-                      fontSize: ThemeDimens.fontSizeMedium,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).primaryColorLight),
-                )),
-            Padding(
-              padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
-              child: SizedBox(
-                  width: double.infinity,
-                  child: Text(
-                    widget.content.getTitle(),
-                    style: TextStyle(
-                        fontSize: ThemeDimens.fontSizeSmall,
-                        color: Theme.of(context).primaryColor),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  )),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    widget.content.getCategory(),
-                    style: TextStyle(
-                        fontSize: ThemeDimens.fontSizeSmallX,
-                        color: Theme.of(context).focusColor),
-                  ),
-                  Text(
-                    widget.content.getDateFormat(),
-                    style: TextStyle(
-                        fontSize: ThemeDimens.fontSizeSmallX,
-                        color: Theme.of(context).primaryColorDark),
-                  )
-                ],
-              ),
-            )
-          ],
-        ));
+    return Padding(
+        padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
+        child: Container(
+            width: double.infinity,
+            height: 76,
+            color: Theme.of(context).cardColor,
+            child: Material(
+                child: InkWell(
+                    onTap: () => widget.onItemClick(widget.content),
+                    child: Padding(
+                        padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
+                        child: Stack(
+                          children: [
+                            Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  widget.content.getTitle(),
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      color:
+                                          Theme.of(context).primaryColorLight,
+                                      fontSize: ThemeDimens.fontSizeSmall,
+                                      fontWeight: FontWeight.bold,
+                                      overflow: TextOverflow.ellipsis),
+                                )),
+                            Align(
+                                alignment: Alignment.bottomLeft,
+                                child: Text(widget.content.getDateFormat(),
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                        color: Theme.of(context).primaryColor,
+                                        fontSize: ThemeDimens.fontSizeSmallX,
+                                        fontWeight: FontWeight.bold,
+                                        overflow: TextOverflow.ellipsis)))
+                          ],
+                        ))))));
   }
 }
