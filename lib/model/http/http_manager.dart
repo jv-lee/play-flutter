@@ -20,7 +20,7 @@ class HttpManager {
     Dio dio = Dio(BaseOptions(
         baseUrl: baseUri,
         connectTimeout: 5000,
-        receiveTimeout: 3000,
+        receiveTimeout: 10000,
         contentType: Headers.formUrlEncodedContentType,
         responseType: ResponseType.json));
     dio.interceptors.add(LogInterceptor(responseBody: true));
