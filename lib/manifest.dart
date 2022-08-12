@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:playflutter/model/entity/details.dart';
 import 'package:playflutter/model/entity/parent_tab.dart';
 import 'package:playflutter/route/route_animator.dart';

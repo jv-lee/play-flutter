@@ -19,13 +19,26 @@ class TimeReadyButton extends StatefulWidget {
 }
 
 class _TimeReadyButtonState extends State<TimeReadyButton> {
-  Timer? _timer;
+  static Timer? _timer;
   String timeText = "";
+
+  void _clearTimer() {
+    if (_timer != null && _timer!.isActive) {
+      _timer?.cancel();
+      _timer = null;
+    }
+  }
+
+  @override
+  void dispose() {
+    _clearTimer();
+    super.dispose();
+  }
 
   @override
   void initState() {
     super.initState();
-    if (widget.isStart) {
+      _clearTimer();
       var readTime = 5;
       timeText = "${ThemeStrings.splashTimeText}$readTime";
       _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -38,7 +51,7 @@ class _TimeReadyButtonState extends State<TimeReadyButton> {
           setState(() {});
         }
       });
-    }
+
   }
 
   @override
