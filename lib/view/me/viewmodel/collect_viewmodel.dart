@@ -53,7 +53,7 @@ class CollectViewModel extends BaseViewModel {
         paging.data.remove(item);
         paging.notifyDataChange();
       }).catchError((onError) {
-        Toast.show((onError as HttpException).message);
+        if (onError is HttpException) Toast.show(onError.message);
       }).whenComplete(() => Navigator.of(context).pop());
     });
   }

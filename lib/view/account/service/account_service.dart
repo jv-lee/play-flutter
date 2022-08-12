@@ -50,7 +50,7 @@ class AccountService extends BaseModuleService {
       updateAccountStatus(null, false);
       Toast.show(ThemeStrings.accountLogoutSuccess);
     }).catchError((onError) {
-      Toast.show((onError as HttpException).message);
+      if (onError is HttpException) Toast.show(onError.message);
     }).whenComplete(() => Navigator.pop(context));
   }
 

@@ -52,7 +52,7 @@ class CreateShareViewModel extends BaseViewModel {
         Toast.show(ThemeStrings.squareShareRequestSuccess);
         Navigator.of(context).pop();
       }).catchError((onError) {
-        Toast.show((onError as HttpException).message);
+        if (onError is HttpException) Toast.show(onError.message);
       }).whenComplete(() => Navigator.of(context).pop());
     });
   }

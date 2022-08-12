@@ -2,10 +2,12 @@
 
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/model/entity/details.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/me/model/me_model.dart';
+import 'package:playflutter/widget/dialog/loading_dialog.dart';
 import 'package:share/share.dart';
 import 'package:toast/toast.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -38,12 +40,21 @@ class DetailsViewModel extends BaseViewModel {
       return;
     }
 
-    _model.postCollectAsync(detailsData.id).then((value) {
-      detailsData.isCollect = true;
-      Toast.show(ThemeStrings.menuCollectComplete);
-    }).catchError((onError) => {
-          if (onError is HttpException) {Toast.show(onError.message)}
-        });
+    // 显示loading弹窗
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) => const LoadingDialog());
+
+    // 延时请求让loading显示更平滑
+    Future.delayed(const Duration(milliseconds: 300), () {
+      _model.postCollectAsync(detailsData.id).then((value) {
+        detailsData.isCollect = true;
+        Toast.show(ThemeStrings.menuCollectComplete);
+      }).catchError((onError) {
+        if (onError is HttpException) Toast.show(onError.message);
+      }).whenComplete(() => Navigator.of(context).pop());
+    });
   }
 
   /// 分享该文章链接
