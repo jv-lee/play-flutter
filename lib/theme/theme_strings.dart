@@ -7,6 +7,7 @@ class ThemeStrings {
   static const String backAlertMessage = "再次点击可退出";
   static const String splashTimeText = "跳过";
   static const String loginAlert = "请先登陆";
+  static const String itemDelete = "删除";
 
   /// home
   static const String homeHeaderText = "Welcome to Play Flutter";
@@ -21,7 +22,8 @@ class ThemeStrings {
   static const String squareShareTitleHint = "100字以内";
   static const String squareShareLinkHint = "例如：https://www.wanandorid.com";
   static const String squareShareRequestSuccess = "分享成功";
-  static const String squareCreateShareDescription = "1. 只要是任何好文都可以分享哈，并不一定要是原创！投递的文章会进入广场 tab;\n2. CSDN，掘金，简书等官方博客站点会直接通过，不需要审核;\n3. 其他个人站点会进入审核阶段，不要投递任何无效链接，测试的请尽快删除，否则可能会对你的账号产生一定影响;\n4. 目前处于测试阶段，如果你发现500等错误，可以向我提交日志，让我们一起使网站变得更好。\n5. 由于本站只有我一个人开发与维护，会尽力保证24小时内审核，当然有可能哪天太累，会延期，请保持佛系…\n";
+  static const String squareCreateShareDescription =
+      "1. 只要是任何好文都可以分享哈，并不一定要是原创！投递的文章会进入广场 tab;\n2. CSDN，掘金，简书等官方博客站点会直接通过，不需要审核;\n3. 其他个人站点会进入审核阶段，不要投递任何无效链接，测试的请尽快删除，否则可能会对你的账号产生一定影响;\n4. 目前处于测试阶段，如果你发现500等错误，可以向我提交日志，让我们一起使网站变得更好。\n5. 由于本站只有我一个人开发与维护，会尽力保证24小时内审核，当然有可能哪天太累，会延期，请保持佛系…\n";
 
   /// system
   static const String systemSystemTab = "体系";
@@ -42,6 +44,7 @@ class ThemeStrings {
   static const String meItemShare = "我的分享";
   static const String meItemTodo = "TODO";
   static const String meItemSettings = "系统设置";
+
   // coin
   static const String coinTitleLabelText = "每天登陆赚取积分 ";
   static const String coinTotalDescription = "当前积分总数 ";
@@ -49,8 +52,10 @@ class ThemeStrings {
   static const String coinToRankText = "查看积分排行榜 ";
   static const String coinRankTitle = "积分排行榜 ";
   static const String coinHelpTitle = "本站积分规则 ";
+
   // collect
   static const String collectRemoveItemSuccess = "移除收藏成功 ";
+
   // settings
   static const String settingsDarkModeSystem = "夜间模式跟随系统设置 ";
   static const String settingsDarkModeNight = "夜间模式 ";

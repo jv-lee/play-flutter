@@ -50,10 +50,10 @@ class _MySharePageState extends BasePageState<MySharePage> {
                       return ActionTextItem(
                         content: item,
                         slidingPaneController: viewModel.slidingPaneController,
-                        onItemClick: (item) => {
-                          Navigator.pushNamed(context, RouteNames.details,
-                              arguments: item.transformDetails())
-                        },
+                        onItemClick: (item) => Navigator.pushNamed(
+                            context, RouteNames.details,
+                            arguments: item.transformDetails()),
+                        onItemDelete: (item) => {},
                       );
                     },
                   )),

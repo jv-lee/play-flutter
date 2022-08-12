@@ -12,11 +12,13 @@ class SlidingPaneContainer extends StatefulWidget {
   final Widget content;
   final SlidingPaneController controller;
 
+  static const double slidingDefaultWidth = 80;
+
   const SlidingPaneContainer(
       {Key? key,
       required this.width,
       required this.height,
-      this.slidingWidth = 80,
+      this.slidingWidth = slidingDefaultWidth,
       this.slidingAlign = Alignment.centerRight,
       required this.controller,
       required this.sliding,
