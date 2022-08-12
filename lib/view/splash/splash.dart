@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:playflutter/base/base_page_state.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
-import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/tools/status_tools.dart';
@@ -78,8 +77,7 @@ class _SplashState extends BasePageState<SplashPage> {
                         right: ThemeDimens.offsetLarge),
                     child: TimeReadyButton(
                         isStart: viewModel.viewStates.splashAdVisible,
-                        onEnd: () => Navigator.popAndPushNamed(
-                            context, RouteNames.main))))
+                        onEnd: () => Navigator.pop(context))))
           ],
         ));
   }
