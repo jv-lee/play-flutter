@@ -4,13 +4,16 @@ import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/square/model/square_model.dart';
+import 'package:playflutter/widget/common/sliding_pane_container.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
 /// @description 我的分享页面viewModel
 class MyShareViewModel extends BaseViewModel {
   final _model = SquareModel();
+  final slidingPaneController = SlidingPaneController();
   late Paging<Content> paging;
+
 
   MyShareViewModel(super.context);
 

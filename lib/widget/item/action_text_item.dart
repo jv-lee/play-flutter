@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/model/entity/content.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
+import 'package:playflutter/model/entity/content.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
+import 'package:playflutter/widget/common/sliding_pane_container.dart';
 
 /// @author jv.lee
 /// @date 2022/8/5
@@ -9,9 +10,13 @@ import 'package:playflutter/theme/theme_dimens.dart';
 class ActionTextItem extends StatefulWidget {
   final Content content;
   final Function(Content) onItemClick;
+  final SlidingPaneController slidingPaneController;
 
   const ActionTextItem(
-      {Key? key, required this.content, required this.onItemClick})
+      {Key? key,
+      required this.content,
+      required this.slidingPaneController,
+      required this.onItemClick})
       : super(key: key);
 
   @override
@@ -25,39 +30,59 @@ class _ActionTextItemState extends State<ActionTextItem> {
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
-        child: Container(
+        child: SlidingPaneContainer(
             width: double.infinity,
             height: 76,
-            color: Theme.of(context).cardColor,
-            child: Material(
-                child: InkWell(
-                    onTap: () => widget.onItemClick(widget.content),
-                    child: Padding(
-                        padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
-                        child: Stack(
-                          children: [
-                            Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  widget.content.getTitle(),
-                                  maxLines: 1,
-                                  style: TextStyle(
-                                      color:
-                                          Theme.of(context).primaryColorLight,
-                                      fontSize: ThemeDimens.fontSizeSmall,
-                                      fontWeight: FontWeight.bold,
-                                      overflow: TextOverflow.ellipsis),
-                                )),
-                            Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Text(widget.content.getDateFormat(),
-                                    maxLines: 1,
-                                    style: TextStyle(
-                                        color: Theme.of(context).primaryColor,
-                                        fontSize: ThemeDimens.fontSizeSmallX,
-                                        fontWeight: FontWeight.bold,
-                                        overflow: TextOverflow.ellipsis)))
-                          ],
-                        ))))));
+            controller: widget.slidingPaneController,
+            sliding: buildItemMenu(),
+            content: buildItemContent()));
+  }
+
+  Widget buildItemMenu() {
+    return GestureDetector(
+        onTap: () {
+          widget.slidingPaneController.closeAction();
+        },
+        child: Container(
+            width: 80,
+            height: double.infinity,
+            color: Colors.red,
+            child: const Center(child: Text("DELETE"))));
+  }
+
+  Widget buildItemContent() {
+    return Container(
+        width: double.infinity,
+        height: double.infinity,
+        color: Theme.of(context).cardColor,
+        child: Material(
+            child: InkWell(
+                onTap: () => widget.onItemClick(widget.content),
+                child: Padding(
+                    padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
+                    child: Stack(
+                      children: [
+                        Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              widget.content.getTitle(),
+                              maxLines: 1,
+                              style: TextStyle(
+                                  color: Theme.of(context).primaryColorLight,
+                                  fontSize: ThemeDimens.fontSizeSmall,
+                                  fontWeight: FontWeight.bold,
+                                  overflow: TextOverflow.ellipsis),
+                            )),
+                        Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Text(widget.content.getDateFormat(),
+                                maxLines: 1,
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: ThemeDimens.fontSizeSmallX,
+                                    fontWeight: FontWeight.bold,
+                                    overflow: TextOverflow.ellipsis)))
+                      ],
+                    )))));
   }
 }

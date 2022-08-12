@@ -4,12 +4,14 @@ import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/me/model/me_model.dart';
+import 'package:playflutter/widget/common/sliding_pane_container.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
 /// @description 收藏列表viewModel
 class CollectViewModel extends BaseViewModel {
   final _model = MeModel();
+  final slidingPaneController = SlidingPaneController();
   late Paging<Content> paging;
 
   CollectViewModel(super.context);

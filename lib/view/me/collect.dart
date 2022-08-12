@@ -49,6 +49,7 @@ class _CollectPageState extends BasePageState<CollectPage> {
                       var item = viewModel.paging.data[index];
                       return ActionTextItem(
                         content: item,
+                        slidingPaneController: viewModel.slidingPaneController,
                         onItemClick: (item) => {
                           Navigator.pushNamed(context, RouteNames.details,
                               arguments: item.transformDetails())
