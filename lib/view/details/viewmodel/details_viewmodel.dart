@@ -40,14 +40,13 @@ class DetailsViewModel extends BaseViewModel {
       return;
     }
 
-    // 显示loading弹窗
-    showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (BuildContext context) => const LoadingDialog());
-
-    // 延时请求让loading显示更平滑
+    // 添加延时过渡loading
     Future.delayed(const Duration(milliseconds: 300), () {
+      // 显示loading弹窗
+      showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context) => const LoadingDialog());
       _model.postCollectAsync(detailsData.id).then((value) {
         detailsData.isCollect = true;
         Toast.show(ThemeStrings.menuCollectComplete);
