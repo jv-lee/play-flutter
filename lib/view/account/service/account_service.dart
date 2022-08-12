@@ -24,19 +24,22 @@ class AccountService extends BaseModuleService {
   @override
   void init() {}
 
-  void requestAccountData() async {
-    LocalTools.localRequest<AccountData>(
-        localKey: ThemeConstants.localKeyAccountData,
-        createJson: (json) => AccountData.fromJson(json),
-        requestFuture: _model.getAccountInfoAsync(),
-        callback: (value) => updateAccountStatus(value, true),
-        onError: (error) {
-          // 登陆token失效
-          if (error is HttpException &&
-              error.message == ApiConstants.REQUEST_TOKEN_ERROR_MESSAGE) {
-            updateAccountStatus(null, false);
-          }
-        });
+  void requestAccountData(Function callback) async {
+    _model.getAccountInfoAsync().then((value) {
+      updateAccountStatus(value, true);
+    }).catchError((error) async {
+      // 登陆token失效
+      if (error is HttpException &&
+          error.message == ApiConstants.REQUEST_TOKEN_ERROR_MESSAGE) {
+        updateAccountStatus(null, false);
+        return;
+      }
+      // 获取本地数据
+      var localAccount = await LocalTools.localData(
+          ThemeConstants.localKeyAccountData,
+          (json) => AccountData.fromJson(json));
+      updateAccountStatus(localAccount, localAccount != null);
+    }).whenComplete(() => callback());
   }
 
   void requestLogout(BuildContext context) {

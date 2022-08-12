@@ -22,10 +22,11 @@ class SplashViewModel extends BaseViewModel {
 
   void requestSplashAd() async {
     // 获取账户配置
-    context.read<AccountService>().requestAccountData();
-    // 显示splashAd
-    viewStates.splashAdVisible = true;
-    notifyListeners();
+    context.read<AccountService>().requestAccountData(() {
+      // 显示splashAd
+      viewStates.splashAdVisible = true;
+      notifyListeners();
+    });
   }
 
   String findSplashRes() {
