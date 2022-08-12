@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/model/entity/content.dart';
 import 'package:playflutter/tools/log_tools.dart';
@@ -5,6 +8,8 @@ import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/square/model/square_model.dart';
 import 'package:playflutter/widget/common/sliding_pane_container.dart';
+import 'package:playflutter/widget/dialog/loading_dialog.dart';
+import 'package:toast/toast.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -13,7 +18,6 @@ class MyShareViewModel extends BaseViewModel {
   final _model = SquareModel();
   final slidingPaneController = SlidingPaneController();
   late Paging<Content> paging;
-
 
   MyShareViewModel(super.context);
 
@@ -34,6 +38,23 @@ class MyShareViewModel extends BaseViewModel {
 
     // request square list data.
     paging.requestData(status,
-        (page) => _model.getMyShareDataSync(page).then((value) => value.data));
+        (page) => _model.getMyShareDataSync(page).then((value) => value.data.shareArticles));
+  }
+
+  void requestDeleteItem(Content item) {
+    // 显示loading弹窗
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) => const LoadingDialog());
+
+    Future.delayed(const Duration(milliseconds: 300), () {
+      _model.postDeleteShareAsync(item.id).then((value) {
+        paging.data.remove(item);
+        paging.notifyDataChange();
+      }).catchError((onError) {
+        Toast.show((onError as HttpException).message);
+      }).whenComplete(() => Navigator.of(context).pop());
+    });
   }
 }

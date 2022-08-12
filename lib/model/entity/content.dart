@@ -112,6 +112,7 @@ class Content {
     required this.fresh,
     required this.host,
     required this.id,
+    required this.originId,
     required this.link,
     required this.niceDate,
     required this.niceShareDate,
@@ -147,6 +148,7 @@ class Content {
   late final bool fresh;
   late final String host;
   late final int id;
+  late final int originId;
   late final String link;
   late final String niceDate;
   late final String niceShareDate;
@@ -182,6 +184,7 @@ class Content {
     fresh = json['fresh'] ?? false;
     host = json['host'] ?? "";
     id = json['id'] ?? 0;
+    originId = json['originId'] ?? 0;
     link = json['link'] ?? "";
     niceDate = json['niceDate'] ?? "";
     niceShareDate = json['niceShareDate'] ?? "";
@@ -222,6 +225,7 @@ class Content {
     _data['fresh'] = fresh;
     _data['host'] = host;
     _data['id'] = id;
+    _data['originId'] = originId;
     _data['link'] = link;
     _data['niceDate'] = niceDate;
     _data['niceShareDate'] = niceShareDate;

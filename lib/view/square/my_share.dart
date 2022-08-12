@@ -48,13 +48,14 @@ class _MySharePageState extends BasePageState<MySharePage> {
                     itemBuilder: (BuildContext context, int index) {
                       var item = viewModel.paging.data[index];
                       return ActionTextItem(
-                        content: item,
-                        slidingPaneController: viewModel.slidingPaneController,
-                        onItemClick: (item) => Navigator.pushNamed(
-                            context, RouteNames.details,
-                            arguments: item.transformDetails()),
-                        onItemDelete: (item) => {},
-                      );
+                          content: item,
+                          slidingPaneController:
+                              viewModel.slidingPaneController,
+                          onItemClick: (item) => Navigator.pushNamed(
+                              context, RouteNames.details,
+                              arguments: item.transformDetails()),
+                          onItemDelete: (item) =>
+                              viewModel.requestDeleteItem(item));
                     },
                   )),
             ));

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:playflutter/base/base_model.dart';
 import 'package:playflutter/model/entity/content.dart';
 import 'package:playflutter/model/entity/data.dart';
+import 'package:playflutter/model/entity/share_data.dart';
 
 /// @author jv.lee
 /// @date 2022/6/29
@@ -33,9 +34,9 @@ class SquareModel extends BaseModel {
 
   /// 我的分享列表
   /// [page] 分页页面 取值[1-40]
-  Future<ContentData> getMyShareDataSync(page) async {
+  Future<ShareData> getMyShareDataSync(page) async {
     return requestGet(
         path: "/user/lg/private_articles/$page/json",
-        create: (resource) => ContentData.fromJson(resource));
+        create: (resource) => ShareData.fromJson(resource));
   }
 }
