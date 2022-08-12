@@ -54,7 +54,9 @@ abstract class AppPageRoute extends PageRoute {
       Animation<double> secondaryAnimation, Widget child);
 
   Widget transitionOut(Animation<double> animation,
-      Animation<double> secondaryAnimation, Widget child);
+      Animation<double> secondaryAnimation, Widget child) {
+    return transitionIn(animation, secondaryAnimation, child);
+  }
 }
 
 class SplashPageRoute extends AppPageRoute {
@@ -67,11 +69,25 @@ class SplashPageRoute extends AppPageRoute {
         .animate(CurvedAnimation(parent: animation, curve: Curves.linear));
     return FadeTransition(opacity: tween, child: child);
   }
+}
+
+class MainPageRoute extends AppPageRoute {
+  MainPageRoute({required super.settings, required super.builder});
 
   @override
-  Widget transitionOut(Animation<double> animation,
-          Animation<double> secondaryAnimation, Widget child) =>
-      transitionIn(animation, secondaryAnimation, child);
+  Widget transitionIn(Animation<double> animation,
+      Animation<double> secondaryAnimation, Widget child) {
+    // 当前页面执行动画
+    var tween = Tween(begin: 1.0, end: 1.0)
+        .animate(CurvedAnimation(parent: animation, curve: Curves.linear));
+    // 原页面执行动画
+    var parentTween =
+        Tween(begin: const Offset(0, 0), end: const Offset(-0.1, 0)).animate(
+            CurvedAnimation(parent: secondaryAnimation, curve: Curves.ease));
+    return FadeTransition(
+        opacity: tween,
+        child: SlideTransition(position: parentTween, child: child));
+  }
 }
 
 class SlideInPageRoute extends AppPageRoute {
@@ -80,15 +96,17 @@ class SlideInPageRoute extends AppPageRoute {
   @override
   Widget transitionIn(Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
+    // 当前页面执行动画
     var tween = Tween(begin: const Offset(1, 0), end: Offset.zero)
         .animate(CurvedAnimation(parent: animation, curve: Curves.ease));
-    return SlideTransition(position: tween, child: child);
+    // 原页面执行动画
+    var parentTween =
+        Tween(begin: const Offset(0, 0), end: const Offset(-0.1, 0)).animate(
+            CurvedAnimation(parent: secondaryAnimation, curve: Curves.ease));
+    return SlideTransition(
+        position: tween,
+        child: SlideTransition(position: parentTween, child: child));
   }
-
-  @override
-  Widget transitionOut(Animation<double> animation,
-          Animation<double> secondaryAnimation, Widget child) =>
-      transitionIn(animation, secondaryAnimation, child);
 }
 
 class ScaleInPageRoute extends AppPageRoute {
@@ -97,16 +115,25 @@ class ScaleInPageRoute extends AppPageRoute {
   @override
   Widget transitionIn(Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
+    // 当前页面执行动画
     var tween = Tween(begin: 0.95, end: 1.0)
         .animate(CurvedAnimation(parent: animation, curve: Curves.ease));
-    return ScaleTransition(scale: tween, child: child);
+    // 原页面执行动画
+    var parentTween = Tween(begin: 1.0, end: 1.05).animate(
+        CurvedAnimation(parent: secondaryAnimation, curve: Curves.ease));
+    return ScaleTransition(
+        scale: tween, child: ScaleTransition(scale: parentTween, child: child));
   }
 
   @override
   Widget transitionOut(Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
+    // 当前页面执行动画
     var tween = Tween(begin: 0.0, end: 0.0)
-        .animate(CurvedAnimation(parent: animation, curve: Curves.linear));
-    return FadeTransition(opacity: tween, child: child);
+        .animate(CurvedAnimation(parent: animation, curve: Curves.ease));
+    // 原页面执行动画
+    var parentTween = Tween(begin: 1.0, end: 1.0).animate(
+        CurvedAnimation(parent: secondaryAnimation, curve: Curves.ease));
+    return FadeTransition(opacity: tween, child: ScaleTransition(scale: parentTween, child: child));
   }
 }
