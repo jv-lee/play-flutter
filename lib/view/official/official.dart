@@ -4,6 +4,7 @@ import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/official/official_list.dart';
 import 'package:playflutter/view/official/viewmodel/official_viewmodel.dart';
+import 'package:playflutter/widget/common/overscroll_hide_container.dart';
 import 'package:playflutter/widget/status/status_page.dart';
 
 /// @author jv.lee
@@ -35,18 +36,18 @@ class _OfficialState extends BasePageState<OfficialPage> {
           return DefaultTabController(
               length: tabList.length,
               child: Scaffold(
-                appBar: AppBar(
-                  title: const Text(ThemeStrings.homeOfficialCategoryName),
-                  bottom: tabBar,
-                ),
-                body: StatusPage(
-                    status: viewModel.viewStates.pageStatus,
-                    reLoadFun: () => viewModel.requestTabData(),
-                    child: TabBarView(
-                        children: tabList
-                            .map((e) => OfficialListPage(id: e.id))
-                            .toList())),
-              ));
+                  appBar: AppBar(
+                    title: const Text(ThemeStrings.homeOfficialCategoryName),
+                    bottom: tabBar,
+                  ),
+                  body: StatusPage(
+                      status: viewModel.viewStates.pageStatus,
+                      reLoadFun: () => viewModel.requestTabData(),
+                      child: OverscrollHideContainer(
+                          scrollChild: TabBarView(
+                              children: tabList
+                                  .map((e) => OfficialListPage(id: e.id))
+                                  .toList())))));
         });
   }
 }

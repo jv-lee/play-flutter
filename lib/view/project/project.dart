@@ -4,6 +4,7 @@ import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/project/project_list.dart';
 import 'package:playflutter/view/project/viewmodel/project_viewmodel.dart';
+import 'package:playflutter/widget/common/overscroll_hide_container.dart';
 import 'package:playflutter/widget/status/status_page.dart';
 
 /// @author jv.lee
@@ -35,18 +36,18 @@ class _ProjectState extends BasePageState<ProjectPage> {
           return DefaultTabController(
               length: tabList.length,
               child: Scaffold(
-                appBar: AppBar(
-                  title: const Text(ThemeStrings.homeProjectCategoryName),
-                  bottom: tabBar,
-                ),
-                body: StatusPage(
-                    status: viewModel.viewStates.pageStatus,
-                    reLoadFun: () => viewModel.requestTabData(),
-                    child: TabBarView(
-                        children: tabList
-                            .map((e) => ProjectListPage(id: e.id))
-                            .toList())),
-              ));
+                  appBar: AppBar(
+                    title: const Text(ThemeStrings.homeProjectCategoryName),
+                    bottom: tabBar,
+                  ),
+                  body: StatusPage(
+                      status: viewModel.viewStates.pageStatus,
+                      reLoadFun: () => viewModel.requestTabData(),
+                      child: OverscrollHideContainer(
+                          scrollChild: TabBarView(
+                              children: tabList
+                                  .map((e) => ProjectListPage(id: e.id))
+                                  .toList())))));
         });
   }
 }
