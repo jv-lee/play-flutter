@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:playflutter/model/entity/details.dart';
 import 'package:playflutter/model/entity/parent_tab.dart';
@@ -34,62 +35,60 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
     case RouteNames.splash:
       return SplashPageRoute(
-        settings: settings,
-        widget: const SplashPage(),
-      );
+          settings: settings, builder: (_) => const SplashPage());
     case RouteNames.main:
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           settings: settings, builder: (_) => const MainPage());
     case RouteNames.search:
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           settings: settings, builder: (_) => const SearchPage());
     case RouteNames.search_result:
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           settings: settings, builder: (_) => const SearchResultPage());
     case RouteNames.official:
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           settings: settings, builder: (_) => const OfficialPage());
     case RouteNames.project:
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           settings: settings, builder: (_) => const ProjectPage());
     case RouteNames.my_share:
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           settings: settings, builder: (_) => const MySharePage());
     case RouteNames.create_share:
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           settings: settings, builder: (_) => const CreateSharePage());
     case RouteNames.system_content_tab:
       final arg = settings.arguments as ParentTab;
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           settings: settings, builder: (_) => SystemContentTabPage(item: arg));
     case RouteNames.coin:
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           settings: settings, builder: (_) => const CoinPage());
     case RouteNames.coin_rank:
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           settings: settings, builder: (_) => const CoinRankPage());
     case RouteNames.collect:
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           settings: settings, builder: (_) => const CollectPage());
     case RouteNames.settings:
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           settings: settings, builder: (_) => const SettingsPage());
     case RouteNames.todo:
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           settings: settings, builder: (_) => const TodoPage());
     case RouteNames.details:
       final arg = settings.arguments as DetailsData;
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           settings: settings, builder: (_) => DetailsPage(detailsData: arg));
     case RouteNames.login:
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           settings: settings, builder: (_) => const LoginPage());
     case RouteNames.register:
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           settings: settings, builder: (_) => const RegisterPage());
 
     default:
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           settings: settings, builder: (_) => const MainPage());
   }
 }
