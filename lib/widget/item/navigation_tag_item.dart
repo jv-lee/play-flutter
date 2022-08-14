@@ -23,54 +23,40 @@ class _NavigationTagItemState extends State<NavigationTagItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            widget.navigationTab.name,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-                color: Theme.of(context).primaryColorLight,
-                fontSize: ThemeDimens.fontSizeMedium,
-                fontWeight: FontWeight.bold),
-          ),
+        padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(widget.navigationTab.name,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                  color: Theme.of(context).primaryColorLight,
+                  fontSize: ThemeDimens.fontSizeMedium,
+                  fontWeight: FontWeight.bold)),
           Padding(
-            padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
-            child: buildTagFlowList(),
-          )
-        ],
-      ),
-    );
+              padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
+              child: buildTagFlowList())
+        ]));
   }
 
   Widget buildTagFlowList() {
     List<Widget> widgets = [];
     for (var element in widget.navigationTab.articles) {
-      widgets.add(
-        Card(
+      widgets.add(Card(
           elevation: 0,
           shape: RoundedRectangleBorder(
-              borderRadius:
-                  BorderRadius.circular(ThemeDimens.systemTabRadius)),
+              borderRadius: BorderRadius.circular(ThemeDimens.systemTabRadius)),
           child: InkWell(
-            onTap: () => {
-              if (widget.onItemClick != null) {widget.onItemClick!(element)}
-            },
-            borderRadius: BorderRadius.circular(ThemeDimens.systemTabRadius),
-            child: Padding(
-              padding: const EdgeInsets.all(ThemeDimens.offsetMedium),
-              child: Text(
-                element.title,
-                style: TextStyle(
-                    fontSize: ThemeDimens.fontSizeSmall,
-                    color: Theme.of(context).primaryColor),
-              ),
-            ),
-          ),
-        ),
-      );
+              onTap: () => {
+                    if (widget.onItemClick != null)
+                      {widget.onItemClick!(element)}
+                  },
+              borderRadius: BorderRadius.circular(ThemeDimens.systemTabRadius),
+              child: Padding(
+                  padding: const EdgeInsets.all(ThemeDimens.offsetMedium),
+                  child: Text(element.title,
+                      style: TextStyle(
+                          fontSize: ThemeDimens.fontSizeSmall,
+                          color: Theme.of(context).primaryColor))))));
     }
     return Wrap(spacing: 2, runSpacing: -2, children: widgets);
   }

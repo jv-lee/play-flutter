@@ -15,7 +15,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainState extends BasePageState<MainPage> {
-
   @override
   Widget build(BuildContext context) {
     return buildViewModel<MainViewModel>(
@@ -27,9 +26,8 @@ class _MainState extends BasePageState<MainPage> {
                     controller: viewModel.viewStates.pageController,
                     physics: const NeverScrollableScrollPhysics(),
                     //静止PageView滑动
-                    itemBuilder: (BuildContext context, int index) {
-                      return viewModel.viewStates.mainTabPages[index].page;
-                    }),
+                    itemBuilder: (BuildContext context, int index) =>
+                        viewModel.viewStates.mainTabPages[index].page),
                 bottomNavigationBar: BottomNavigationBar(
                     items: viewModel.viewStates.mainTabPages
                         .map((e) => BottomNavigationBarItem(

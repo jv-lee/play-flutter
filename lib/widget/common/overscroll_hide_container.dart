@@ -10,9 +10,7 @@ class OverscrollHideContainer extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
-    return _OverscrollHideContainerState();
-  }
+  State<StatefulWidget> createState() => _OverscrollHideContainerState();
 }
 
 class _OverscrollHideContainerState extends State<OverscrollHideContainer> {

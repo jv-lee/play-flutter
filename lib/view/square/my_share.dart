@@ -25,26 +25,22 @@ class _MySharePageState extends BasePageState<MySharePage> {
     return buildViewModel<MyShareViewModel>(
         create: (context) => MyShareViewModel(context),
         viewBuild: (context, viewModel) => Scaffold(
-              appBar: AppBar(title: const Text(ThemeStrings.meItemShare)),
-              body: RefreshIndicator(
-                  color: Theme.of(context).primaryColorLight,
-                  onRefresh: () async {
-                    await Future<void>.delayed(const Duration(seconds: 1), () {
-                      viewModel.requestData(LoadStatus.refresh);
-                    });
-                  },
-                  child: SuperListView(
+            appBar: AppBar(title: const Text(ThemeStrings.meItemShare)),
+            body: RefreshIndicator(
+                color: Theme.of(context).primaryColorLight,
+                onRefresh: () async {
+                  await Future<void>.delayed(const Duration(seconds: 1),
+                      () => viewModel.requestData(LoadStatus.refresh));
+                },
+                child: SuperListView(
                     statusController: viewModel.paging.statusController,
                     itemCount: viewModel.paging.data.length,
-                    onPageReload: () {
-                      viewModel.requestData(LoadStatus.refresh);
-                    },
-                    onItemReload: () {
-                      viewModel.requestData(LoadStatus.reload);
-                    },
-                    onLoadMore: () {
-                      viewModel.requestData(LoadStatus.loadMore);
-                    },
+                    onPageReload: () =>
+                        viewModel.requestData(LoadStatus.refresh),
+                    onItemReload: () =>
+                        viewModel.requestData(LoadStatus.reload),
+                    onLoadMore: () =>
+                        viewModel.requestData(LoadStatus.loadMore),
                     itemBuilder: (BuildContext context, int index) {
                       var item = viewModel.paging.data[index];
                       return ActionTextItem(
@@ -56,8 +52,6 @@ class _MySharePageState extends BasePageState<MySharePage> {
                               arguments: item.transformDetails()),
                           onItemDelete: (item) =>
                               viewModel.requestDeleteItem(item));
-                    },
-                  )),
-            ));
+                    }))));
   }
 }

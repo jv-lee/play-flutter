@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_page_state.dart';
-import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
@@ -36,49 +35,39 @@ class _SquareState extends BasePageState<SquarePage>
     return buildViewModel<SquareViewModel>(
         create: (context) => SquareViewModel(context),
         viewBuild: (context, viewModel) => TransparentScaffold(
-                child: Stack(
-              children: [
-                RefreshIndicator(
-                    displacement: 10,
-                    edgeOffset: AppHeaderSpacer.spacerHeight(),
-                    color: Theme.of(context).primaryColorLight,
-                    onRefresh: () async {
-                      await Future<void>.delayed(const Duration(seconds: 1),
-                          () {
-                        viewModel.requestData(LoadStatus.refresh);
-                      });
-                    },
-                    child: SuperListView(
+                child: Stack(children: [
+              RefreshIndicator(
+                  displacement: 10,
+                  edgeOffset: AppHeaderSpacer.spacerHeight(),
+                  color: Theme.of(context).primaryColorLight,
+                  onRefresh: () async {
+                    await Future<void>.delayed(const Duration(seconds: 1),
+                        () => viewModel.requestData(LoadStatus.refresh));
+                  },
+                  child: SuperListView(
                       statusController: viewModel.paging.statusController,
                       itemCount: viewModel.paging.data.length,
-                      onPageReload: () {
-                        viewModel.requestData(LoadStatus.refresh);
-                      },
-                      onItemReload: () {
-                        viewModel.requestData(LoadStatus.reload);
-                      },
-                      onLoadMore: () {
-                        viewModel.requestData(LoadStatus.loadMore);
-                      },
+                      onPageReload: () =>
+                          viewModel.requestData(LoadStatus.refresh),
+                      onItemReload: () =>
+                          viewModel.requestData(LoadStatus.reload),
+                      onLoadMore: () =>
+                          viewModel.requestData(LoadStatus.loadMore),
                       headerChildren: const [AppHeaderSpacer()],
                       itemBuilder: (BuildContext context, int index) {
                         var item = viewModel.paging.data[index];
                         return ContentItem(
-                          content: item,
-                          onItemClick: (item) => {
-                            Navigator.pushNamed(context, RouteNames.details,
-                                arguments: item.transformDetails())
-                          },
-                        );
-                      },
-                    )),
-                AppHeaderContainer(
-                    child: AppTextActionBar(
-                  title: ThemeStrings.squareHeaderText,
-                  navigationSvgPath: ThemeImages.commonAddSvg,
-                  onNavigationClick: () => viewModel.navigationCreateShared(),
-                ))
-              ],
-            )));
+                            content: item,
+                            onItemClick: (item) => Navigator.pushNamed(
+                                context, RouteNames.details,
+                                arguments: item.transformDetails()));
+                      })),
+              AppHeaderContainer(
+                  child: AppTextActionBar(
+                      title: ThemeStrings.squareHeaderText,
+                      navigationSvgPath: ThemeImages.commonAddSvg,
+                      onNavigationClick: () =>
+                          viewModel.navigationCreateShared()))
+            ])));
   }
 }

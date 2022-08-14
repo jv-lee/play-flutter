@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_page_state.dart';
-import 'package:playflutter/model/entity/banner.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
+import 'package:playflutter/model/entity/banner.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_images.dart';
@@ -41,63 +41,49 @@ class _HomeState extends BasePageState<HomePage>
     return buildViewModel<HomeViewModel>(
         create: (context) => HomeViewModel(context),
         viewBuild: (context, viewModel) => TransparentScaffold(
-                child: Stack(
-              children: [
-                RefreshIndicator(
-                    displacement: 10,
-                    edgeOffset: AppHeaderSpacer.spacerHeight(),
-                    color: Theme.of(context).primaryColorLight,
-                    onRefresh: () async {
-                      await Future<void>.delayed(const Duration(seconds: 1),
-                          () {
-                        viewModel.requestData(LoadStatus.refresh);
-                      });
-                    },
-                    child: SuperListView(
+                child: Stack(children: [
+              RefreshIndicator(
+                  displacement: 10,
+                  edgeOffset: AppHeaderSpacer.spacerHeight(),
+                  color: Theme.of(context).primaryColorLight,
+                  onRefresh: () async {
+                    await Future<void>.delayed(const Duration(seconds: 1),
+                        () => viewModel.requestData(LoadStatus.refresh));
+                  },
+                  child: SuperListView(
                       statusController: viewModel.paging.statusController,
                       itemCount: viewModel.paging.data.length,
-                      onPageReload: () {
-                        viewModel.requestData(LoadStatus.refresh);
-                      },
-                      onItemReload: () {
-                        viewModel.requestData(LoadStatus.reload);
-                      },
-                      onLoadMore: () {
-                        viewModel.requestData(LoadStatus.loadMore);
-                      },
+                      onPageReload: () =>
+                          viewModel.requestData(LoadStatus.refresh),
+                      onItemReload: () =>
+                          viewModel.requestData(LoadStatus.reload),
+                      onLoadMore: () =>
+                          viewModel.requestData(LoadStatus.loadMore),
                       headerChildren: [
                         const AppHeaderSpacer(),
                         buildBanner(
                             viewModel,
-                            (item) => {
-                                  Navigator.pushNamed(
-                                      context, RouteNames.details,
-                                      arguments: item.transformDetails())
-                                }),
+                            (item) => Navigator.pushNamed(
+                                context, RouteNames.details,
+                                arguments: item.transformDetails())),
                         buildCategory(viewModel,
-                            (item) => {Navigator.pushNamed(context, item.link)})
+                            (item) => Navigator.pushNamed(context, item.link))
                       ],
                       itemBuilder: (BuildContext context, int index) {
                         var item = viewModel.paging.data[index];
                         return ContentItem(
-                          content: item,
-                          onItemClick: (item) => {
-                            Navigator.pushNamed(context, RouteNames.details,
-                                arguments: item.transformDetails())
-                          },
-                        );
-                      },
-                    )),
-                AppHeaderContainer(
-                    child: AppTextActionBar(
-                  title: ThemeStrings.homeHeaderText,
-                  navigationSvgPath: ThemeImages.commonSearchSvg,
-                  onNavigationClick: () {
-                    Navigator.pushNamed(context, RouteNames.search);
-                  },
-                ))
-              ],
-            )));
+                            content: item,
+                            onItemClick: (item) => Navigator.pushNamed(
+                                context, RouteNames.details,
+                                arguments: item.transformDetails()));
+                      })),
+              AppHeaderContainer(
+                  child: AppTextActionBar(
+                      title: ThemeStrings.homeHeaderText,
+                      navigationSvgPath: ThemeImages.commonSearchSvg,
+                      onNavigationClick: () =>
+                          Navigator.pushNamed(context, RouteNames.search)))
+            ])));
   }
 
   Widget buildBanner(
@@ -124,16 +110,15 @@ class _HomeState extends BasePageState<HomePage>
       return Container();
     } else {
       return SizedBox(
-        height: ThemeDimens.homeCategoryLayoutHeight,
-        child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: categoryList.length,
-            shrinkWrap: true,
-            itemBuilder: (BuildContext context, int index) {
-              var item = categoryList[index];
-              return CategoryItem(category: item, onItemClick: onItemClick);
-            }),
-      );
+          height: ThemeDimens.homeCategoryLayoutHeight,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: categoryList.length,
+              shrinkWrap: true,
+              itemBuilder: (BuildContext context, int index) {
+                var item = categoryList[index];
+                return CategoryItem(category: item, onItemClick: onItemClick);
+              }));
     }
   }
 }

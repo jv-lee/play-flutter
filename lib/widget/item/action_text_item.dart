@@ -23,9 +23,7 @@ class ActionTextItem extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
-    return _ActionTextItemState();
-  }
+  State<StatefulWidget> createState() => _ActionTextItemState();
 }
 
 class _ActionTextItemState extends State<ActionTextItem> {
@@ -68,29 +66,25 @@ class _ActionTextItemState extends State<ActionTextItem> {
                 onTap: () => widget.onItemClick(widget.content),
                 child: Padding(
                     padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
-                    child: Stack(
-                      children: [
-                        Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              widget.content.getTitle(),
+                    child: Stack(children: [
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(widget.content.getTitle(),
                               maxLines: 1,
                               style: TextStyle(
                                   color: Theme.of(context).primaryColorLight,
                                   fontSize: ThemeDimens.fontSizeSmall,
                                   fontWeight: FontWeight.bold,
-                                  overflow: TextOverflow.ellipsis),
-                            )),
-                        Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Text(widget.content.getDateFormat(),
-                                maxLines: 1,
-                                style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
-                                    fontSize: ThemeDimens.fontSizeSmallX,
-                                    fontWeight: FontWeight.bold,
-                                    overflow: TextOverflow.ellipsis)))
-                      ],
-                    )))));
+                                  overflow: TextOverflow.ellipsis))),
+                      Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Text(widget.content.getDateFormat(),
+                              maxLines: 1,
+                              style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                  fontSize: ThemeDimens.fontSizeSmallX,
+                                  fontWeight: FontWeight.bold,
+                                  overflow: TextOverflow.ellipsis)))
+                    ])))));
   }
 }

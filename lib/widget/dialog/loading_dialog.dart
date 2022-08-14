@@ -29,19 +29,16 @@ class _LoadingDialogState extends State<_LoadingDialogWidget> {
   Widget build(BuildContext context) {
     return WillPopScope(
         child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Center(
-            child: Container(
-              width: 100,
-              height: 78,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  borderRadius: const BorderRadius.all(
-                      Radius.circular(ThemeDimens.offsetRadiusMedium))),
-              child: const Center(child: CircularProgressIndicator()),
-            ),
-          ),
-        ),
+            backgroundColor: Colors.transparent,
+            body: Center(
+                child: Container(
+                    width: 100,
+                    height: 78,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).scaffoldBackgroundColor,
+                        borderRadius: const BorderRadius.all(
+                            Radius.circular(ThemeDimens.offsetRadiusMedium))),
+                    child: const Center(child: CircularProgressIndicator())))),
         onWillPop: () async {
           return widget.isCancel;
         });

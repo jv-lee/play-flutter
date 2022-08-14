@@ -28,20 +28,16 @@ class _SystemContentState extends BasePageState<SystemContentPage>
     return buildViewModel<SystemContentViewModel>(
         create: (context) => SystemContentViewModel(context),
         viewBuild: (context, viewModel) => SuperListView(
-              itemCount: viewModel.paging.data.length,
-              statusController: viewModel.paging.statusController,
-              headerChildren: const [AppHeaderSpacer()],
-              itemBuilder: (context, index) {
-                var item = viewModel.paging.data[index];
-                return ParentTabItem(
+            itemCount: viewModel.paging.data.length,
+            statusController: viewModel.paging.statusController,
+            headerChildren: const [AppHeaderSpacer()],
+            itemBuilder: (context, index) {
+              var item = viewModel.paging.data[index];
+              return ParentTabItem(
                   parentTab: item,
-                  onItemClick: (parentTab) => {
-                    Navigator.of(context).pushNamed(
-                        RouteNames.system_content_tab,
-                        arguments: parentTab)
-                  },
-                );
-              },
-            ));
+                  onItemClick: (parentTab) => Navigator.of(context).pushNamed(
+                      RouteNames.system_content_tab,
+                      arguments: parentTab));
+            }));
   }
 }

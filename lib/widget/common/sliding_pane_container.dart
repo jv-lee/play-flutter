@@ -56,42 +56,33 @@ class _SlidingPaneContainerState extends State<SlidingPaneContainer>
     return SizedBox(
         width: widget.width,
         height: widget.height,
-        child: Stack(
-          children: [
-            Align(
+        child: Stack(children: [
+          Align(
               alignment: widget.slidingAlign,
               child: SizedBox(
                 width: widget.slidingWidth,
                 height: double.infinity,
                 child: widget.sliding,
-              ),
-            ),
-            _buildDragContainer(SizedBox(
-                width: double.infinity,
-                height: double.infinity,
-                child: widget.content))
-          ],
-        ));
+              )),
+          buildDragContainer(SizedBox(
+              width: double.infinity,
+              height: double.infinity,
+              child: widget.content))
+        ]));
   }
 
-  Widget _buildDragContainer(Widget child) {
+  Widget buildDragContainer(Widget child) {
     return Transform.translate(
         offset: _offset,
         child: GestureDetector(
           child: AbsorbPointer(
               absorbing: widget.controller.isExpand(), child: child),
           // 监听拖动距离实时更新offset 添加offset左右拖动限制值
-          onHorizontalDragUpdate: (details) {
-            _changeOffset(details.delta);
-          },
+          onHorizontalDragUpdate: (details) => _changeOffset(details.delta),
           // 监听拖动结束后进行复原展开处理
-          onHorizontalDragEnd: (details) {
-            _dragCancel();
-          },
+          onHorizontalDragEnd: (details) => _dragCancel(),
           // 监听按下时是否有展开未收起的item
-          onHorizontalDragDown: (details) {
-            _changeDownState();
-          },
+          onHorizontalDragDown: (details) => _changeDownState(),
         ));
   }
 
@@ -162,15 +153,14 @@ class _SlidingPaneContainerState extends State<SlidingPaneContainer>
   static Widget slidingPaneState(
       Widget widget, SlidingPaneController controller) {
     return GestureDetector(
-      child: AbsorbPointer(absorbing: controller.isExpand(), child: widget),
-      // 监听按下时是否有展开未收起的item
-      onHorizontalDragDown: (details) {
-        if (controller.isExpand()) {
-          controller.updateExpand(false);
-          controller.closeAction();
-        }
-      },
-    );
+        child: AbsorbPointer(absorbing: controller.isExpand(), child: widget),
+        // 监听按下时是否有展开未收起的item
+        onHorizontalDragDown: (details) {
+          if (controller.isExpand()) {
+            controller.updateExpand(false);
+            controller.closeAction();
+          }
+        });
   }
 }
 

@@ -4,7 +4,7 @@ import 'package:playflutter/theme/theme_dimens.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
-/// @description
+/// @description 卡片item容器
 class CardItemContainer extends StatefulWidget {
   final Widget child;
   final double width;
@@ -27,30 +27,24 @@ class _CardItemContainerState extends State<CardItemContainer> {
   @override
   Widget build(BuildContext context) {
     var content = Padding(
-      padding: const EdgeInsets.all(ThemeDimens.offsetSmall),
-      child: Card(
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-                Radius.circular(ThemeDimens.offsetRadiusMedium))),
-        child: Material(
-          child: InkWell(
-            onTap: () => {widget.onItemClick.checkNullInvoke()},
-            borderRadius:
-                BorderRadius.circular(ThemeDimens.offsetRadiusMedium),
-            child: Padding(
-                padding: EdgeInsets.all(widget.contentPadding),
-                child: widget.child),
-          ),
-        ),
-      ),
-    );
-    if (widget.width == 0) {
-      return content;
-    } else {
-      return SizedBox(
-        width: widget.width,
-        child: content,
-      );
-    }
+        padding: const EdgeInsets.all(ThemeDimens.offsetSmall),
+        child: Card(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                    Radius.circular(ThemeDimens.offsetRadiusMedium))),
+            child: Material(
+                child: InkWell(
+                    onTap: () => {widget.onItemClick.checkNullInvoke()},
+                    borderRadius:
+                        BorderRadius.circular(ThemeDimens.offsetRadiusMedium),
+                    child: Padding(
+                        padding: EdgeInsets.all(widget.contentPadding),
+                        child: widget.child)))));
+    return widget.width == 0
+        ? content
+        : SizedBox(
+            width: widget.width,
+            child: content,
+          );
   }
 }

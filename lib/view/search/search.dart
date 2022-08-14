@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_page_state.dart';
-import 'package:playflutter/model/db/entity/search_history.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
+import 'package:playflutter/model/db/entity/search_history.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/search/model/entity/search_hot.dart';
@@ -32,17 +32,16 @@ class _SearchState extends BasePageState<SearchPage> {
             // 全页面点击隐藏软键盘
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             child: Scaffold(
-              // 设置该属性使软键盘弹起时直接遮盖页面view
-              resizeToAvoidBottomInset: false,
-              appBar: buildSearchAppBar(viewModel),
-              body: buildSearchContent(viewModel),
-            )));
+                // 设置该属性使软键盘弹起时直接遮盖页面view
+                resizeToAvoidBottomInset: false,
+                appBar: buildSearchAppBar(viewModel),
+                body: buildSearchContent(viewModel))));
   }
 
   PreferredSizeWidget buildSearchAppBar(SearchViewModel viewModel) {
     return AppBar(
         title: TextField(
-            onSubmitted: (text) => {viewModel.navigationSearchKey(text)},
+            onSubmitted: (text) => viewModel.navigationSearchKey(text),
             textInputAction: TextInputAction.search,
             decoration:
                 const InputDecoration(hintText: ThemeStrings.searchHintText)));
@@ -50,31 +49,27 @@ class _SearchState extends BasePageState<SearchPage> {
 
   Widget buildSearchContent(SearchViewModel viewModel) {
     return SizedBox(
-      width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [buildSearchHot(viewModel), buildSearchHistory(viewModel)],
-      ),
-    );
+        width: double.infinity,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          buildSearchHot(viewModel),
+          buildSearchHistory(viewModel)
+        ]));
   }
 
   Widget buildSearchHot(SearchViewModel viewModel) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [buildSearchHotLabel(viewModel), buildSearchHotFlow(viewModel)],
-    );
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      buildSearchHotLabel(viewModel),
+      buildSearchHotFlow(viewModel)
+    ]);
   }
 
   Widget buildSearchHotLabel(SearchViewModel viewModel) {
     return Padding(
-      padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
-      child: Text(
-        ThemeStrings.searchHotLabel,
-        style: TextStyle(
-            color: Theme.of(context).primaryColorLight,
-            fontSize: ThemeDimens.fontSizeMedium),
-      ),
-    );
+        padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
+        child: Text(ThemeStrings.searchHotLabel,
+            style: TextStyle(
+                color: Theme.of(context).primaryColorLight,
+                fontSize: ThemeDimens.fontSizeMedium)));
   }
 
   Widget buildSearchHotFlow(SearchViewModel viewModel) {
@@ -83,81 +78,65 @@ class _SearchState extends BasePageState<SearchPage> {
         .toList();
 
     return Padding(
-      padding: const EdgeInsets.only(
-          left: ThemeDimens.offsetLarge, right: ThemeDimens.offsetLarge),
-      child: Wrap(spacing: -4, runSpacing: -2, children: widgets),
-    );
+        padding: const EdgeInsets.only(
+            left: ThemeDimens.offsetLarge, right: ThemeDimens.offsetLarge),
+        child: Wrap(spacing: -4, runSpacing: -2, children: widgets));
   }
 
   Widget buildSearchHotFlowItem(
       SearchViewModel viewModel, SearchHot searchHot) {
     return Card(
-      elevation: 0,
-      color: Theme.of(context).hintColor,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(ThemeDimens.offsetRadiusMedium)),
-      child: InkWell(
-        onTap: () => {viewModel.navigationSearchKey(searchHot.hotKey)},
-        borderRadius: BorderRadius.circular(ThemeDimens.systemTabRadius),
-        child: Padding(
-          padding: const EdgeInsets.all(ThemeDimens.offsetMedium),
-          child: Text(
-            searchHot.hotKey,
-            style: TextStyle(
-                fontSize: ThemeDimens.fontSizeSmall, color: searchHot.color),
-          ),
-        ),
-      ),
-    );
+        elevation: 0,
+        color: Theme.of(context).hintColor,
+        shape: RoundedRectangleBorder(
+            borderRadius:
+                BorderRadius.circular(ThemeDimens.offsetRadiusMedium)),
+        child: InkWell(
+            onTap: () => viewModel.navigationSearchKey(searchHot.hotKey),
+            borderRadius: BorderRadius.circular(ThemeDimens.systemTabRadius),
+            child: Padding(
+                padding: const EdgeInsets.all(ThemeDimens.offsetMedium),
+                child: Text(searchHot.hotKey,
+                    style: TextStyle(
+                        fontSize: ThemeDimens.fontSizeSmall,
+                        color: searchHot.color)))));
   }
 
   Widget buildSearchHistory(SearchViewModel viewModel) {
     return Expanded(
-        child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        buildSearchHistoryLabel(viewModel),
-        buildSearchHistoryEmpty(viewModel),
-        buildSearchHistoryList(viewModel),
-      ],
-    ));
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      buildSearchHistoryLabel(viewModel),
+      buildSearchHistoryEmpty(viewModel),
+      buildSearchHistoryList(viewModel)
+    ]));
   }
 
   Widget buildSearchHistoryLabel(SearchViewModel viewModel) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Padding(
-            padding: const EdgeInsets.only(
-                left: ThemeDimens.offsetLarge,
-                top: ThemeDimens.offsetLarge,
-                right: ThemeDimens.offsetLarge,
-                bottom: ThemeDimens.offsetMedium),
-            child: Text(
-              ThemeStrings.searchHistoryLabel,
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      Padding(
+          padding: const EdgeInsets.only(
+              left: ThemeDimens.offsetLarge,
+              top: ThemeDimens.offsetLarge,
+              right: ThemeDimens.offsetLarge,
+              bottom: ThemeDimens.offsetMedium),
+          child: Text(ThemeStrings.searchHistoryLabel,
               style: TextStyle(
                   color: Theme.of(context).primaryColorLight,
-                  fontSize: ThemeDimens.fontSizeMedium),
-            )),
-        Padding(
-            padding: const EdgeInsets.only(
-                left: ThemeDimens.offsetLarge,
-                top: ThemeDimens.offsetLarge,
-                right: ThemeDimens.offsetLarge,
-                bottom: ThemeDimens.offsetMedium),
-            child: Material(
+                  fontSize: ThemeDimens.fontSizeMedium))),
+      Padding(
+          padding: const EdgeInsets.only(
+              left: ThemeDimens.offsetLarge,
+              top: ThemeDimens.offsetLarge,
+              right: ThemeDimens.offsetLarge,
+              bottom: ThemeDimens.offsetMedium),
+          child: Material(
               child: InkWell(
-                onTap: () {
-                  viewModel.clearSearchHistory();
-                },
-                child: Text(ThemeStrings.searchClearText,
-                    style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: ThemeDimens.fontSizeMedium)),
-              ),
-            )),
-      ],
-    );
+                  onTap: () => viewModel.clearSearchHistory(),
+                  child: Text(ThemeStrings.searchClearText,
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: ThemeDimens.fontSizeMedium)))))
+    ]);
   }
 
   Widget buildSearchHistoryList(SearchViewModel viewModel) {
@@ -170,27 +149,21 @@ class _SearchState extends BasePageState<SearchPage> {
             padding: const EdgeInsets.only(
                 left: ThemeDimens.offsetLarge, right: ThemeDimens.offsetLarge),
             child: OverscrollHideContainer(
-              scrollChild:
-                  ListView(shrinkWrap: true, children: searchHistoryList),
-            )));
+                scrollChild:
+                    ListView(shrinkWrap: true, children: searchHistoryList))));
   }
 
   Widget buildSearchHistoryEmpty(SearchViewModel viewModel) {
     if (viewModel.viewStates.searchHistoryList.isEmpty) {
       return SizedBox(
-        width: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 26),
-          child: Center(
-            child: Text(
-              ThemeStrings.searchHistoryEmptyText,
-              style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontSize: ThemeDimens.fontSizeMedium),
-            ),
-          ),
-        ),
-      );
+          width: double.infinity,
+          child: Padding(
+              padding: const EdgeInsets.only(top: 26),
+              child: Center(
+                  child: Text(ThemeStrings.searchHistoryEmptyText,
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: ThemeDimens.fontSizeMedium)))));
     }
     return Container();
   }
@@ -198,36 +171,27 @@ class _SearchState extends BasePageState<SearchPage> {
   Widget buildSearchHistoryItem(
       SearchViewModel viewModel, SearchHistory searchHistory) {
     return Material(
-      child: InkWell(
-        onTap: () {
-          viewModel.navigationSearchKey(searchHistory.searchKey);
-        },
-        child: Padding(
-          padding: const EdgeInsets.only(
-              top: ThemeDimens.offsetMedium, bottom: ThemeDimens.offsetMedium),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                searchHistory.searchKey,
-                style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: ThemeDimens.fontSizeSmall),
-              ),
-              InkWell(
-                onTap: () {
-                  viewModel.deleteSearchHistory(searchHistory);
-                },
-                child: Icon(
-                  Icons.close,
-                  size: 16,
-                  color: Theme.of(context).primaryColorLight,
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+        child: InkWell(
+            onTap: () => viewModel.navigationSearchKey(searchHistory.searchKey),
+            child: Padding(
+                padding: const EdgeInsets.only(
+                    top: ThemeDimens.offsetMedium,
+                    bottom: ThemeDimens.offsetMedium),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        searchHistory.searchKey,
+                        style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: ThemeDimens.fontSizeSmall),
+                      ),
+                      InkWell(
+                          onTap: () =>
+                              viewModel.deleteSearchHistory(searchHistory),
+                          child: Icon(Icons.close,
+                              size: 16,
+                              color: Theme.of(context).primaryColorLight))
+                    ]))));
   }
 }

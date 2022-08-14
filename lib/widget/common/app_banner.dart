@@ -5,7 +5,7 @@ import 'package:playflutter/theme/theme_dimens.dart';
 
 /// @author jv.lee
 /// @date 2022/8/2
-/// @description
+/// @description 项目banner封装组件
 class AppBanner extends StatefulWidget {
   final int index;
   final int count;
@@ -32,48 +32,46 @@ class _AppBannerState extends State<AppBanner> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: ThemeDimens.homeBannerHeight,
-      child: Swiper(
-          controller: widget.controller,
-          index: widget.index,
-          viewportFraction: 0.85,
-          autoplay: true,
-          duration: 300,
-          itemCount: widget.count,
-          onIndexChanged: widget.onIndexChanged,
-          itemBuilder: (BuildContext context, int index) {
-            return Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(ThemeDimens.offsetRadiusMedium)),
-              child: Material(
-                child: InkWell(
-                  onTap: () => widget.onIndexTap(index),
-                  borderRadius:
-                      BorderRadius.circular(ThemeDimens.offsetRadiusMedium),
-                  child: CachedNetworkImage(
-                      imageUrl: widget.findPath(index),
-                      imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                                  ThemeDimens.offsetRadiusMedium),
-                              image: DecorationImage(
-                                  image: imageProvider, fit: BoxFit.cover))),
-                      placeholder: (context, url) =>
-                          Container(color: Theme.of(context).splashColor),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error)),
-                ),
-              ),
-            );
-          },
-          pagination: const SwiperPagination(
-              builder: DotSwiperPaginationBuilder(
-                  activeSize: 6,
-                  size: 6,
-                  color: Colors.grey,
-                  activeColor: Colors.white))),
-    );
+        height: ThemeDimens.homeBannerHeight,
+        child: Swiper(
+            controller: widget.controller,
+            index: widget.index,
+            viewportFraction: 0.85,
+            autoplay: true,
+            duration: 300,
+            itemCount: widget.count,
+            onIndexChanged: widget.onIndexChanged,
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          ThemeDimens.offsetRadiusMedium)),
+                  child: Material(
+                      child: InkWell(
+                          onTap: () => widget.onIndexTap(index),
+                          borderRadius: BorderRadius.circular(
+                              ThemeDimens.offsetRadiusMedium),
+                          child: CachedNetworkImage(
+                              imageUrl: widget.findPath(index),
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                              ThemeDimens.offsetRadiusMedium),
+                                          image: DecorationImage(
+                                              image: imageProvider,
+                                              fit: BoxFit.cover))),
+                              placeholder: (context, url) => Container(
+                                  color: Theme.of(context).splashColor),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error)))));
+            },
+            pagination: const SwiperPagination(
+                builder: DotSwiperPaginationBuilder(
+                    activeSize: 6,
+                    size: 6,
+                    color: Colors.grey,
+                    activeColor: Colors.white))));
   }
 }
 

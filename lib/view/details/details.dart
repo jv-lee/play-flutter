@@ -30,13 +30,12 @@ class _DetailsState extends BasePageState<DetailsPage> {
         viewBuild: (context, viewModel) => WillPopScope(
             onWillPop: viewModel.onBackChange,
             child: Scaffold(
-              appBar: AppBar(
-                title: Text(viewModel.detailsData.title),
-                actions: [buildActionMenu(viewModel)],
-                leading: BackButton(onPressed: () => {Navigator.pop(context)}),
-              ),
-              body: buildWebPage(viewModel),
-            )));
+                appBar: AppBar(
+                    title: Text(viewModel.detailsData.title),
+                    actions: [buildActionMenu(viewModel)],
+                    leading:
+                        BackButton(onPressed: () => Navigator.pop(context))),
+                body: buildWebPage(viewModel))));
   }
 
   /// 构建更多菜单按钮弹窗
@@ -52,28 +51,25 @@ class _DetailsState extends BasePageState<DetailsPage> {
                   height: 30,
                   onTap: () => viewModel.onCollect(),
                   child: Container(
-                    width: double.infinity,
-                    alignment: Alignment.center,
-                    child: const Text(ThemeStrings.menuCollect),
-                  )),
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      child: const Text(ThemeStrings.menuCollect))),
               AppPopupMenuDivider(
                   height: 1, color: Theme.of(context).primaryColorLight),
               PopupMenuItem(
                   height: 30,
                   onTap: () => viewModel.onShare(),
                   child: Container(
-                    width: double.infinity,
-                    alignment: Alignment.center,
-                    child: const Text(ThemeStrings.menuShare),
-                  ))
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      child: const Text(ThemeStrings.menuShare)))
             ]);
   }
 
   /// 构建webView页面
   Widget buildWebPage(DetailsViewModel viewModel) {
-    return Stack(
-      children: [
-        WebView(
+    return Stack(children: [
+      WebView(
           initialUrl: viewModel.detailsData.link,
           javascriptMode: JavascriptMode.unrestricted,
           gestureNavigationEnabled: true,
@@ -88,16 +84,12 @@ class _DetailsState extends BasePageState<DetailsPage> {
             }
             return NavigationDecision.navigate;
           },
-          onWebViewCreated: (controller) {
-            viewModel.viewStates.webViewController = controller;
-          },
-        ),
-        Visibility(
-            visible: viewModel.viewStates.progressVisible,
-            child: LinearProgressIndicator(
-              value: (viewModel.viewStates.progress / 100),
-            ))
-      ],
-    );
+          onWebViewCreated: (controller) =>
+              viewModel.viewStates.webViewController = controller),
+      Visibility(
+          visible: viewModel.viewStates.progressVisible,
+          child: LinearProgressIndicator(
+              value: (viewModel.viewStates.progress / 100)))
+    ]);
   }
 }

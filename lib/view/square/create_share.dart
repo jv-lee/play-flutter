@@ -21,59 +21,49 @@ class _CreateShareState extends BasePageState<CreateSharePage> {
     return buildViewModel<CreateShareViewModel>(
         create: (context) => CreateShareViewModel(context),
         viewBuild: (context, viewModel) => GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-              child: Scaffold(
-                  resizeToAvoidBottomInset: false,
-                  appBar: AppBar(
-                      title: const Text(ThemeStrings.squareCreateShareText)),
-                  body: buildCrateShareContent(viewModel)),
-            ));
+            behavior: HitTestBehavior.opaque,
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            child: Scaffold(
+                resizeToAvoidBottomInset: false,
+                appBar: AppBar(
+                    title: const Text(ThemeStrings.squareCreateShareText)),
+                body: buildCrateShareContent(viewModel))));
   }
 
   Widget buildCrateShareContent(CreateShareViewModel viewModel) {
     return Padding(
-      padding: const EdgeInsets.only(
-          left: ThemeDimens.offsetLarge, right: ThemeDimens.offsetLarge),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        padding: const EdgeInsets.only(
+            left: ThemeDimens.offsetLarge, right: ThemeDimens.offsetLarge),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
-            padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
-            child: Text(ThemeStrings.squareShareTitleText,
-                style: TextStyle(color: Theme.of(context).primaryColorLight)),
-          ),
+              padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
+              child: Text(ThemeStrings.squareShareTitleText,
+                  style:
+                      TextStyle(color: Theme.of(context).primaryColorLight))),
           TextField(
-            onChanged: (text) => {viewModel.changeShareTitle(text)},
-            textInputAction: TextInputAction.next,
-            decoration: const InputDecoration(
-                hintText: ThemeStrings.squareShareTitleHint),
-          ),
+              onChanged: (text) => {viewModel.changeShareTitle(text)},
+              textInputAction: TextInputAction.next,
+              decoration: const InputDecoration(
+                  hintText: ThemeStrings.squareShareTitleHint)),
           Padding(
-            padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
-            child: Text(ThemeStrings.squareShareLinkText,
-                style: TextStyle(color: Theme.of(context).primaryColorLight)),
-          ),
+              padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
+              child: Text(ThemeStrings.squareShareLinkText,
+                  style:
+                      TextStyle(color: Theme.of(context).primaryColorLight))),
           TextField(
-            onChanged: (text) => {viewModel.changeShareLink(text)},
-            onSubmitted: (text) => {viewModel.submitShare()},
-            textInputAction: TextInputAction.send,
-            decoration: const InputDecoration(
-                hintText: ThemeStrings.squareShareLinkHint),
-          ),
+              onChanged: (text) => {viewModel.changeShareLink(text)},
+              onSubmitted: (text) => {viewModel.submitShare()},
+              textInputAction: TextInputAction.send,
+              decoration: const InputDecoration(
+                  hintText: ThemeStrings.squareShareLinkHint)),
           Expanded(
               child: Align(
-            alignment: Alignment.bottomLeft,
-            child: Text(
-              ThemeStrings.squareCreateShareDescription,
-              style: TextStyle(
-                  letterSpacing: ThemeDimens.offsetSmall,
-                  fontSize: ThemeDimens.fontSizeSmall,
-                  color: Theme.of(context).primaryColor),
-            ),
-          ))
-        ],
-      ),
-    );
+                  alignment: Alignment.bottomLeft,
+                  child: Text(ThemeStrings.squareCreateShareDescription,
+                      style: TextStyle(
+                          letterSpacing: ThemeDimens.offsetSmall,
+                          fontSize: ThemeDimens.fontSizeSmall,
+                          color: Theme.of(context).primaryColor))))
+        ]));
   }
 }

@@ -33,19 +33,15 @@ class _NavigationContentState extends BasePageState<NavigationContentPage>
     return buildViewModel<NavigationContentViewModel>(
         create: (context) => NavigationContentViewModel(context),
         viewBuild: (context, viewModel) => Material(
-              child: StatusPage(
+            child: StatusPage(
                 status: viewModel.paging.statusController.pageStatus,
                 child: Padding(
-                  padding: EdgeInsets.only(top: AppHeaderSpacer.spacerHeight()),
-                  child: Row(
-                    children: [
+                    padding:
+                        EdgeInsets.only(top: AppHeaderSpacer.spacerHeight()),
+                    child: Row(children: [
                       Expanded(flex: 1, child: buildTabList(viewModel)),
                       Expanded(flex: 2, child: buildTagList(viewModel))
-                    ],
-                  ),
-                ),
-              ),
-            ));
+                    ])))));
   }
 
   Widget buildTabList(NavigationContentViewModel viewModel) {
@@ -57,31 +53,27 @@ class _NavigationContentState extends BasePageState<NavigationContentPage>
             itemBuilder: (context, index) {
               var item = viewModel.paging.data[index];
               return NavigationTabItem(
-                navigationTab: item,
-                isSelected: viewModel.viewStates.tabSelectedIndex == index,
-                onItemClick: (content) => {viewModel.changeTabIndex(index)},
-              );
+                  navigationTab: item,
+                  isSelected: viewModel.viewStates.tabSelectedIndex == index,
+                  onItemClick: (content) => viewModel.changeTabIndex(index));
             }));
   }
 
   Widget buildTagList(NavigationContentViewModel viewModel) {
     return OverscrollHideContainer(
         scrollChild: ScrollToIndexList(
-      topDistance: -StatusTools.getStatusHeight(),
-      controller: viewModel.viewStates.tagScrollController,
-      list: viewModel.paging.data,
-      itemBuilder: (context, index) {
-        var item = viewModel.paging.data[index];
-        return NavigationTagItem(
-          key: item.globalKey,
-          navigationTab: item,
-          onItemClick: (content) => {
-            Navigator.pushNamed(context, RouteNames.details,
-                arguments: content.transformDetails())
-          },
-        );
-      },
-      callback: (first, last) => {viewModel.changeTagIndex(first)},
-    ));
+            topDistance: -StatusTools.getStatusHeight(),
+            controller: viewModel.viewStates.tagScrollController,
+            list: viewModel.paging.data,
+            itemBuilder: (context, index) {
+              var item = viewModel.paging.data[index];
+              return NavigationTagItem(
+                  key: item.globalKey,
+                  navigationTab: item,
+                  onItemClick: (content) => Navigator.pushNamed(
+                      context, RouteNames.details,
+                      arguments: content.transformDetails()));
+            },
+            callback: (first, last) => viewModel.changeTagIndex(first)));
   }
 }

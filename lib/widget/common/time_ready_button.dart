@@ -38,20 +38,19 @@ class _TimeReadyButtonState extends State<TimeReadyButton> {
   @override
   void initState() {
     super.initState();
-      _clearTimer();
-      var readTime = 5;
+    _clearTimer();
+    var readTime = 5;
+    timeText = "${ThemeStrings.splashTimeText}$readTime";
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      readTime--;
       timeText = "${ThemeStrings.splashTimeText}$readTime";
-      _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-        readTime--;
-        timeText = "${ThemeStrings.splashTimeText}$readTime";
-        if (readTime == 0 && _timer?.isActive == true) {
-          _timer?.cancel();
-          widget.onEnd();
-        } else {
-          setState(() {});
-        }
-      });
-
+      if (readTime == 0 && _timer?.isActive == true) {
+        _timer?.cancel();
+        widget.onEnd();
+      } else {
+        setState(() {});
+      }
+    });
   }
 
   @override
@@ -62,19 +61,16 @@ class _TimeReadyButtonState extends State<TimeReadyButton> {
           widget.onEnd();
         },
         child: Container(
-          width: 68,
-          height: 32,
-          decoration: BoxDecoration(
-              color: Colors.black45,
-              borderRadius:
-                  BorderRadius.circular(ThemeDimens.offsetRadiusMedium)),
-          child: Center(
-            child: Text(
-              timeText,
-              style: const TextStyle(
-                  fontSize: ThemeDimens.fontSizeMedium, color: Colors.white),
-            ),
-          ),
-        ));
+            width: 68,
+            height: 32,
+            decoration: BoxDecoration(
+                color: Colors.black45,
+                borderRadius:
+                    BorderRadius.circular(ThemeDimens.offsetRadiusMedium)),
+            child: Center(
+                child: Text(timeText,
+                    style: const TextStyle(
+                        fontSize: ThemeDimens.fontSizeMedium,
+                        color: Colors.white)))));
   }
 }

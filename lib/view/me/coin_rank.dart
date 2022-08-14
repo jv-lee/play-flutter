@@ -36,28 +36,20 @@ class _CoinRankPageState extends BasePageState<CoinRankPage> {
     return RefreshIndicator(
         color: Theme.of(context).primaryColorLight,
         onRefresh: () async {
-          await Future<void>.delayed(const Duration(seconds: 1), () {
-            viewModel.requestData(LoadStatus.refresh);
-          });
+          await Future<void>.delayed(const Duration(seconds: 1),
+              () => viewModel.requestData(LoadStatus.refresh));
         },
         child: SuperListView(
-          statusController: viewModel.paging.statusController,
-          itemCount: viewModel.paging.data.length,
-          onPageReload: () {
-            viewModel.requestData(LoadStatus.refresh);
-          },
-          onItemReload: () {
-            viewModel.requestData(LoadStatus.reload);
-          },
-          onLoadMore: () {
-            viewModel.requestData(LoadStatus.loadMore);
-          },
-          headerChildren: [buildRankHeader(viewModel)],
-          itemBuilder: (BuildContext context, int index) {
-            var item = viewModel.paging.data[index];
-            return buildRankItem(item);
-          },
-        ));
+            statusController: viewModel.paging.statusController,
+            itemCount: viewModel.paging.data.length,
+            onPageReload: () => viewModel.requestData(LoadStatus.refresh),
+            onItemReload: () => viewModel.requestData(LoadStatus.reload),
+            onLoadMore: () => viewModel.requestData(LoadStatus.loadMore),
+            headerChildren: [buildRankHeader(viewModel)],
+            itemBuilder: (BuildContext context, int index) {
+              var item = viewModel.paging.data[index];
+              return buildRankItem(item);
+            }));
   }
 
   Widget buildRankHeader(CoinRankViewModel viewModel) {
@@ -71,31 +63,28 @@ class _CoinRankPageState extends BasePageState<CoinRankPage> {
     return Expanded(
         child: Padding(
             padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
-            child: Column(
-              children: [
-                SvgPicture.asset(viewModel.findLevelIcon(item),
-                    width: 24, height: 24),
-                Padding(
-                    padding:
-                        const EdgeInsets.only(top: ThemeDimens.offsetMedium),
-                    child: Text(item.username,
-                        maxLines: 1,
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColorLight,
-                            fontSize: ThemeDimens.fontSizeMedium,
-                            overflow: TextOverflow.ellipsis))),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  SvgPicture.asset(ThemeImages.meUserCoinSvg,
-                      width: 24, height: 24),
-                  Text(item.coinCount.toString(),
+            child: Column(children: [
+              SvgPicture.asset(viewModel.findLevelIcon(item),
+                  width: 24, height: 24),
+              Padding(
+                  padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
+                  child: Text(item.username,
                       maxLines: 1,
                       style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: ThemeDimens.fontSizeSmall,
-                          fontWeight: FontWeight.bold))
-                ])
-              ],
-            )));
+                          color: Theme.of(context).primaryColorLight,
+                          fontSize: ThemeDimens.fontSizeMedium,
+                          overflow: TextOverflow.ellipsis))),
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                SvgPicture.asset(ThemeImages.meUserCoinSvg,
+                    width: 24, height: 24),
+                Text(item.coinCount.toString(),
+                    maxLines: 1,
+                    style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontSize: ThemeDimens.fontSizeSmall,
+                        fontWeight: FontWeight.bold))
+              ])
+            ])));
   }
 
   Widget buildRankItem(CoinRank item) {

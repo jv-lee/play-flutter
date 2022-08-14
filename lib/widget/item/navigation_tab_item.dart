@@ -24,53 +24,39 @@ class NavigationTabItem extends StatefulWidget {
 class _NavigationTabItemState extends State<NavigationTabItem> {
   @override
   Widget build(BuildContext context) {
-    Color textColor;
-    Color tabColor;
-    if (widget.isSelected) {
-      textColor = Theme.of(context).hoverColor;
-      tabColor = Theme.of(context).focusColor;
-    } else {
-      textColor = Theme.of(context).primaryColor;
-      tabColor = Colors.transparent;
-    }
+    Color textColor = widget.isSelected
+        ? Theme.of(context).hoverColor
+        : Theme.of(context).primaryColor;
+    Color tabColor =
+        widget.isSelected ? Theme.of(context).focusColor : Colors.transparent;
 
     // 包裹row让内部text自适应宽度
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      SizedBox(
           height: ThemeDimens.systemNavigationTabHeight,
           child: Padding(
-            padding: const EdgeInsets.only(
-                top: ThemeDimens.offsetMedium,
-                bottom: ThemeDimens.offsetMedium),
-            child: InkWell(
-              onTap: () => {
-                if (widget.onItemClick != null)
-                  {widget.onItemClick!(widget.navigationTab)}
-              },
-              borderRadius:
-                  BorderRadius.circular(ThemeDimens.systemTabRadius),
-              child: Container(
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    color: tabColor,
-                    borderRadius:
-                        BorderRadius.circular(ThemeDimens.systemTabRadius)),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: ThemeDimens.offsetMedium,
-                      right: ThemeDimens.offsetMedium),
-                  child: Text(
-                    widget.navigationTab.name,
-                    style: TextStyle(color: textColor),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        )
-      ],
-    );
+              padding: const EdgeInsets.only(
+                  top: ThemeDimens.offsetMedium,
+                  bottom: ThemeDimens.offsetMedium),
+              child: InkWell(
+                  onTap: () => {
+                        if (widget.onItemClick != null)
+                          {widget.onItemClick!(widget.navigationTab)}
+                      },
+                  borderRadius:
+                      BorderRadius.circular(ThemeDimens.systemTabRadius),
+                  child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: tabColor,
+                          borderRadius: BorderRadius.circular(
+                              ThemeDimens.systemTabRadius)),
+                      child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: ThemeDimens.offsetMedium,
+                              right: ThemeDimens.offsetMedium),
+                          child: Text(widget.navigationTab.name,
+                              style: TextStyle(color: textColor)))))))
+    ]);
   }
 }

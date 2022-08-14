@@ -28,14 +28,12 @@ class AppHeaderContainer extends StatefulWidget {
 class _AppHeaderContainerState extends State<AppHeaderContainer> {
   @override
   Widget build(BuildContext context) {
-    var content = Column(
-      children: [
-        Container(
-          height: StatusTools.getStatusHeight(),
-        ),
-        widget.child
-      ],
-    );
+    var content = Column(children: [
+      Container(
+        height: StatusTools.getStatusHeight(),
+      ),
+      widget.child
+    ]);
     if (widget.headerBrush) {
       return Container(
         height: AppHeaderSpacer.spacerHeight(),
@@ -57,11 +55,10 @@ class _AppHeaderContainerState extends State<AppHeaderContainer> {
       return Container(
           decoration: BoxDecoration(color: widget.backgroundColor),
           child: Material(
-            child: InkWell(
-              onTap: widget.onTap,
-              child: content,
-            ),
-          ));
+              child: InkWell(
+            onTap: widget.onTap,
+            child: content,
+          )));
     }
   }
 }

@@ -33,12 +33,11 @@ class PlayFlutterApp extends StatelessWidget {
         // 监听深色模式主题变换 更改主题配置
         child: Consumer<DarkModeProvider>(builder: (context, provider, widget) {
           return MaterialApp(
-            theme: provider.lightThemeData,
-            darkTheme: provider.darkThemeData,
-            navigatorObservers: [routeObserver],
-            onGenerateRoute: onGenerateRoute,
-            initialRoute: RouteNames.splash,
-          );
+              theme: provider.lightThemeData,
+              darkTheme: provider.darkThemeData,
+              navigatorObservers: [routeObserver],
+              onGenerateRoute: onGenerateRoute,
+              initialRoute: RouteNames.splash);
         }));
   }
 }

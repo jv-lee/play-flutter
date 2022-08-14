@@ -27,16 +27,12 @@ class StatusPage extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
-    return _StatusPageState();
-  }
+  State<StatefulWidget> createState() => _StatusPageState();
 }
 
 class _StatusPageState extends State<StatusPage> {
   @override
-  Widget build(BuildContext context) {
-    return buildWidget(context);
-  }
+  Widget build(BuildContext context) => buildWidget(context);
 
   Widget buildWidget(BuildContext context) {
     switch (widget.status ?? PageStatus.loading) {
@@ -54,42 +50,32 @@ class _StatusPageState extends State<StatusPage> {
   }
 
   Widget buildLoading(BuildContext context) {
-    return const Center(
-      child: CircularProgressIndicator(),
-    );
+    return const Center(child: CircularProgressIndicator());
   }
 
   Widget buildEmpty(BuildContext context) {
     return Center(
-      child: Text("暂无数据",
-          style:
-              TextStyle(color: Theme.of(context).primaryColor, fontSize: 16)),
-    );
+        child: Text("暂无数据",
+            style: TextStyle(
+                color: Theme.of(context).primaryColor, fontSize: 16)));
   }
 
   Widget buildError(BuildContext context) {
     return Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text("加载失败",
-              style: TextStyle(
-                  color: Theme.of(context).primaryColor, fontSize: 16)),
-          CupertinoButton(
-            child: const Text(
-              "点击重试",
-              style: TextStyle(fontSize: 16),
-            ),
-            onPressed: () {
-              setState(() {
-                widget.status = PageStatus.loading;
-                widget.reLoadFun.checkNullInvoke();
-              });
-            },
-          )
-        ],
-      ),
-    );
+        child:
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+      Text("加载失败",
+          style:
+              TextStyle(color: Theme.of(context).primaryColor, fontSize: 16)),
+      CupertinoButton(
+          child: const Text("点击重试", style: TextStyle(fontSize: 16)),
+          onPressed: () {
+            setState(() {
+              widget.status = PageStatus.loading;
+              widget.reLoadFun.checkNullInvoke();
+            });
+          })
+    ]));
   }
 
   Widget buildData(BuildContext context) {

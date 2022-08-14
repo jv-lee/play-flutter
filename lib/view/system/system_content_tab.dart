@@ -23,16 +23,15 @@ class _SystemContentTabState extends BasePageState<SystemContentTabPage> {
         length: widget.item.children.length,
         child: Scaffold(
             appBar: AppBar(
-              title: Text(widget.item.name),
-              bottom: TabBar(
-                  isScrollable: true,
-                  indicatorSize: TabBarIndicatorSize.label,
-                  labelColor: Theme.of(context).primaryColorLight,
-                  indicatorColor: Theme.of(context).primaryColorLight,
-                  tabs: widget.item.children
-                      .map((e) => Tab(text: e.name))
-                      .toList()),
-            ),
+                title: Text(widget.item.name),
+                bottom: TabBar(
+                    isScrollable: true,
+                    indicatorSize: TabBarIndicatorSize.label,
+                    labelColor: Theme.of(context).primaryColorLight,
+                    indicatorColor: Theme.of(context).primaryColorLight,
+                    tabs: widget.item.children
+                        .map((e) => Tab(text: e.name))
+                        .toList())),
             body: OverscrollHideContainer(
                 scrollChild: TabBarView(
                     children: widget.item.children

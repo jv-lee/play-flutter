@@ -32,36 +32,28 @@ class _ProjectListState extends BasePageState<ProjectListPage>
     return buildViewModel<ProjectListViewModel>(
         create: (context) => ProjectListViewModel(context, widget.id),
         viewBuild: (context, viewModel) => Scaffold(
-              body: RefreshIndicator(
-                  color: Theme.of(context).primaryColorLight,
-                  onRefresh: () async {
-                    await Future<void>.delayed(const Duration(seconds: 1), () {
-                      viewModel.requestData(LoadStatus.refresh);
-                    });
-                  },
-                  child: SuperListView(
+            body: RefreshIndicator(
+                color: Theme.of(context).primaryColorLight,
+                onRefresh: () async {
+                  await Future<void>.delayed(const Duration(seconds: 1),
+                      () => viewModel.requestData(LoadStatus.refresh));
+                },
+                child: SuperListView(
                     statusController: viewModel.paging.statusController,
                     itemCount: viewModel.paging.data.length,
-                    onPageReload: () {
-                      viewModel.requestData(LoadStatus.refresh);
-                    },
-                    onItemReload: () {
-                      viewModel.requestData(LoadStatus.reload);
-                    },
-                    onLoadMore: () {
-                      viewModel.requestData(LoadStatus.loadMore);
-                    },
+                    onPageReload: () =>
+                        viewModel.requestData(LoadStatus.refresh),
+                    onItemReload: () =>
+                        viewModel.requestData(LoadStatus.reload),
+                    onLoadMore: () =>
+                        viewModel.requestData(LoadStatus.loadMore),
                     itemBuilder: (BuildContext context, int index) {
                       var item = viewModel.paging.data[index];
                       return ContentPictureItem(
-                        content: item,
-                        onItemClick: (item) => {
-                          Navigator.pushNamed(context, RouteNames.details,
-                              arguments: item.transformDetails())
-                        },
-                      );
-                    },
-                  )),
-            ));
+                          content: item,
+                          onItemClick: (item) => Navigator.pushNamed(
+                              context, RouteNames.details,
+                              arguments: item.transformDetails()));
+                    }))));
   }
 }

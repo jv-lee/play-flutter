@@ -28,9 +28,10 @@ class _MeState extends BasePageState<MePage>
     return buildViewModel<MeViewModel>(
         create: (context) => MeViewModel(context),
         viewBuild: (context, viewModel) => TransparentScaffold(
-            child: Column(
-              children: [buildHeader(viewModel), buildLineItemList(viewModel)],
-            )));
+                child: Column(children: [
+              buildHeader(viewModel),
+              buildLineItemList(viewModel)
+            ])));
   }
 
   Widget buildHeader(MeViewModel viewModel) {
@@ -39,55 +40,46 @@ class _MeState extends BasePageState<MePage>
         backgroundColor: Theme.of(context).cardColor,
         headerBrush: false,
         child: SizedBox(
-          width: double.infinity,
-          height: ThemeDimens.meHeaderHeight,
-          child: Row(
-            children: [
+            width: double.infinity,
+            height: ThemeDimens.meHeaderHeight,
+            child: Row(children: [
               Padding(
-                padding: const EdgeInsets.only(
-                    left: ThemeDimens.meHeaderPictureMargin),
-                child: Container(
-                    width: ThemeDimens.meHeaderPictureSize,
-                    height: ThemeDimens.meHeaderPictureSize,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                            ThemeDimens.meHeaderPictureSize / 2),
-                        border: Border.all(
-                            width: 2, color: Theme.of(context).focusColor)),
-                    child: viewModel.viewStates.headerWidget),
-              ),
+                  padding: const EdgeInsets.only(
+                      left: ThemeDimens.meHeaderPictureMargin),
+                  child: Container(
+                      width: ThemeDimens.meHeaderPictureSize,
+                      height: ThemeDimens.meHeaderPictureSize,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                              ThemeDimens.meHeaderPictureSize / 2),
+                          border: Border.all(
+                              width: 2, color: Theme.of(context).focusColor)),
+                      child: viewModel.viewStates.headerWidget)),
               Padding(
-                padding: const EdgeInsets.only(
-                    left: ThemeDimens.meHeaderContentMargin),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(ThemeDimens.offsetSmall),
-                      child: Text(
-                        viewModel.viewStates.userName,
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColorLight,
-                            fontSize: ThemeDimens.fontSizeLarge),
-                      ),
-                    ),
-                    Visibility(
-                        visible: viewModel.viewStates.isLogin,
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.all(ThemeDimens.offsetSmall),
-                          child: Text(viewModel.viewStates.userDesc,
-                              style: TextStyle(
-                                  color: Theme.of(context).focusColor,
-                                  fontSize: ThemeDimens.fontSizeSmall)),
-                        ))
-                  ],
-                ),
-              )
-            ],
-          ),
-        ));
+                  padding: const EdgeInsets.only(
+                      left: ThemeDimens.meHeaderContentMargin),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                            padding:
+                                const EdgeInsets.all(ThemeDimens.offsetSmall),
+                            child: Text(viewModel.viewStates.userName,
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColorLight,
+                                    fontSize: ThemeDimens.fontSizeLarge))),
+                        Visibility(
+                            visible: viewModel.viewStates.isLogin,
+                            child: Padding(
+                                padding: const EdgeInsets.all(
+                                    ThemeDimens.offsetSmall),
+                                child: Text(viewModel.viewStates.userDesc,
+                                    style: TextStyle(
+                                        color: Theme.of(context).focusColor,
+                                        fontSize: ThemeDimens.fontSizeSmall))))
+                      ]))
+            ])));
   }
 
   Widget buildLineItemList(MeViewModel viewModel) {

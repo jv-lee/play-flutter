@@ -29,198 +29,174 @@ class _CoinPageState extends BasePageState<CoinPage> {
     return buildViewModel<CoinViewModel>(
         create: (context) => CoinViewModel(context),
         viewBuild: (context, viewModel) => TransparentScaffold(
-              color: Theme.of(context).focusColor,
-              child: Column(
-                children: [
-                  buildHeader(viewModel),
-                  Expanded(child: buildRecordContent(viewModel)),
-                ],
-              ),
-            ));
+            color: Theme.of(context).focusColor,
+            child: Column(children: [
+              buildHeader(viewModel),
+              Expanded(child: buildRecordContent(viewModel))
+            ])));
   }
 
   Widget buildHeader(CoinViewModel viewModel) {
-    return Stack(
-      children: [
-        AppBar(
-            title: const Text(ThemeStrings.meItemCoin,
-                style: TextStyle(color: Colors.white)),
-            actions: [
-              IconButton(
-                  onPressed: () => Navigator.pushNamed(
-                      context, RouteNames.details,
-                      arguments: viewModel.viewStates.detailsData),
-                  icon: SvgPicture.asset(ThemeImages.commonHelpSvg))
-            ],
-            backgroundColor: Theme.of(context).focusColor,
-            foregroundColor: Colors.white,
-            elevation: 0.0),
-        Padding(
+    return Stack(children: [
+      AppBar(
+          title: const Text(ThemeStrings.meItemCoin,
+              style: TextStyle(color: Colors.white)),
+          actions: [
+            IconButton(
+                onPressed: () => Navigator.pushNamed(
+                    context, RouteNames.details,
+                    arguments: viewModel.viewStates.detailsData),
+                icon: SvgPicture.asset(ThemeImages.commonHelpSvg))
+          ],
+          backgroundColor: Theme.of(context).focusColor,
+          foregroundColor: Colors.white,
+          elevation: 0.0),
+      Padding(
           padding: EdgeInsets.only(top: StatusTools.getAppBarLayoutHeight()),
-          child: Stack(
-            children: [buildHeaderBackground(), buildHeaderContent(viewModel)],
-          ),
-        )
-      ],
-    );
+          child: Stack(children: [
+            buildHeaderBackground(),
+            buildHeaderContent(viewModel)
+          ]))
+    ]);
   }
 
   Widget buildHeaderBackground() {
     return Container(
-      width: double.infinity,
-      height: ThemeDimens.meCoinHeaderBgHeight,
-      decoration: BoxDecoration(
-          color: Theme.of(context).focusColor,
-          borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(56),
-              bottomRight: Radius.circular(56))),
-    );
+        width: double.infinity,
+        height: ThemeDimens.meCoinHeaderBgHeight,
+        decoration: BoxDecoration(
+            color: Theme.of(context).focusColor,
+            borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(56),
+                bottomRight: Radius.circular(56))));
   }
 
   Widget buildHeaderContent(CoinViewModel viewModel) {
     return Padding(
-      padding: const EdgeInsets.only(
-          left: ThemeDimens.offsetLarge,
-          right: ThemeDimens.offsetLarge,
-          top: ThemeDimens.offsetMedium),
-      child: Card(
-        color: Theme.of(context).cardColor,
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-                Radius.circular(ThemeDimens.offsetRadiusMedium))),
-        child: SizedBox(
-          width: double.infinity,
-          height: 180,
-          child: Column(children: [
-            // 每天登陆赚取积分 item
-            Container(
-              width: double.infinity,
-              height: 26,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).hoverColor,
-                  borderRadius: const BorderRadius.only(
-                      topLeft:
-                          Radius.circular(ThemeDimens.offsetRadiusMedium),
-                      topRight:
-                          Radius.circular(ThemeDimens.offsetRadiusMedium))),
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(ThemeStrings.coinTitleLabelText,
-                    style: TextStyle(
-                        fontSize: ThemeDimens.fontSizeSmall,
-                        color: Theme.of(context).focusColor)),
-              ),
-            ),
-            // 当前积分总数 item
-            Padding(
-                padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
-                child: Text(ThemeStrings.coinTotalDescription,
-                    style: TextStyle(
-                        fontSize: ThemeDimens.fontSizeSmallX,
-                        color: Theme.of(context).primaryColor))),
-            // 积分数值显示 item
-            Padding(
-                padding: const EdgeInsets.all(ThemeDimens.offsetMedium),
-                child: Text(viewModel.findCoinCount(),
-                    style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColorLight))),
-            // 间隔线 item
-            Padding(
-                padding: const EdgeInsets.only(
-                    left: ThemeDimens.offsetLarge,
-                    right: ThemeDimens.offsetLarge,
-                    top: ThemeDimens.offsetMedium),
-                child:
-                    Container(height: 1, color: Theme.of(context).hoverColor)),
-            // 查看积分排行榜 item
-            Expanded(
-                child: SizedBox(
-              width: double.infinity,
-              child: Material(
-                child: InkWell(
-                    onTap: () =>
-                        {Navigator.pushNamed(context, RouteNames.coin_rank)},
-                    borderRadius: const BorderRadius.only(
-                        bottomLeft:
-                            Radius.circular(ThemeDimens.offsetRadiusMedium),
-                        bottomRight:
-                            Radius.circular(ThemeDimens.offsetRadiusMedium)),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: ThemeDimens.offsetLarge),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(ThemeStrings.coinToRankText,
+        padding: const EdgeInsets.only(
+            left: ThemeDimens.offsetLarge,
+            right: ThemeDimens.offsetLarge,
+            top: ThemeDimens.offsetMedium),
+        child: Card(
+            color: Theme.of(context).cardColor,
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                    Radius.circular(ThemeDimens.offsetRadiusMedium))),
+            child: SizedBox(
+                width: double.infinity,
+                height: 180,
+                child: Column(children: [
+                  // 每天登陆赚取积分 item
+                  Container(
+                      width: double.infinity,
+                      height: 26,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).hoverColor,
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(
+                                  ThemeDimens.offsetRadiusMedium),
+                              topRight: Radius.circular(
+                                  ThemeDimens.offsetRadiusMedium))),
+                      child: Align(
+                          alignment: Alignment.center,
+                          child: Text(ThemeStrings.coinTitleLabelText,
                               style: TextStyle(
-                                  fontSize: ThemeDimens.fontSizeMedium,
-                                  color: Theme.of(context).primaryColorLight)),
-                          SvgPicture.asset(
-                            ThemeImages.commonArrowSvg,
-                            width: 24,
-                            height: 24,
-                            color: Theme.of(context).primaryColorLight,
-                          )
-                        ],
-                      ),
-                    )),
-              ),
-            ))
-          ]),
-        ),
-      ),
-    );
+                                  fontSize: ThemeDimens.fontSizeSmall,
+                                  color: Theme.of(context).focusColor)))),
+                  // 当前积分总数 item
+                  Padding(
+                      padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
+                      child: Text(ThemeStrings.coinTotalDescription,
+                          style: TextStyle(
+                              fontSize: ThemeDimens.fontSizeSmallX,
+                              color: Theme.of(context).primaryColor))),
+                  // 积分数值显示 item
+                  Padding(
+                      padding: const EdgeInsets.all(ThemeDimens.offsetMedium),
+                      child: Text(viewModel.findCoinCount(),
+                          style: TextStyle(
+                              fontSize: 26,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).primaryColorLight))),
+                  // 间隔线 item
+                  Padding(
+                      padding: const EdgeInsets.only(
+                          left: ThemeDimens.offsetLarge,
+                          right: ThemeDimens.offsetLarge,
+                          top: ThemeDimens.offsetMedium),
+                      child: Container(
+                          height: 1, color: Theme.of(context).hoverColor)),
+                  // 查看积分排行榜 item
+                  Expanded(
+                      child: SizedBox(
+                          width: double.infinity,
+                          child: Material(
+                              child: InkWell(
+                                  onTap: () => Navigator.pushNamed(
+                                      context, RouteNames.coin_rank),
+                                  borderRadius: const BorderRadius.only(
+                                      bottomLeft: Radius.circular(
+                                          ThemeDimens.offsetRadiusMedium),
+                                      bottomRight: Radius.circular(
+                                          ThemeDimens.offsetRadiusMedium)),
+                                  child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: ThemeDimens.offsetLarge),
+                                      child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(ThemeStrings.coinToRankText,
+                                                style: TextStyle(
+                                                    fontSize: ThemeDimens
+                                                        .fontSizeMedium,
+                                                    color: Theme.of(context)
+                                                        .primaryColorLight)),
+                                            SvgPicture.asset(
+                                              ThemeImages.commonArrowSvg,
+                                              width: 24,
+                                              height: 24,
+                                              color: Theme.of(context)
+                                                  .primaryColorLight,
+                                            )
+                                          ]))))))
+                ]))));
   }
 
   Widget buildRecordContent(CoinViewModel viewModel) {
     return RefreshIndicator(
         color: Theme.of(context).primaryColorLight,
         onRefresh: () async {
-          await Future<void>.delayed(const Duration(seconds: 1), () {
-            viewModel.requestData(LoadStatus.refresh);
-          });
+          await Future<void>.delayed(const Duration(seconds: 1),
+              () => viewModel.requestData(LoadStatus.refresh));
         },
         child: SuperListView(
-          statusController: viewModel.paging.statusController,
-          itemCount: viewModel.paging.data.length,
-          onPageReload: () {
-            viewModel.requestData(LoadStatus.refresh);
-          },
-          onItemReload: () {
-            viewModel.requestData(LoadStatus.reload);
-          },
-          onLoadMore: () {
-            viewModel.requestData(LoadStatus.loadMore);
-          },
-          itemBuilder: (BuildContext context, int index) {
-            var item = viewModel.paging.data[index];
-            return buildRecordItem(item);
-          },
-        ));
+            statusController: viewModel.paging.statusController,
+            itemCount: viewModel.paging.data.length,
+            onPageReload: () => viewModel.requestData(LoadStatus.refresh),
+            onItemReload: () => viewModel.requestData(LoadStatus.reload),
+            onLoadMore: () => viewModel.requestData(LoadStatus.loadMore),
+            itemBuilder: (BuildContext context, int index) {
+              var item = viewModel.paging.data[index];
+              return buildRecordItem(item);
+            }));
   }
 
   Widget buildRecordItem(CoinRecord record) {
     return Padding(
-      padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
-      child: Container(
-        width: double.infinity,
-        color: Theme.of(context).cardColor,
-        child: Padding(
-          padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
-          child: Align(
-              alignment: Alignment.center,
-              child: Text(
-                record.desc,
-                maxLines: 1,
-                style: TextStyle(
-                    fontSize: ThemeDimens.fontSizeSmall,
-                    color: Theme.of(context).primaryColorLight,
-                    overflow: TextOverflow.ellipsis),
-              )),
-        ),
-      ),
-    );
+        padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
+        child: Container(
+            width: double.infinity,
+            color: Theme.of(context).cardColor,
+            child: Padding(
+                padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
+                child: Align(
+                    alignment: Alignment.center,
+                    child: Text(record.desc,
+                        maxLines: 1,
+                        style: TextStyle(
+                            fontSize: ThemeDimens.fontSizeSmall,
+                            color: Theme.of(context).primaryColorLight,
+                            overflow: TextOverflow.ellipsis))))));
   }
 }

@@ -9,28 +9,18 @@ class AppHeaderSpacer extends StatefulWidget {
   const AppHeaderSpacer({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
-    return _AppHeaderSpacerState();
-  }
+  State<StatefulWidget> createState() => _AppHeaderSpacerState();
 
-  static spacerHeight() {
-    return ThemeDimens.toolbarHeight + StatusTools.getStatusHeight();
-  }
+  static spacerHeight() =>
+      ThemeDimens.toolbarHeight + StatusTools.getStatusHeight();
 
-  static Widget appendHeader(int index, Widget widget) {
-    if (index == 0) {
-      return Column(children: [const AppHeaderSpacer(), widget]);
-    } else {
-      return widget;
-    }
-  }
+  static Widget appendHeader(int index, Widget widget) =>
+      index == 0 ? Column(children: [const AppHeaderSpacer(), widget]) : widget;
 }
 
 class _AppHeaderSpacerState extends State<AppHeaderSpacer> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: AppHeaderSpacer.spacerHeight(),
-    );
+    return Container(height: AppHeaderSpacer.spacerHeight());
   }
 }

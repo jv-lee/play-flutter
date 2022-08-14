@@ -17,20 +17,16 @@ class TransparentScaffold extends StatelessWidget {
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          toolbarHeight: 0,
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          systemOverlayStyle: _changeSystemUiOverlayStyle(
-              color ?? Theme.of(context).scaffoldBackgroundColor),
-        ),
+            toolbarHeight: 0,
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            systemOverlayStyle: _changeSystemUiOverlayStyle(
+                color ?? Theme.of(context).scaffoldBackgroundColor)),
         body: child);
   }
 
-  _changeSystemUiOverlayStyle(Color color) {
-    if (ThemeData.estimateBrightnessForColor(color) == Brightness.dark) {
-      return SystemUiOverlayStyle.light;
-    } else {
-      return SystemUiOverlayStyle.dark;
-    }
-  }
+  _changeSystemUiOverlayStyle(Color color) =>
+      ThemeData.estimateBrightnessForColor(color) == Brightness.dark
+          ? SystemUiOverlayStyle.light
+          : SystemUiOverlayStyle.dark;
 }
