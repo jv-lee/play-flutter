@@ -70,6 +70,7 @@ class _DetailsState extends BasePageState<DetailsPage> {
   Widget buildWebPage(DetailsViewModel viewModel) {
     return Stack(children: [
       WebView(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           initialUrl: viewModel.detailsData.link,
           javascriptMode: JavascriptMode.unrestricted,
           gestureNavigationEnabled: true,
