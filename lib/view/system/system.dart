@@ -60,24 +60,23 @@ class _SystemState extends BasePageState<SystemPage>
     Color textColor = isSelected
         ? Theme.of(context).hoverColor
         : Theme.of(context).focusColor;
-    return Padding(
-        padding: const EdgeInsets.only(
-            left: ThemeDimens.offsetMedium, right: ThemeDimens.offsetMedium),
-        child: InkWell(
-            onTap: () => onClick(),
-            child: Container(
-                width: ThemeDimens.systemTabWidth,
-                height: ThemeDimens.systemTabHeight,
-                alignment: Alignment.center,
-                decoration: ShapeDecoration(
-                    color: color,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            ThemeDimens.systemTabRadius))),
-                child: Text(text,
-                    style: TextStyle(
-                        color: textColor,
-                        fontSize: ThemeDimens.fontSizeMedium)))));
+    return InkWell(
+        onTap: () => onClick(),
+        child: Container(
+            width: ThemeDimens.systemTabWidth,
+            height: ThemeDimens.systemTabHeight,
+            margin: const EdgeInsets.only(
+                left: ThemeDimens.offsetMedium,
+                right: ThemeDimens.offsetMedium),
+            alignment: Alignment.center,
+            decoration: ShapeDecoration(
+                color: color,
+                shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(ThemeDimens.systemTabRadius))),
+            child: Text(text,
+                style: TextStyle(
+                    color: textColor, fontSize: ThemeDimens.fontSizeMedium))));
   }
 
   Widget buildPage(SystemViewModel viewModel) {

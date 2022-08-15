@@ -61,7 +61,7 @@ class _CoinRankPageState extends BasePageState<CoinRankPage> {
 
   Widget buildRankHeaderItem(CoinRankViewModel viewModel, CoinRank item) {
     return Expanded(
-        child: Padding(
+        child: Container(
             padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
             child: Column(children: [
               SvgPicture.asset(viewModel.findLevelIcon(item),
@@ -88,7 +88,7 @@ class _CoinRankPageState extends BasePageState<CoinRankPage> {
   }
 
   Widget buildRankItem(CoinRank item) {
-    return Padding(
+    return Container(
         padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
         child: Row(children: [
           Text(item.rank,

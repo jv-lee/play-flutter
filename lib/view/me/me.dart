@@ -43,42 +43,38 @@ class _MeState extends BasePageState<MePage>
             width: double.infinity,
             height: ThemeDimens.meHeaderHeight,
             child: Row(children: [
-              Padding(
-                  padding: const EdgeInsets.only(
-                      left: ThemeDimens.meHeaderPictureMargin),
-                  child: Container(
-                      width: ThemeDimens.meHeaderPictureSize,
-                      height: ThemeDimens.meHeaderPictureSize,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                              ThemeDimens.meHeaderPictureSize / 2),
-                          border: Border.all(
-                              width: 2, color: Theme.of(context).focusColor)),
-                      child: viewModel.viewStates.headerWidget)),
-              Padding(
-                  padding: const EdgeInsets.only(
-                      left: ThemeDimens.meHeaderContentMargin),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
+              Container(
+                  margin: const EdgeInsets.only(
+                      left: ThemeDimens.meHeaderPictureMargin,
+                      right: ThemeDimens.meHeaderPictureMargin),
+                  width: ThemeDimens.meHeaderPictureSize,
+                  height: ThemeDimens.meHeaderPictureSize,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                          ThemeDimens.meHeaderPictureSize / 2),
+                      border: Border.all(
+                          width: 2, color: Theme.of(context).focusColor)),
+                  child: viewModel.viewStates.headerWidget),
+              Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                        padding: const EdgeInsets.all(ThemeDimens.offsetSmall),
+                        child: Text(viewModel.viewStates.userName,
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColorLight,
+                                fontSize: ThemeDimens.fontSizeLarge))),
+                    Visibility(
+                        visible: viewModel.viewStates.isLogin,
+                        child: Padding(
                             padding:
                                 const EdgeInsets.all(ThemeDimens.offsetSmall),
-                            child: Text(viewModel.viewStates.userName,
+                            child: Text(viewModel.viewStates.userDesc,
                                 style: TextStyle(
-                                    color: Theme.of(context).primaryColorLight,
-                                    fontSize: ThemeDimens.fontSizeLarge))),
-                        Visibility(
-                            visible: viewModel.viewStates.isLogin,
-                            child: Padding(
-                                padding: const EdgeInsets.all(
-                                    ThemeDimens.offsetSmall),
-                                child: Text(viewModel.viewStates.userDesc,
-                                    style: TextStyle(
-                                        color: Theme.of(context).focusColor,
-                                        fontSize: ThemeDimens.fontSizeSmall))))
-                      ]))
+                                    color: Theme.of(context).focusColor,
+                                    fontSize: ThemeDimens.fontSizeSmall))))
+                  ])
             ])));
   }
 

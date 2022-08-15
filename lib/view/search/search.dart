@@ -64,7 +64,7 @@ class _SearchState extends BasePageState<SearchPage> {
   }
 
   Widget buildSearchHotLabel(SearchViewModel viewModel) {
-    return Padding(
+    return Container(
         padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
         child: Text(ThemeStrings.searchHotLabel,
             style: TextStyle(
@@ -77,7 +77,7 @@ class _SearchState extends BasePageState<SearchPage> {
         .map((e) => buildSearchHotFlowItem(viewModel, e))
         .toList();
 
-    return Padding(
+    return Container(
         padding: const EdgeInsets.only(
             left: ThemeDimens.offsetLarge, right: ThemeDimens.offsetLarge),
         child: Wrap(spacing: -4, runSpacing: -2, children: widgets));
@@ -155,15 +155,14 @@ class _SearchState extends BasePageState<SearchPage> {
 
   Widget buildSearchHistoryEmpty(SearchViewModel viewModel) {
     if (viewModel.viewStates.searchHistoryList.isEmpty) {
-      return SizedBox(
+      return Container(
           width: double.infinity,
-          child: Padding(
-              padding: const EdgeInsets.only(top: 26),
-              child: Center(
-                  child: Text(ThemeStrings.searchHistoryEmptyText,
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: ThemeDimens.fontSizeMedium)))));
+          padding: const EdgeInsets.only(top: 26),
+          child: Center(
+              child: Text(ThemeStrings.searchHistoryEmptyText,
+                  style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: ThemeDimens.fontSizeMedium))));
     }
     return Container();
   }
@@ -173,7 +172,7 @@ class _SearchState extends BasePageState<SearchPage> {
     return Material(
         child: InkWell(
             onTap: () => viewModel.navigationSearchKey(searchHistory.searchKey),
-            child: Padding(
+            child: Container(
                 padding: const EdgeInsets.only(
                     top: ThemeDimens.offsetMedium,
                     bottom: ThemeDimens.offsetMedium),
