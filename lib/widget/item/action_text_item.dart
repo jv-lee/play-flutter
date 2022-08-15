@@ -29,7 +29,7 @@ class ActionTextItem extends StatefulWidget {
 class _ActionTextItemState extends State<ActionTextItem> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
         padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
         child: SlidingPaneContainer(
             width: double.infinity,
@@ -60,31 +60,30 @@ class _ActionTextItemState extends State<ActionTextItem> {
     return Container(
         width: double.infinity,
         height: double.infinity,
+        padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
         color: Theme.of(context).cardColor,
         child: Material(
             child: InkWell(
                 onTap: () => widget.onItemClick(widget.content),
-                child: Padding(
-                    padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
-                    child: Stack(children: [
-                      Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(widget.content.getTitle(),
-                              maxLines: 1,
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColorLight,
-                                  fontSize: ThemeDimens.fontSizeSmall,
-                                  fontWeight: FontWeight.bold,
-                                  overflow: TextOverflow.ellipsis))),
-                      Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Text(widget.content.getDateFormat(),
-                              maxLines: 1,
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: ThemeDimens.fontSizeSmallX,
-                                  fontWeight: FontWeight.bold,
-                                  overflow: TextOverflow.ellipsis)))
-                    ])))));
+                child: Stack(children: [
+                  Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(widget.content.getTitle(),
+                          maxLines: 1,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColorLight,
+                              fontSize: ThemeDimens.fontSizeSmall,
+                              fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis))),
+                  Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(widget.content.getDateFormat(),
+                          maxLines: 1,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: ThemeDimens.fontSizeSmallX,
+                              fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis)))
+                ]))));
   }
 }

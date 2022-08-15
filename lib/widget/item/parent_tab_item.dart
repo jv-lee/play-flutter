@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/model/entity/parent_tab.dart';
 import 'package:playflutter/extensions/data_format_extensions.dart';
+import 'package:playflutter/model/entity/parent_tab.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/widget/common/card_item_container.dart';
@@ -54,12 +54,11 @@ class _ParentTabItemState extends State<ParentTabItem> {
   }
 
   Widget buildDivider() {
-    return Padding(
-        padding: const EdgeInsets.only(
+    return Container(
+        margin: const EdgeInsets.only(
             top: ThemeDimens.offsetMedium, bottom: ThemeDimens.offsetMedium),
-        child: Container(
-            width: double.infinity,
-            height: 1,
-            color: Theme.of(context).scaffoldBackgroundColor));
+        width: double.infinity,
+        height: 1,
+        color: Theme.of(context).scaffoldBackgroundColor);
   }
 }

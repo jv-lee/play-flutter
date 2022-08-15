@@ -87,7 +87,7 @@ class _ContentPictureItemState extends State<ContentPictureItem> {
                                         color: Theme.of(context).primaryColor,
                                       ),
                                     )))),
-                        Padding(
+                        Container(
                             padding:
                                 const EdgeInsets.all(ThemeDimens.offsetMedium),
                             child: Row(

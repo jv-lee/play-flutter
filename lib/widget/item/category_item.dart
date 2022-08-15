@@ -32,7 +32,7 @@ class _CategoryItemState extends State<CategoryItem> {
               width: ThemeDimens.homeCategoryItemSize,
               height: ThemeDimens.homeCategoryItemSize,
               child: SvgPicture.asset(widget.category.iconRes)),
-          Padding(
+          Container(
               padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
               child: Text(widget.category.name,
                   style: TextStyle(color: Theme.of(context).primaryColorLight)))

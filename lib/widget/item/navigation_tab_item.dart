@@ -32,31 +32,27 @@ class _NavigationTabItemState extends State<NavigationTabItem> {
 
     // 包裹row让内部text自适应宽度
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      SizedBox(
+      Container(
           height: ThemeDimens.systemNavigationTabHeight,
-          child: Padding(
-              padding: const EdgeInsets.only(
-                  top: ThemeDimens.offsetMedium,
-                  bottom: ThemeDimens.offsetMedium),
-              child: InkWell(
-                  onTap: () => {
-                        if (widget.onItemClick != null)
-                          {widget.onItemClick!(widget.navigationTab)}
-                      },
-                  borderRadius:
-                      BorderRadius.circular(ThemeDimens.systemTabRadius),
-                  child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          color: tabColor,
-                          borderRadius: BorderRadius.circular(
-                              ThemeDimens.systemTabRadius)),
-                      child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: ThemeDimens.offsetMedium,
-                              right: ThemeDimens.offsetMedium),
-                          child: Text(widget.navigationTab.name,
-                              style: TextStyle(color: textColor)))))))
+          padding: const EdgeInsets.only(
+              top: ThemeDimens.offsetMedium, bottom: ThemeDimens.offsetMedium),
+          child: InkWell(
+              onTap: () => {
+                    if (widget.onItemClick != null)
+                      {widget.onItemClick!(widget.navigationTab)}
+                  },
+              borderRadius: BorderRadius.circular(ThemeDimens.systemTabRadius),
+              child: Container(
+                  padding: const EdgeInsets.only(
+                      left: ThemeDimens.offsetMedium,
+                      right: ThemeDimens.offsetMedium),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: tabColor,
+                      borderRadius:
+                          BorderRadius.circular(ThemeDimens.systemTabRadius)),
+                  child: Text(widget.navigationTab.name,
+                      style: TextStyle(color: textColor)))))
     ]);
   }
 }

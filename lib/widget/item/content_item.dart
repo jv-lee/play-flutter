@@ -32,18 +32,16 @@ class _ContentItemState extends State<ContentItem> {
                       fontSize: ThemeDimens.fontSizeMedium,
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).primaryColorLight))),
-          Padding(
-            padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
-            child: SizedBox(
-                width: double.infinity,
-                child: Text(widget.content.getTitle(),
-                    style: TextStyle(
-                        fontSize: ThemeDimens.fontSizeSmall,
-                        color: Theme.of(context).primaryColor),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis)),
-          ),
-          Padding(
+          Container(
+              padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
+              width: double.infinity,
+              child: Text(widget.content.getTitle(),
+                  style: TextStyle(
+                      fontSize: ThemeDimens.fontSizeSmall,
+                      color: Theme.of(context).primaryColor),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis)),
+          Container(
               padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

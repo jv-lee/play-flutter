@@ -22,7 +22,7 @@ class NavigationTagItem extends StatefulWidget {
 class _NavigationTagItemState extends State<NavigationTagItem> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
         padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(widget.navigationTab.name,
@@ -51,7 +51,7 @@ class _NavigationTagItemState extends State<NavigationTagItem> {
                       {widget.onItemClick!(element)}
                   },
               borderRadius: BorderRadius.circular(ThemeDimens.systemTabRadius),
-              child: Padding(
+              child: Container(
                   padding: const EdgeInsets.all(ThemeDimens.offsetMedium),
                   child: Text(element.title,
                       style: TextStyle(
