@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_page_state.dart';
+import 'package:playflutter/view/todo/dialog/select_todo_type_dialog.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -14,6 +15,17 @@ class TodoPage extends StatefulWidget {
 class _TodoPageState extends BasePageState<TodoPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text("todo page.")));
+    return Scaffold(
+        body: Center(
+            child: GestureDetector(
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) => const SelectTodoTypeDialog());
+                },
+                child: Text(
+                  "todo page.",
+                  style: TextStyle(color: Theme.of(context).primaryColorLight),
+                ))));
   }
 }
