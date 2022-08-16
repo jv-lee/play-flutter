@@ -54,8 +54,6 @@ class _SuperListViewState extends State<SuperListView> {
   late PageStatus _pageStatus;
   late ItemStatus _itemStatus;
   late ScrollController _controller;
-  final double _itemHeight = 48.0;
-  final double _fontSize = 16;
 
   initScrollController() {
     if (widget.scrollController != null) {
@@ -104,49 +102,20 @@ class _SuperListViewState extends State<SuperListView> {
   Widget buildPageWidget(BuildContext context) {
     switch (_pageStatus) {
       case PageStatus.loading:
-        return widget.pageLoading ?? buildPageLoading(context);
+        return widget.pageLoading ?? pageLoading(context);
       case PageStatus.empty:
-        return widget.pageEmpty ?? buildPageEmpty(context);
+        return widget.pageEmpty ?? pageEmpty(context);
       case PageStatus.error:
-        return widget.pageError ?? buildPageError(context);
+        return widget.pageError ??
+            pageError(context, () {
+              widget.statusController.pageLoading().itemEmpty();
+              widget.onPageReload.checkNullInvoke();
+            });
       case PageStatus.completed:
         return buildPageData(context);
       default:
-        return buildPageLoading(context);
+        return pageLoading(context);
     }
-  }
-
-  Widget buildPageLoading(BuildContext context) {
-    return const Center(child: CircularProgressIndicator());
-  }
-
-  Widget buildPageEmpty(BuildContext context) {
-    return Center(
-        child: Text("暂无数据",
-            style: TextStyle(
-                color: Theme.of(context).primaryColorLight,
-                fontSize: _fontSize)));
-  }
-
-  Widget buildPageError(BuildContext context) {
-    return Center(
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-      Text("加载失败",
-          style: TextStyle(
-              color: Theme.of(context).primaryColorLight, fontSize: _fontSize)),
-      CupertinoButton(
-          child: Text(
-            "点击重试",
-            style: TextStyle(
-                color: Theme.of(context).primaryColorLight,
-                fontSize: _fontSize),
-          ),
-          onPressed: () {
-            widget.statusController.pageLoading().itemEmpty();
-            widget.onPageReload.checkNullInvoke();
-          })
-    ]));
   }
 
   Widget buildPageData(BuildContext context) {
@@ -191,73 +160,18 @@ class _SuperListViewState extends State<SuperListView> {
   Widget buildItemWidget(BuildContext context) {
     switch (_itemStatus) {
       case ItemStatus.loading:
-        return buildItemLoading(context);
+        return itemLoading(context);
       case ItemStatus.empty:
-        return buildItemEmpty(context);
+        return itemEmpty(context);
       case ItemStatus.error:
-        return buildItemError(context);
+        return itemError(context, () {
+          widget.statusController.itemLoading();
+          widget.onItemReload.checkNullInvoke();
+        });
       case ItemStatus.end:
-        return buildItemNoMore(context);
+        return itemNoMore(context);
       default:
-        return buildItemEmpty(context);
+        return itemEmpty(context);
     }
-  }
-
-  Widget buildItemLoading(BuildContext context) {
-    return SizedBox(
-        height: _itemHeight,
-        child: Center(
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-              const SizedBox(
-                  height: 16,
-                  width: 16,
-                  child: CircularProgressIndicator(strokeWidth: 2)),
-              Container(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Text("加载中...",
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColorLight,
-                          fontSize: _fontSize)))
-            ])));
-  }
-
-  Widget buildItemEmpty(BuildContext context) {
-    return Container(height: _itemHeight);
-  }
-
-  Widget buildItemNoMore(BuildContext context) {
-    return SizedBox(
-        height: _itemHeight,
-        child: Center(
-            child: Text("没有更多了",
-                style: TextStyle(
-                    color: Theme.of(context).primaryColorLight,
-                    fontSize: _fontSize))));
-  }
-
-  Widget buildItemError(BuildContext context) {
-    return SizedBox(
-        height: _itemHeight,
-        child: Center(
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-              Text("加载失败",
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColorLight,
-                      fontSize: _fontSize)),
-              GestureDetector(
-                  child: Container(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Text("点击重试",
-                          style: TextStyle(
-                              color: Colors.blue, fontSize: _fontSize))),
-                  onTapDown: (details) {
-                    widget.statusController.itemLoading();
-                    widget.onItemReload.checkNullInvoke();
-                  })
-            ])));
   }
 }

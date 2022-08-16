@@ -6,15 +6,15 @@ import 'package:playflutter/model/http/interceptor/app_cookie_interceptor.dart';
 /// @date 2020/5/8
 /// @description 网络请求封装工具类
 class HttpManager {
+  HttpManager._internal() {
+    dio = createDio(ApiConstants.BASE_URI);
+  }
+
   static final HttpManager _instance = HttpManager._internal();
 
   static HttpManager getInstance() => _instance;
 
   late Dio dio;
-
-  HttpManager._internal() {
-    dio = createDio(ApiConstants.BASE_URI);
-  }
 
   static Dio createDio(String baseUri) {
     Dio dio = Dio(BaseOptions(
@@ -28,3 +28,5 @@ class HttpManager {
     return dio;
   }
 }
+
+final httpManager = HttpManager.getInstance();

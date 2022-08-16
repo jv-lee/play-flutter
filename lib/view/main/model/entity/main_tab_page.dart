@@ -14,6 +14,11 @@ class MainTabPage {
   late final String label;
   late final Widget page;
 
+  static const tabHome = "home";
+  static const tabSquare = "square";
+  static const tabSystem = "system";
+  static const tabMe = "me";
+
   MainTabPage(
       {required this.normalIcon,
       required this.pressIcon,
@@ -25,25 +30,25 @@ class MainTabPage {
     list.add(MainTabPage(
         normalIcon: ThemeIcons.homeNormal,
         pressIcon: ThemeIcons.homePress,
-        label: "home",
+        label: tabHome,
         page: const HomePage()));
 
     list.add(MainTabPage(
         normalIcon: ThemeIcons.squareNormal,
         pressIcon: ThemeIcons.squarePress,
-        label: "square",
+        label: tabSquare,
         page: const SquarePage()));
 
     list.add(MainTabPage(
         normalIcon: ThemeIcons.systemNormal,
         pressIcon: ThemeIcons.systemPress,
-        label: "system",
+        label: tabSystem,
         page: const SystemPage()));
 
     list.add(MainTabPage(
         normalIcon: ThemeIcons.meNormal,
         pressIcon: ThemeIcons.mePress,
-        label: "me",
+        label: tabMe,
         page: const MePage()));
 
     return list;

@@ -42,7 +42,7 @@ class _ProjectState extends BasePageState<ProjectPage> {
                   ),
                   body: StatusPage(
                       status: viewModel.viewStates.pageStatus,
-                      reLoadFun: () => viewModel.requestTabData(),
+                      onPageReload: () => viewModel.requestTabData(),
                       child: OverscrollHideContainer(
                           scrollChild: TabBarView(
                               children: tabList

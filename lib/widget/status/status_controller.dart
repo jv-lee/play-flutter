@@ -10,7 +10,7 @@ class StatusController extends ChangeNotifier {
   bool _isDispose = false;
 
   StatusController({
-    this.pageStatus = PageStatus.completed,
+    this.pageStatus = PageStatus.loading,
     this.itemStatus = ItemStatus.empty,
   });
 

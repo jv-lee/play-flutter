@@ -35,6 +35,7 @@ class _NavigationContentState extends BasePageState<NavigationContentPage>
         viewBuild: (context, viewModel) => Material(
             child: StatusPage(
                 status: viewModel.paging.statusController.pageStatus,
+                onPageReload: viewModel.requestData,
                 child: Container(
                     padding:
                         EdgeInsets.only(top: AppHeaderSpacer.spacerHeight()),

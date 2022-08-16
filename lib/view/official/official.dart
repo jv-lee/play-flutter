@@ -42,7 +42,7 @@ class _OfficialState extends BasePageState<OfficialPage> {
                   ),
                   body: StatusPage(
                       status: viewModel.viewStates.pageStatus,
-                      reLoadFun: () => viewModel.requestTabData(),
+                      onPageReload: () => viewModel.requestTabData(),
                       child: OverscrollHideContainer(
                           scrollChild: TabBarView(
                               children: tabList

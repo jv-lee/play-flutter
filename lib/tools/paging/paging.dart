@@ -17,6 +17,7 @@ class Paging<T> {
   int _page = 0;
   Function notify;
   StatusController statusController;
+  ScrollController scrollController;
   bool isDispose = false;
 
   Paging({
@@ -24,6 +25,7 @@ class Paging<T> {
     required this.initPage,
     required this.notify,
     required this.statusController,
+    required this.scrollController,
   }) {
     _page = initPage;
   }
@@ -32,13 +34,15 @@ class Paging<T> {
       {required ChangeNotifier notifier,
       List<T>? data,
       int? initPage,
-      StatusController? statusController}) {
+      StatusController? statusController,
+      ScrollController? scrollController}) {
     return Paging(
         data: data ?? [],
         initPage: initPage ?? 0,
         notify: notifier.notifyListeners,
         statusController: statusController ??
-            StatusController(pageStatus: PageStatus.loading));
+            StatusController(pageStatus: PageStatus.loading),
+        scrollController: scrollController ?? ScrollController());
   }
 
   requestData(LoadStatus status,
@@ -134,6 +138,7 @@ class Paging<T> {
   dispose() {
     isDispose = true;
     statusController.dispose();
+    scrollController.dispose();
     data.clear();
   }
 }

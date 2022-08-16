@@ -9,21 +9,21 @@ import 'package:playflutter/widget/status/status.dart';
 /// @date 2020/5/12
 /// @description 状态控制页面容器
 class StatusPage extends StatefulWidget {
-  PageStatus? status;
-  final Widget? child;
+  PageStatus status;
+  final Widget child;
   final Widget? loading;
   final Widget? empty;
   final Widget? error;
-  final Function? reLoadFun;
+  final Function? onPageReload;
 
   StatusPage(
       {Key? key,
-      this.status,
-      this.child,
+      required this.status,
+      required this.child,
       this.loading,
       this.empty,
       this.error,
-      this.reLoadFun})
+      this.onPageReload})
       : super(key: key);
 
   @override
@@ -35,51 +35,23 @@ class _StatusPageState extends State<StatusPage> {
   Widget build(BuildContext context) => buildWidget(context);
 
   Widget buildWidget(BuildContext context) {
-    switch (widget.status ?? PageStatus.loading) {
+    switch (widget.status) {
       case PageStatus.loading:
-        return widget.loading ?? buildLoading(context);
+        return widget.loading ?? pageLoading(context);
       case PageStatus.empty:
-        return widget.empty ?? buildEmpty(context);
+        return widget.empty ?? pageEmpty(context);
       case PageStatus.error:
-        return widget.error ?? buildError(context);
-      case PageStatus.completed:
-        return widget.child ?? buildData(context);
-      default:
-        return buildLoading(context);
-    }
-  }
-
-  Widget buildLoading(BuildContext context) {
-    return const Center(child: CircularProgressIndicator());
-  }
-
-  Widget buildEmpty(BuildContext context) {
-    return Center(
-        child: Text("暂无数据",
-            style: TextStyle(
-                color: Theme.of(context).primaryColor, fontSize: 16)));
-  }
-
-  Widget buildError(BuildContext context) {
-    return Center(
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-      Text("加载失败",
-          style:
-              TextStyle(color: Theme.of(context).primaryColor, fontSize: 16)),
-      CupertinoButton(
-          child: const Text("点击重试", style: TextStyle(fontSize: 16)),
-          onPressed: () {
-            setState(() {
-              widget.status = PageStatus.loading;
-              widget.reLoadFun.checkNullInvoke();
+        return widget.error ??
+            pageError(context, () {
+              setState(() {
+                widget.status = PageStatus.loading;
+                widget.onPageReload.checkNullInvoke();
+              });
             });
-          })
-    ]));
-  }
-
-  Widget buildData(BuildContext context) {
-    return Text('child == null',
-        style: TextStyle(color: Theme.of(context).primaryColor));
+      case PageStatus.completed:
+        return widget.child;
+      default:
+        return pageLoading(context);
+    }
   }
 }

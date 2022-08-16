@@ -31,6 +31,7 @@ class _SystemContentState extends BasePageState<SystemContentPage>
             itemCount: viewModel.paging.data.length,
             statusController: viewModel.paging.statusController,
             headerChildren: const [AppHeaderSpacer()],
+            onPageReload: viewModel.requestData,
             itemBuilder: (context, index) {
               var item = viewModel.paging.data[index];
               return ParentTabItem(

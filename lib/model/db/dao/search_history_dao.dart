@@ -6,7 +6,7 @@ import 'package:sqflite/sqflite.dart';
 /// @date 2022/7/19
 /// @description 搜索历史记录数据库操作类
 class SearchHistoryDao {
-  final Database _database = DatabaseManager.getInstance().getDatabase();
+  final Database _database = databaseManager.getDatabase();
 
   Future<SearchHistory> insert(SearchHistory searchHistory) async {
     await _database.insert(SearchHistory.TABLE_NAME, searchHistory.toMap(),

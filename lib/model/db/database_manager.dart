@@ -10,9 +10,7 @@ class DatabaseManager {
 
   static final DatabaseManager _instance = DatabaseManager._internal();
 
-  static DatabaseManager getInstance() {
-    return _instance;
-  }
+  static DatabaseManager getInstance() => _instance;
 
   final String _databaseName = "play-flutter.db";
   final int _databaseVersion = 1;
@@ -35,3 +33,5 @@ class DatabaseManager {
     return _database!;
   }
 }
+
+final databaseManager = DatabaseManager.getInstance();

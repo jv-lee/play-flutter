@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
+import 'package:playflutter/event/constants/event_constants.dart';
+import 'package:playflutter/event/entity/tab_selected_event.dart';
+import 'package:playflutter/event/events_bus.dart';
 import 'package:playflutter/view/main/model/entity/main_tab_page.dart';
 
 /// @author jv.lee
@@ -19,6 +22,8 @@ class MainViewModel extends BaseViewModel {
   }
 
   void changeTab(index) {
+    eventBus.send(EventConstants.TAB_SELECTED_EVENT,
+        TabSelectedEvent(tabName: viewStates.mainTabPages[index].label));
     viewStates.tabIndex = index;
     viewStates.pageController.jumpToPage(index);
     notifyListeners();

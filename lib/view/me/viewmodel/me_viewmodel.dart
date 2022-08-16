@@ -13,26 +13,21 @@ import 'package:toast/toast.dart';
 /// @date 2022/7/15
 /// @description
 class MeViewModel extends BaseViewModel {
-  late AccountService accountService;
-  late VoidCallback _accountListener;
-
   var viewStates = _MeViewState();
+  late AccountService accountService;
 
   MeViewModel(super.context);
 
   @override
   void init() {
     accountService = context.read<AccountService>();
+    accountService.addListener(_changeViewState);
     _changeViewState();
-    accountService.addListener(_accountListener = () {
-      _changeViewState();
-      notifyListeners();
-    });
   }
 
   @override
   void onCleared() {
-    accountService.removeListener(_accountListener);
+    accountService.removeListener(_changeViewState);
   }
 
   void headerClick() {
@@ -68,6 +63,7 @@ class MeViewModel extends BaseViewModel {
     } else {
       viewStates = _MeViewState();
     }
+    notifyListeners();
   }
 }
 

@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:path_provider/path_provider.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
@@ -11,22 +10,21 @@ import 'package:provider/provider.dart';
 /// @date 2022/8/4
 /// @description app设置页面viewModel
 class SettingsViewModel extends BaseViewModel {
-  late AccountService accountService;
-  late VoidCallback _accountListener;
   final viewStates = _SettingsViewState();
+  late AccountService accountService;
 
   SettingsViewModel(super.context);
 
   @override
   void init() {
     accountService = context.read<AccountService>();
-    accountService.addListener(_accountListener = () => notifyListeners());
+    accountService.addListener(notifyListeners);
     _changeCache();
   }
 
   @override
   void onCleared() {
-    accountService.removeListener(_accountListener);
+    accountService.removeListener(notifyListeners);
   }
 
   void _changeCache() async {

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/model/entity/coin_record.dart';
 import 'package:playflutter/model/entity/details.dart';
@@ -19,7 +17,6 @@ class CoinViewModel extends BaseViewModel {
   final _model = MeModel();
   final viewStates = _CoinViewState();
   late AccountService accountService;
-  late VoidCallback _accountListener;
   late Paging<CoinRecord> paging;
 
   CoinViewModel(super.context);
@@ -27,14 +24,14 @@ class CoinViewModel extends BaseViewModel {
   @override
   void init() {
     accountService = context.read<AccountService>();
-    accountService.addListener(_accountListener = () => notifyListeners());
+    accountService.addListener(notifyListeners);
     paging = Paging.build(notifier: this, initPage: 1);
     requestData(LoadStatus.refresh);
   }
 
   @override
   void onCleared() {
-    accountService.removeListener(_accountListener);
+    accountService.removeListener(notifyListeners);
     paging.dispose();
     _model.dispose();
   }

@@ -17,7 +17,7 @@ abstract class BaseModel {
   ///     super.dio = HttpManager.createDio(baseUri);
   ///   }
   BaseModel({Dio? dio}) {
-    this.dio = dio ?? HttpManager.getInstance().dio;
+    this.dio = dio ?? httpManager.dio;
   }
 
   /// 页面销毁时调用dispose取消所有请求
