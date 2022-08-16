@@ -31,7 +31,7 @@ class DarkModeProvider with ChangeNotifier {
     _isSystem = await Night.isSystemTheme();
     _isDark = await Night.isDarkTheme();
     if (_isSystem) {
-      StatusTools.defaultSystemBar(context);
+      StatusTools.transparentSystemBar(_isDark ? Brightness.dark : Brightness.light);
       lightThemeData = ThemeColors.lightThemeData;
       darkThemeData = ThemeColors.darkThemeData;
     } else {

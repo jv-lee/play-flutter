@@ -288,7 +288,7 @@ packages:
       name: night
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.0.6"
+    version: "0.0.7"
   octo_image:
     dependency: transitive
     description:
