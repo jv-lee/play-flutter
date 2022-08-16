@@ -47,7 +47,7 @@ class _SplashState extends BasePageState<SplashPage> {
                   color: Theme.of(context).scaffoldBackgroundColor,
                   child: Image.asset(
                     viewModel.viewStates.findSplashRes(),
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   )),
               buildSplashAd(viewModel)
             ])));
