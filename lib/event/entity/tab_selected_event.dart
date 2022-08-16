@@ -9,7 +9,7 @@ class TabSelectedEvent {
   TabSelectedEvent({required this.tabName});
 
   void onEvent(name, ScrollController scrollController) {
-    if (tabName == name) {
+    if (tabName == name && scrollController.offset != 0) {
       scrollController.animateTo(0,
           duration: const Duration(milliseconds: 300), curve: Curves.ease);
     }

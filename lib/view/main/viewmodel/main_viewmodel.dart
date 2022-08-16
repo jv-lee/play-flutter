@@ -22,8 +22,11 @@ class MainViewModel extends BaseViewModel {
   }
 
   void changeTab(index) {
-    eventBus.send(EventConstants.TAB_SELECTED_EVENT,
-        TabSelectedEvent(tabName: viewStates.mainTabPages[index].label));
+    // 当前tab页面重复点击发送确认事件给当前页面
+    if (index == viewStates.tabIndex) {
+      eventBus.send(EventConstants.TAB_SELECTED_EVENT,
+          TabSelectedEvent(tabName: viewStates.mainTabPages[index].label));
+    }
     viewStates.tabIndex = index;
     viewStates.pageController.jumpToPage(index);
     notifyListeners();
