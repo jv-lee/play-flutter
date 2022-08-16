@@ -1,6 +1,4 @@
 // ignore_for_file: constant_identifier_names
-import 'package:flustars/flustars.dart';
-
 /// @author jv.lee
 /// @date 2022/6/24
 /// @description 时间工具
@@ -15,17 +13,18 @@ class TimeTools {
   static const int DAY = 86400000;
 
   static String getChineseTimeMill(int time) {
-    int timeLong = DateTime.now().microsecondsSinceEpoch - time;
+    int timeLong = DateTime.now().millisecondsSinceEpoch - time;
     if (timeLong < MIN) {
       return "刚刚";
     } else if (timeLong < HOUR) {
-      return "${timeLong / MIN}分钟前";
+      return "${timeLong ~/ MIN}分钟前";
     } else if (timeLong < DAY) {
-      return "${timeLong / HOUR}小时前";
+      return "${timeLong ~/ HOUR}小时前";
     } else if (timeLong < DAY * 7) {
-      return "${timeLong / DAY}天前";
+      return "${timeLong ~/ DAY}天前";
     } else {
-      return DateUtil.formatDateMs(time, format: DateFormats.mo_d);
+      DateTime date = DateTime.fromMillisecondsSinceEpoch(time);
+      return "${date.month}-${date.day}";
     }
   }
 }

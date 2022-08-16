@@ -39,7 +39,6 @@ dependencies:
   webview_flutter: ^3.0.4 #原生webView插件
   shared_preferences: ^2.0.15 #本地存储
   provider: ^6.0.2 #操作provider通知使用主题切换
-  flustars: ^2.0.1
   path_provider: ^2.0.11 #获取本地缓存目录 使用清除缓存功能
   share: ^2.0.4 #分享
   night: ^0.0.8 #深色模式适配
