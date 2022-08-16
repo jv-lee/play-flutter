@@ -1,5 +1,8 @@
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
+import 'package:playflutter/event/constants/event_constants.dart';
+import 'package:playflutter/event/entity/tab_selected_event.dart';
+import 'package:playflutter/event/events_bus.dart';
 import 'package:playflutter/model/entity/banner.dart';
 import 'package:playflutter/model/entity/content.dart';
 import 'package:playflutter/tools/log_tools.dart';
@@ -7,6 +10,7 @@ import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/home/model/entity/home_category.dart';
 import 'package:playflutter/view/home/model/home_model.dart';
+import 'package:playflutter/view/main/model/entity/main_tab_page.dart';
 
 /// @author jv.lee
 /// @date 2022/6/23
@@ -20,12 +24,14 @@ class HomeViewModel extends BaseViewModel {
 
   @override
   void init() {
+    eventBus.bind(EventConstants.TAB_SELECTED_EVENT, _onTabSelectedEvent);
     paging = Paging.build(notifier: this);
     requestData(LoadStatus.refresh);
   }
 
   @override
   void onCleared() {
+    eventBus.unbind(EventConstants.TAB_SELECTED_EVENT, _onTabSelectedEvent);
     viewStates.swiperController.dispose();
     paging.dispose();
     _model.dispose();
@@ -63,6 +69,14 @@ class HomeViewModel extends BaseViewModel {
   void changeBannerIndex(int index) {
     viewStates.bannerIndex = index;
     notifyListeners();
+  }
+
+  /// 全局事件 mainTab被点击回调
+  void _onTabSelectedEvent(dynamic arg) {
+    if (arg is TabSelectedEvent) {
+      arg.onEvent(MainTabPage.tabHome, paging.scrollController);
+      notifyListeners();
+    }
   }
 }
 

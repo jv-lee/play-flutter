@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
+import 'package:playflutter/event/constants/event_constants.dart';
+import 'package:playflutter/event/entity/tab_selected_event.dart';
+import 'package:playflutter/event/events_bus.dart';
 import 'package:playflutter/model/entity/content.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_strings.dart';
@@ -7,6 +10,7 @@ import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/account/service/account_service.dart';
+import 'package:playflutter/view/main/model/entity/main_tab_page.dart';
 import 'package:playflutter/view/square/model/square_model.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
@@ -17,22 +21,23 @@ import 'package:toast/toast.dart';
 class SquareViewModel extends BaseViewModel {
   final _model = SquareModel();
   late AccountService accountService;
-  late VoidCallback _accountListener;
   late Paging<Content> paging;
 
   SquareViewModel(super.context);
 
   @override
   void init() {
+    eventBus.bind(EventConstants.TAB_SELECTED_EVENT, _onTabSelectedEvent);
     accountService = context.read<AccountService>();
-    accountService.addListener(_accountListener = () => notifyListeners());
+    accountService.addListener(notifyListeners);
     paging = Paging.build(notifier: this);
     requestData(LoadStatus.refresh);
   }
 
   @override
   void onCleared() {
-    accountService.removeListener(_accountListener);
+    eventBus.unbind(EventConstants.TAB_SELECTED_EVENT, _onTabSelectedEvent);
+    accountService.removeListener(notifyListeners);
     paging.dispose();
     _model.dispose();
   }
@@ -51,6 +56,13 @@ class SquareViewModel extends BaseViewModel {
     } else {
       Toast.show(ThemeStrings.loginAlert);
       Navigator.pushNamed(context, RouteNames.login);
+    }
+  }
+
+  void _onTabSelectedEvent(dynamic arg) {
+    if (arg is TabSelectedEvent) {
+      arg.onEvent(MainTabPage.tabSquare, paging.scrollController);
+      notifyListeners();
     }
   }
 }

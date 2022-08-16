@@ -45,6 +45,7 @@ class _SquareState extends BasePageState<SquarePage>
                         () => viewModel.requestData(LoadStatus.refresh));
                   },
                   child: SuperListView(
+                      scrollController: viewModel.paging.scrollController,
                       statusController: viewModel.paging.statusController,
                       itemCount: viewModel.paging.data.length,
                       onPageReload: () =>

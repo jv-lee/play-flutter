@@ -52,6 +52,7 @@ class _HomeState extends BasePageState<HomePage>
                   },
                   child: SuperListView(
                       statusController: viewModel.paging.statusController,
+                      scrollController: viewModel.paging.scrollController,
                       itemCount: viewModel.paging.data.length,
                       onPageReload: () =>
                           viewModel.requestData(LoadStatus.refresh),
