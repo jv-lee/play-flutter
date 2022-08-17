@@ -59,16 +59,13 @@ class Paging<T> {
       if (isDispose) return;
       // 首页数据
       if (_page == initPage) {
-        LogTools.log("Paging", "1");
         // 首页空数据
         if (response.getDataSource().isEmpty) {
-          LogTools.log("Paging", "2");
           statusController.pageEmpty();
           notify();
           return;
         }
 
-        LogTools.log("Paging", "3");
         // 加载首页数据
         data.clear();
         data.addAll(response.getDataSource());
@@ -88,7 +85,6 @@ class Paging<T> {
 
       // 加载更多数据
       if (response.getPageNumber() < response.getPageTotalNumber()) {
-        LogTools.log("Paging", "4");
         data.addAll(response.getDataSource());
         statusController.itemLoading();
         notify();
@@ -97,7 +93,6 @@ class Paging<T> {
 
       // 加载更多至尾页
       if (response.getPageNumber() == response.getPageTotalNumber()) {
-        LogTools.log("Paging", "5");
         data.addAll(response.getDataSource());
         statusController.itemComplete();
         notify();
