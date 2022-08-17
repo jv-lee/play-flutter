@@ -53,15 +53,13 @@ class _SplashState extends BasePageState<SplashPage>
                     ThemeImages.splashAdPng,
                     fit: BoxFit.cover,
                   )),
-              Align(
+              Container(
                   alignment: Alignment.topRight,
-                  child: Padding(
-                      padding: EdgeInsets.only(
-                          top: StatusTools.getStatusHeight() +
-                              ThemeDimens.offsetSmall,
-                          right: ThemeDimens.offsetLarge),
-                      child:
-                          TimeReadyButton(onEnd: () => Navigator.pop(context))))
+                  margin: EdgeInsets.only(
+                      top: StatusTools.getStatusHeight() +
+                          ThemeDimens.offsetSmall,
+                      right: ThemeDimens.offsetLarge),
+                  child: TimeReadyButton(onEnd: () => Navigator.pop(context)))
             ])));
   }
 }

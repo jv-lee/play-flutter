@@ -89,6 +89,7 @@ class _CoinPageState extends BasePageState<CoinPage> {
               Container(
                   width: double.infinity,
                   height: 26,
+                  alignment: Alignment.center,
                   decoration: BoxDecoration(
                       color: Theme.of(context).hoverColor,
                       borderRadius: const BorderRadius.only(
@@ -96,12 +97,10 @@ class _CoinPageState extends BasePageState<CoinPage> {
                               Radius.circular(ThemeDimens.offsetRadiusMedium),
                           topRight:
                               Radius.circular(ThemeDimens.offsetRadiusMedium))),
-                  child: Align(
-                      alignment: Alignment.center,
-                      child: Text(ThemeStrings.coinTitleLabelText,
-                          style: TextStyle(
-                              fontSize: ThemeDimens.fontSizeSmall,
-                              color: Theme.of(context).focusColor)))),
+                  child: Text(ThemeStrings.coinTitleLabelText,
+                      style: TextStyle(
+                          fontSize: ThemeDimens.fontSizeSmall,
+                          color: Theme.of(context).focusColor))),
               // 当前积分总数 item
               Container(
                   margin: const EdgeInsets.all(ThemeDimens.offsetLarge),
@@ -183,14 +182,13 @@ class _CoinPageState extends BasePageState<CoinPage> {
         width: double.infinity,
         margin: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
         padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
+        alignment: Alignment.center,
         color: Theme.of(context).cardColor,
-        child: Align(
-            alignment: Alignment.center,
-            child: Text(record.desc,
-                maxLines: 1,
-                style: TextStyle(
-                    fontSize: ThemeDimens.fontSizeSmall,
-                    color: Theme.of(context).primaryColorLight,
-                    overflow: TextOverflow.ellipsis))));
+        child: Text(record.desc,
+            maxLines: 1,
+            style: TextStyle(
+                fontSize: ThemeDimens.fontSizeSmall,
+                color: Theme.of(context).primaryColorLight,
+                overflow: TextOverflow.ellipsis)));
   }
 }

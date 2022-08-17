@@ -97,14 +97,13 @@ class _CoinRankPageState extends BasePageState<CoinRankPage> {
                   fontSize: ThemeDimens.fontSizeLarge,
                   fontWeight: FontWeight.bold)),
           Expanded(
-              child: Align(
-                  alignment: Alignment.center,
-                  child: Text(item.username,
-                      maxLines: 1,
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColorLight,
-                          fontSize: ThemeDimens.fontSizeMedium,
-                          overflow: TextOverflow.ellipsis)))),
+              child: Text(item.username,
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Theme.of(context).primaryColorLight,
+                      fontSize: ThemeDimens.fontSizeMedium,
+                      overflow: TextOverflow.ellipsis))),
           Expanded(
               child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
             SvgPicture.asset(ThemeImages.meUserCoinSvg, width: 24, height: 24),

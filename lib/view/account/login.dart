@@ -28,15 +28,14 @@ class _LoginPageState extends BasePageState<LoginPage> {
             // 全页面点击隐藏软键盘
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             child: Scaffold(
-                body: Align(
-                    alignment: Alignment.center,
+                body: Center(
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          buildTitle(),
-                          buildInputContent(viewModel),
-                          buildFooter(viewModel)
-                        ])))));
+                  buildTitle(),
+                  buildInputContent(viewModel),
+                  buildFooter(viewModel)
+                ])))));
   }
 
   Widget buildTitle() {
