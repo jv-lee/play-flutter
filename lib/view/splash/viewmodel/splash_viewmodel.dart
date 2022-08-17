@@ -20,6 +20,12 @@ class SplashViewModel extends BaseViewModel {
 
   @override
   void init() {
+    // 设置当前默认主题模式
+    Night.isDarkTheme().then((value) {
+      viewStates.isDark = value;
+      notifyListeners();
+    });
+
     // hide navigationBar
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge,
         overlays: [SystemUiOverlay.top]);
@@ -29,9 +35,12 @@ class SplashViewModel extends BaseViewModel {
         vsync: tickerProvider, duration: const Duration(milliseconds: 300));
     animation = Tween(begin: 0.0, end: 1.0).animate(animationController);
 
-    // 页面执行逻辑
-    findSplashResAsync();
-    requestSplashAd();
+    // 请求账户信息 完成后回调splashAd动画
+    context.read<AccountService>().requestAccountData(() {
+      // 开启动画显示splashAd
+      animationController.forward();
+      notifyListeners();
+    });
   }
 
   @override
@@ -42,19 +51,6 @@ class SplashViewModel extends BaseViewModel {
 
     animationController.dispose();
   }
-
-  void findSplashResAsync() async {
-    Night.isDarkTheme().then((value) => viewStates.isDark = value);
-  }
-
-  void requestSplashAd() async {
-    // 获取账户配置
-    context.read<AccountService>().requestAccountData(() {
-      // 开启动画显示splashAd
-      animationController.forward();
-      notifyListeners();
-    });
-  }
 }
 
 class _SplashViewState {
@@ -62,7 +58,7 @@ class _SplashViewState {
 
   _SplashViewState({required this.isDark});
 
-  String findSplashRes() {
+  String getThemeModeBg() {
     return isDark ? ThemeImages.splashDarkPng : ThemeImages.splashLightPng;
   }
 }

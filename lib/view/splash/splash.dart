@@ -30,7 +30,7 @@ class _SplashState extends BasePageState<SplashPage>
                   height: MediaQuery.of(context).size.height,
                   color: Theme.of(context).scaffoldBackgroundColor,
                   child: Image.asset(
-                    viewModel.viewStates.findSplashRes(),
+                    viewModel.viewStates.getThemeModeBg(),
                     fit: BoxFit.fill,
                   )),
               buildSplashAd(viewModel)
