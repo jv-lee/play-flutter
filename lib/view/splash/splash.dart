@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:playflutter/base/base_page_state.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
@@ -18,27 +17,12 @@ class SplashPage extends StatefulWidget {
   State<StatefulWidget> createState() => _SplashState();
 }
 
-class _SplashState extends BasePageState<SplashPage> {
-  @override
-  void initState() {
-    // hide navigationBar
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge,
-        overlays: [SystemUiOverlay.top]);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    // show statusBar and navigationBar
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
-    super.dispose();
-  }
-
+class _SplashState extends BasePageState<SplashPage>
+    with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return buildViewModel<SplashViewModel>(
-        create: (context) => SplashViewModel(context),
+        create: (context) => SplashViewModel(context, tickerProvider: this),
         viewBuild: (context, viewModel) => Scaffold(
                 body: Stack(children: [
               Container(
@@ -55,26 +39,27 @@ class _SplashState extends BasePageState<SplashPage> {
 
   Widget buildSplashAd(SplashViewModel viewModel) {
     return Visibility(
-        visible: viewModel.viewStates.splashAdVisible,
-        child: Stack(children: [
-          Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.7,
-              color: Colors.transparent,
-              child: Image.asset(
-                ThemeImages.splashAdPng,
-                fit: BoxFit.cover,
-              )),
-          Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                  padding: EdgeInsets.only(
-                      top: StatusTools.getStatusHeight() +
-                          ThemeDimens.offsetSmall,
-                      right: ThemeDimens.offsetLarge),
-                  child: TimeReadyButton(
-                      isStart: viewModel.viewStates.splashAdVisible,
-                      onEnd: () => Navigator.pop(context))))
-        ]));
+        visible: viewModel.animationController.isAnimating,
+        child: FadeTransition(
+            opacity: viewModel.animation,
+            child: Stack(children: [
+              Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.7,
+                  color: Colors.transparent,
+                  child: Image.asset(
+                    ThemeImages.splashAdPng,
+                    fit: BoxFit.cover,
+                  )),
+              Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                      padding: EdgeInsets.only(
+                          top: StatusTools.getStatusHeight() +
+                              ThemeDimens.offsetSmall,
+                          right: ThemeDimens.offsetLarge),
+                      child:
+                          TimeReadyButton(onEnd: () => Navigator.pop(context))))
+            ])));
   }
 }

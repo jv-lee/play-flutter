@@ -8,11 +8,9 @@ import 'package:playflutter/theme/theme_strings.dart';
 /// @date 2022/8/1
 /// @description 闪屏页倒计时button按钮
 class TimeReadyButton extends StatefulWidget {
-  final bool isStart;
   final Function onEnd;
 
-  const TimeReadyButton({Key? key, required this.isStart, required this.onEnd})
-      : super(key: key);
+  const TimeReadyButton({Key? key, required this.onEnd}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _TimeReadyButtonState();
