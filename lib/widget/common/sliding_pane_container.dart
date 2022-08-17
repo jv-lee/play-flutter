@@ -59,9 +59,10 @@ class _SlidingPaneContainerState extends State<SlidingPaneContainer>
         child: Stack(children: [
           Align(
               alignment: widget.slidingAlign,
-              child: SizedBox(
+              child: Container(
                 width: widget.slidingWidth,
                 height: double.infinity,
+                padding: const EdgeInsets.only(top: 1, bottom: 1),
                 child: widget.sliding,
               )),
           buildDragContainer(SizedBox(
