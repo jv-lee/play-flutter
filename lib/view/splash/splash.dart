@@ -25,16 +25,18 @@ class _SplashState extends BasePageState<SplashPage>
         create: (context) => SplashViewModel(context, tickerProvider: this),
         viewBuild: (context, viewModel) => Scaffold(
                 body: Stack(children: [
-              Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  child: Image.asset(
-                    viewModel.viewStates.getThemeModeBg(),
-                    fit: BoxFit.fill,
-                  )),
+              buildSplashBg(viewModel),
               buildSplashAd(viewModel)
             ])));
+  }
+
+  Widget buildSplashBg(SplashViewModel viewModel) {
+    return Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        color: Theme.of(context).scaffoldBackgroundColor,
+        child: Image.asset(viewModel.viewStates.getThemeModeBg(),
+            fit: BoxFit.fill));
   }
 
   Widget buildSplashAd(SplashViewModel viewModel) {
