@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_use_of_protected_member
 
 import 'package:flutter/material.dart';
+import 'package:playflutter/base/base_page_state.dart';
 
 /// @author jv.lee
 /// @date 2022/6/23
@@ -63,3 +64,5 @@ typedef RunViewContext = Function(BuildContext context);
 
 typedef ViewBuild<T extends BaseViewModel> = Widget Function(
     BuildContext context, T viewModel);
+
+typedef StateBuild<T extends BasePageState> = Widget Function(T state,BuildContext context);

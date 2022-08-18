@@ -14,7 +14,7 @@ class LoadingDialog extends Dialog {
       width: 100,
       height: 78,
       isCancel: isCancel,
-      content: Center(
+      stateBuild: (state, context) => Center(
           child: CircularProgressIndicator(
               color: Theme.of(context).primaryColorLight)));
 }
