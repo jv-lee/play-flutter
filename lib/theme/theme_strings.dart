@@ -73,6 +73,12 @@ class ThemeStrings {
   static const String searchClearText = "清空";
   static const String searchHistoryEmptyText = "快来搜索感兴趣的内容吧～";
 
+  /// todos
+  static const String todoTypeDefault = "只用这一个";
+  static const String todoTypeWork = "工作";
+  static const String todoTypeLife = "生活";
+  static const String todoTypePlay = "娱乐";
+
   /// account
   static const String accountLoginTitle = "Login";
   static const String accountRegisterTitle = "Register";

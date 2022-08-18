@@ -3,5 +3,5 @@
 /// @date 2022/8/15
 /// @description 全局事件常量类
 class EventConstants {
-  static const TAB_SELECTED_EVENT = "event:tab-selected";
+  static const EVENT_TAB_SELECTED = "event:tab-selected";
 }

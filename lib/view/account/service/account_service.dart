@@ -36,7 +36,7 @@ class AccountService extends BaseModuleService {
       }
       // 获取本地数据
       var localAccount = await LocalTools.localData(
-          ThemeConstants.localKeyAccountData,
+          ThemeConstants.LOCAL_ACCOUNT_DATA,
           (json) => AccountData.fromJson(json));
       updateAccountStatus(localAccount, localAccount != null);
     }).whenComplete(() => callback());
@@ -58,7 +58,7 @@ class AccountService extends BaseModuleService {
   }
 
   void updateAccountStatus(AccountData? accountData, bool isLogin) {
-    LocalTools.localSave(ThemeConstants.localKeyAccountData, accountData);
+    LocalTools.localSave(ThemeConstants.LOCAL_ACCOUNT_DATA, accountData);
     viewStates.accountData = accountData;
     viewStates.isLogin = isLogin;
     notifyListeners();

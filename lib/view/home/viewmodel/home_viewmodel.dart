@@ -24,14 +24,14 @@ class HomeViewModel extends BaseViewModel {
 
   @override
   void init() {
-    eventBus.bind(EventConstants.TAB_SELECTED_EVENT, _onTabSelectedEvent);
+    eventBus.bind(EventConstants.EVENT_TAB_SELECTED, _onTabSelectedEvent);
     paging = Paging.build(notifier: this);
     requestData(LoadStatus.refresh);
   }
 
   @override
   void onCleared() {
-    eventBus.unbind(EventConstants.TAB_SELECTED_EVENT, _onTabSelectedEvent);
+    eventBus.unbind(EventConstants.EVENT_TAB_SELECTED, _onTabSelectedEvent);
     viewStates.swiperController.dispose();
     paging.dispose();
     _model.dispose();

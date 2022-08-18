@@ -24,7 +24,7 @@ class OfficialViewModel extends BaseViewModel {
 
   void requestTabData() {
     LocalTools.localRequest<TabData>(
-        localKey: ThemeConstants.localKeyOfficialTab,
+        localKey: ThemeConstants.LOCAL_OFFICIAL_TAB,
         createJson: (json) => TabData.fromJson(json),
         requestFuture: _model.getOfficialTabDataAsync(),
         callback: (value) {
