@@ -27,7 +27,7 @@ class AppCookieInterceptor extends Interceptor {
       // 包含校验cookie的链接时获取缓存cookie设置header
       if (uri.contains(_CONTAINER_COOKIE_URI)) {
         if (cookie.isEmpty) {
-          cookie = await LocalTools.get<String>(_SAVE_TOKEN_KEY) ?? "";
+          cookie = await LocalTools.get(_SAVE_TOKEN_KEY);
         }
         options.headers[_HEADER_COOKIE_KEY] = cookie;
       }

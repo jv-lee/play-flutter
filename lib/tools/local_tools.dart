@@ -21,25 +21,29 @@ class LocalTools {
       case double:
         prefs.setDouble(key, value as double);
         break;
+      default:
+        throw Exception("LocalTools.save<T> T is not found type.");
     }
   }
 
-  static Future<T?> get<T>(String key) async {
+  static Future<T> get<T>(String key, {T? defaultValue}) async {
     final prefs = await SharedPreferences.getInstance();
-    T? data;
+    late T data;
     switch (T) {
       case String:
-        data = prefs.getString(key) as T?;
+        data = (prefs.getString(key) ?? defaultValue ?? "") as T;
         break;
       case bool:
-        data = prefs.getBool(key) as T?;
+        data = (prefs.getBool(key) ?? defaultValue ?? false) as T;
         break;
       case int:
-        data = prefs.getInt(key) as T?;
+        data = (prefs.getInt(key) ?? defaultValue ?? 0) as T;
         break;
       case double:
-        data = prefs.getDouble(key) as T?;
+        data = (prefs.getDouble(key) ?? defaultValue ?? 0) as T;
         break;
+      default:
+        throw Exception("LocalTools.get<T> T is not found type.");
     }
     return data;
   }
