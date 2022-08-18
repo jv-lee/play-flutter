@@ -34,7 +34,7 @@ class MainViewModel extends BaseViewModel {
 }
 
 class _MainViewState {
-  int tabIndex = 0;
-  PageController pageController = PageController(initialPage: 0);
+  var tabIndex = 0;
   final mainTabPages = MainTabPage.getMainTabPages();
+  final pageController = PageController(initialPage: 0);
 }

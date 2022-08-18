@@ -33,6 +33,14 @@ class ThemeImages {
   static const String meRankNo3Svg = "assets/images/svg/ic_me_rank_no3.svg";
   static const String meSettingsSvg = "assets/images/svg/ic_me_settings.svg";
 
+  // todos
+  static const String todoCompleteSvg = "assets/images/svg/ic_todo_complete.svg";
+  static const String todoCompleteFillSvg = "assets/images/svg/ic_todo_complete_fill.svg";
+  static const String todoUpcomingSvg = "assets/images/svg/ic_todo_upcoming.svg";
+  static const String todoUpcomingFillSvg = "assets/images/svg/ic_todo_upcoming_fill.svg";
+  static const String todoCreateSvg = "assets/images/svg/ic_todo_create.svg";
+  static const String todoReplaceSvg = "assets/images/svg/ic_todo_replace.svg";
+
   // account
   static const String accountUsernameSvg = "assets/images/svg/ic_account_username.svg";
   static const String accountPasswordSvg = "assets/images/svg/ic_account_password.svg";

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
-import 'package:playflutter/tools/log_tools.dart';
+import 'package:playflutter/view/todo/model/entity/todo_type.dart';
 import 'package:playflutter/widget/common/overscroll_hide_container.dart';
 import 'package:playflutter/widget/dialog/dialog_container.dart';
 
@@ -9,12 +9,26 @@ import 'package:playflutter/widget/dialog/dialog_container.dart';
 /// @date 2022/8/15
 /// @description
 class SelectTodoTypeDialog extends Dialog {
-  const SelectTodoTypeDialog({Key? key}) : super(key: key);
+  final int startIndex;
+  final ValueChanged<int> onSelectedItemChanged;
+  final Function? onDismiss;
+
+  const SelectTodoTypeDialog(
+      {Key? key,
+      required this.startIndex,
+      required this.onSelectedItemChanged,
+      this.onDismiss})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return DialogContainer(
-        width: 220, height: 120, content: buildPicker(context), isCancel: true);
+        width: 220,
+        height: 120,
+        onDismiss: onDismiss,
+        // 可使用state.buildViewModel 创建vm作用域处理数据
+        stateBuild: (state, context) => buildPicker(context),
+        isCancel: true);
   }
 
   Widget buildPicker(BuildContext context) {
@@ -24,28 +38,21 @@ class SelectTodoTypeDialog extends Dialog {
             squeeze: 1.2,
             useMagnifier: true,
             itemExtent: 32,
-            onSelectedItemChanged: (index) {
-              LogTools.log("TODO", "onSelectedItemChange:$index");
-            },
+            scrollController:
+                FixedExtentScrollController(initialItem: startIndex),
+            onSelectedItemChanged: (index) => onSelectedItemChanged(index),
             selectionOverlay: Container(
                 decoration: BoxDecoration(
                     border: Border.symmetric(
                         horizontal:
                             BorderSide(color: Theme.of(context).hoverColor)),
                     color: Colors.transparent)),
-            children: _names
+            children: TodoTypeData.getTodoTypes()
                 .map((e) => Center(
-                    child: Text(e,
+                    child: Text(e.name,
                         style: TextStyle(
                             color: Theme.of(context).primaryColorLight,
                             fontSize: ThemeDimens.fontSizeMedium))))
                 .toList()));
   }
 }
-
-const List<String> _names = <String>[
-  '只用这一个',
-  '工作',
-  '生活',
-  '娱乐',
-];

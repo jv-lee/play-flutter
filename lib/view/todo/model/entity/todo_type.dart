@@ -1,43 +1,36 @@
 // ignore_for_file: constant_identifier_names
+import 'package:playflutter/theme/theme_strings.dart';
+
 /// @author jv.lee
 /// @date 2022/8/15
 /// @description todo本地实体类
-class TodoType {
+class TodoTypeData {
   late final int type; // TodoTypes
   late final String name;
 
-  TodoType({required this.type, required this.name});
+  TodoTypeData({required this.type, required this.name});
 
-  static List<TodoType> getTodoTypes() {
-    var list = <TodoType>[];
-    list.add(TodoType(type: 1, name: ""));
-    list.add(TodoType(type: 1, name: ""));
-    list.add(TodoType(type: 1, name: ""));
-    list.add(TodoType(type: 1, name: ""));
+  static List<TodoTypeData> getTodoTypes() {
+    var list = <TodoTypeData>[];
+    list.add(TodoTypeData(
+        type: TodoType.DEFAULT.index, name: ThemeStrings.todoTypeDefault));
+    list.add(TodoTypeData(
+        type: TodoType.WORK.index, name: ThemeStrings.todoTypeWork));
+    list.add(TodoTypeData(
+        type: TodoType.LIFE.index, name: ThemeStrings.todoTypeLife));
+    list.add(TodoTypeData(
+        type: TodoType.PLAY.index, name: ThemeStrings.todoTypePlay));
     return list;
   }
 }
 
 class TodoTypeWheelData {
   late final int startIndex;
-  late final List<TodoType> todoTypes;
+  late final List<TodoTypeData> todoTypes;
 
   TodoTypeWheelData({required this.startIndex, required this.todoTypes});
 }
 
-enum TodoTypes { DEFAULT, WORK, LIFE, PLAY }
+enum TodoType { DEFAULT, WORK, LIFE, PLAY }
 
-extension TodoTypesExtension on TodoTypes {
-  getTypeValue() {
-    switch (this) {
-      case TodoTypes.WORK:
-        return 1;
-      case TodoTypes.LIFE:
-        return 2;
-      case TodoTypes.PLAY:
-        return 3;
-      default:
-        return 0;
-    }
-  }
-}
+enum TodoStatus { UPCOMING, COMPLETE }
