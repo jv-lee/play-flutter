@@ -78,6 +78,22 @@ class ThemeStrings {
   static const String todoTypeWork = "工作";
   static const String todoTypeLife = "生活";
   static const String todoTypePlay = "娱乐";
+  static const String todoCreateTitleLabel = "标题：";
+  static const String todoCreateTitleHint = "必填";
+  static const String todoCreateContentLabel = "详情：";
+  static const String todoCreateContentHint = "非必填";
+  static const String todoCreateLevelLabel = "优先级：";
+  static const String todoCreateLevelLow = "一般";
+  static const String todoCreateLevelHigh = "重要";
+  static const String todoCreateDateLabel = "日期：";
+  static const String todoCreateSave = "保存";
+  static const String todoCreateSuccess = "创建TODO成功";
+  static const String todoDeleteSuccess = "删除TODO成功";
+  static const String todoUpdateSuccess = "更新TODO成功";
+  static const String todoMoveSuccess = "TODO状态修改成功";
+  static const String todoItemComplete = "标记已完成";
+  static const String todoItemUpcoming = "标记未完成";
+  static const String todoItemLevelHeight = "重要";
 
   /// account
   static const String accountLoginTitle = "Login";

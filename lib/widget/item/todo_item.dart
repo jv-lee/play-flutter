@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/model/entity/todo.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
+import 'package:playflutter/theme/theme_strings.dart';
+import 'package:playflutter/view/todo/model/entity/todo_type.dart';
 import 'package:playflutter/widget/common/sliding_pane_container.dart';
 
 /// @author jv.lee
@@ -44,7 +46,7 @@ class TodoItem extends StatelessWidget {
                       height: double.infinity,
                       color: Colors.red,
                       alignment: Alignment.center,
-                      child: const Text("删除",
+                      child: const Text(ThemeStrings.itemDelete,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: ThemeDimens.fontSizeSmall)))))),
@@ -57,8 +59,11 @@ class TodoItem extends StatelessWidget {
                       height: double.infinity,
                       color: Colors.blue,
                       alignment: Alignment.center,
-                      child: const Text("已读",
-                          style: TextStyle(
+                      child: Text(
+                          item.status == TodoStatus.UPCOMING.index
+                              ? ThemeStrings.todoItemComplete
+                              : ThemeStrings.todoItemUpcoming,
+                          style: const TextStyle(
                               color: Colors.white,
                               fontSize: ThemeDimens.fontSizeSmall))))))
     ]);

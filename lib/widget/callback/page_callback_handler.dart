@@ -24,6 +24,12 @@ class PageCallbackHandler<T> {
     });
   }
 
+  notifyAllStick(PageCallback<T> callback) {
+    _callbacks.forEach((key, value) {
+      callback(value);
+    });
+  }
+
   notifyAt(String key, PageCallback<T> callback) {
     if (_callbacks.containsKey(key)) {
       callback(_callbacks[key] as T);

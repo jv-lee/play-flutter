@@ -61,10 +61,10 @@ class TodoModel extends BaseModel {
   /// 仅更新完成状态TODO
   /// [id] todoID
   /// [status] 0为未完成，1为完成
-  Future<Data> postUpdateTodoStatusAsync(id, status) async {
+  Future<TodoData> postUpdateTodoStatusAsync(id, status) async {
     return requestPost(
         path: "/lg/todo/done/$id/json",
-        create: (resource) => Data.fromJson(resource),
+        create: (resource) => TodoData.fromJson(resource),
         data: FormData.fromMap({"status": status}));
   }
 

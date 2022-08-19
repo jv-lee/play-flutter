@@ -5,4 +5,5 @@ import 'package:playflutter/view/todo/model/entity/todo_type.dart';
 /// @description
 abstract class TodoActionCallback {
   void onTypeChange(TodoType type);
+  void onRefresh();
 }
