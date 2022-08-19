@@ -37,8 +37,10 @@ class _TodoPageState extends BasePageState<TodoPage> {
                 physics: const NeverScrollableScrollPhysics(),
                 //静止PageView滑动
                 itemBuilder: (BuildContext context, int index) => TodoListPage(
-                    type: viewModel.viewStates.type,
-                    status: TodoStatus.values[index])),
+                      type: viewModel.viewStates.type,
+                      status: TodoStatus.values[index],
+                      callbackHandler: viewModel.viewStates.callbackHandler,
+                    )),
             bottomNavigationBar: BottomNavigationBar(
                 items: viewModel.viewStates.todoTabs
                     .map((e) => BottomNavigationBarItem(

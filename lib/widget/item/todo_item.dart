@@ -9,6 +9,7 @@ import 'package:playflutter/widget/common/sliding_pane_container.dart';
 class TodoItem extends StatelessWidget {
   final Todo item;
   final SlidingPaneController controller;
+  final TodoActionFunction onItemClick;
   final TodoActionFunction onItemDelete;
   final TodoActionFunction onItemUpdate;
 
@@ -16,6 +17,7 @@ class TodoItem extends StatelessWidget {
       {Key? key,
       required this.item,
       required this.controller,
+      required this.onItemClick,
       required this.onItemDelete,
       required this.onItemUpdate})
       : super(key: key);
@@ -71,23 +73,30 @@ class TodoItem extends StatelessWidget {
             border: Border(
                 bottom:
                     BorderSide(width: 1, color: Theme.of(context).hoverColor))),
-        padding: const EdgeInsets.symmetric(
-            horizontal: ThemeDimens.offsetLarge,
-            vertical: ThemeDimens.offsetMedium),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(item.title,
-              maxLines: 1,
-              style: TextStyle(
-                  color: Theme.of(context).primaryColorLight,
-                  fontSize: ThemeDimens.fontSizeMedium,
-                  overflow: TextOverflow.ellipsis)),
-          Text(item.content,
-              maxLines: 1,
-              style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontSize: ThemeDimens.fontSizeMedium,
-                  overflow: TextOverflow.ellipsis))
-        ]));
+        child: Material(
+            child: InkWell(
+          onTap: () => onItemClick(item),
+          child: Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: ThemeDimens.offsetLarge,
+                  vertical: ThemeDimens.offsetMedium),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(item.title,
+                        maxLines: 1,
+                        style: TextStyle(
+                            color: Theme.of(context).primaryColorLight,
+                            fontSize: ThemeDimens.fontSizeMedium,
+                            overflow: TextOverflow.ellipsis)),
+                    Text(item.content,
+                        maxLines: 1,
+                        style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: ThemeDimens.fontSizeMedium,
+                            overflow: TextOverflow.ellipsis))
+                  ])),
+        )));
   }
 }
 

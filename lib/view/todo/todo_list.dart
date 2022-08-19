@@ -4,8 +4,10 @@ import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/model/entity/todo.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
+import 'package:playflutter/view/todo/callback/todo_action_callback.dart';
 import 'package:playflutter/view/todo/model/entity/todo_type.dart';
 import 'package:playflutter/view/todo/viewmodel/todo_list_viewmodel.dart';
+import 'package:playflutter/widget/callback/page_callback_handler.dart';
 import 'package:playflutter/widget/common/sliding_pane_container.dart';
 import 'package:playflutter/widget/item/todo_item.dart';
 import 'package:playflutter/widget/status/super_list_view.dart';
@@ -16,8 +18,13 @@ import 'package:playflutter/widget/status/super_list_view.dart';
 class TodoListPage extends StatefulWidget {
   final TodoType type;
   final TodoStatus status;
+  final PageCallbackHandler<TodoActionCallback> callbackHandler;
 
-  const TodoListPage({super.key, required this.type, required this.status});
+  const TodoListPage(
+      {super.key,
+      required this.type,
+      required this.status,
+      required this.callbackHandler});
 
   @override
   State<StatefulWidget> createState() => _TodoListPageState();
@@ -32,8 +39,8 @@ class _TodoListPageState extends BasePageState<TodoListPage>
   Widget build(BuildContext context) {
     super.build(context);
     return buildViewModel<TodoListViewModel>(
-        create: (context) =>
-            TodoListViewModel(context, widget.type, widget.status),
+        create: (context) => TodoListViewModel(
+            context, widget.type, widget.status, widget.callbackHandler),
         viewBuild: (context, viewModel) => Scaffold(
             body: RefreshIndicator(
                 color: Theme.of(context).primaryColorLight,
@@ -89,6 +96,7 @@ class _TodoListPageState extends BasePageState<TodoListPage>
     return TodoItem(
       item: item,
       controller: viewModel.slidingPaneController,
+      onItemClick: (item) => viewModel.onItemClick(item),
       onItemDelete: (item) => viewModel.onItemDelete(item),
       onItemUpdate: (item) => viewModel.onItemUpdate(item),
     );
