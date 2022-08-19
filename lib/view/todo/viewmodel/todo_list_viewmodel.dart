@@ -68,7 +68,7 @@ class TodoListViewModel extends BaseViewModel implements TodoActionCallback {
   }
 
   void onItemClick(Todo item) {
-    Navigator.of(context).pushNamed(RouteNames.create_todo);
+    Navigator.of(context).pushNamed(RouteNames.create_todo, arguments: item);
   }
 
   void onItemDelete(Todo item) {

@@ -8,6 +8,8 @@ class ThemeStrings {
   static const String splashTimeText = "跳过";
   static const String loginAlert = "请先登陆";
   static const String itemDelete = "删除";
+  static const String titleCreate = "新增";
+  static const String titleEdit = "编辑";
 
   /// home
   static const String homeHeaderText = "Welcome to Play Flutter";

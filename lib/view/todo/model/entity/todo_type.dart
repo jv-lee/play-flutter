@@ -34,3 +34,5 @@ class TodoTypeWheelData {
 enum TodoType { DEFAULT, WORK, LIFE, PLAY }
 
 enum TodoStatus { UPCOMING, COMPLETE }
+
+enum TodoPriority { LOW, HIGH }

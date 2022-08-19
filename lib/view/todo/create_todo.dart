@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/base/base_page_state.dart';
+import 'package:playflutter/extensions/page_state_extensions.dart';
+import 'package:playflutter/theme/theme_dimens.dart';
+import 'package:playflutter/theme/theme_images.dart';
+import 'package:playflutter/theme/theme_strings.dart';
+import 'package:playflutter/view/todo/model/entity/todo_type.dart';
+import 'package:playflutter/view/todo/viewmodel/create_todo_viewmodel.dart';
 
 /// @author jv.lee
 /// @date 2022/8/15
@@ -14,6 +21,147 @@ class CreateTodoPage extends StatefulWidget {
 class _CreateTodoPageState extends BasePageState<CreateTodoPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text("create todo page.")));
+    return buildViewModel<CreateTodoViewModel>(
+        create: (context) => CreateTodoViewModel(context),
+        viewBuild: (context, viewModel) => GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            // 全页面点击隐藏软键盘
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            child: Scaffold(
+                appBar: AppBar(title: Text(viewModel.viewStates.appbarTitle)),
+                body: buildContent(viewModel))));
+  }
+
+  Widget buildContent(CreateTodoViewModel viewModel) {
+    return Stack(
+        children: [buildInputContent(viewModel), buildFooterButton(viewModel)]);
+  }
+
+  Widget buildInputContent(CreateTodoViewModel viewModel) {
+    return Column(children: [
+      buildInputContainer(Row(
+        children: [
+          Text(ThemeStrings.todoCreateTitleLabel,
+              style: TextStyle(color: Theme.of(context).primaryColorLight)),
+          Expanded(
+              child: TextField(
+                  controller: TextEditingController.fromValue(TextEditingValue(
+                      text: viewModel.viewStates.title,
+                      selection: TextSelection.fromPosition(TextPosition(
+                          affinity: TextAffinity.downstream,
+                          offset: viewModel.viewStates.title.length)))),
+                  onChanged: (text) => viewModel.changeTitle(text),
+                  textInputAction: TextInputAction.next,
+                  decoration: const InputDecoration(
+                      hintText: ThemeStrings.todoCreateTitleHint)))
+        ],
+      )),
+      buildInputContainer(
+          Row(
+            children: [
+              Container(
+                  alignment: Alignment.topLeft,
+                  margin: const EdgeInsets.only(top: ThemeDimens.offsetLarge),
+                  child: Text(ThemeStrings.todoCreateContentLabel,
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColorLight))),
+              Expanded(
+                  child: TextField(
+                      controller: TextEditingController.fromValue(
+                          TextEditingValue(
+                              text: viewModel.viewStates.content,
+                              selection: TextSelection.fromPosition(
+                                  TextPosition(
+                                      affinity: TextAffinity.downstream,
+                                      offset: viewModel
+                                          .viewStates.content.length)))),
+                      onChanged: (text) => viewModel.changeContent(text),
+                      textInputAction: TextInputAction.next,
+                      maxLines: 5,
+                      decoration: const InputDecoration(
+                          hintText: ThemeStrings.todoCreateContentHint)))
+            ],
+          ),
+          height: 138,
+          alignment: Alignment.topLeft),
+      buildInputContainer(Row(children: [
+        Text(ThemeStrings.todoCreateLevelLabel,
+            style: TextStyle(color: Theme.of(context).primaryColorLight)),
+        SizedBox(
+            width: 80,
+            child: Row(children: [
+              Radio<int>(
+                  value: TodoPriority.LOW.index,
+                  activeColor: Theme.of(context).focusColor,
+                  groupValue: viewModel.viewStates.priority,
+                  onChanged: (int? value) => viewModel.changePriority(value!)),
+              Text(ThemeStrings.todoCreateLevelLow,
+                  style: TextStyle(color: Theme.of(context).primaryColor))
+            ])),
+        SizedBox(
+            width: 80,
+            child: Row(children: [
+              Radio<int>(
+                  value: TodoPriority.HIGH.index,
+                  activeColor: Theme.of(context).focusColor,
+                  groupValue: viewModel.viewStates.priority,
+                  onChanged: (int? value) => viewModel.changePriority(value!)),
+              Text(ThemeStrings.todoCreateLevelHigh,
+                  style: TextStyle(color: Theme.of(context).primaryColor))
+            ]))
+      ])),
+      SizedBox(
+          width: double.infinity,
+          child: Material(
+              child: InkWell(
+                  onTap: () => viewModel.changeDate(),
+                  child: buildInputContainer(Row(
+                    children: [
+                      Text(ThemeStrings.todoCreateDateLabel,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColorLight)),
+                      Expanded(
+                          child: Text(viewModel.viewStates.date,
+                              style: TextStyle(
+                                  color: Theme.of(context).primaryColorLight))),
+                      SvgPicture.asset(ThemeImages.commonArrowSvg,
+                          width: 24,
+                          height: 24,
+                          color: Theme.of(context).primaryColorLight)
+                    ],
+                  )))))
+    ]);
+  }
+
+  Widget buildInputContainer(Widget child,
+      {double height = 56, AlignmentGeometry? alignment}) {
+    return Container(
+        width: double.infinity,
+        height: height,
+        alignment: alignment,
+        padding:
+            const EdgeInsets.symmetric(horizontal: ThemeDimens.offsetLarge),
+        decoration: BoxDecoration(
+            border: Border(
+                bottom:
+                    BorderSide(width: 1, color: Theme.of(context).hoverColor))),
+        child: child);
+  }
+
+  Widget buildFooterButton(CreateTodoViewModel viewModel) {
+    return Container(
+        alignment: Alignment.bottomCenter,
+        margin: const EdgeInsets.all(ThemeDimens.offsetLarge),
+        child: MaterialButton(
+          shape: RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.circular(ThemeDimens.offsetRadiusLarge)),
+          minWidth: double.infinity,
+          color: Theme.of(context).focusColor,
+          splashColor: Theme.of(context).focusColor,
+          onPressed: () => viewModel.onSubmit(),
+          child: const Text(ThemeStrings.todoCreateSave,
+              style: TextStyle(color: Colors.white)),
+        ));
   }
 }
