@@ -45,4 +45,12 @@ class ThemeDimens {
   static const double meHeaderContentMargin = 26;
   static const double meCoinHeaderHeight = 180;
   static const double meCoinHeaderBgHeight = 120;
+
+  // todo布局数值
+  static const double todoStickyHeaderHeight = 26;
+  static const double todoSlidingWidth = 160;
+  static const double todoItemHeight = 58;
+  static const double todoSaveButton = 36;
+  static const double todoEditHeight = 56;
+  static const double todoEditContentHeight = 138;
 }

@@ -1,4 +1,5 @@
 import 'package:playflutter/model/entity/base/base_data.dart';
+import 'package:playflutter/tools/paging/paging_data.dart';
 
 /// @author jv.lee
 /// @date 2022/8/15
@@ -67,7 +68,7 @@ class TodoPageData extends BaseData {
   String responseMessage() => errorMsg;
 }
 
-class TodoPage {
+class TodoPage extends PagingData<Todo> {
   TodoPage({
     required this.curPage,
     required this.datas,
@@ -110,6 +111,15 @@ class TodoPage {
     _data['total'] = total;
     return _data;
   }
+
+  @override
+  List<Todo> getDataSource() => datas;
+
+  @override
+  int getPageNumber() => curPage;
+
+  @override
+  int getPageTotalNumber() => pageCount;
 }
 
 class Todo {

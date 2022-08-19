@@ -90,7 +90,6 @@ class _SuperListViewState extends State<SuperListView> {
   @override
   void dispose() {
     widget.statusController.removeListener(changeStatus);
-    _controller.dispose();
     super.dispose();
   }
 

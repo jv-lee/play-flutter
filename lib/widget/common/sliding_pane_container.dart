@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 /// @date 2022/8/11
 /// @description 侧滑菜单Container容器
 class SlidingPaneContainer extends StatefulWidget {
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
   final double slidingWidth;
   final Alignment slidingAlign;
   final Widget sliding;
@@ -16,8 +16,8 @@ class SlidingPaneContainer extends StatefulWidget {
 
   const SlidingPaneContainer(
       {Key? key,
-      required this.width,
-      required this.height,
+      this.width,
+      this.height,
       this.slidingWidth = slidingDefaultWidth,
       this.slidingAlign = Alignment.centerRight,
       required this.controller,
@@ -149,20 +149,19 @@ class _SlidingPaneContainerState extends State<SlidingPaneContainer>
       widget.controller.closeAction();
     }
   }
+}
 
-  /// 提供给item中未被包含item点击的子widget，使用该方法构建需要显示的子item
-  static Widget slidingPaneState(
-      Widget widget, SlidingPaneController controller) {
-    return GestureDetector(
-        child: AbsorbPointer(absorbing: controller.isExpand(), child: widget),
-        // 监听按下时是否有展开未收起的item
-        onHorizontalDragDown: (details) {
-          if (controller.isExpand()) {
-            controller.updateExpand(false);
-            controller.closeAction();
-          }
-        });
-  }
+/// 提供给item中未被包含item点击的子widget，使用该方法构建需要显示的子item
+Widget slidingPaneState(Widget widget, SlidingPaneController controller) {
+  return GestureDetector(
+      child: AbsorbPointer(absorbing: controller.isExpand(), child: widget),
+// 监听按下时是否有展开未收起的item
+      onHorizontalDragDown: (details) {
+        if (controller.isExpand()) {
+          controller.updateExpand(false);
+          controller.closeAction();
+        }
+      });
 }
 
 /// SlidingPane控制器 控制所有item关闭
