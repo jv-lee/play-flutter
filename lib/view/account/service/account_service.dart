@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_module_service.dart';
+import 'package:playflutter/extensions/common_extensions.dart';
 import 'package:playflutter/model/entity/account.dart';
 import 'package:playflutter/model/http/constants/api_constants.dart';
 import 'package:playflutter/theme/theme_constants.dart';
@@ -53,7 +54,7 @@ class AccountService extends BaseModuleService {
       updateAccountStatus(null, false);
       Toast.show(ThemeStrings.accountLogoutSuccess);
     }).catchError((onError) {
-      if (onError is HttpException) Toast.show(onError.message);
+      onFailedToast(onError);
     }).whenComplete(() => Navigator.pop(context));
   }
 

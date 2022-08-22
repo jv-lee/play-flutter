@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
+import 'package:playflutter/extensions/common_extensions.dart';
 import 'package:playflutter/model/entity/details.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/me/model/me_model.dart';
@@ -51,7 +52,7 @@ class DetailsViewModel extends BaseViewModel {
         detailsData.isCollect = true;
         Toast.show(ThemeStrings.menuCollectComplete);
       }).catchError((onError) {
-        if (onError is HttpException) Toast.show(onError.message);
+        onFailedToast(onError);
       }).whenComplete(() => Navigator.of(context).pop());
     });
   }

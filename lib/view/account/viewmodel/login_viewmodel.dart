@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
+import 'package:playflutter/extensions/common_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/view/account/model/account_model.dart';
 import 'package:playflutter/view/account/service/account_service.dart';
@@ -65,7 +64,7 @@ class LoginViewModel extends BaseViewModel {
         context.read<AccountService>().updateAccountStatus(accountData, true);
         Navigator.pop(context);
       }).catchError((onError) {
-        if (onError is HttpException) Toast.show(onError.message);
+        onFailedToast(onError);
       }).whenComplete(() => Navigator.pop(context));
     });
   }
