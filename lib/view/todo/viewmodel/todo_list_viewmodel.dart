@@ -51,6 +51,7 @@ class TodoListViewModel extends BaseViewModel implements TodoActionCallback {
   @override
   void onAdd(Todo todo) {
     final index = paging.data.indexWhere((element) => element.date < todo.date);
+
     if (index == -1 || paging.data.isEmpty) {
       paging.data.add(todo);
     } else {

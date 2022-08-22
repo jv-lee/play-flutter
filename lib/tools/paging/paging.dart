@@ -61,6 +61,7 @@ class Paging<T> {
       if (_page == initPage) {
         // 首页空数据
         if (response.getDataSource().isEmpty) {
+          data.clear();
           statusController.pageEmpty();
           notify();
           return;
