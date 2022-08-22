@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
+import 'package:playflutter/extensions/common_extensions.dart';
 import 'package:playflutter/model/entity/todo.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/tools/log_tools.dart';
@@ -13,7 +12,6 @@ import 'package:playflutter/view/todo/model/todo_model.dart';
 import 'package:playflutter/widget/callback/page_callback_handler.dart';
 import 'package:playflutter/widget/common/sliding_pane_container.dart';
 import 'package:playflutter/widget/dialog/loading_dialog.dart';
-import 'package:toast/toast.dart';
 
 /// @author jv.lee
 /// @date 2022/8/15
@@ -51,8 +49,22 @@ class TodoListViewModel extends BaseViewModel implements TodoActionCallback {
   }
 
   @override
-  void onRefresh() {
-    requestData(LoadStatus.refresh);
+  void onAdd(Todo todo) {
+    final index = paging.data.indexWhere((element) => element.date < todo.date);
+    if (index == -1 || paging.data.isEmpty) {
+      paging.data.add(todo);
+    } else {
+      paging.data.insert(index, todo);
+    }
+    paging.notifyDataChange();
+  }
+
+  @override
+  void onUpdate(Todo todo) {
+    final index = paging.data.indexWhere((element) => todo.id == element.id);
+    paging.data.removeAt(index);
+    paging.data.insert(index, todo);
+    paging.notifyDataChange();
   }
 
   void requestData(LoadStatus status) async {
@@ -68,18 +80,26 @@ class TodoListViewModel extends BaseViewModel implements TodoActionCallback {
   }
 
   void onItemClick(Todo item) {
-    Navigator.of(context).pushNamed(RouteNames.create_todo, arguments: item);
+    Navigator.of(context)
+        .pushNamed(RouteNames.create_todo, arguments: item)
+        .then((value) {
+      // 页面返回值 item点击只可能是update
+      if (value is TodoResult) {
+        callbackHandler.notifyAt(
+            status.toString(), (callback) => callback.onUpdate(value.todo));
+      }
+    });
   }
 
   void onItemDelete(Todo item) {
     slidingPaneController.closeAction();
     showDialog(context: context, builder: (context) => const LoadingDialog());
 
-    _model.postDeleteTodoAsync(item.id).then((value) {
+    _model.postDeleteTodoAsync(item.id + 123456).then((value) {
       paging.data.remove(item);
       paging.notifyDataChange();
     }).catchError((onError) {
-      if (onError is HttpException) Toast.show(onError.message);
+      onFailedToast(onError);
     }).whenComplete(() {
       Navigator.pop(context);
     });
@@ -96,12 +116,11 @@ class TodoListViewModel extends BaseViewModel implements TodoActionCallback {
     _model.postUpdateTodoStatusAsync(item.id, targetStatus.index).then((value) {
       paging.data.remove(item);
       paging.notifyDataChange();
-      // 通知另一状态页面刷新数据
-      callbackHandler.notifyAt(targetStatus.toString(), (callback) {
-        callback.onRefresh();
-      });
+      // 通知另一状态页面添加被更改状态的数据
+      callbackHandler.notifyAt(
+          targetStatus.toString(), (callback) => callback.onAdd(item));
     }).catchError((onError) {
-      if (onError is HttpException) Toast.show(onError.message);
+      onFailedToast(onError);
     }).whenComplete(() {
       Navigator.pop(context);
     });

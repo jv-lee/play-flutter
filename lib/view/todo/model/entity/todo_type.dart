@@ -1,4 +1,5 @@
 // ignore_for_file: constant_identifier_names
+import 'package:playflutter/model/entity/todo.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 
 /// @author jv.lee
@@ -36,3 +37,10 @@ enum TodoType { DEFAULT, WORK, LIFE, PLAY }
 enum TodoStatus { UPCOMING, COMPLETE }
 
 enum TodoPriority { LOW, HIGH }
+
+class TodoResult {
+  var isAdd = true;
+  final Todo todo;
+
+  TodoResult(this.isAdd, {required this.todo});
+}

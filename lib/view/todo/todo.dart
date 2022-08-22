@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playflutter/base/base_page_state.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
-import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/view/todo/model/entity/todo_type.dart';
 import 'package:playflutter/view/todo/todo_list.dart';
@@ -64,8 +63,7 @@ class _TodoPageState extends BasePageState<TodoPage> {
               backgroundColor: Theme.of(context).focusColor,
               child: SvgPicture.asset(ThemeImages.todoCreateSvg,
                   width: 24, height: 24),
-              onPressed: () =>
-                  Navigator.of(context).pushNamed(RouteNames.create_todo),
+              onPressed: () => viewModel.navigationCreateTodo(),
             )));
   }
 }

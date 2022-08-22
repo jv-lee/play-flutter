@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
+import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_constants.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/tools/local_tools.dart';
@@ -43,6 +44,17 @@ class TodoViewModel extends BaseViewModel {
     viewStates.tabIndex = index;
     viewStates.pageController.jumpToPage(index);
     notifyListeners();
+  }
+
+  void navigationCreateTodo() {
+    Navigator.of(context).pushNamed(RouteNames.create_todo).then((value) {
+      // 页面返回值
+      if (value is TodoResult) {
+        // 页面新增通知刷新
+        viewStates.callbackHandler.notifyAt(
+            TodoStatus.UPCOMING.toString(), (callback) => callback.onAdd(value.todo));
+      }
+    });
   }
 
   _initTodoType() async {
