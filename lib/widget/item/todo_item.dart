@@ -70,39 +70,81 @@ class TodoItem extends StatelessWidget {
   }
 
   Widget buildContent(BuildContext context) {
-    return Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-            color: Theme.of(context).cardColor,
-            border: Border(
-                bottom:
-                    BorderSide(width: 1, color: Theme.of(context).hoverColor))),
-        child: Material(
-            child: InkWell(
-          onTap: () => onItemClick(item),
-          child: Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: ThemeDimens.offsetLarge,
-                  vertical: ThemeDimens.offsetMedium),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(item.title,
-                        maxLines: 1,
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColorLight,
-                            fontSize: ThemeDimens.fontSizeMedium,
-                            overflow: TextOverflow.ellipsis)),
-                    Text(item.content,
-                        maxLines: 1,
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: ThemeDimens.fontSizeMedium,
-                            overflow: TextOverflow.ellipsis))
-                  ])),
-        )));
+    return Stack(children: [
+      Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              border: Border(
+                  bottom: BorderSide(
+                      width: 1, color: Theme.of(context).hoverColor))),
+          child: Material(
+              child: InkWell(
+            onTap: () => onItemClick(item),
+            child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: ThemeDimens.offsetLarge,
+                    vertical: ThemeDimens.offsetMedium),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(item.title,
+                          maxLines: 1,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColorLight,
+                              fontSize: ThemeDimens.fontSizeMedium,
+                              overflow: TextOverflow.ellipsis)),
+                      Text(item.content,
+                          maxLines: 1,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: ThemeDimens.fontSizeMedium,
+                              overflow: TextOverflow.ellipsis))
+                    ])),
+          ))),
+      Visibility(
+          visible: item.priority == TodoPriority.HIGH.index,
+          child: buildItemSubscript())
+    ]);
   }
+
+  /// 绘制重要todoItem角标
+  Widget buildItemSubscript() {
+    return Stack(children: [
+      CustomPaint(
+          foregroundPainter: SubscriptPainter(),
+          child: const SizedBox(width: 25, height: 32)),
+      Transform(
+          transform:
+              Transform.translate(offset: const Offset(-2, 14)).transform,
+          child: Container(
+              width: 25,
+              height: 25,
+              transform: Transform.rotate(angle: -45).transform,
+              child: const Text(ThemeStrings.todoCreateLevelHigh,
+                  style: TextStyle(fontSize: 8, color: Colors.white))))
+    ]);
+  }
+}
+
+class SubscriptPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint = Paint()
+      ..color = Colors.red
+      ..style = PaintingStyle.fill;
+
+    var path = Path()
+      ..lineTo(0, size.height)
+      ..lineTo(size.width, 0)
+      ..lineTo(0, 0);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
 
 typedef TodoActionFunction = void Function(Todo);
