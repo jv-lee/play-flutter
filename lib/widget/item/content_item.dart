@@ -33,7 +33,8 @@ class _ContentItemState extends State<ContentItem> {
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).primaryColorLight))),
           Container(
-              padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
+              padding: const EdgeInsets.symmetric(
+                  vertical: ThemeDimens.offsetMedium),
               width: double.infinity,
               child: Text(widget.content.getTitle(),
                   style: TextStyle(
@@ -41,20 +42,22 @@ class _ContentItemState extends State<ContentItem> {
                       color: Theme.of(context).primaryColor),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis)),
-          Container(
-              padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(widget.content.getCategory(),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Expanded(
+                child: Padding(
+                    padding:
+                        const EdgeInsets.only(right: ThemeDimens.offsetMedium),
+                    child: Text(widget.content.getCategory(),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                         style: TextStyle(
                             fontSize: ThemeDimens.fontSizeSmallX,
-                            color: Theme.of(context).focusColor)),
-                    Text(widget.content.getDateFormat(),
-                        style: TextStyle(
-                            fontSize: ThemeDimens.fontSizeSmallX,
-                            color: Theme.of(context).primaryColorDark))
-                  ]))
+                            color: Theme.of(context).focusColor)))),
+            Text(widget.content.getDateFormat(),
+                style: TextStyle(
+                    fontSize: ThemeDimens.fontSizeSmallX,
+                    color: Theme.of(context).primaryColorDark))
+          ])
         ]));
   }
 }
