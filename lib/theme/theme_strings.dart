@@ -10,6 +10,8 @@ class ThemeStrings {
   static const String itemDelete = "删除";
   static const String titleCreate = "新增";
   static const String titleEdit = "编辑";
+  static const String cancel = "取消";
+  static const String confirm = "确认";
 
   /// home
   static const String homeHeaderText = "Welcome to Play Flutter";

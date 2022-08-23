@@ -1,9 +1,12 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
+import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/tools/cache_tools.dart';
 import 'package:playflutter/view/account/service/account_service.dart';
+import 'package:playflutter/widget/dialog/confirm_dialog.dart';
 import 'package:provider/provider.dart';
 
 /// @author jv.lee
@@ -33,13 +36,30 @@ class SettingsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void clearCache() async {
-    Directory directory = await getApplicationDocumentsDirectory();
-    CacheTools.delDir(directory).then((value) => _changeCache());
+  void clearCache() {
+    showDialog(
+        context: context,
+        builder: (context) => ConfirmDialog(
+            titleText: ThemeStrings.settingsClearTitle,
+            onCancel: () => Navigator.pop(context),
+            onConfirm: () async {
+              Navigator.pop(context);
+              Directory directory = await getApplicationDocumentsDirectory();
+              CacheTools.delDir(directory).then((value) => _changeCache());
+            }));
   }
 
   void logout() {
-    accountService.requestLogout(context);
+    showDialog(
+        context: context,
+        builder: (context) => ConfirmDialog(
+            titleText: ThemeStrings.settingsLogoutTitle,
+            onCancel: () => Navigator.pop(context),
+            onConfirm: () {
+              Navigator.pop(context);
+              runViewContext(
+                  (context) => accountService.requestLogout(context));
+            }));
   }
 }
 
