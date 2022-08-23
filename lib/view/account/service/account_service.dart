@@ -60,6 +60,7 @@ class AccountService extends BaseModuleService {
 
   void updateAccountStatus(AccountData? accountData, bool isLogin) {
     LocalTools.localSave(ThemeConstants.LOCAL_ACCOUNT_DATA, accountData);
+    LocalTools.save(ThemeConstants.LOCAL_IS_LOGIN, isLogin);
     viewStates.accountData = accountData;
     viewStates.isLogin = isLogin;
     notifyListeners();
