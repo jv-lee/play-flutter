@@ -3,10 +3,13 @@ import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/event/constants/event_constants.dart';
 import 'package:playflutter/event/entity/tab_selected_event.dart';
 import 'package:playflutter/event/events_bus.dart';
+import 'package:playflutter/extensions/common_extensions.dart';
 import 'package:playflutter/model/entity/banner.dart';
 import 'package:playflutter/model/entity/content.dart';
+import 'package:playflutter/theme/theme_constants.dart';
+import 'package:playflutter/tools/local_tools.dart';
 import 'package:playflutter/tools/log_tools.dart';
-import 'package:playflutter/tools/paging/paging.dart';
+import 'package:playflutter/tools/paging/local_paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/home/model/entity/home_category.dart';
 import 'package:playflutter/view/home/model/home_model.dart';
@@ -18,14 +21,17 @@ import 'package:playflutter/view/main/model/entity/main_tab_page.dart';
 class HomeViewModel extends BaseViewModel {
   final _model = HomeModel();
   final viewStates = _HomeViewState();
-  late Paging<Content> paging;
+  late LocalPaging<Content> paging;
 
   HomeViewModel(super.context);
 
   @override
   void init() {
     eventBus.bind(EventConstants.EVENT_TAB_SELECTED, _onTabSelectedEvent);
-    paging = Paging.build(notifier: this);
+    paging = LocalPaging.build(
+        notifier: this,
+        localKey: ThemeConstants.LOCAL_HOME_LIST,
+        createJson: (json) => ContentDataPage.fromJson(json));
     requestData(LoadStatus.refresh);
   }
 
@@ -51,19 +57,29 @@ class HomeViewModel extends BaseViewModel {
     LogTools.log("Home", "requestData - $status");
 
     if (status == LoadStatus.refresh) {
-      BannerData banner = await _model
-          .getBannerDataAsync()
-          .catchError((error) => paging.submitFailed());
-      viewStates.bannerList.clear();
-      viewStates.bannerList.addAll(banner.data);
-
-      viewStates.categoryList.clear();
-      viewStates.categoryList.addAll(HomeCategory.getHomeCategory());
+      _requestHeaderData();
     }
 
     // request content list data.
     paging.requestData(status,
         (page) => _model.getContentDataAsync(page).then((value) => value.data));
+  }
+
+  void _requestHeaderData() async {
+    LocalTools.localRequest<BannerData>(
+        localKey: ThemeConstants.LOCAL_HOME_BANNER,
+        createJson: (json) => BannerData.fromJson(json),
+        requestFuture: _model.getBannerDataAsync(),
+        callback: (value) {
+          viewStates.bannerList.clear();
+          viewStates.bannerList.addAll(value.data);
+        },
+        onError: (onError) {
+          onFailedToast(onError);
+        });
+
+    viewStates.categoryList.clear();
+    viewStates.categoryList.addAll(HomeCategory.getHomeCategory());
   }
 
   void changeBannerIndex(int index) {

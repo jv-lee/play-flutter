@@ -5,8 +5,10 @@ import 'package:playflutter/event/entity/tab_selected_event.dart';
 import 'package:playflutter/event/events_bus.dart';
 import 'package:playflutter/model/entity/content.dart';
 import 'package:playflutter/route/route_names.dart';
+import 'package:playflutter/theme/theme_constants.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/tools/log_tools.dart';
+import 'package:playflutter/tools/paging/local_paging.dart';
 import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/account/service/account_service.dart';
@@ -21,7 +23,7 @@ import 'package:toast/toast.dart';
 class SquareViewModel extends BaseViewModel {
   final _model = SquareModel();
   late AccountService accountService;
-  late Paging<Content> paging;
+  late LocalPaging<Content> paging;
 
   SquareViewModel(super.context);
 
@@ -30,7 +32,10 @@ class SquareViewModel extends BaseViewModel {
     eventBus.bind(EventConstants.EVENT_TAB_SELECTED, _onTabSelectedEvent);
     accountService = context.read<AccountService>();
     accountService.addListener(notifyListeners);
-    paging = Paging.build(notifier: this);
+    paging = LocalPaging.build(
+        notifier: this,
+        localKey: ThemeConstants.LOCAL_SQUARE_LIST,
+        createJson: (json) => ContentDataPage.fromJson(json));
     requestData(LoadStatus.refresh);
   }
 
