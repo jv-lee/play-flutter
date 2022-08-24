@@ -36,7 +36,7 @@ class AppTextActionBar extends StatelessWidget {
           ),
           Material(
               child: InkWell(
-                  onTap: () => {onNavigationClick.checkNullInvoke()},
+                  onTap: () => onNavigationClick.checkNullInvoke(),
                   borderRadius: BorderRadius.circular(18),
                   child: Container(
                       width: 36,

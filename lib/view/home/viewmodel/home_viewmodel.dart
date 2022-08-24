@@ -3,7 +3,7 @@ import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/event/constants/event_constants.dart';
 import 'package:playflutter/event/entity/tab_selected_event.dart';
 import 'package:playflutter/event/events_bus.dart';
-import 'package:playflutter/extensions/common_extensions.dart';
+import 'package:playflutter/extensions/exception_extensions.dart';
 import 'package:playflutter/model/entity/banner.dart';
 import 'package:playflutter/model/entity/content.dart';
 import 'package:playflutter/theme/theme_constants.dart';

@@ -28,7 +28,7 @@ class CardItemContainer extends StatelessWidget {
                 Radius.circular(ThemeDimens.offsetRadiusMedium))),
         child: Material(
             child: InkWell(
-                onTap: () => {onItemClick.checkNullInvoke()},
+                onTap: () => onItemClick.checkNullInvoke(),
                 borderRadius:
                     BorderRadius.circular(ThemeDimens.offsetRadiusMedium),
                 child: Container(
