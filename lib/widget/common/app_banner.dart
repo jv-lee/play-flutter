@@ -6,7 +6,7 @@ import 'package:playflutter/theme/theme_dimens.dart';
 /// @author jv.lee
 /// @date 2022/8/2
 /// @description 项目banner封装组件
-class AppBanner extends StatefulWidget {
+class AppBanner extends StatelessWidget {
   final int index;
   final int count;
   final ValueChanged<int> onIndexChanged;
@@ -25,22 +25,17 @@ class AppBanner extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _AppBannerState();
-}
-
-class _AppBannerState extends State<AppBanner> {
-  @override
   Widget build(BuildContext context) {
     return SizedBox(
         height: ThemeDimens.homeBannerHeight,
         child: Swiper(
-            controller: widget.controller,
-            index: widget.index,
+            controller: controller,
+            index: index,
             viewportFraction: 0.85,
             autoplay: true,
             duration: 300,
-            itemCount: widget.count,
-            onIndexChanged: widget.onIndexChanged,
+            itemCount: count,
+            onIndexChanged: onIndexChanged,
             itemBuilder: (BuildContext context, int index) {
               return Card(
                   shape: RoundedRectangleBorder(
@@ -48,11 +43,11 @@ class _AppBannerState extends State<AppBanner> {
                           ThemeDimens.offsetRadiusMedium)),
                   child: Material(
                       child: InkWell(
-                          onTap: () => widget.onIndexTap(index),
+                          onTap: () => onIndexTap(index),
                           borderRadius: BorderRadius.circular(
                               ThemeDimens.offsetRadiusMedium),
                           child: CachedNetworkImage(
-                              imageUrl: widget.findPath(index),
+                              imageUrl: findPath(index),
                               imageBuilder: (context, imageProvider) =>
                                   Container(
                                       decoration: BoxDecoration(

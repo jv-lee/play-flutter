@@ -8,7 +8,7 @@ import 'package:playflutter/widget/common/sliding_pane_container.dart';
 /// @author jv.lee
 /// @date 2022/8/5
 /// @description 全局通用动作文本展示item 支持侧滑删除
-class ActionTextItem extends StatefulWidget {
+class ActionTextItem extends StatelessWidget {
   final Content content;
   final SlidingPaneController slidingPaneController;
   final Function(Content) onItemClick;
@@ -23,27 +23,22 @@ class ActionTextItem extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _ActionTextItemState();
-}
-
-class _ActionTextItemState extends State<ActionTextItem> {
-  @override
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
         child: SlidingPaneContainer(
             width: double.infinity,
             height: 76,
-            controller: widget.slidingPaneController,
-            sliding: buildItemMenu(),
-            content: buildItemContent()));
+            controller: slidingPaneController,
+            sliding: buildItemMenu(context),
+            content: buildItemContent(context)));
   }
 
-  Widget buildItemMenu() {
+  Widget buildItemMenu(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          widget.slidingPaneController.closeAction();
-          widget.onItemDelete(widget.content);
+          slidingPaneController.closeAction();
+          onItemDelete(content);
         },
         child: Container(
             width: SlidingPaneContainer.slidingDefaultWidth,
@@ -56,20 +51,20 @@ class _ActionTextItemState extends State<ActionTextItem> {
                         fontSize: ThemeDimens.fontSizeSmall)))));
   }
 
-  Widget buildItemContent() {
+  Widget buildItemContent(BuildContext context) {
     return Container(
         width: double.infinity,
         height: double.infinity,
         color: Theme.of(context).cardColor,
         child: Material(
             child: InkWell(
-                onTap: () => widget.onItemClick(widget.content),
+                onTap: () => onItemClick(content),
                 child: Padding(
                     padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
                     child: Stack(children: [
                       Align(
                           alignment: Alignment.topLeft,
-                          child: Text(widget.content.getTitle(),
+                          child: Text(content.getTitle(),
                               maxLines: 1,
                               style: TextStyle(
                                   color: Theme.of(context).primaryColorLight,
@@ -78,7 +73,7 @@ class _ActionTextItemState extends State<ActionTextItem> {
                                   overflow: TextOverflow.ellipsis))),
                       Align(
                           alignment: Alignment.bottomLeft,
-                          child: Text(widget.content.getDateFormat(),
+                          child: Text(content.getDateFormat(),
                               maxLines: 1,
                               style: TextStyle(
                                   color: Theme.of(context).primaryColor,

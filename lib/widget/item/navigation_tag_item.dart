@@ -5,7 +5,7 @@ import 'package:playflutter/theme/theme_dimens.dart';
 /// @author jv.lee
 /// @date 2022/6/30
 /// @description
-class NavigationTagItem extends StatefulWidget {
+class NavigationTagItem extends StatelessWidget {
   final NavigationTab navigationTab;
   final Function(Articles)? onItemClick;
 
@@ -16,16 +16,11 @@ class NavigationTagItem extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _NavigationTagItemState();
-}
-
-class _NavigationTagItemState extends State<NavigationTagItem> {
-  @override
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(widget.navigationTab.name,
+          Text(navigationTab.name,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -34,21 +29,20 @@ class _NavigationTagItemState extends State<NavigationTagItem> {
                   fontWeight: FontWeight.bold)),
           Padding(
               padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
-              child: buildTagFlowList())
+              child: buildTagFlowList(context))
         ]));
   }
 
-  Widget buildTagFlowList() {
+  Widget buildTagFlowList(BuildContext context) {
     List<Widget> widgets = [];
-    for (var element in widget.navigationTab.articles) {
+    for (var element in navigationTab.articles) {
       widgets.add(Card(
           elevation: 0,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(ThemeDimens.systemTabRadius)),
           child: InkWell(
               onTap: () => {
-                    if (widget.onItemClick != null)
-                      {widget.onItemClick!(element)}
+                    if (onItemClick != null) {onItemClick!(element)}
                   },
               borderRadius: BorderRadius.circular(ThemeDimens.systemTabRadius),
               child: Container(

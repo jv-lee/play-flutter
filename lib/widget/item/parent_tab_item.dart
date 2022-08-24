@@ -8,7 +8,7 @@ import 'package:playflutter/widget/common/card_item_container.dart';
 /// @author jv.lee
 /// @date 2022/6/30
 /// @description
-class ParentTabItem extends StatefulWidget {
+class ParentTabItem extends StatelessWidget {
   final ParentTab parentTab;
   final Function(ParentTab) onItemClick;
 
@@ -19,29 +19,24 @@ class ParentTabItem extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _ParentTabItemState();
-}
-
-class _ParentTabItemState extends State<ParentTabItem> {
-  @override
   Widget build(BuildContext context) {
     return CardItemContainer(
-        onItemClick: () => {widget.onItemClick(widget.parentTab)},
+        onItemClick: () => {onItemClick(parentTab)},
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
-              Text(widget.parentTab.name,
+              Text(parentTab.name,
                   style: TextStyle(
                       color: Theme.of(context).primaryColorLight,
                       fontSize: ThemeDimens.fontSizeMedium,
                       fontWeight: FontWeight.bold)),
-              buildDivider(),
-              Text(widget.parentTab.formHtmlLabels(),
+              buildDivider(context),
+              Text(parentTab.formHtmlLabels(),
                   style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontSize: ThemeDimens.fontSizeSmall)),
-              buildDivider(),
+              buildDivider(context),
               SizedBox(
                   width: double.infinity,
                   child: Text(ThemeStrings.systemMoreText,
@@ -53,7 +48,7 @@ class _ParentTabItemState extends State<ParentTabItem> {
             ]));
   }
 
-  Widget buildDivider() {
+  Widget buildDivider(BuildContext context) {
     return Container(
         margin: const EdgeInsets.only(
             top: ThemeDimens.offsetMedium, bottom: ThemeDimens.offsetMedium),

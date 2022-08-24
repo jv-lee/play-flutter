@@ -5,7 +5,7 @@ import 'package:playflutter/theme/theme_dimens.dart';
 /// @author jv.lee
 /// @date 2022/6/30
 /// @description 卡片item容器
-class CardItemContainer extends StatefulWidget {
+class CardItemContainer extends StatelessWidget {
   final Widget child;
   final double width;
   final double contentPadding;
@@ -20,11 +20,6 @@ class CardItemContainer extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _CardItemContainerState();
-}
-
-class _CardItemContainerState extends State<CardItemContainer> {
-  @override
   Widget build(BuildContext context) {
     var content = Card(
         margin: const EdgeInsets.all(ThemeDimens.offsetMedium),
@@ -33,16 +28,15 @@ class _CardItemContainerState extends State<CardItemContainer> {
                 Radius.circular(ThemeDimens.offsetRadiusMedium))),
         child: Material(
             child: InkWell(
-                onTap: () => {widget.onItemClick.checkNullInvoke()},
+                onTap: () => {onItemClick.checkNullInvoke()},
                 borderRadius:
                     BorderRadius.circular(ThemeDimens.offsetRadiusMedium),
                 child: Container(
-                    padding: EdgeInsets.all(widget.contentPadding),
-                    child: widget.child))));
-    return widget.width == 0
+                    padding: EdgeInsets.all(contentPadding), child: child))));
+    return width == 0
         ? content
         : SizedBox(
-            width: widget.width,
+            width: width,
             child: content,
           );
   }

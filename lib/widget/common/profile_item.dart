@@ -8,7 +8,7 @@ import 'package:playflutter/theme/theme_dimens.dart';
 /// @author jv.lee
 /// @date 2022/7/14
 /// @description 设置item
-class ProfileItem extends StatefulWidget {
+class ProfileItem extends StatelessWidget {
   final String? leftSvgPath;
   final String? rightSvgPath;
   final String? leftText;
@@ -33,13 +33,8 @@ class ProfileItem extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _ProfileItemState();
-}
-
-class _ProfileItemState extends State<ProfileItem> {
-  @override
   Widget build(BuildContext context) {
-    var lockSwitchColor = widget.switchEnable
+    var lockSwitchColor = switchEnable
         ? null
         : MaterialStateColor.resolveWith((states) => Colors.grey);
     return Container(
@@ -48,17 +43,17 @@ class _ProfileItemState extends State<ProfileItem> {
         decoration: BoxDecoration(color: Theme.of(context).cardColor),
         child: Material(
             child: InkWell(
-                onTap: widget.onItemClick,
+                onTap: onItemClick,
                 child: Padding(
                     padding: const EdgeInsets.only(
                         left: 22, top: 12, right: 22, bottom: 12),
                     child: Stack(alignment: Alignment.center, children: [
                       Row(children: [
-                        widget.leftSvgPath.hasVisible((object) => SizedBox(
+                        leftSvgPath.hasVisible((object) => SizedBox(
                             width: 24,
                             height: 24,
                             child: SvgPicture.asset(object.toString()))),
-                        widget.leftText.hasVisible((object) => Padding(
+                        leftText.hasVisible((object) => Padding(
                             padding: const EdgeInsets.only(left: 6, right: 6),
                             child: Text(object.toString(),
                                 style: TextStyle(
@@ -66,25 +61,24 @@ class _ProfileItemState extends State<ProfileItem> {
                                     fontSize: ThemeDimens.fontSizeMedium))))
                       ]),
                       Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                        widget.rightText.hasVisible((object) => Padding(
+                        rightText.hasVisible((object) => Padding(
                             padding: const EdgeInsets.only(left: 6, right: 6),
                             child: Text(object.toString(),
                                 style: TextStyle(
                                     color: Theme.of(context).primaryColor,
                                     fontSize: ThemeDimens.fontSizeSmall)))),
-                        widget.switchVisible.isVisible(Switch(
+                        switchVisible.isVisible(Switch(
                             trackColor: lockSwitchColor,
                             thumbColor: lockSwitchColor,
                             activeColor: Theme.of(context).focusColor,
                             activeTrackColor: Theme.of(context).hoverColor,
-                            value: widget.switchChecked,
+                            value: switchChecked,
                             onChanged: (enable) {
-                              if (widget.switchEnable &&
-                                  widget.onCheckedChange != null) {
-                                widget.onCheckedChange!(enable);
+                              if (switchEnable && onCheckedChange != null) {
+                                onCheckedChange!(enable);
                               }
                             })),
-                        widget.rightSvgPath.hasVisible((object) => SizedBox(
+                        rightSvgPath.hasVisible((object) => SizedBox(
                             width: 24,
                             height: 24,
                             child: SvgPicture.asset(object.toString())))

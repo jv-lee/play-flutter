@@ -8,7 +8,7 @@ import 'package:playflutter/widget/common/card_item_container.dart';
 /// @author jv.lee
 /// @date 2022/6/24
 /// @description 全局通用内容item
-class ContentPictureItem extends StatefulWidget {
+class ContentPictureItem extends StatelessWidget {
   final Content content;
   final Function(Content) onItemClick;
 
@@ -17,20 +17,15 @@ class ContentPictureItem extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _ContentPictureItemState();
-}
-
-class _ContentPictureItemState extends State<ContentPictureItem> {
-  @override
   Widget build(BuildContext context) {
     return CardItemContainer(
         contentPadding: 0,
-        onItemClick: () => {widget.onItemClick(widget.content)},
+        onItemClick: () => {onItemClick(content)},
         child: Row(children: [
           CachedNetworkImage(
               height: 146,
               width: 86,
-              imageUrl: widget.content.envelopePic,
+              imageUrl: content.envelopePic,
               imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
                       borderRadius: const BorderRadius.horizontal(
@@ -61,7 +56,7 @@ class _ContentPictureItemState extends State<ContentPictureItem> {
                                     left: ThemeDimens.offsetMedium,
                                     right: ThemeDimens.offsetMedium),
                                 child: Text(
-                                  widget.content.getTitle(),
+                                  content.getTitle(),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -79,7 +74,7 @@ class _ContentPictureItemState extends State<ContentPictureItem> {
                                 child: SizedBox(
                                     width: double.infinity,
                                     child: Text(
-                                      widget.content.getDescription(),
+                                      content.getDescription(),
                                       maxLines: 4,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
@@ -94,11 +89,11 @@ class _ContentPictureItemState extends State<ContentPictureItem> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(widget.content.getCategory(),
+                                  Text(content.getCategory(),
                                       style: TextStyle(
                                           fontSize: ThemeDimens.fontSizeSmallX,
                                           color: Theme.of(context).focusColor)),
-                                  Text(widget.content.getDateFormat(),
+                                  Text(content.getDateFormat(),
                                       style: TextStyle(
                                           fontSize: ThemeDimens.fontSizeSmallX,
                                           color: Theme.of(context)

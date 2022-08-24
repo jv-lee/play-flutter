@@ -7,7 +7,7 @@ import 'package:playflutter/widget/common/card_item_container.dart';
 /// @author jv.lee
 /// @date 2022/6/27
 /// @description 首页分类item
-class CategoryItem extends StatefulWidget {
+class CategoryItem extends StatelessWidget {
   final HomeCategory category;
   final Function(HomeCategory)? onItemClick;
 
@@ -15,26 +15,20 @@ class CategoryItem extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _CategoryItemState();
-}
-
-class _CategoryItemState extends State<CategoryItem> {
-  @override
   Widget build(BuildContext context) {
     return CardItemContainer(
         width: MediaQuery.of(context).size.width / 2,
         onItemClick: () => {
-              if (widget.onItemClick != null)
-                {widget.onItemClick!(widget.category)}
+              if (onItemClick != null) {onItemClick!(category)}
             },
         child: Column(children: [
           SizedBox(
               width: ThemeDimens.homeCategoryItemSize,
               height: ThemeDimens.homeCategoryItemSize,
-              child: SvgPicture.asset(widget.category.iconRes)),
+              child: SvgPicture.asset(category.iconRes)),
           Container(
               padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
-              child: Text(widget.category.name,
+              child: Text(category.name,
                   style: TextStyle(color: Theme.of(context).primaryColorLight)))
         ]));
   }

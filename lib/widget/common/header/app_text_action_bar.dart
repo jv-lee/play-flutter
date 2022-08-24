@@ -6,7 +6,7 @@ import 'package:playflutter/theme/theme_dimens.dart';
 /// @author jv.lee
 /// @date 2022/6/27
 /// @description app通用title控件 带action按钮
-class AppTextActionBar extends StatefulWidget {
+class AppTextActionBar extends StatelessWidget {
   final String title;
   final String navigationSvgPath;
   final Function? onNavigationClick;
@@ -19,11 +19,6 @@ class AppTextActionBar extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _AppTextActionBarState();
-}
-
-class _AppTextActionBarState extends State<AppTextActionBar> {
-  @override
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.only(
@@ -33,7 +28,7 @@ class _AppTextActionBarState extends State<AppTextActionBar> {
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Text(
-            widget.title,
+            title,
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: ThemeDimens.fontSizeLargeXX,
@@ -41,7 +36,7 @@ class _AppTextActionBarState extends State<AppTextActionBar> {
           ),
           Material(
               child: InkWell(
-                  onTap: () => {widget.onNavigationClick.checkNullInvoke()},
+                  onTap: () => {onNavigationClick.checkNullInvoke()},
                   borderRadius: BorderRadius.circular(18),
                   child: Container(
                       width: 36,
@@ -50,7 +45,7 @@ class _AppTextActionBarState extends State<AppTextActionBar> {
                       decoration: BoxDecoration(
                           color: Theme.of(context).focusColor,
                           shape: BoxShape.circle),
-                      child: SvgPicture.asset(widget.navigationSvgPath))))
+                      child: SvgPicture.asset(navigationSvgPath))))
         ]));
   }
 }
