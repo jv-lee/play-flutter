@@ -1,11 +1,11 @@
-// ignore_for_file: invalid_return_type_for_catch_error
-
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/extensions/common_extensions.dart';
 import 'package:playflutter/model/entity/details.dart';
+import 'package:playflutter/model/http/constants/api_constants.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/me/model/me_model.dart';
 import 'package:playflutter/widget/dialog/loading_dialog.dart';
@@ -15,7 +15,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 /// @author jv.lee
 /// @date 2022/8/8
-/// @description
+/// @description 详情页viewModel
 class DetailsViewModel extends BaseViewModel {
   final _model = MeModel();
   final viewStates = _DetailsViewState();
@@ -73,19 +73,40 @@ class DetailsViewModel extends BaseViewModel {
     return true;
   }
 
-  void onPageFinished(item) {
+  /// webView开始加载
+  void onPageStarted(url) {
+    viewStates.pageHolderVisible = false;
+    notifyListeners();
+  }
+
+  /// webView加载完毕
+  void onPageFinished(url) {
     viewStates.progressVisible = false;
     notifyListeners();
   }
 
+  /// webView加载Progress
   void onProgress(progress) {
-    viewStates.progress = progress;
+    viewStates
+      ..progressVisible = true
+      ..progress = progress;
     notifyListeners();
+  }
+
+  /// 处理scheme intent跳转原生逻辑
+  FutureOr<NavigationDecision> navigationDelegate(NavigationRequest request) {
+    for (var scheme in ApiConstants.WEB_SCHEME_LIST) {
+      if (request.url.startsWith(scheme)) {
+        return NavigationDecision.prevent;
+      }
+    }
+    return NavigationDecision.navigate;
   }
 }
 
 class _DetailsViewState {
   WebViewController? webViewController;
+  var pageHolderVisible = true;
   var progressVisible = true;
   var progress = 0;
 }

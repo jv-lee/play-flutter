@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_page_state.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/model/entity/details.dart';
-import 'package:playflutter/model/http/constants/api_constants.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/details/viewmodel/details_viewmodel.dart';
@@ -74,19 +73,18 @@ class _DetailsState extends BasePageState<DetailsPage> {
           initialUrl: viewModel.detailsData.link,
           javascriptMode: JavascriptMode.unrestricted,
           gestureNavigationEnabled: true,
-          onProgress: viewModel.onProgress,
-          onPageFinished: viewModel.onPageFinished,
-          navigationDelegate: (NavigationRequest request) {
-            // 处理scheme intent跳转原生逻辑
-            for (var scheme in ApiConstants.WEB_SCHEME_LIST) {
-              if (request.url.startsWith(scheme)) {
-                return NavigationDecision.prevent;
-              }
-            }
-            return NavigationDecision.navigate;
-          },
           onWebViewCreated: (controller) =>
-              viewModel.viewStates.webViewController = controller),
+              viewModel.viewStates.webViewController = controller,
+          onProgress: viewModel.onProgress,
+          onPageStarted: viewModel.onPageStarted,
+          onPageFinished: viewModel.onPageFinished,
+          navigationDelegate: viewModel.navigationDelegate),
+      Visibility(
+          visible: viewModel.viewStates.pageHolderVisible,
+          child: Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: Theme.of(context).scaffoldBackgroundColor)),
       Visibility(
           visible: viewModel.viewStates.progressVisible,
           child: LinearProgressIndicator(
