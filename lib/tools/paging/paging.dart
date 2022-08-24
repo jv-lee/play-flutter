@@ -57,6 +57,7 @@ class Paging<T> {
 
     requestBlock(_page).then((response) {
       if (isDispose) return;
+      requestDataComplete(status, response);
       // 首页数据
       if (_page == initPage) {
         // 首页空数据
@@ -108,6 +109,8 @@ class Paging<T> {
     });
   }
 
+  requestDataComplete(LoadStatus status, PagingData<T> data) {}
+
   submitFailed() {
     // 当前列表数据加载成功，分页item不是最后一项，且数据不为空则显示itemError状态
     if (statusController.pageStatus == PageStatus.completed &&
@@ -138,6 +141,3 @@ class Paging<T> {
     data.clear();
   }
 }
-
-typedef PageLoadFunction<T> = Future<List<T>> Function(int page);
-typedef PageResponseFunction<T> = void Function(List<T> data);
