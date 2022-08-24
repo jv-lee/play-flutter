@@ -49,39 +49,48 @@ class ProfileItem extends StatelessWidget {
                         left: 22, top: 12, right: 22, bottom: 12),
                     child: Stack(alignment: Alignment.center, children: [
                       Row(children: [
-                        leftSvgPath.hasVisible((object) => SizedBox(
-                            width: 24,
-                            height: 24,
-                            child: SvgPicture.asset(object.toString()))),
-                        leftText.hasVisible((object) => Padding(
-                            padding: const EdgeInsets.only(left: 6, right: 6),
-                            child: Text(object.toString(),
-                                style: TextStyle(
-                                    color: Theme.of(context).primaryColorLight,
-                                    fontSize: ThemeDimens.fontSizeMedium))))
+                        Offstage(
+                            offstage: leftSvgPath == null,
+                            child: SvgPicture.asset(leftSvgPath.toString(),
+                                width: 24, height: 24)),
+                        Offstage(
+                            offstage: leftText == null,
+                            child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 6, right: 6),
+                                child: Text(leftText.toString(),
+                                    style: TextStyle(
+                                        color:
+                                            Theme.of(context).primaryColorLight,
+                                        fontSize: ThemeDimens.fontSizeMedium))))
                       ]),
                       Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                        rightText.hasVisible((object) => Padding(
-                            padding: const EdgeInsets.only(left: 6, right: 6),
-                            child: Text(object.toString(),
-                                style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
-                                    fontSize: ThemeDimens.fontSizeSmall)))),
-                        switchVisible.isVisible(Switch(
-                            trackColor: lockSwitchColor,
-                            thumbColor: lockSwitchColor,
-                            activeColor: Theme.of(context).focusColor,
-                            activeTrackColor: Theme.of(context).hoverColor,
-                            value: switchChecked,
-                            onChanged: (enable) {
-                              if (switchEnable && onCheckedChange != null) {
-                                onCheckedChange!(enable);
-                              }
-                            })),
-                        rightSvgPath.hasVisible((object) => SizedBox(
-                            width: 24,
-                            height: 24,
-                            child: SvgPicture.asset(object.toString())))
+                        Offstage(
+                            offstage: rightText == null,
+                            child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 6, right: 6),
+                                child: Text(rightText.toString(),
+                                    style: TextStyle(
+                                        color: Theme.of(context).primaryColor,
+                                        fontSize: ThemeDimens.fontSizeSmall)))),
+                        Visibility(
+                            visible: switchVisible,
+                            child: Switch(
+                                trackColor: lockSwitchColor,
+                                thumbColor: lockSwitchColor,
+                                activeColor: Theme.of(context).focusColor,
+                                activeTrackColor: Theme.of(context).hoverColor,
+                                value: switchChecked,
+                                onChanged: (enable) {
+                                  if (switchEnable && onCheckedChange != null) {
+                                    onCheckedChange!(enable);
+                                  }
+                                })),
+                        Offstage(
+                            offstage: rightSvgPath == null,
+                            child: SvgPicture.asset(rightSvgPath.toString(),
+                                width: 24, height: 24))
                       ])
                     ])))));
   }

@@ -2,7 +2,7 @@ import 'dart:collection';
 
 /// @author jv.lee
 /// @date 2022/8/19
-/// @description
+/// @description 页面间通信处理器
 class PageCallbackHandler<T> {
   final _callbacks = HashMap<String, T>();
 
@@ -19,12 +19,6 @@ class PageCallbackHandler<T> {
   }
 
   notifyAll(PageCallback<T> callback) {
-    _callbacks.forEach((key, value) {
-      callback(value);
-    });
-  }
-
-  notifyAllStick(PageCallback<T> callback) {
     _callbacks.forEach((key, value) {
       callback(value);
     });
