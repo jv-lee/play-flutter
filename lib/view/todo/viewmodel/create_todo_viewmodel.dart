@@ -31,11 +31,13 @@ class CreateTodoViewModel extends BaseViewModel {
   void onCleared() {}
 
   changeTitle(String title) {
+    if (viewStates.titleController.value.isComposingRangeValid) return;
     viewStates.title = title;
     notifyListeners();
   }
 
   changeContent(String content) {
+    if (viewStates.contentController.value.isComposingRangeValid) return;
     viewStates.content = content;
     notifyListeners();
   }
@@ -109,18 +111,22 @@ class CreateTodoViewModel extends BaseViewModel {
 
   _changeTodo(Todo? todo) async {
     if (todo != null) {
-      viewStates.isAdd = false;
-      viewStates.appbarTitle = ThemeStrings.titleEdit;
-      viewStates.id = todo.id;
-      viewStates.title = todo.title;
-      viewStates.content = todo.content;
-      viewStates.priority = todo.priority;
-      viewStates.date = todo.dateStr;
-      viewStates.status = todo.status;
+      viewStates
+        ..isAdd = false
+        ..appbarTitle = ThemeStrings.titleEdit
+        ..id = todo.id
+        ..title = todo.title
+        ..content = todo.content
+        ..priority = todo.priority
+        ..date = todo.dateStr
+        ..status = todo.status
+        ..titleController.text = todo.title
+        ..contentController.text = todo.content;
     } else {
-      viewStates.isAdd = true;
-      viewStates.appbarTitle = ThemeStrings.titleCreate;
-      viewStates.date = TimeTools.getCurrentFormatDate();
+      viewStates
+        ..isAdd = true
+        ..appbarTitle = ThemeStrings.titleCreate
+        ..date = TimeTools.getCurrentFormatDate();
     }
     final typeIndex = await LocalTools.get(ThemeConstants.LOCAL_TODO_TYPE,
         defaultValue: TodoType.DEFAULT.index);
@@ -139,4 +145,17 @@ class _CreateTodoViewState {
   var title = "";
   var content = "";
   var date = "";
+  late TextEditingController titleController;
+  late TextEditingController contentController;
+
+  _CreateTodoViewState() {
+    titleController = TextEditingController.fromValue(TextEditingValue(
+        text: title,
+        selection: TextSelection.fromPosition(TextPosition(
+            affinity: TextAffinity.downstream, offset: title.length))));
+    contentController = TextEditingController.fromValue(TextEditingValue(
+        text: content,
+        selection: TextSelection.fromPosition(TextPosition(
+            affinity: TextAffinity.downstream, offset: content.length))));
+  }
 }

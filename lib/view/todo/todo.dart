@@ -28,7 +28,10 @@ class _TodoPageState extends BasePageState<TodoPage> {
                 actions: [
                   IconButton(
                       onPressed: () => viewModel.showSelectedTodoTypeDialog(),
-                      icon: SvgPicture.asset(ThemeImages.todoReplaceSvg))
+                      icon: SvgPicture.asset(
+                        ThemeImages.todoReplaceSvg,
+                        color: Theme.of(context).primaryColorLight,
+                      ))
                 ]),
             body: PageView.builder(
                 itemCount: viewModel.viewStates.todoTabs.length,

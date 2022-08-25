@@ -32,7 +32,11 @@ class TodoItem extends StatelessWidget {
         controller: controller,
         slidingWidth: ThemeDimens.todoSlidingWidth,
         sliding: buildSliding(context),
-        content: buildContent(context));
+        content: buildContent(context),
+        decoration: BoxDecoration(
+            border: Border(
+                bottom: BorderSide(
+                    width: 1, color: Theme.of(context).hoverColor))));
   }
 
   Widget buildSliding(BuildContext context) {
@@ -74,11 +78,7 @@ class TodoItem extends StatelessWidget {
       Container(
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
-              color: Theme.of(context).cardColor,
-              border: Border(
-                  bottom: BorderSide(
-                      width: 1, color: Theme.of(context).hoverColor))),
+          color: Theme.of(context).cardColor,
           child: Material(
               child: InkWell(
             onTap: () => onItemClick(item),

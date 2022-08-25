@@ -45,11 +45,7 @@ class _CreateTodoPageState extends BasePageState<CreateTodoPage> {
               style: TextStyle(color: Theme.of(context).primaryColorLight)),
           Expanded(
               child: TextField(
-                  controller: TextEditingController.fromValue(TextEditingValue(
-                      text: viewModel.viewStates.title,
-                      selection: TextSelection.fromPosition(TextPosition(
-                          affinity: TextAffinity.downstream,
-                          offset: viewModel.viewStates.title.length)))),
+                  controller: viewModel.viewStates.titleController,
                   onChanged: (text) => viewModel.changeTitle(text),
                   textInputAction: TextInputAction.next,
                   decoration: const InputDecoration(
@@ -67,14 +63,7 @@ class _CreateTodoPageState extends BasePageState<CreateTodoPage> {
                           color: Theme.of(context).primaryColorLight))),
               Expanded(
                   child: TextField(
-                      controller: TextEditingController.fromValue(
-                          TextEditingValue(
-                              text: viewModel.viewStates.content,
-                              selection: TextSelection.fromPosition(
-                                  TextPosition(
-                                      affinity: TextAffinity.downstream,
-                                      offset: viewModel
-                                          .viewStates.content.length)))),
+                      controller: viewModel.viewStates.contentController,
                       onChanged: (text) => viewModel.changeContent(text),
                       textInputAction: TextInputAction.next,
                       maxLines: 5,

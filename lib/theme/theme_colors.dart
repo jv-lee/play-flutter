@@ -49,6 +49,7 @@ class ThemeColors {
       shadowColor: lightColorPalette.shadow,
       splashColor: lightColorPalette.placeholder,
       hintColor: lightColorPalette.label,
+      unselectedWidgetColor: lightColorPalette.primary,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: lightColorPalette.item,
           selectedIconTheme: IconThemeData(color: lightColorPalette.focus),
@@ -92,6 +93,7 @@ class ThemeColors {
       shadowColor: darkColorPalette.shadow,
       splashColor: darkColorPalette.placeholder,
       hintColor: darkColorPalette.label,
+      unselectedWidgetColor: darkColorPalette.primary,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: darkColorPalette.item,
           selectedIconTheme: IconThemeData(color: darkColorPalette.focus),

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class SlidingPaneContainer extends StatefulWidget {
   final double? width;
   final double? height;
+  final Decoration? decoration;
   final double slidingWidth;
   final Alignment slidingAlign;
   final Widget sliding;
@@ -18,6 +19,7 @@ class SlidingPaneContainer extends StatefulWidget {
       {Key? key,
       this.width,
       this.height,
+      this.decoration,
       this.slidingWidth = slidingDefaultWidth,
       this.slidingAlign = Alignment.centerRight,
       required this.controller,
@@ -53,9 +55,10 @@ class _SlidingPaneContainerState extends State<SlidingPaneContainer>
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
         width: widget.width,
         height: widget.height,
+        decoration: widget.decoration,
         child: Stack(children: [
           Align(
               alignment: widget.slidingAlign,
