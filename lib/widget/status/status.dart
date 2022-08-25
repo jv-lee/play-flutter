@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:playflutter/widget/common/delay_visibility.dart';
 
 /// @author jv.lee
 /// @date 2020/5/12
@@ -12,7 +13,8 @@ enum ItemStatus { loading, empty, end, error }
 const double _itemHeight = 48.0;
 
 Widget pageLoading(BuildContext context) {
-  return const Center(child: CircularProgressIndicator());
+  return const DelayVisibility(
+      child: Center(child: CircularProgressIndicator()));
 }
 
 Widget pageEmpty(BuildContext context) {
