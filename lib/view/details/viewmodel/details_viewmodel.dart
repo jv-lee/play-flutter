@@ -88,7 +88,7 @@ class DetailsViewModel extends BaseViewModel {
   /// webView加载Progress
   void onProgress(progress) {
     viewStates
-      ..progressVisible = true
+      ..progressVisible = progress != 100
       ..progress = progress;
     notifyListeners();
   }

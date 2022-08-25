@@ -156,22 +156,24 @@ class _CoinPageState extends BasePageState<CoinPage> {
   }
 
   Widget buildRecordContent(CoinViewModel viewModel) {
-    return RefreshIndicator(
-        color: Theme.of(context).primaryColorLight,
-        onRefresh: () async {
-          await Future<void>.delayed(const Duration(seconds: 1),
-              () => viewModel.requestData(LoadStatus.refresh));
-        },
-        child: SuperListView(
-            statusController: viewModel.paging.statusController,
-            itemCount: viewModel.paging.data.length,
-            onPageReload: () => viewModel.requestData(LoadStatus.refresh),
-            onItemReload: () => viewModel.requestData(LoadStatus.reload),
-            onLoadMore: () => viewModel.requestData(LoadStatus.loadMore),
-            itemBuilder: (BuildContext context, int index) {
-              var item = viewModel.paging.data[index];
-              return buildRecordItem(item);
-            }));
+    return Padding(
+        padding: const EdgeInsets.only(top: 3),
+        child: RefreshIndicator(
+            color: Theme.of(context).primaryColorLight,
+            onRefresh: () async {
+              await Future<void>.delayed(const Duration(seconds: 1),
+                  () => viewModel.requestData(LoadStatus.refresh));
+            },
+            child: SuperListView(
+                statusController: viewModel.paging.statusController,
+                itemCount: viewModel.paging.data.length,
+                onPageReload: () => viewModel.requestData(LoadStatus.refresh),
+                onItemReload: () => viewModel.requestData(LoadStatus.reload),
+                onLoadMore: () => viewModel.requestData(LoadStatus.loadMore),
+                itemBuilder: (BuildContext context, int index) {
+                  var item = viewModel.paging.data[index];
+                  return buildRecordItem(item);
+                })));
   }
 
   Widget buildRecordItem(CoinRecord record) {
