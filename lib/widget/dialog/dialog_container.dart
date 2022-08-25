@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_page_state.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
-import 'package:playflutter/extensions/common_extensions.dart';
+import 'package:playflutter/extensions/function_extensions.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 
 /// @author jv.lee

@@ -2,7 +2,7 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:playflutter/extensions/exception_extensions.dart';
+import 'package:playflutter/extensions/function_extensions.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 
 /// @author jv.lee
@@ -49,10 +49,9 @@ class ProfileItem extends StatelessWidget {
                         left: 22, top: 12, right: 22, bottom: 12),
                     child: Stack(alignment: Alignment.center, children: [
                       Row(children: [
-                        Offstage(
-                            offstage: leftSvgPath == null,
-                            child: SvgPicture.asset(leftSvgPath.toString(),
-                                width: 24, height: 24)),
+                        leftSvgPath?.let((self) => SvgPicture.asset(self,
+                                width: 24, height: 24)) ??
+                            Container(),
                         Offstage(
                             offstage: leftText == null,
                             child: Padding(
@@ -82,15 +81,13 @@ class ProfileItem extends StatelessWidget {
                                 activeColor: Theme.of(context).focusColor,
                                 activeTrackColor: Theme.of(context).hoverColor,
                                 value: switchChecked,
-                                onChanged: (enable) {
-                                  if (switchEnable && onCheckedChange != null) {
-                                    onCheckedChange!(enable);
-                                  }
-                                })),
-                        Offstage(
-                            offstage: rightSvgPath == null,
-                            child: SvgPicture.asset(rightSvgPath.toString(),
-                                width: 24, height: 24))
+                                onChanged: (enable) =>
+                                    onCheckedChange?.run((self) {
+                                      if (switchEnable) self(enable);
+                                    }))),
+                        rightSvgPath?.let((self) => SvgPicture.asset(self,
+                                width: 24, height: 24)) ??
+                            Container()
                       ])
                     ])))));
   }

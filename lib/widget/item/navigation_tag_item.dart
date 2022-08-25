@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:playflutter/extensions/function_extensions.dart';
 import 'package:playflutter/model/entity/navigation_tab.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 
@@ -41,9 +42,7 @@ class NavigationTagItem extends StatelessWidget {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(ThemeDimens.systemTabRadius)),
           child: InkWell(
-              onTap: () => {
-                    if (onItemClick != null) {onItemClick!(element)}
-                  },
+              onTap: () => onItemClick?.run((self) => self(element)),
               borderRadius: BorderRadius.circular(ThemeDimens.systemTabRadius),
               child: Container(
                   padding: const EdgeInsets.all(ThemeDimens.offsetMedium),

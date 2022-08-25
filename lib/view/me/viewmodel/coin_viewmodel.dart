@@ -1,4 +1,5 @@
 import 'package:playflutter/base/base_viewmodel.dart';
+import 'package:playflutter/extensions/function_extensions.dart';
 import 'package:playflutter/model/entity/coin_record.dart';
 import 'package:playflutter/model/entity/details.dart';
 import 'package:playflutter/model/http/constants/api_constants.dart';
@@ -46,7 +47,7 @@ class CoinViewModel extends BaseViewModel {
 
   String findCoinCount() {
     return accountService.viewStates.accountData?.data.coinInfo.coinCount
-            .toString() ??
+            .let((self) => self.toString()) ??
         "0";
   }
 }

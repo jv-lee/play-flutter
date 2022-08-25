@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:playflutter/extensions/common_extensions.dart';
+import 'package:playflutter/extensions/function_extensions.dart';
 import 'package:playflutter/widget/status/status.dart';
 import 'package:playflutter/widget/status/status_controller.dart';
 
@@ -56,11 +56,7 @@ class _SuperListViewState extends State<SuperListView> {
   late ScrollController _controller;
 
   initScrollController() {
-    if (widget.scrollController != null) {
-      _controller = widget.scrollController!;
-    } else {
-      _controller = ScrollController();
-    }
+    _controller = widget.scrollController ?? ScrollController();
     _controller.addListener(() {
       if (_controller.position.pixels == _controller.position.maxScrollExtent) {
         if (widget.statusController.itemStatus != ItemStatus.end &&

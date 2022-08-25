@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:playflutter/extensions/function_extensions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// @author jv.lee
@@ -80,9 +81,7 @@ class LocalTools {
       required Function(dynamic error) onError}) async {
     // 本地缓存获取
     T? data = await localData(localKey, createJson);
-    if (data != null) {
-      callback(data);
-    }
+    data?.run((self) => callback(self));
 
     // 网络请求
     requestFuture.then((value) {

@@ -65,6 +65,11 @@ class HomeViewModel extends BaseViewModel {
         (page) => _model.getContentDataAsync(page).then((value) => value.data));
   }
 
+  void changeBannerIndex(int index) {
+    viewStates.bannerIndex = index;
+    notifyListeners();
+  }
+
   void _requestHeaderData() async {
     LocalTools.localRequest<BannerData>(
         localKey: ThemeConstants.LOCAL_HOME_BANNER,
@@ -80,11 +85,6 @@ class HomeViewModel extends BaseViewModel {
 
     viewStates.categoryList.clear();
     viewStates.categoryList.addAll(HomeCategory.getHomeCategory());
-  }
-
-  void changeBannerIndex(int index) {
-    viewStates.bannerIndex = index;
-    notifyListeners();
   }
 
   /// 全局事件 mainTab被点击回调

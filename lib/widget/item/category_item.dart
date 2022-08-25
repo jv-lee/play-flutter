@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:playflutter/extensions/function_extensions.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/view/home/model/entity/home_category.dart';
 import 'package:playflutter/widget/common/card_item_container.dart';
@@ -18,9 +19,7 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return CardItemContainer(
         width: MediaQuery.of(context).size.width / 2,
-        onItemClick: () => {
-              if (onItemClick != null) {onItemClick!(category)}
-            },
+        onItemClick: () => onItemClick?.run((self) => self(category)),
         child: Column(children: [
           SizedBox(
               width: ThemeDimens.homeCategoryItemSize,

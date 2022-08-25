@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
+import 'package:playflutter/extensions/function_extensions.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/theme/theme_strings.dart';
@@ -55,11 +56,12 @@ class MeViewModel extends BaseViewModel {
   void _changeViewState() {
     viewStates.isLogin = accountService.viewStates.isLogin;
     if (accountService.viewStates.isLogin) {
-      final accountData = accountService.viewStates.accountData?.data;
-      viewStates.headerWidget = Image.asset(ThemeImages.launcherRoundPng);
-      viewStates.userName = accountData?.userInfo.nickname ?? "";
-      viewStates.userDesc =
-          "等级：${accountData?.coinInfo.level} 排名：${accountData?.coinInfo.rank}";
+      accountService.viewStates.accountData?.data.run((self) {
+        viewStates.headerWidget = Image.asset(ThemeImages.launcherRoundPng);
+        viewStates.userName = self.userInfo.nickname;
+        viewStates.userDesc =
+            "等级：${self.coinInfo.level} 排名：${self.coinInfo.rank}";
+      });
     } else {
       viewStates = _MeViewState();
     }

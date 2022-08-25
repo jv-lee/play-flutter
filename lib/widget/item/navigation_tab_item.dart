@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:playflutter/extensions/function_extensions.dart';
 import 'package:playflutter/model/entity/navigation_tab.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 
@@ -23,7 +24,7 @@ class NavigationTabItem extends StatelessWidget {
         ? Theme.of(context).hoverColor
         : Theme.of(context).primaryColor;
     Color tabColor =
-    isSelected ? Theme.of(context).focusColor : Colors.transparent;
+        isSelected ? Theme.of(context).focusColor : Colors.transparent;
 
     // 包裹row让内部text自适应宽度
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -32,10 +33,7 @@ class NavigationTabItem extends StatelessWidget {
           padding: const EdgeInsets.only(
               top: ThemeDimens.offsetMedium, bottom: ThemeDimens.offsetMedium),
           child: InkWell(
-              onTap: () => {
-                if (onItemClick != null)
-                  {onItemClick!(navigationTab)}
-              },
+              onTap: () => onItemClick?.run((self) => self(navigationTab)),
               borderRadius: BorderRadius.circular(ThemeDimens.systemTabRadius),
               child: Container(
                   padding: const EdgeInsets.only(
@@ -45,7 +43,7 @@ class NavigationTabItem extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: tabColor,
                       borderRadius:
-                      BorderRadius.circular(ThemeDimens.systemTabRadius)),
+                          BorderRadius.circular(ThemeDimens.systemTabRadius)),
                   child: Text(navigationTab.name,
                       style: TextStyle(color: textColor)))))
     ]);
