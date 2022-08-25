@@ -28,7 +28,7 @@ Widget pageError(BuildContext context, Function reload) {
     Text("加载失败", style: TextStyle(color: Theme.of(context).primaryColorLight)),
     CupertinoButton(
         child: const Text("点击重试", style: TextStyle(color: Colors.blue)),
-        onPressed: () => reload)
+        onPressed: () => reload())
   ]));
 }
 
@@ -77,6 +77,6 @@ Widget itemError(BuildContext context, Function reload) {
                     padding: const EdgeInsets.only(left: 10),
                     child: const Text("点击重试",
                         style: TextStyle(color: Colors.blue))),
-                onTap: () => reload)
+                onTap: () => reload())
           ])));
 }
