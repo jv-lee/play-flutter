@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_page_state.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
@@ -26,15 +28,20 @@ class _DetailsState extends BasePageState<DetailsPage> {
     return buildViewModel<DetailsViewModel>(
         create: (context) =>
             DetailsViewModel(context, detailsData: widget.detailsData),
-        viewBuild: (context, viewModel) => WillPopScope(
-            onWillPop: viewModel.onBackChange,
-            child: Scaffold(
-                appBar: AppBar(
-                    title: Text(viewModel.detailsData.title),
-                    actions: [buildActionMenu(viewModel)],
-                    leading:
-                        BackButton(onPressed: () => Navigator.pop(context))),
-                body: buildWebPage(viewModel))));
+        viewBuild: (context, viewModel) => Platform.isIOS
+            ? buildContent(viewModel)
+            : WillPopScope(
+                onWillPop: viewModel.onBackChange,
+                child: buildContent(viewModel)));
+  }
+
+  Widget buildContent(DetailsViewModel viewModel) {
+    return Scaffold(
+        appBar: AppBar(
+            title: Text(viewModel.detailsData.title),
+            actions: [buildActionMenu(viewModel)],
+            leading: BackButton(onPressed: () => Navigator.pop(context))),
+        body: buildWebPage(viewModel));
   }
 
   /// 构建更多菜单按钮弹窗
