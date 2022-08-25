@@ -10,6 +10,7 @@ import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/tools/status_tools.dart';
 import 'package:playflutter/view/me/viewmodel/coin_viewmodel.dart';
+import 'package:playflutter/widget/common/ink_well_container.dart';
 import 'package:playflutter/widget/common/transparent_scaffold.dart';
 import 'package:playflutter/widget/status/super_list_view.dart';
 
@@ -126,35 +127,31 @@ class _CoinPageState extends BasePageState<CoinPage> {
                   color: Theme.of(context).hoverColor),
               // 查看积分排行榜 item
               Expanded(
-                  child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: ThemeDimens.offsetLarge),
-                      child: Material(
-                          child: InkWell(
-                              onTap: () => Navigator.pushNamed(
-                                  context, RouteNames.coin_rank),
-                              borderRadius: const BorderRadius.only(
-                                  bottomLeft: Radius.circular(
-                                      ThemeDimens.offsetRadiusMedium),
-                                  bottomRight: Radius.circular(
-                                      ThemeDimens.offsetRadiusMedium)),
-                              child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(ThemeStrings.coinToRankText,
-                                        style: TextStyle(
-                                            fontSize:
-                                                ThemeDimens.fontSizeMedium,
-                                            color: Theme.of(context)
-                                                .primaryColorLight)),
-                                    SvgPicture.asset(ThemeImages.commonArrowSvg,
-                                        width: 24,
-                                        height: 24,
-                                        color:
-                                            Theme.of(context).primaryColorLight)
-                                  ])))))
+                  child: InkWellContainer(
+                      onTap: () =>
+                          Navigator.pushNamed(context, RouteNames.coin_rank),
+                      borderRadius: const BorderRadius.only(
+                          bottomLeft:
+                              Radius.circular(ThemeDimens.offsetRadiusMedium),
+                          bottomRight:
+                              Radius.circular(ThemeDimens.offsetRadiusMedium)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: ThemeDimens.offsetLarge),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(ThemeStrings.coinToRankText,
+                                  style: TextStyle(
+                                      fontSize: ThemeDimens.fontSizeMedium,
+                                      color:
+                                          Theme.of(context).primaryColorLight)),
+                              SvgPicture.asset(ThemeImages.commonArrowSvg,
+                                  width: 24,
+                                  height: 24,
+                                  color: Theme.of(context).primaryColorLight)
+                            ]),
+                      )))
             ])));
   }
 
