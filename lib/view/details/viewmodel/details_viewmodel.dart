@@ -74,8 +74,14 @@ class DetailsViewModel extends BaseViewModel {
   }
 
   /// webView开始加载
-  void onPageStarted(url) {
-    viewStates.pageHolderVisible = false;
+  void onPageStarted(url) async {
+    viewStates
+      ..pageHolderVisible = false
+      ..canGoBack = await viewStates.webViewController?.canGoBack() ?? false
+      ..canGoForward =
+          await viewStates.webViewController?.canGoForward() ?? false
+      ..webNavigationVisible =
+          (viewStates.canGoBack || viewStates.canGoForward);
     notifyListeners();
   }
 
@@ -102,6 +108,10 @@ class DetailsViewModel extends BaseViewModel {
     }
     return NavigationDecision.navigate;
   }
+
+  void onMoveEvent(PointerMoveEvent event) async {
+
+  }
 }
 
 class _DetailsViewState {
@@ -109,4 +119,8 @@ class _DetailsViewState {
   var pageHolderVisible = true;
   var progressVisible = true;
   var progress = 0;
+  var webNavigationVisible = false;
+  var canGoBack = false;
+  var canGoForward = false;
+  var offsetY = 0.0;
 }

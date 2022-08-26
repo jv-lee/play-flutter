@@ -75,17 +75,19 @@ class _DetailsState extends BasePageState<DetailsPage> {
   /// 构建webView页面
   Widget buildWebPage(DetailsViewModel viewModel) {
     return Stack(children: [
-      WebView(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          initialUrl: viewModel.detailsData.link,
-          javascriptMode: JavascriptMode.unrestricted,
-          gestureNavigationEnabled: true,
-          onWebViewCreated: (controller) =>
-              viewModel.viewStates.webViewController = controller,
-          onProgress: viewModel.onProgress,
-          onPageStarted: viewModel.onPageStarted,
-          onPageFinished: viewModel.onPageFinished,
-          navigationDelegate: viewModel.navigationDelegate),
+      Listener(
+          onPointerMove: viewModel.onMoveEvent,
+          child: WebView(
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              initialUrl: viewModel.detailsData.link,
+              javascriptMode: JavascriptMode.unrestricted,
+              gestureNavigationEnabled: true,
+              onWebViewCreated: (controller) =>
+                  viewModel.viewStates.webViewController = controller,
+              onProgress: viewModel.onProgress,
+              onPageStarted: viewModel.onPageStarted,
+              onPageFinished: viewModel.onPageFinished,
+              navigationDelegate: viewModel.navigationDelegate)),
       Visibility(
           visible: viewModel.viewStates.pageHolderVisible,
           child: Container(
@@ -95,7 +97,37 @@ class _DetailsState extends BasePageState<DetailsPage> {
       Visibility(
           visible: viewModel.viewStates.progressVisible,
           child: LinearProgressIndicator(
-              value: (viewModel.viewStates.progress / 100)))
+              value: (viewModel.viewStates.progress / 100))),
+      Align(
+          alignment: Alignment.bottomCenter,
+          child: Visibility(
+              visible: viewModel.viewStates.webNavigationVisible,
+              child: buildWebNavigationBar(viewModel)))
     ]);
+  }
+
+  Widget buildWebNavigationBar(DetailsViewModel viewModel) {
+    return Container(
+      width: double.infinity,
+      height: ThemeDimens.toolbarHeight,
+      color: Theme.of(context).cardColor,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          GestureDetector(
+              onTap: () => viewModel.viewStates.webViewController?.goBack(),
+              child: Icon(Icons.arrow_back_ios,
+                  color: viewModel.viewStates.canGoBack
+                      ? Theme.of(context).primaryColorLight
+                      : Colors.grey)),
+          GestureDetector(
+              onTap: () => viewModel.viewStates.webViewController?.goForward(),
+              child: Icon(Icons.arrow_forward_ios,
+                  color: viewModel.viewStates.canGoForward
+                      ? Theme.of(context).primaryColorLight
+                      : Colors.grey))
+        ],
+      ),
+    );
   }
 }
