@@ -82,8 +82,8 @@ mixin WebScrollMixin<T extends StatefulWidget> on State<T> {
   _changeOffset(offset) {
     if (offset < 0) {
       webScrollViewStates.offsetY = 0;
-    } else if (offset > ThemeDimens.toolbarHeight) {
-      webScrollViewStates.offsetY = ThemeDimens.toolbarHeight;
+    } else if (offset > webScrollViewStates._offsetLimit) {
+      webScrollViewStates.offsetY = webScrollViewStates._offsetLimit;
     } else {
       webScrollViewStates.offsetY = offset;
     }

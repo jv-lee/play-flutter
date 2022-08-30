@@ -9,6 +9,7 @@ import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/details/mixin/web_scroll_mixin.dart';
 import 'package:playflutter/view/details/viewmodel/details_viewmodel.dart';
 import 'package:playflutter/widget/common/app_popup_menu_divider.dart';
+import 'package:playflutter/widget/common/route_load_page.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 /// @author jv.lee
@@ -86,19 +87,20 @@ class _DetailsState extends BasePageState<DetailsPage>
       Listener(
           onPointerMove: onMoveEvent,
           onPointerUp: onUpEvent,
-          child: WebView(
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              initialUrl: viewModel.detailsData.link,
-              javascriptMode: JavascriptMode.unrestricted,
-              gestureNavigationEnabled: true,
-              onWebViewCreated: (controller) {
-                viewModel.viewStates.webViewController = controller;
-                bindWebViewController(controller);
-              },
-              onProgress: viewModel.onProgress,
-              onPageStarted: viewModel.onPageStarted,
-              onPageFinished: viewModel.onPageFinished,
-              navigationDelegate: viewModel.navigationDelegate)),
+          child: RouteLoadPage(
+              child: WebView(
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                  initialUrl: viewModel.detailsData.link,
+                  javascriptMode: JavascriptMode.unrestricted,
+                  gestureNavigationEnabled: true,
+                  onWebViewCreated: (controller) {
+                    viewModel.viewStates.webViewController = controller;
+                    bindWebViewController(controller);
+                  },
+                  onProgress: viewModel.onProgress,
+                  onPageStarted: viewModel.onPageStarted,
+                  onPageFinished: viewModel.onPageFinished,
+                  navigationDelegate: viewModel.navigationDelegate))),
       Visibility(
           visible: viewModel.viewStates.pageHolderVisible,
           child: Container(
@@ -121,7 +123,14 @@ class _DetailsState extends BasePageState<DetailsPage>
     return Container(
       width: double.infinity,
       height: ThemeDimens.toolbarHeight,
-      color: Theme.of(context).cardColor,
+      decoration:
+          BoxDecoration(color: Theme.of(context).cardColor, boxShadow: const [
+        BoxShadow(
+            color: Colors.black12,
+            offset: Offset.zero,
+            blurRadius: 15.0,
+            spreadRadius: 1.0)
+      ]),
       transform:
           Transform.translate(offset: Offset(0, webScrollViewStates.offsetY))
               .transform,
@@ -129,13 +138,13 @@ class _DetailsState extends BasePageState<DetailsPage>
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           GestureDetector(
-              onTap: () => viewModel.viewStates.webViewController?.goBack(),
+              onTap: () => viewModel.onGoBack(),
               child: Icon(Icons.arrow_back_ios,
                   color: viewModel.viewStates.canGoBack
                       ? Theme.of(context).primaryColorLight
                       : Colors.grey)),
           GestureDetector(
-              onTap: () => viewModel.viewStates.webViewController?.goForward(),
+              onTap: () => viewModel.onGoForward(),
               child: Icon(Icons.arrow_forward_ios,
                   color: viewModel.viewStates.canGoForward
                       ? Theme.of(context).primaryColorLight

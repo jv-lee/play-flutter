@@ -53,8 +53,8 @@ abstract class BaseViewModel with ChangeNotifier {
   /// 延时执行context函数
   /// [duration] 延时时长
   /// [function] 执行函数
-  runViewContextDelay(Duration duration, RunViewContext function) {
-    Future.delayed(duration).then((value) async {
+  runViewContextDelay(RunViewContext function,{Duration? duration}) {
+    Future.delayed(duration ?? const Duration(milliseconds: 100)).then((value) async {
       function(context);
     });
   }
