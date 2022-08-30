@@ -6,6 +6,7 @@ import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/model/entity/details.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
+import 'package:playflutter/view/details/mixin/web_scroll_mixin.dart';
 import 'package:playflutter/view/details/viewmodel/details_viewmodel.dart';
 import 'package:playflutter/widget/common/app_popup_menu_divider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -22,7 +23,14 @@ class DetailsPage extends StatefulWidget {
   State<StatefulWidget> createState() => _DetailsState();
 }
 
-class _DetailsState extends BasePageState<DetailsPage> {
+class _DetailsState extends BasePageState<DetailsPage>
+    with SingleTickerProviderStateMixin, WebScrollMixin {
+  @override
+  void initState() {
+    bindTickerProvider(this);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return buildViewModel<DetailsViewModel>(
@@ -76,14 +84,17 @@ class _DetailsState extends BasePageState<DetailsPage> {
   Widget buildWebPage(DetailsViewModel viewModel) {
     return Stack(children: [
       Listener(
-          onPointerMove: viewModel.onMoveEvent,
+          onPointerMove: onMoveEvent,
+          onPointerUp: onUpEvent,
           child: WebView(
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               initialUrl: viewModel.detailsData.link,
               javascriptMode: JavascriptMode.unrestricted,
               gestureNavigationEnabled: true,
-              onWebViewCreated: (controller) =>
-                  viewModel.viewStates.webViewController = controller,
+              onWebViewCreated: (controller) {
+                viewModel.viewStates.webViewController = controller;
+                bindWebViewController(controller);
+              },
               onProgress: viewModel.onProgress,
               onPageStarted: viewModel.onPageStarted,
               onPageFinished: viewModel.onPageFinished,
@@ -111,6 +122,9 @@ class _DetailsState extends BasePageState<DetailsPage> {
       width: double.infinity,
       height: ThemeDimens.toolbarHeight,
       color: Theme.of(context).cardColor,
+      transform:
+          Transform.translate(offset: Offset(0, webScrollViewStates.offsetY))
+              .transform,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

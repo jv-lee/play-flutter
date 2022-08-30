@@ -108,10 +108,6 @@ class DetailsViewModel extends BaseViewModel {
     }
     return NavigationDecision.navigate;
   }
-
-  void onMoveEvent(PointerMoveEvent event) async {
-
-  }
 }
 
 class _DetailsViewState {
@@ -122,5 +118,4 @@ class _DetailsViewState {
   var webNavigationVisible = false;
   var canGoBack = false;
   var canGoForward = false;
-  var offsetY = 0.0;
 }
