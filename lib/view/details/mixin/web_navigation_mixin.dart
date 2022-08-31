@@ -11,13 +11,13 @@ mixin WebNavigationMixin<T extends StatefulWidget> on State<T> {
 
   @override
   void initState() {
-    _initAnimator();
+    _initAnimation();
     super.initState();
   }
 
   @override
   void dispose() {
-    _disposeAnimator();
+    _disposeAnimation();
     super.dispose();
   }
 
@@ -96,10 +96,10 @@ mixin WebNavigationMixin<T extends StatefulWidget> on State<T> {
 
   void onUpEvent(PointerUpEvent event) {
     _changeNavigationVisible((controller) {
-      if (webNavigationViewStates._canAnimatorVisible()) {
-        _animatorVisible();
-      } else if (webNavigationViewStates._canAnimatorHide()) {
-        _animatorHide();
+      if (webNavigationViewStates._canAnimationVisible()) {
+        _animationVisible();
+      } else if (webNavigationViewStates._canAnimationHide()) {
+        _animationHide();
       } else {
         webNavigationViewStates._clearScrollCount();
       }
@@ -132,7 +132,7 @@ mixin WebNavigationMixin<T extends StatefulWidget> on State<T> {
     }
   }
 
-  _initAnimator() {
+  _initAnimation() {
     assert(this is TickerProvider);
 
     webNavigationViewStates._tickerProvider = this as TickerProvider;
@@ -142,32 +142,32 @@ mixin WebNavigationMixin<T extends StatefulWidget> on State<T> {
     });
   }
 
-  _disposeAnimator() {
+  _disposeAnimation() {
     webNavigationViewStates._animationController?.run((self) => self.dispose());
   }
 
-  _animatorVisible() {
+  _animationVisible() {
     webNavigationViewStates._animationController?.run((self) {
       webNavigationViewStates._isVisible = true;
-      var animator =
+      var animation =
           IntTween(begin: webNavigationViewStates.offsetY.toInt(), end: 0)
               .animate(self);
-      animator.addListener(() => setState(
-          () => webNavigationViewStates.offsetY = animator.value.toDouble()));
+      animation.addListener(() => setState(
+          () => webNavigationViewStates.offsetY = animation.value.toDouble()));
       self.reset();
       self.forward();
     });
   }
 
-  _animatorHide() {
+  _animationHide() {
     webNavigationViewStates._animationController?.run((self) {
       webNavigationViewStates._isVisible = false;
-      var animator = IntTween(
+      var animation = IntTween(
               begin: webNavigationViewStates.offsetY.toInt(),
               end: webNavigationViewStates._offsetLimit.toInt())
           .animate(self);
-      animator.addListener(() => setState(
-          () => webNavigationViewStates.offsetY = animator.value.toDouble()));
+      animation.addListener(() => setState(
+          () => webNavigationViewStates.offsetY = animation.value.toDouble()));
       self.reset();
       self.forward();
     });
@@ -191,7 +191,7 @@ class _WebNavigationViewState {
   var webNavigationInit = false; // webNavigation是否初始化显示
   var pageHolderVisible = true; // web是否显示占位widget
 
-  bool _canAnimatorVisible() {
+  bool _canAnimationVisible() {
     if (!_isVisible && _scrollBottomCount > _scrollTopCount) {
       _clearScrollCount();
       return true;
@@ -199,7 +199,7 @@ class _WebNavigationViewState {
     return false;
   }
 
-  bool _canAnimatorHide() {
+  bool _canAnimationHide() {
     if (_isVisible && _scrollTopCount > _scrollBottomCount) {
       _clearScrollCount();
       return true;

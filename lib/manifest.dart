@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:playflutter/model/entity/details.dart';
 import 'package:playflutter/model/entity/parent_tab.dart';
-import 'package:playflutter/route/route_animator.dart';
+import 'package:playflutter/route/route_animation.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/view/account/login.dart';
 import 'package:playflutter/view/account/register.dart';
