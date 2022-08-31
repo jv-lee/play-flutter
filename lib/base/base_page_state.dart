@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
 
 import 'package:flutter/material.dart';
+import 'package:playflutter/extensions/function_extensions.dart';
 import 'package:playflutter/main.dart';
 import 'package:playflutter/tools/log_tools.dart';
 import 'package:toast/toast.dart';
@@ -24,7 +25,7 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    routeObserver.subscribe(this, ModalRoute.of(context)!);
+    ModalRoute.of(context)?.run((self) => routeObserver.subscribe(this, self));
   }
 
   @override
