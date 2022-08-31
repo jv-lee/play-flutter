@@ -109,11 +109,11 @@ class _RegisterPageState extends BasePageState<RegisterPage> {
   }
 
   Widget buildSpacer() {
-    return Container(
-        padding: const EdgeInsets.only(
-            left: ThemeDimens.offsetMedium, right: ThemeDimens.offsetMedium),
-        width: double.infinity,
+    return Divider(
         height: 1,
+        thickness: 1,
+        indent: ThemeDimens.offsetMedium,
+        endIndent: ThemeDimens.offsetMedium,
         color: Theme.of(context).scaffoldBackgroundColor);
   }
 }

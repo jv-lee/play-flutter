@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/base/base_page_state.dart';
 import 'package:playflutter/extensions/page_state_extensions.dart';
@@ -62,7 +61,12 @@ class _LoginPageState extends BasePageState<LoginPage> {
                       icon: SvgPicture.asset(ThemeImages.accountUsernameSvg,
                           width: 24, height: 24),
                       hintText: ThemeStrings.accountUsernameText)),
-              buildSpacer(),
+              Divider(
+                  height: 1,
+                  thickness: 1,
+                  indent: ThemeDimens.offsetMedium,
+                  endIndent: ThemeDimens.offsetMedium,
+                  color: Theme.of(context).scaffoldBackgroundColor),
               TextField(
                   onChanged: (text) => viewModel.changePassword(text),
                   onSubmitted: (text) => viewModel.requestLogin(),
@@ -100,12 +104,4 @@ class _LoginPageState extends BasePageState<LoginPage> {
         ]));
   }
 
-  Widget buildSpacer() {
-    return Container(
-        padding: const EdgeInsets.only(
-            left: ThemeDimens.offsetMedium, right: ThemeDimens.offsetMedium),
-        width: double.infinity,
-        height: 1,
-        color: Theme.of(context).scaffoldBackgroundColor);
-  }
 }
