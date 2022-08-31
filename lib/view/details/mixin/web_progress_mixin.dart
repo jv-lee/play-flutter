@@ -53,7 +53,7 @@ mixin WebProgressMixin<T extends StatefulWidget> on State<T> {
 
   _startAnimator() {
     webProgressViewStates._animationController?.run((self) {
-      self.duration = const Duration(milliseconds: 5000);
+      self.duration = const Duration(milliseconds: 8000);
       setState(() {
         webProgressViewStates.progress = 0;
         webProgressViewStates.progressVisible = true;
