@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:playflutter/extensions/animation_extensions.dart';
 import 'package:playflutter/extensions/function_extensions.dart';
 
 /// @author jv.lee
@@ -75,16 +76,9 @@ mixin WebProgressMixin<T extends StatefulWidget> on State<T> {
           .animate(CurvedAnimation(parent: self, curve: Curves.linear));
       animator.addListener(() =>
           setState(() => webProgressViewStates.progress = animator.value));
-      void handler(status) {
-        if (status == AnimationStatus.completed) {
-          animator.removeStatusListener(handler);
-          setState(() {
-            webProgressViewStates.progressVisible = false;
-          });
-        }
-      }
-
-      animator.addStatusListener(handler);
+      animator.addCompletedCallback(() {
+        setState(() => webProgressViewStates.progressVisible = false);
+      });
       self.reset();
       self.forward();
     });

@@ -10,7 +10,7 @@ import 'package:playflutter/view/details/mixin/web_navigation_mixin.dart';
 import 'package:playflutter/view/details/mixin/web_progress_mixin.dart';
 import 'package:playflutter/view/details/viewmodel/details_viewmodel.dart';
 import 'package:playflutter/widget/common/app_popup_menu_divider.dart';
-import 'package:playflutter/widget/common/route_load_page.dart';
+import 'package:playflutter/widget/common/route_lazy_load.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 /// @author jv.lee
@@ -82,7 +82,7 @@ class _DetailsState extends BasePageState<DetailsPage>
       Listener(
           onPointerMove: onMoveEvent,
           onPointerUp: onUpEvent,
-          child: RouteLoadPage(
+          child: RouteLazyLoad(
               child: WebView(
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                   initialUrl: viewModel.detailsData.link,
