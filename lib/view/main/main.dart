@@ -24,8 +24,8 @@ class _MainState extends BasePageState<MainPage> {
                 body: PageView.builder(
                     itemCount: viewModel.viewStates.mainTabPages.length,
                     controller: viewModel.viewStates.pageController,
-                    physics: const NeverScrollableScrollPhysics(),
                     //静止PageView滑动
+                    physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) =>
                         viewModel.viewStates.mainTabPages[index].page),
                 bottomNavigationBar: BottomNavigationBar(

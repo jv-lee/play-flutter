@@ -73,56 +73,6 @@ class DetailsViewModel extends BaseViewModel {
     return true;
   }
 
-  /// webView开始加载
-  void onPageStarted(url) {
-    viewStates.pageHolderVisible = false;
-    notifyListeners();
-  }
-
-  /// webView加载完毕
-  void onPageFinished(url) {
-    runViewContext((context) async {
-      viewStates
-        ..progressVisible = false
-        ..canGoBack = await viewStates.webViewController?.canGoBack() ?? false
-        ..canGoForward =
-            await viewStates.webViewController?.canGoForward() ?? false
-        ..webNavigationVisible =
-            (viewStates.canGoBack || viewStates.canGoForward);
-      notifyListeners();
-    });
-  }
-
-  /// webView加载Progress
-  void onProgress(progress) {
-    viewStates
-      ..progressVisible = progress != 100
-      ..progress = progress;
-    notifyListeners();
-  }
-
-  void onGoBack() {
-    viewStates.webViewController?.goBack();
-    runViewContextDelay((context) async {
-      viewStates
-        ..canGoBack = await viewStates.webViewController?.canGoBack() ?? false
-        ..canGoForward =
-            await viewStates.webViewController?.canGoForward() ?? false;
-      notifyListeners();
-    });
-  }
-
-  void onGoForward() {
-    viewStates.webViewController?.goForward();
-    runViewContextDelay((context) async {
-      viewStates
-        ..canGoBack = await viewStates.webViewController?.canGoBack() ?? false
-        ..canGoForward =
-            await viewStates.webViewController?.canGoForward() ?? false;
-      notifyListeners();
-    });
-  }
-
   /// 处理scheme intent跳转原生逻辑
   FutureOr<NavigationDecision> navigationDelegate(NavigationRequest request) {
     for (var scheme in ApiConstants.WEB_SCHEME_LIST) {
@@ -136,10 +86,4 @@ class DetailsViewModel extends BaseViewModel {
 
 class _DetailsViewState {
   WebViewController? webViewController;
-  var pageHolderVisible = true;
-  var progressVisible = true;
-  var progress = 0;
-  var canGoBack = false;
-  var canGoForward = false;
-  var webNavigationVisible = false;
 }

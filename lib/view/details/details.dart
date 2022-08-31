@@ -6,7 +6,8 @@ import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/model/entity/details.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_strings.dart';
-import 'package:playflutter/view/details/mixin/web_scroll_mixin.dart';
+import 'package:playflutter/view/details/mixin/web_navigation_mixin.dart';
+import 'package:playflutter/view/details/mixin/web_progress_mixin.dart';
 import 'package:playflutter/view/details/viewmodel/details_viewmodel.dart';
 import 'package:playflutter/widget/common/app_popup_menu_divider.dart';
 import 'package:playflutter/widget/common/route_load_page.dart';
@@ -25,13 +26,7 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsState extends BasePageState<DetailsPage>
-    with SingleTickerProviderStateMixin, WebScrollMixin {
-  @override
-  void initState() {
-    bindTickerProvider(this);
-    super.initState();
-  }
-
+    with TickerProviderStateMixin, WebProgressMixin, WebNavigationMixin {
   @override
   Widget build(BuildContext context) {
     return buildViewModel<DetailsViewModel>(
@@ -97,24 +92,29 @@ class _DetailsState extends BasePageState<DetailsPage>
                     viewModel.viewStates.webViewController = controller;
                     bindWebViewController(controller);
                   },
-                  onProgress: viewModel.onProgress,
-                  onPageStarted: viewModel.onPageStarted,
-                  onPageFinished: viewModel.onPageFinished,
+                  onPageStarted: (url) {
+                    onNavigationPageStarted(url);
+                    onProgressPageStarted(url);
+                  },
+                  onPageFinished: (url) {
+                    onNavigationPageFinished(url);
+                    onProgressPageFinished(url);
+                  },
                   navigationDelegate: viewModel.navigationDelegate))),
       Visibility(
-          visible: viewModel.viewStates.pageHolderVisible,
+          visible: webNavigationViewStates.pageHolderVisible,
           child: Container(
               width: double.infinity,
               height: double.infinity,
               color: Theme.of(context).scaffoldBackgroundColor)),
       Visibility(
-          visible: viewModel.viewStates.progressVisible,
+          visible: webProgressViewStates.progressVisible,
           child: LinearProgressIndicator(
-              value: (viewModel.viewStates.progress / 100))),
+              value: (webProgressViewStates.progress / 100))),
       Align(
           alignment: Alignment.bottomCenter,
           child: Visibility(
-              visible: viewModel.viewStates.webNavigationVisible,
+              visible: webNavigationViewStates.webNavigationInit,
               child: buildWebNavigationBar(viewModel)))
     ]);
   }
@@ -131,22 +131,22 @@ class _DetailsState extends BasePageState<DetailsPage>
             blurRadius: 15.0,
             spreadRadius: 1.0)
       ]),
-      transform:
-          Transform.translate(offset: Offset(0, webScrollViewStates.offsetY))
-              .transform,
+      transform: Transform.translate(
+              offset: Offset(0, webNavigationViewStates.offsetY))
+          .transform,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           GestureDetector(
-              onTap: () => viewModel.onGoBack(),
+              onTap: () => onGoBack(),
               child: Icon(Icons.arrow_back_ios,
-                  color: viewModel.viewStates.canGoBack
+                  color: webNavigationViewStates.canGoBack
                       ? Theme.of(context).primaryColorLight
                       : Colors.grey)),
           GestureDetector(
-              onTap: () => viewModel.onGoForward(),
+              onTap: () => onGoForward(),
               child: Icon(Icons.arrow_forward_ios,
-                  color: viewModel.viewStates.canGoForward
+                  color: webNavigationViewStates.canGoForward
                       ? Theme.of(context).primaryColorLight
                       : Colors.grey))
         ],
