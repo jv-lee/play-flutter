@@ -59,11 +59,11 @@ mixin WebProgressMixin<T extends StatefulWidget> on State<T> {
         webProgressViewStates.progressVisible = true;
       });
       final endProgress = Platform.isIOS ? 100 : 80;
-      var animator = IntTween(
+      var animation = IntTween(
               begin: webProgressViewStates.progress, end: endProgress)
           .animate(CurvedAnimation(parent: self, curve: Curves.easeOutCubic));
-      animator.addListener(() =>
-          setState(() => webProgressViewStates.progress = animator.value));
+      animation.addListener(() =>
+          setState(() => webProgressViewStates.progress = animation.value));
       self.reset();
       self.forward();
     });

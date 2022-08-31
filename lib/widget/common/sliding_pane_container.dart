@@ -115,10 +115,10 @@ class _SlidingPaneContainerState extends State<SlidingPaneContainer>
 
   _closeAction() {
     widget.controller.updateExpand(false);
-    var animator = IntTween(begin: _offset.dx.toInt(), end: 0)
+    var animation = IntTween(begin: _offset.dx.toInt(), end: 0)
         .animate(_animationController);
-    animator.addListener(
-        () => setState(() => _offset = Offset(animator.value.toDouble(), 0)));
+    animation.addListener(
+        () => setState(() => _offset = Offset(animation.value.toDouble(), 0)));
     _animationController.reset();
     _animationController.forward();
   }
@@ -130,10 +130,10 @@ class _SlidingPaneContainerState extends State<SlidingPaneContainer>
     widget.controller.updateExpand(true);
     widget.controller.closeAction = _closeAction;
 
-    var animator = IntTween(begin: _offset.dx.toInt(), end: offsetX.toInt())
+    var animation = IntTween(begin: _offset.dx.toInt(), end: offsetX.toInt())
         .animate(_animationController);
-    animator.addListener(
-        () => setState(() => _offset = Offset(animator.value.toDouble(), 0)));
+    animation.addListener(
+        () => setState(() => _offset = Offset(animation.value.toDouble(), 0)));
     _animationController.reset();
     _animationController.forward();
   }
