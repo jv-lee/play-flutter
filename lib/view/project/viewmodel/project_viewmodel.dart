@@ -23,7 +23,7 @@ class ProjectViewModel extends BaseViewModel {
   void onCleared() {}
 
   void requestTabData() {
-    Preferences.localRequest<TabData>(
+    Preferences.requestCache<TabData>(
         localKey: ThemeConstants.LOCAL_PROJECT_TAB,
         createJson: (json) => TabData.fromJson(json),
         requestFuture: _model.getProjectTabDataAsync(),
