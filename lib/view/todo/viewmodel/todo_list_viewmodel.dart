@@ -72,7 +72,7 @@ class TodoListViewModel extends BaseViewModel implements TodoActionCallback {
     LogTools.log(
         "TodoList", "requestData type:$type,status:${this.status} - $status");
 
-    // request square list data.
+    // request todos list data.
     paging.requestData(
         status,
         (page) => _model
