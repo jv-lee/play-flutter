@@ -6,7 +6,6 @@ import 'dart:io';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:playflutter/extensions/function_extensions.dart';
 import 'package:playflutter/tools/cache/cache_functions.dart';
-import 'package:playflutter/tools/file_tools.dart';
 
 /// @author jv.lee
 /// @date 2022/8/31
@@ -60,19 +59,4 @@ class CacheTools {
     }).catchError(onError);
   }
 
-  static Future<String> getCacheTotalSize() async {
-    try {
-      final cacheManager = DefaultCacheManager();
-      final tempFile = await cacheManager.store.fileSystem.createFile("temp");
-      final size = await FileTools.getTotalSizeOfFilesInDir(tempFile.parent);
-      return FileTools.formatSize(size);
-    } catch (e) {
-      return FileTools.formatSize(0);
-    }
-  }
-
-  static Future<void> clearCache() {
-    final cacheManager = DefaultCacheManager();
-    return cacheManager.emptyCache();
-  }
 }

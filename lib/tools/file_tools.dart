@@ -6,12 +6,26 @@ import 'package:path_provider/path_provider.dart';
 class FileTools {
   /// 获取缓存
   static Future<double> loadApplicationCache() async {
-    /// 获取文件夹
-    Directory directory = await getApplicationDocumentsDirectory();
+    try {
+      // data/data/package/files
+      // Directory filesDirectory = await getApplicationSupportDirectory();
+      // data/data/package/cache
+      Directory cacheDirectory = await getTemporaryDirectory();
 
-    /// 获取缓存大小
-    double value = await getTotalSizeOfFilesInDir(directory);
-    return value;
+      // 获取缓存大小
+      double value = await getTotalSizeOfFilesInDir(cacheDirectory);
+      return value;
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  /// 清除缓存
+  static Future<void> clearApplicationCache() async {
+    // data/data/package/cache
+    Directory cacheDirectory = await getTemporaryDirectory();
+
+    await delDir(cacheDirectory);
   }
 
   /// 循环计算文件的大小（递归）

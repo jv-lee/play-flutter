@@ -55,7 +55,7 @@ class AppCookieInterceptor extends Interceptor {
 
   void saveCookie(cookie) {
     this.cookie = cookie;
-    Preferences.save<String>(_SAVE_TOKEN_KEY, cookie);
+    Preferences.save(_SAVE_TOKEN_KEY, cookie);
   }
 
   void clearCookie() {
