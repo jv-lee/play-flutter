@@ -53,7 +53,7 @@ class LocalPaging<T> extends Paging<T> {
 
       // 获取缓存数据
       var localData =
-          await Preferences.localData(localKey, (json) => createJson(json));
+          await Preferences.getCache(localKey, (json) => createJson(json));
 
       // 校验缓存数据
       if (localData != null && localData.getDataSource().isNotEmpty) {
@@ -69,7 +69,7 @@ class LocalPaging<T> extends Paging<T> {
   requestDataComplete(LoadStatus status, PagingData<T> data) {
     // 首页数据缓存
     if (status == LoadStatus.refresh && data.getDataSource().isNotEmpty) {
-      Preferences.localSave(localKey, data);
+      Preferences.saveCache(localKey, data);
     }
   }
 }

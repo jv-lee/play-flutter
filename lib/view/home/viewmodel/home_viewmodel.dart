@@ -72,7 +72,7 @@ class HomeViewModel extends BaseViewModel {
   }
 
   void _requestHeaderData() async {
-    Preferences.localRequest<BannerData>(
+    Preferences.requestCache<BannerData>(
         localKey: ThemeConstants.LOCAL_HOME_BANNER,
         createJson: (json) => BannerData.fromJson(json),
         requestFuture: _model.getBannerDataAsync(),

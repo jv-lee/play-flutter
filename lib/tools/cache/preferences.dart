@@ -55,7 +55,7 @@ class Preferences {
     prefs.remove(key);
   }
 
-  static void localSave<T>(String localKey, T? data) async {
+  static void saveCache<T>(String localKey, T? data) async {
     final prefs = await SharedPreferences.getInstance();
     if (data == null) {
       prefs.remove(localKey);
@@ -64,7 +64,7 @@ class Preferences {
     }
   }
 
-  static Future<T?> localData<T>(
+  static Future<T?> getCache<T>(
       String localKey, CreateJson<T> createJson) async {
     final prefs = await SharedPreferences.getInstance();
     final jsonStr = prefs.getString(localKey);
@@ -74,20 +74,20 @@ class Preferences {
     return null;
   }
 
-  static void localRequest<T>(
+  static void requestCache<T>(
       {required String localKey,
         required CreateJson<T> createJson,
         required Future<T> requestFuture,
         required Function(T value) callback,
         required Function(dynamic error) onError}) async {
     // 本地缓存获取
-    T? data = await localData(localKey, createJson);
+    T? data = await getCache(localKey, createJson);
     data?.run((self) => callback(self));
 
     // 网络请求
     requestFuture.then((value) {
       // 缓存网络数据
-      localSave(localKey, value);
+      saveCache(localKey, value);
       callback(value);
     }).catchError(onError);
   }

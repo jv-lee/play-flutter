@@ -11,8 +11,8 @@ import 'package:playflutter/tools/file_tools.dart';
 /// @author jv.lee
 /// @date 2022/8/31
 /// @description 缓存工具类，缓存业务数据（该数据支持清除,项目networkImage共用该缓存文件位置）
-class LocalTools {
-  static Future<bool> localSave<T>(String localKey, T? data) async {
+class CacheTools {
+  static Future<bool> saveCache<T>(String localKey, T? data) async {
     final cacheManager = DefaultCacheManager();
     if (data == null) {
       cacheManager.removeFile(localKey);
@@ -27,7 +27,7 @@ class LocalTools {
     }
   }
 
-  static Future<T?> localData<T>(
+  static Future<T?> getCache<T>(
       String localKey, CreateJson<T> createJson) async {
     final cacheManager = DefaultCacheManager();
     File? file = (await cacheManager.store.getFile(localKey))?.file;
@@ -42,25 +42,25 @@ class LocalTools {
     return null;
   }
 
-  static void localRequest<T>(
+  static void requestCache<T>(
       {required String localKey,
       required CreateJson<T> createJson,
       required Future<T> requestFuture,
       required Function(T value) callback,
       required Function(dynamic error) onError}) async {
     // 本地缓存获取
-    T? data = await localData(localKey, createJson);
+    T? data = await getCache(localKey, createJson);
     data?.run((self) => callback(self));
 
     // 网络请求
     requestFuture.then((value) {
       // 缓存网络数据
-      localSave(localKey, value);
+      saveCache(localKey, value);
       callback(value);
     }).catchError(onError);
   }
 
-  static Future<String> getTotalSize() async {
+  static Future<String> getCacheTotalSize() async {
     try {
       final cacheManager = DefaultCacheManager();
       final tempFile = await cacheManager.store.fileSystem.createFile("temp");
@@ -71,7 +71,7 @@ class LocalTools {
     }
   }
 
-  static Future<void> clearLocalCache() {
+  static Future<void> clearCache() {
     final cacheManager = DefaultCacheManager();
     return cacheManager.emptyCache();
   }
