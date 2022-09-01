@@ -1,7 +1,7 @@
 import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/model/entity/tab.dart';
 import 'package:playflutter/theme/theme_constants.dart';
-import 'package:playflutter/tools/cache/local_tools.dart';
+import 'package:playflutter/tools/cache/preferences.dart';
 import 'package:playflutter/view/official/model/official_model.dart';
 import 'package:playflutter/widget/status/status.dart';
 
@@ -23,7 +23,7 @@ class OfficialViewModel extends BaseViewModel {
   void onCleared() {}
 
   void requestTabData() {
-    LocalTools.localRequest<TabData>(
+    Preferences.localRequest<TabData>(
         localKey: ThemeConstants.LOCAL_OFFICIAL_TAB,
         createJson: (json) => TabData.fromJson(json),
         requestFuture: _model.getOfficialTabDataAsync(),

@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:playflutter/tools/cache/cache_functions.dart';
-import 'package:playflutter/tools/cache/local_tools.dart';
+import 'package:playflutter/tools/cache/preferences.dart';
 import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/widget/status/status.dart';
@@ -53,7 +53,7 @@ class LocalPaging<T> extends Paging<T> {
 
       // 获取缓存数据
       var localData =
-          await LocalTools.localData(localKey, (json) => createJson(json));
+          await Preferences.localData(localKey, (json) => createJson(json));
 
       // 校验缓存数据
       if (localData != null && localData.getDataSource().isNotEmpty) {
@@ -69,7 +69,7 @@ class LocalPaging<T> extends Paging<T> {
   requestDataComplete(LoadStatus status, PagingData<T> data) {
     // 首页数据缓存
     if (status == LoadStatus.refresh && data.getDataSource().isNotEmpty) {
-      LocalTools.localSave(localKey, data);
+      Preferences.localSave(localKey, data);
     }
   }
 }

@@ -7,7 +7,7 @@ import 'package:playflutter/extensions/exception_extensions.dart';
 import 'package:playflutter/model/entity/banner.dart';
 import 'package:playflutter/model/entity/content.dart';
 import 'package:playflutter/theme/theme_constants.dart';
-import 'package:playflutter/tools/cache/local_tools.dart';
+import 'package:playflutter/tools/cache/preferences.dart';
 import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/local_paging.dart';
 import 'package:playflutter/tools/paging/paging.dart';
@@ -72,7 +72,7 @@ class HomeViewModel extends BaseViewModel {
   }
 
   void _requestHeaderData() async {
-    LocalTools.localRequest<BannerData>(
+    Preferences.localRequest<BannerData>(
         localKey: ThemeConstants.LOCAL_HOME_BANNER,
         createJson: (json) => BannerData.fromJson(json),
         requestFuture: _model.getBannerDataAsync(),
