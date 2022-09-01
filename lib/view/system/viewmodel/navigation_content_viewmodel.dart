@@ -5,6 +5,7 @@ import 'package:playflutter/theme/theme_constants.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/local_paging.dart';
+import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/system/model/system_model.dart';
 import 'package:playflutter/widget/scroll/scroll_to_index.dart';
@@ -15,7 +16,7 @@ import 'package:playflutter/widget/scroll/scroll_to_index.dart';
 class NavigationContentViewModel extends BaseViewModel {
   final _model = SystemModel();
   final viewStates = _NavigationContentViewState();
-  late LocalPaging<NavigationTab> paging;
+  late Paging<NavigationTab> paging;
 
   NavigationContentViewModel(super.context);
 

@@ -23,7 +23,7 @@ import 'package:toast/toast.dart';
 class SquareViewModel extends BaseViewModel {
   final _model = SquareModel();
   late AccountService accountService;
-  late LocalPaging<Content> paging;
+  late Paging<Content> paging;
 
   SquareViewModel(super.context);
 

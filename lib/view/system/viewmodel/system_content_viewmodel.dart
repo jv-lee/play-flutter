@@ -13,7 +13,7 @@ import 'package:playflutter/view/system/model/system_model.dart';
 class SystemContentViewModel extends BaseViewModel {
   final _model = SystemModel();
 
-  late LocalPaging<ParentTab> paging;
+  late Paging<ParentTab> paging;
 
   SystemContentViewModel(super.context);
 

@@ -10,6 +10,7 @@ import 'package:playflutter/theme/theme_constants.dart';
 import 'package:playflutter/tools/cache/local_tools.dart';
 import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/local_paging.dart';
+import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/home/model/entity/home_category.dart';
 import 'package:playflutter/view/home/model/home_model.dart';
@@ -21,7 +22,7 @@ import 'package:playflutter/view/main/model/entity/main_tab_page.dart';
 class HomeViewModel extends BaseViewModel {
   final _model = HomeModel();
   final viewStates = _HomeViewState();
-  late LocalPaging<Content> paging;
+  late Paging<Content> paging;
 
   HomeViewModel(super.context);
 
