@@ -3,33 +3,33 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:playflutter/extensions/function_extensions.dart';
 import 'package:playflutter/tools/cache/cache_functions.dart';
+import 'package:playflutter/tools/cache/cache_manager.dart';
 
 /// @author jv.lee
 /// @date 2022/8/31
 /// @description 缓存工具类，缓存业务数据（该数据支持清除,项目networkImage共用该缓存文件位置）
+/// 该工具获取数据与Preferences效率对比
+/// 以主页banner数据为例 首次加载
+/// Preferences 155ms
+/// CacheTools 232ms
 class CacheTools {
   static Future<bool> saveCache<T>(String localKey, T? data) async {
-    final cacheManager = DefaultCacheManager();
     if (data == null) {
       cacheManager.removeFile(localKey);
       return false;
     } else {
       var jsonData = jsonEncode(data);
-      var tempFile = await cacheManager.store.fileSystem.createFile(localKey);
-      var file = await tempFile.writeAsString(jsonData);
-      await cacheManager.putFile(localKey, file.readAsBytesSync());
-      await tempFile.delete();
+      var file = await cacheManager.createFile(localKey);
+      await file.writeAsString(jsonData);
       return true;
     }
   }
 
   static Future<T?> getCache<T>(
       String localKey, CreateJson<T> createJson) async {
-    final cacheManager = DefaultCacheManager();
-    File? file = (await cacheManager.store.getFile(localKey))?.file;
+    File? file = await cacheManager.getFile(localKey);
 
     if (file != null) {
       final jsonStr = await file.readAsString();
@@ -58,5 +58,4 @@ class CacheTools {
       callback(value);
     }).catchError(onError);
   }
-
 }

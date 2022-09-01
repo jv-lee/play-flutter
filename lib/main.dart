@@ -3,6 +3,7 @@ import 'package:playflutter/manifest.dart';
 import 'package:playflutter/model/db/database_manager.dart';
 import 'package:playflutter/provider/dark_mode_provider.dart';
 import 'package:playflutter/route/route_names.dart';
+import 'package:playflutter/tools/cache/cache_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -20,6 +21,7 @@ class PlayFlutterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     databaseManager.init();
+    cacheManager.init();
     final providers = <SingleChildWidget>[];
     // 深色模式状态监听
     providers.add(ChangeNotifierProvider.value(
