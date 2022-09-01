@@ -1,10 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/theme/theme_strings.dart';
-import 'package:playflutter/tools/cache_tools.dart';
+import 'package:playflutter/tools/cache/local_tools.dart';
 import 'package:playflutter/view/account/service/account_service.dart';
 import 'package:playflutter/widget/dialog/confirm_dialog.dart';
 import 'package:provider/provider.dart';
@@ -31,8 +28,7 @@ class SettingsViewModel extends BaseViewModel {
   }
 
   void _changeCache() async {
-    var cache = await CacheTools.loadApplicationCache();
-    viewStates.cacheSize = CacheTools.formatSize(cache);
+    viewStates.cacheSize = await LocalTools.getTotalSize();
     notifyListeners();
   }
 
@@ -44,8 +40,7 @@ class SettingsViewModel extends BaseViewModel {
             onCancel: () => Navigator.pop(context),
             onConfirm: () async {
               Navigator.pop(context);
-              Directory directory = await getApplicationDocumentsDirectory();
-              CacheTools.delDir(directory).then((value) => _changeCache());
+              LocalTools.clearLocalCache().then((value) => _changeCache());
             }));
   }
 

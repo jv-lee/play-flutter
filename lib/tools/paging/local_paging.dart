@@ -1,7 +1,8 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
 
 import 'package:flutter/material.dart';
-import 'package:playflutter/tools/local_tools.dart';
+import 'package:playflutter/tools/cache/cache_functions.dart';
+import 'package:playflutter/tools/cache/local_tools.dart';
 import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/widget/status/status.dart';

@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 
-/// 缓存管理类
-class CacheTools {
+/// 文件管理类
+class FileTools {
   /// 获取缓存
   static Future<double> loadApplicationCache() async {
     /// 获取文件夹
@@ -36,7 +36,11 @@ class CacheTools {
 
   /// 缓存大小格式转换
   static String formatSize(double value) {
-    List<String> unitArr = []..add('B')..add('K')..add('M')..add('G');
+    List<String> unitArr = []
+      ..add('B')
+      ..add('K')
+      ..add('M')
+      ..add('G');
     int index = 0;
     while (value > 1024) {
       index++;
@@ -54,7 +58,7 @@ class CacheTools {
   static Future<void> delDir(FileSystemEntity file) async {
     if (file is Directory && file.existsSync()) {
       final List<FileSystemEntity> children =
-      file.listSync(recursive: true, followLinks: true);
+          file.listSync(recursive: true, followLinks: true);
       for (final FileSystemEntity child in children) {
         await delDir(child);
       }
@@ -65,5 +69,4 @@ class CacheTools {
       }
     } catch (err) {}
   }
-
 }

@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_declarations, non_constant_identifier_names
 import 'package:dio/dio.dart';
 import 'package:playflutter/model/http/constants/api_constants.dart';
-import 'package:playflutter/tools/local_tools.dart';
+import 'package:playflutter/tools/cache/preferences.dart';
 
 /// @author jv.lee
 /// @date 2022/8/4
@@ -27,7 +27,7 @@ class AppCookieInterceptor extends Interceptor {
       // 包含校验cookie的链接时获取缓存cookie设置header
       if (uri.contains(_CONTAINER_COOKIE_URI)) {
         if (cookie.isEmpty) {
-          cookie = await LocalTools.get(_SAVE_TOKEN_KEY);
+          cookie = await Preferences.get(_SAVE_TOKEN_KEY);
         }
         options.headers[_HEADER_COOKIE_KEY] = cookie;
       }
@@ -55,11 +55,11 @@ class AppCookieInterceptor extends Interceptor {
 
   void saveCookie(cookie) {
     this.cookie = cookie;
-    LocalTools.save<String>(_SAVE_TOKEN_KEY, cookie);
+    Preferences.save<String>(_SAVE_TOKEN_KEY, cookie);
   }
 
   void clearCookie() {
     cookie = "";
-    LocalTools.remove(_SAVE_TOKEN_KEY);
+    Preferences.remove(_SAVE_TOKEN_KEY);
   }
 }

@@ -7,7 +7,7 @@ import 'package:playflutter/model/entity/account.dart';
 import 'package:playflutter/model/http/constants/api_constants.dart';
 import 'package:playflutter/theme/theme_constants.dart';
 import 'package:playflutter/theme/theme_strings.dart';
-import 'package:playflutter/tools/local_tools.dart';
+import 'package:playflutter/tools/cache/preferences.dart';
 import 'package:playflutter/view/account/model/account_model.dart';
 import 'package:toast/toast.dart';
 
@@ -36,7 +36,7 @@ class AccountService extends BaseModuleService {
         return;
       }
       // 获取本地数据
-      var localAccount = await LocalTools.localData(
+      var localAccount = await Preferences.localData(
           ThemeConstants.LOCAL_ACCOUNT_DATA,
           (json) => AccountData.fromJson(json));
       updateAccountStatus(localAccount, localAccount != null);
@@ -59,8 +59,8 @@ class AccountService extends BaseModuleService {
   }
 
   void updateAccountStatus(AccountData? accountData, bool isLogin) {
-    LocalTools.localSave(ThemeConstants.LOCAL_ACCOUNT_DATA, accountData);
-    LocalTools.save(ThemeConstants.LOCAL_IS_LOGIN, isLogin);
+    Preferences.localSave(ThemeConstants.LOCAL_ACCOUNT_DATA, accountData);
+    Preferences.save(ThemeConstants.LOCAL_IS_LOGIN, isLogin);
     viewStates.accountData = accountData;
     viewStates.isLogin = isLogin;
     notifyListeners();

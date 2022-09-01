@@ -4,7 +4,7 @@ import 'package:playflutter/extensions/exception_extensions.dart';
 import 'package:playflutter/model/entity/todo.dart';
 import 'package:playflutter/theme/theme_constants.dart';
 import 'package:playflutter/theme/theme_strings.dart';
-import 'package:playflutter/tools/local_tools.dart';
+import 'package:playflutter/tools/cache/preferences.dart';
 import 'package:playflutter/tools/time_tools.dart';
 import 'package:playflutter/view/todo/model/entity/todo_type.dart';
 import 'package:playflutter/view/todo/model/todo_model.dart';
@@ -128,7 +128,7 @@ class CreateTodoViewModel extends BaseViewModel {
         ..appbarTitle = ThemeStrings.titleCreate
         ..date = TimeTools.getCurrentFormatDate();
     }
-    final typeIndex = await LocalTools.get(ThemeConstants.LOCAL_TODO_TYPE,
+    final typeIndex = await Preferences.get(ThemeConstants.LOCAL_TODO_TYPE,
         defaultValue: TodoType.DEFAULT.index);
     viewStates.type = typeIndex;
     notifyListeners();

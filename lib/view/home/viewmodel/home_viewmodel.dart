@@ -7,7 +7,7 @@ import 'package:playflutter/extensions/exception_extensions.dart';
 import 'package:playflutter/model/entity/banner.dart';
 import 'package:playflutter/model/entity/content.dart';
 import 'package:playflutter/theme/theme_constants.dart';
-import 'package:playflutter/tools/local_tools.dart';
+import 'package:playflutter/tools/cache/local_tools.dart';
 import 'package:playflutter/tools/log_tools.dart';
 import 'package:playflutter/tools/paging/local_paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
@@ -75,7 +75,7 @@ class HomeViewModel extends BaseViewModel {
         localKey: ThemeConstants.LOCAL_HOME_BANNER,
         createJson: (json) => BannerData.fromJson(json),
         requestFuture: _model.getBannerDataAsync(),
-        callback: (value) {
+        callback: (value) async {
           viewStates.bannerList.clear();
           viewStates.bannerList.addAll(value.data);
         },
