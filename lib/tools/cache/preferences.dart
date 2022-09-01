@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:playflutter/extensions/function_extensions.dart';
 import 'package:playflutter/tools/cache/cache_functions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -71,5 +72,23 @@ class Preferences {
       return createJson(jsonDecode(jsonStr));
     }
     return null;
+  }
+
+  static void localRequest<T>(
+      {required String localKey,
+        required CreateJson<T> createJson,
+        required Future<T> requestFuture,
+        required Function(T value) callback,
+        required Function(dynamic error) onError}) async {
+    // 本地缓存获取
+    T? data = await localData(localKey, createJson);
+    data?.run((self) => callback(self));
+
+    // 网络请求
+    requestFuture.then((value) {
+      // 缓存网络数据
+      localSave(localKey, value);
+      callback(value);
+    }).catchError(onError);
   }
 }
