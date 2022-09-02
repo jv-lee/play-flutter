@@ -21,7 +21,7 @@ class _DelayVisibilityState extends State<DelayVisibility> {
   void initState() {
     super.initState();
     Future.delayed(widget.duration ?? const Duration(milliseconds: 100), () {
-      setState(() => visible = true);
+      if (mounted) setState(() => visible = true);
     });
   }
 

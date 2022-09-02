@@ -54,16 +54,21 @@ mixin WebProgressMixin<T extends StatefulWidget> on State<T> {
   _startAnimation() {
     webProgressViewStates._animationController?.run((self) {
       self.duration = const Duration(milliseconds: 8000);
-      setState(() {
-        webProgressViewStates.progress = 0;
-        webProgressViewStates.progressVisible = true;
-      });
+      if (mounted) {
+        setState(() {
+          webProgressViewStates.progress = 0;
+          webProgressViewStates.progressVisible = true;
+        });
+      }
       final endProgress = Platform.isIOS ? 100 : 80;
       var animation = IntTween(
               begin: webProgressViewStates.progress, end: endProgress)
           .animate(CurvedAnimation(parent: self, curve: Curves.easeOutCubic));
-      animation.addListener(() =>
-          setState(() => webProgressViewStates.progress = animation.value));
+      animation.addListener(() {
+        if (mounted) {
+          setState(() => webProgressViewStates.progress = animation.value);
+        }
+      });
       self.reset();
       self.forward();
     });
@@ -74,10 +79,15 @@ mixin WebProgressMixin<T extends StatefulWidget> on State<T> {
       self.duration = const Duration(milliseconds: 300);
       var animation = IntTween(begin: webProgressViewStates.progress, end: 100)
           .animate(CurvedAnimation(parent: self, curve: Curves.linear));
-      animation.addListener(() =>
-          setState(() => webProgressViewStates.progress = animation.value));
+      animation.addListener(() {
+        if (mounted) {
+          setState(() => webProgressViewStates.progress = animation.value);
+        }
+      });
       animation.addCompletedCallback(() {
-        setState(() => webProgressViewStates.progressVisible = false);
+        if (mounted) {
+          setState(() => webProgressViewStates.progressVisible = false);
+        }
       });
       self.reset();
       self.forward();

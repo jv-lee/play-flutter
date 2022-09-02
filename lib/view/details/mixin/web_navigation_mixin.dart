@@ -28,7 +28,7 @@ mixin WebNavigationMixin<T extends StatefulWidget> on State<T> {
   /// webView开始加载
   void onNavigationPageStarted(url) {
     webNavigationViewStates.pageHolderVisible = false;
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   /// webView加载完毕
@@ -39,7 +39,7 @@ mixin WebNavigationMixin<T extends StatefulWidget> on State<T> {
         ..canGoForward = await self.canGoForward()
         ..webNavigationInit = (webNavigationViewStates.canGoBack ||
             webNavigationViewStates.canGoForward);
-      setState(() {});
+      if (mounted) setState(() {});
     });
   }
 
@@ -50,7 +50,7 @@ mixin WebNavigationMixin<T extends StatefulWidget> on State<T> {
         webNavigationViewStates
           ..canGoBack = await self.canGoBack()
           ..canGoForward = await self.canGoForward();
-        setState(() {});
+        if (mounted) setState(() {});
       });
     });
   }
@@ -62,7 +62,7 @@ mixin WebNavigationMixin<T extends StatefulWidget> on State<T> {
         webNavigationViewStates
           ..canGoBack = await self.canGoBack()
           ..canGoForward = await self.canGoForward();
-        setState(() {});
+        if (mounted) setState(() {});
       });
     });
   }
@@ -77,18 +77,20 @@ mixin WebNavigationMixin<T extends StatefulWidget> on State<T> {
       var offsetY = webNavigationViewStates.offsetY;
 
       // update offsetY
-      setState(() {
-        if (distance > 0) {
-          // 向下移动
-          webNavigationViewStates._scrollBottomCount++;
-          offsetY -= event.position.direction;
-        } else {
-          // 向上移动
-          webNavigationViewStates._scrollTopCount++;
-          offsetY += event.position.direction;
-        }
-        _changeOffset(offsetY);
-      });
+      if (mounted) {
+        setState(() {
+          if (distance > 0) {
+            // 向下移动
+            webNavigationViewStates._scrollBottomCount++;
+            offsetY -= event.position.direction;
+          } else {
+            // 向上移动
+            webNavigationViewStates._scrollTopCount++;
+            offsetY += event.position.direction;
+          }
+          _changeOffset(offsetY);
+        });
+      }
 
       webNavigationViewStates._lastMoveY = position;
     });
@@ -152,8 +154,12 @@ mixin WebNavigationMixin<T extends StatefulWidget> on State<T> {
       var animation =
           IntTween(begin: webNavigationViewStates.offsetY.toInt(), end: 0)
               .animate(self);
-      animation.addListener(() => setState(
-          () => webNavigationViewStates.offsetY = animation.value.toDouble()));
+      animation.addListener(() {
+        if (mounted) {
+          setState(() =>
+              webNavigationViewStates.offsetY = animation.value.toDouble());
+        }
+      });
       self.reset();
       self.forward();
     });
@@ -166,8 +172,12 @@ mixin WebNavigationMixin<T extends StatefulWidget> on State<T> {
               begin: webNavigationViewStates.offsetY.toInt(),
               end: webNavigationViewStates._offsetLimit.toInt())
           .animate(self);
-      animation.addListener(() => setState(
-          () => webNavigationViewStates.offsetY = animation.value.toDouble()));
+      animation.addListener(() {
+        if (mounted) {
+          setState(() =>
+              webNavigationViewStates.offsetY = animation.value.toDouble());
+        }
+      });
       self.reset();
       self.forward();
     });
