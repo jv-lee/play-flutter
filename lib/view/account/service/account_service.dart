@@ -12,7 +12,6 @@ import 'package:playflutter/view/account/model/account_model.dart';
 import 'package:playflutter/widget/dialog/loading_dialog.dart';
 import 'package:toast/toast.dart';
 
-
 /// @author jv.lee
 /// @date 2022/8/3
 /// @description 账户服务，应用存活期间常驻，全模块可调用账户服务
@@ -70,4 +69,14 @@ class AccountService extends BaseModuleService {
 class AccountViewState {
   AccountData? accountData;
   bool isLogin = false;
+
+  int get userId => accountData?.data.userInfo.id ?? 0;
+
+  int get coinCount => accountData?.data.userInfo.coinCount ?? 0;
+
+  int get level => accountData?.data.coinInfo.level ?? 0;
+
+  String get rank => accountData?.data.coinInfo.rank ?? "0";
+
+  String get nickname => accountData?.data.userInfo.nickname ?? "";
 }

@@ -112,7 +112,8 @@ class _CoinPageState extends BasePageState<CoinPage> {
               // 积分数值显示 item
               Container(
                   margin: const EdgeInsets.all(ThemeDimens.offsetMedium),
-                  child: Text(viewModel.findCoinCount(),
+                  child: Text(
+                      viewModel.accountService.viewStates.coinCount.toString(),
                       style: TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.bold,

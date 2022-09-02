@@ -12,7 +12,7 @@ import 'package:toast/toast.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
-/// @description
+/// @description 我的页面 viewModel
 class MeViewModel extends BaseViewModel {
   var viewStates = _MeViewState();
   late AccountService accountService;
@@ -54,18 +54,18 @@ class MeViewModel extends BaseViewModel {
   }
 
   void _changeViewState() {
-    viewStates.isLogin = accountService.viewStates.isLogin;
-    if (accountService.viewStates.isLogin) {
-      accountService.viewStates.accountData?.data.run((self) {
-        viewStates.headerWidget = Image.asset(ThemeImages.launcherRoundPng);
-        viewStates.userName = self.userInfo.nickname;
-        viewStates.userDesc =
-            "等级：${self.coinInfo.level} 排名：${self.coinInfo.rank}";
-      });
-    } else {
-      viewStates = _MeViewState();
-    }
-    notifyListeners();
+    accountService.viewStates.run((self) {
+      if (self.isLogin) {
+        viewStates
+          ..userName = self.nickname
+          ..userDesc = "等级：${self.level} 排名：${self.rank}"
+          ..headerWidget = Image.asset(ThemeImages.launcherRoundPng);
+      } else {
+        viewStates = _MeViewState();
+      }
+      viewStates.isLogin = self.isLogin;
+      notifyListeners();
+    });
   }
 }
 

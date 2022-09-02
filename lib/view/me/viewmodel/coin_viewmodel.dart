@@ -44,12 +44,6 @@ class CoinViewModel extends BaseViewModel {
     paging.requestData(status,
         (page) => _model.getCoinRecordAsync(page).then((value) => value.data));
   }
-
-  String findCoinCount() {
-    return accountService.viewStates.accountData?.data.coinInfo.coinCount
-            .let((self) => self.toString()) ??
-        "0";
-  }
 }
 
 class _CoinViewState {
