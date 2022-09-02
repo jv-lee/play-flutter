@@ -25,7 +25,7 @@ mixin WebProgressMixin<T extends StatefulWidget> on State<T> {
   /// webView开始加载
   void onProgressPageStarted(url) {
     // initState 开始动画，pageStart过滤掉第一次动画
-    if (!webProgressViewStates._firstAnimation) {
+    if (!webProgressViewStates._firstAnimation && mounted) {
       _startAnimation();
     }
     webProgressViewStates._firstAnimation = false;
@@ -33,7 +33,7 @@ mixin WebProgressMixin<T extends StatefulWidget> on State<T> {
 
   /// webView加载完毕
   void onProgressPageFinished(url) {
-    _finishAnimation();
+    if (mounted) _finishAnimation();
   }
 
   _initAnimation() {
@@ -44,7 +44,7 @@ mixin WebProgressMixin<T extends StatefulWidget> on State<T> {
       webProgressViewStates._animationController = AnimationController(
           duration: const Duration(milliseconds: 100), vsync: self);
     });
-    _startAnimation();
+    if (mounted) _startAnimation();
   }
 
   _disposeAnimation() {
@@ -54,12 +54,10 @@ mixin WebProgressMixin<T extends StatefulWidget> on State<T> {
   _startAnimation() {
     webProgressViewStates._animationController?.run((self) {
       self.duration = const Duration(milliseconds: 8000);
-      if (mounted) {
-        setState(() {
-          webProgressViewStates.progress = 0;
-          webProgressViewStates.progressVisible = true;
-        });
-      }
+      setState(() {
+        webProgressViewStates.progress = 0;
+        webProgressViewStates.progressVisible = true;
+      });
       final endProgress = Platform.isIOS ? 100 : 80;
       var animation = IntTween(
               begin: webProgressViewStates.progress, end: endProgress)
