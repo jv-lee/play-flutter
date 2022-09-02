@@ -12,6 +12,9 @@ class ThemeConstants {
   static const String LOCAL_NAVIGATION_LIST = "local:navigation-list";
   static const String LOCAL_OFFICIAL_TAB = "local:official-tab";
   static const String LOCAL_PROJECT_TAB = "local:project-tab";
+  static const String LOCAL_COIN_LIST = "local:coin-list";
+  static const String LOCAL_COLLECT_LIST = "local:coin-list";
+  static const String LOCAL_SHARE_LIST = "local:share-list";
   static const String LOCAL_ACCOUNT_DATA = "local:account-data";
   static const String LOCAL_IS_LOGIN = "local:is-login";
   static const String LOCAL_TODO_TYPE = "local:todo-type";
