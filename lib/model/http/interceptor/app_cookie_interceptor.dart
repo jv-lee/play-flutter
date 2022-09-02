@@ -53,7 +53,7 @@ class AppCookieInterceptor extends Interceptor {
     handler.next(response);
   }
 
-  void saveCookie(cookie) {
+  void saveCookie(String cookie) {
     this.cookie = cookie;
     Preferences.save(_SAVE_TOKEN_KEY, cookie);
   }

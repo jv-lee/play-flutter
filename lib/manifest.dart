@@ -37,7 +37,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return SplashPageRoute(
           settings: settings, builder: (_) => const SplashPage());
     case RouteNames.main:
-      return CupertinoPageRoute(
+      return CupertinoMainPageRoute(
           settings: settings, builder: (_) => const MainPage());
     case RouteNames.search:
       return CupertinoPageRoute(
@@ -91,7 +91,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
           settings: settings, builder: (_) => const RegisterPage());
 
     default:
-      return CupertinoPageRoute(
+      return CupertinoMainPageRoute(
           settings: settings, builder: (_) => const MainPage());
   }
 }

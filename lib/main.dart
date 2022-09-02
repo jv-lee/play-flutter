@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/manifest.dart';
 import 'package:playflutter/model/db/database_manager.dart';
 import 'package:playflutter/provider/dark_mode_provider.dart';
-import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/tools/cache/cache_manager.dart';
+import 'package:playflutter/view/splash/splash.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -37,7 +37,7 @@ class PlayFlutterApp extends StatelessWidget {
               darkTheme: provider.darkThemeData,
               navigatorObservers: [routeObserver],
               onGenerateRoute: onGenerateRoute,
-              initialRoute: RouteNames.splash);
+              home: const SplashPage());
         }));
   }
 }

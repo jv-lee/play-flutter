@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 /// @author jv.lee
 /// @date 2022/7/29
@@ -134,6 +133,15 @@ class ScaleInPageRoute extends AppPageRoute {
     // 原页面执行动画
     var parentTween = Tween(begin: 1.0, end: 1.0).animate(
         CurvedAnimation(parent: secondaryAnimation, curve: Curves.ease));
-    return FadeTransition(opacity: tween, child: ScaleTransition(scale: parentTween, child: child));
+    return FadeTransition(
+        opacity: tween,
+        child: ScaleTransition(scale: parentTween, child: child));
   }
+}
+
+class CupertinoMainPageRoute extends CupertinoPageRoute {
+  CupertinoMainPageRoute({required super.settings, required super.builder});
+
+  @override
+  Duration get transitionDuration => const Duration(milliseconds: 50);
 }

@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:night/night.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
+import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/view/account/service/account_service.dart';
 import 'package:provider/provider.dart';
@@ -50,6 +52,10 @@ class SplashViewModel extends BaseViewModel {
         overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
 
     animationController.dispose();
+  }
+
+  void navigation() {
+    Navigator.popAndPushNamed(context, RouteNames.main);
   }
 }
 
