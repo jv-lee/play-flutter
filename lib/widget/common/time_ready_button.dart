@@ -17,58 +17,50 @@ class TimeReadyButton extends StatefulWidget {
 }
 
 class _TimeReadyButtonState extends State<TimeReadyButton> {
-  static Timer? _timer;
-  String timeText = "";
-
-  void _clearTimer() {
-    if (_timer != null && _timer!.isActive) {
-      _timer?.cancel();
-      _timer = null;
-    }
-  }
-
-  @override
-  void dispose() {
-    _clearTimer();
-    super.dispose();
-  }
+  StreamSubscription? stream;
+  final timeLimit = 5;
+  int number = 5;
 
   @override
   void initState() {
     super.initState();
-    _clearTimer();
-    var readTime = 5;
-    timeText = "${ThemeStrings.splashTimeText}$readTime";
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      readTime--;
-      timeText = "${ThemeStrings.splashTimeText}$readTime";
-      if (readTime == 0 && _timer?.isActive == true) {
-        _timer?.cancel();
-        widget.onEnd();
-      } else {
-        setState(() {});
-      }
-    });
+    // 5-1倒计时
+    stream = Stream.periodic(const Duration(seconds: 1), (data) => 4 - data)
+        .take(timeLimit)
+        .listen((number) => updateTiming(number));
+  }
+
+  @override
+  void dispose() {
+    stream?.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          _timer?.cancel();
+          stream?.cancel();
           widget.onEnd();
         },
         child: Container(
             width: 68,
             height: 32,
+            alignment: Alignment.center,
             decoration: BoxDecoration(
                 color: Colors.black45,
                 borderRadius:
                     BorderRadius.circular(ThemeDimens.offsetRadiusMedium)),
-            child: Center(
-                child: Text(timeText,
-                    style: const TextStyle(
-                        fontSize: ThemeDimens.fontSizeMedium,
-                        color: Colors.white)))));
+            child: Text("${ThemeStrings.splashTimeText}$number",
+                style: const TextStyle(
+                    fontSize: ThemeDimens.fontSizeMedium,
+                    color: Colors.white))));
+  }
+
+  void updateTiming(int number) {
+    if (mounted) {
+      if (number == 0) widget.onEnd();
+      setState(() => this.number = number);
+    }
   }
 }
