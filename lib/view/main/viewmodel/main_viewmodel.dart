@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/event/constants/event_constants.dart';
 import 'package:playflutter/event/entity/tab_selected_event.dart';
@@ -27,6 +28,12 @@ class MainViewModel extends BaseViewModel {
   void onCleared() {
     eventBus.unbind(EventConstants.EVENT_NAVIGATION_LOGIN, _onNavigationLogin);
     viewStates.pageController.dispose();
+  }
+
+  @override
+  void onResume() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
   }
 
   void changeTab(index) {

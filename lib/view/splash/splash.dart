@@ -41,7 +41,7 @@ class _SplashState extends BasePageState<SplashPage>
 
   Widget buildSplashAd(SplashViewModel viewModel) {
     return Visibility(
-        visible: viewModel.animationController.isAnimating,
+        visible: viewModel.viewStates.adVisible,
         child: FadeTransition(
             opacity: viewModel.animation,
             child: Stack(children: [

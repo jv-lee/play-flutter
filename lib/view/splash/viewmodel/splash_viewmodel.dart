@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:night/night.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/route/route_names.dart';
@@ -28,10 +27,6 @@ class SplashViewModel extends BaseViewModel {
       notifyListeners();
     });
 
-    // hide navigationBar
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge,
-        overlays: [SystemUiOverlay.top]);
-
     // 当前页面执行动画
     animationController = AnimationController(
         vsync: tickerProvider, duration: const Duration(milliseconds: 300));
@@ -39,6 +34,7 @@ class SplashViewModel extends BaseViewModel {
 
     // 请求账户信息 完成后回调splashAd动画
     context.read<AccountService>().requestAccountData(() {
+      viewStates.adVisible = true;
       // 开启动画显示splashAd
       animationController.forward();
       notifyListeners();
@@ -47,10 +43,6 @@ class SplashViewModel extends BaseViewModel {
 
   @override
   void onCleared() {
-    // show statusBar and navigationBar
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
-
     animationController.dispose();
   }
 
@@ -61,6 +53,7 @@ class SplashViewModel extends BaseViewModel {
 
 class _SplashViewState {
   late bool isDark;
+  bool adVisible = false;
 
   _SplashViewState({required this.isDark});
 

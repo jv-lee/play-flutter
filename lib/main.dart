@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:playflutter/extensions/function_extensions.dart';
 import 'package:playflutter/manifest.dart';
 import 'package:playflutter/model/db/database_manager.dart';
 import 'package:playflutter/provider/dark_mode_provider.dart';
@@ -11,7 +13,15 @@ final RouteObserver<ModalRoute<void>> routeObserver =
     RouteObserver<ModalRoute<void>>();
 
 void main() {
-  runApp(const PlayFlutterApp());
+  // 在main中初始化处理需先调用binding初始化方法
+  WidgetsFlutterBinding.ensureInitialized();
+  // init code
+  databaseManager.init();
+  cacheManager.init();
+  // flutter edgeToEdge navigationBar
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge,
+          overlays: [SystemUiOverlay.top])
+      .then((value) => runApp(const PlayFlutterApp()));
 }
 
 class PlayFlutterApp extends StatelessWidget {
@@ -20,14 +30,13 @@ class PlayFlutterApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    databaseManager.init();
-    cacheManager.init();
-    final providers = <SingleChildWidget>[];
-    // 深色模式状态监听
-    providers.add(ChangeNotifierProvider.value(
-        value: DarkModeProvider(context: context)));
-    // 全局服务依赖
-    providers.addAll(onGenerateService(context));
+    final providers = <SingleChildWidget>[].also((self) {
+      // 深色模式状态监听
+      self.add(ChangeNotifierProvider.value(
+          value: DarkModeProvider(context: context)));
+      // 全局服务依赖
+      self.addAll(onGenerateService(context));
+    });
     return MultiProvider(
         providers: providers,
         // 监听深色模式主题变换 更改主题配置

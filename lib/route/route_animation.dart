@@ -143,5 +143,5 @@ class CupertinoMainPageRoute extends CupertinoPageRoute {
   CupertinoMainPageRoute({required super.settings, required super.builder});
 
   @override
-  Duration get transitionDuration => const Duration(milliseconds: 50);
+  Duration get transitionDuration => const Duration(milliseconds: 10);
 }
