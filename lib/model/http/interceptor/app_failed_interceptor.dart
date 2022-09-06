@@ -2,6 +2,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:playflutter/event/constants/event_constants.dart';
+import 'package:playflutter/event/entity/navigation_login_event.dart';
 import 'package:playflutter/event/events_bus.dart';
 import 'package:playflutter/model/http/constants/api_constants.dart';
 import 'package:playflutter/theme/theme_constants.dart';
@@ -29,7 +30,8 @@ class AppFailedInterceptor extends Interceptor {
           bool isLogin = await Preferences.get(ThemeConstants.LOCAL_IS_LOGIN);
           //单独处理登陆状态 ， 已登陆状态发起重新登陆事件
           if (isLogin) {
-            eventBus.send(EventConstants.EVENT_NAVIGATION_LOGIN, true);
+            eventBus.send(
+                EventConstants.EVENT_NAVIGATION_LOGIN, NavigationLoginEvent());
           }
         }
       } catch (e) {}

@@ -65,7 +65,7 @@ class SquareViewModel extends BaseViewModel {
   }
 
   void _onTabSelectedEvent(dynamic arg) {
-    if (arg is TabSelectedEvent) {
+    if (!isDispose() && arg is TabSelectedEvent) {
       arg.onEvent(MainTabPage.tabSquare, paging.scrollController);
       notifyListeners();
     }
