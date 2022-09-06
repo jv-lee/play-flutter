@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:playflutter/model/entity/details.dart';
 import 'package:playflutter/model/entity/parent_tab.dart';
+import 'package:playflutter/provider/dark_mode_provider.dart';
 import 'package:playflutter/route/route_animation.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/view/account/login.dart';
@@ -26,7 +27,10 @@ import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
 /// 项目全局服务注册监听
-List<SingleChildWidget> onGenerateService(BuildContext context) => [
+List<SingleChildWidget> onGenerateProviders(BuildContext context) => [
+      // 深色模式状态监听
+      ChangeNotifierProvider.value(value: DarkModeProvider(context: context)),
+      // 账户服务
       ChangeNotifierProvider(create: (context) => AccountService(context)),
     ];
 
