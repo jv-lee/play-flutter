@@ -10,7 +10,4 @@ class ApiConstants {
 
   // 积分规则地址
   static const URI_COIN_HELP = "https://www.wanandroid.com/blog/show/2653";
-
-  // 简书页面,掘金页面,知乎
-  static const WEB_SCHEME_LIST = ["jianshu://", "bytedance://", "zhihu://"];
 }

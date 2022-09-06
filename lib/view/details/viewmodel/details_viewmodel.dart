@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/extensions/exception_extensions.dart';
 import 'package:playflutter/model/entity/details.dart';
-import 'package:playflutter/model/http/constants/api_constants.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/view/me/model/me_model.dart';
 import 'package:playflutter/widget/dialog/loading_dialog.dart';
@@ -75,12 +74,12 @@ class DetailsViewModel extends BaseViewModel {
 
   /// 处理scheme intent跳转原生逻辑
   FutureOr<NavigationDecision> navigationDelegate(NavigationRequest request) {
-    for (var scheme in ApiConstants.WEB_SCHEME_LIST) {
-      if (request.url.startsWith(scheme)) {
-        return NavigationDecision.prevent;
-      }
+    if (request.url.startsWith("https://") ||
+        request.url.startsWith("http://")) {
+      return NavigationDecision.navigate;
+    } else {
+      return NavigationDecision.prevent;
     }
-    return NavigationDecision.navigate;
   }
 }
 
