@@ -8,8 +8,10 @@ import 'package:playflutter/extensions/function_extensions.dart';
 /// 某些view加载效率较差或者比较复杂的使用该方式让route动画先执行完毕再加载widget
 class RouteLazyLoad extends StatefulWidget {
   final Widget child;
+  final Widget? placeholder;
 
-  const RouteLazyLoad({Key? key, required this.child}) : super(key: key);
+  const RouteLazyLoad({Key? key, required this.child, this.placeholder})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _RouteLazyLoadState();
@@ -26,6 +28,8 @@ class _RouteLazyLoadState extends State<RouteLazyLoad> {
       });
     });
 
-    return _animationCompleted ? widget.child : Container();
+    return _animationCompleted
+        ? widget.child
+        : widget.placeholder ?? Container();
   }
 }
