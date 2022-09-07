@@ -1,9 +1,11 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
 
 import 'package:flutter/material.dart';
+import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/extensions/function_extensions.dart';
 import 'package:playflutter/main.dart';
 import 'package:playflutter/tools/log_tools.dart';
+import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 
 /// @author jv.lee
@@ -127,5 +129,22 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
       _hasAddPauseChange = false;
       _onPauseChange.addListener(() => onPause());
     }
+  }
+}
+
+extension PageStateExtensions on BasePageState {
+  /// 创建viewModelWidget树
+  /// [create] viewModel构建实例
+  /// [viewBuild] widget构建方法
+  Widget buildViewModel<T extends BaseViewModel>(
+      {required Create<T> create, required ViewBuild<T> viewBuild}) {
+    return ChangeNotifierProvider(
+      create: create,
+      child: Consumer<T>(builder: (context, viewModel, child) {
+        bindResume(() => viewModel.onResume());
+        bindPause(() => viewModel.onPause());
+        return viewBuild(context, viewModel);
+      }),
+    );
   }
 }

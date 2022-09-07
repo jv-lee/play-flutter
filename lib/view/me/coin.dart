@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playflutter/base/base_page_state.dart';
-import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/model/entity/coin_record.dart';
 import 'package:playflutter/route/route_names.dart';
 import 'package:playflutter/theme/theme_dimens.dart';

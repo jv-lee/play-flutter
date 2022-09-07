@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/base/base_page_state.dart';
-import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/theme/theme_images.dart';
 import 'package:playflutter/theme/theme_strings.dart';
@@ -103,5 +102,4 @@ class _LoginPageState extends BasePageState<LoginPage> {
                   style: TextStyle(color: Colors.white)))
         ]));
   }
-
 }

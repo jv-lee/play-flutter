@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_page_state.dart';
-import 'package:playflutter/extensions/page_state_extensions.dart';
 import 'package:playflutter/theme/theme_dimens.dart';
 import 'package:playflutter/view/me/viewmodel/me_viewmodel.dart';
 import 'package:playflutter/widget/common/header/app_header_container.dart';
