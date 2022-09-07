@@ -58,7 +58,7 @@ class DetailsViewModel extends BaseViewModel {
 
   /// 分享该文章链接
   void onShare() {
-    if (isDispose()) return;
+    if (isDisposed()) return;
     Share.share("${detailsData.title}:${detailsData.link}");
   }
 

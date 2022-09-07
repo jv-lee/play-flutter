@@ -90,7 +90,7 @@ class HomeViewModel extends BaseViewModel {
 
   /// 全局事件 mainTab被点击回调
   void _onTabSelectedEvent(dynamic arg) {
-    if (!isDispose() && arg is TabSelectedEvent) {
+    if (!isDisposed() && arg is TabSelectedEvent) {
       arg.onEvent(MainTabPage.tabHome, paging.scrollController);
       notifyListeners();
     }

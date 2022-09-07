@@ -8,7 +8,7 @@ import 'package:playflutter/base/base_page_state.dart';
 /// @description 所有viewModel基类
 abstract class BaseViewModel with ChangeNotifier {
   final BuildContext context;
-  bool _isDispose = false;
+  bool _isDisposed = false;
 
   BaseViewModel(this.context) {
     init();
@@ -16,14 +16,14 @@ abstract class BaseViewModel with ChangeNotifier {
 
   @override
   void dispose() {
-    _isDispose = true;
+    _isDisposed = true;
     onCleared();
     super.dispose();
   }
 
   @override
   void notifyListeners() {
-    if (isDispose()) return;
+    if (isDisposed()) return;
     super.notifyListeners();
   }
 
@@ -40,7 +40,7 @@ abstract class BaseViewModel with ChangeNotifier {
   void onPause() {}
 
   /// 判断当前持有viewModel的view树是否已经解绑
-  bool isDispose() => _isDispose;
+  bool isDisposed() => _isDisposed;
 
   /// 执行context函数（一般在viewModel初始化代码方法内调用，通过zero延时达到初始化时期获取路由参数正确）
   /// [function] 执行函数

@@ -44,7 +44,7 @@ class MainViewModel extends BaseViewModel {
   }
 
   void _onNavigationLogin(dynamic arg) {
-    if (!isDispose() && arg is NavigationLoginEvent) {
+    if (!isDisposed() && arg is NavigationLoginEvent) {
       arg.onEvent(context);
     }
   }
