@@ -33,27 +33,27 @@ class DetailsViewModel extends BaseViewModel {
   }
 
   /// 收藏该文章
-  void onCollect() {
+  void onCollect() async {
     // 校验是否已收藏
     if (detailsData.isCollect) {
       Toast.show(ThemeStrings.menuCollectCompleted);
       return;
     }
 
-    // 添加延时过渡loading
-    Future.delayed(const Duration(milliseconds: 300), () {
-      // 显示loading弹窗
-      showDialog(
-          barrierDismissible: false,
-          context: context,
-          builder: (BuildContext context) => const LoadingDialog());
-      _model.postCollectAsync(detailsData.id).then((value) {
-        detailsData.isCollect = true;
-        Toast.show(ThemeStrings.menuCollectComplete);
-      }).catchError((onError) {
-        onFailedToast(onError);
-      }).whenComplete(() => Navigator.of(context).pop());
-    });
+    // 添加延时过渡loading弹窗
+    await Future.delayed(const Duration(milliseconds: 300));
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) => const LoadingDialog());
+
+    // 发起收藏
+    _model.postCollectAsync(detailsData.id).then((value) {
+      detailsData.isCollect = true;
+      Toast.show(ThemeStrings.menuCollectComplete);
+    }).catchError((onError) {
+      onFailedToast(onError);
+    }).whenComplete(() => Navigator.of(context).pop());
   }
 
   /// 分享该文章链接
