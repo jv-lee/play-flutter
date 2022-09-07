@@ -10,6 +10,7 @@ import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/tools/cache/preferences.dart';
 import 'package:playflutter/view/account/model/account_model.dart';
 import 'package:playflutter/widget/dialog/loading_dialog.dart';
+import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 
 /// @author jv.lee
@@ -79,4 +80,10 @@ class AccountViewState {
   String get rank => accountData?.data.coinInfo.rank ?? "0";
 
   String get nickname => accountData?.data.userInfo.nickname ?? "";
+}
+
+extension AccountContextExtensions on BuildContext {
+  String userKey(String key) {
+    return "$key${read<AccountService>().viewStates.userId}";
+  }
 }

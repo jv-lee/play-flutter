@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/base/base_viewmodel.dart';
 import 'package:playflutter/extensions/exception_extensions.dart';
 import 'package:playflutter/model/entity/content.dart';
+import 'package:playflutter/theme/theme_constants.dart';
 import 'package:playflutter/tools/log_tools.dart';
+import 'package:playflutter/tools/paging/local_paging.dart';
 import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
+import 'package:playflutter/view/account/service/account_service.dart';
 import 'package:playflutter/view/square/model/square_model.dart';
 import 'package:playflutter/widget/common/sliding_pane_container.dart';
 import 'package:playflutter/widget/dialog/loading_dialog.dart';
@@ -21,7 +24,11 @@ class MyShareViewModel extends BaseViewModel {
 
   @override
   void init() {
-    paging = Paging.build(notifier: this, initPage: 1);
+    paging = LocalPaging.build(
+        notifier: this,
+        localKey: context.userKey(ThemeConstants.LOCAL_SHARE_LIST),
+        createJson: (json) => ContentDataPage.fromJson(json),
+        initPage: 1);
     requestData(LoadStatus.refresh);
   }
 
@@ -35,8 +42,11 @@ class MyShareViewModel extends BaseViewModel {
     LogTools.log("MyShare", "requestData - $status");
 
     // request square list data.
-    paging.requestData(status,
-        (page) => _model.getMyShareDataSync(page).then((value) => value.data.shareArticles));
+    paging.requestData(
+        status,
+        (page) => _model
+            .getMyShareDataSync(page)
+            .then((value) => value.data.shareArticles));
   }
 
   void requestDeleteItem(Content item) {

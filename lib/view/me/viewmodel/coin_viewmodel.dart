@@ -1,10 +1,11 @@
 import 'package:playflutter/base/base_viewmodel.dart';
-import 'package:playflutter/extensions/function_extensions.dart';
 import 'package:playflutter/model/entity/coin_record.dart';
 import 'package:playflutter/model/entity/details.dart';
 import 'package:playflutter/model/http/constants/api_constants.dart';
+import 'package:playflutter/theme/theme_constants.dart';
 import 'package:playflutter/theme/theme_strings.dart';
 import 'package:playflutter/tools/log_tools.dart';
+import 'package:playflutter/tools/paging/local_paging.dart';
 import 'package:playflutter/tools/paging/paging.dart';
 import 'package:playflutter/tools/paging/paging_data.dart';
 import 'package:playflutter/view/account/service/account_service.dart';
@@ -26,7 +27,11 @@ class CoinViewModel extends BaseViewModel {
   void init() {
     accountService = context.read<AccountService>();
     accountService.addListener(notifyListeners);
-    paging = Paging.build(notifier: this, initPage: 1);
+    paging = LocalPaging.build(
+        notifier: this,
+        localKey: context.userKey(ThemeConstants.LOCAL_COIN_LIST),
+        createJson: (json) => CoinRecordPage.fromJson(json),
+        initPage: 1);
     requestData(LoadStatus.refresh);
   }
 
