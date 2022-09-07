@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:playflutter/base/base_page_state.dart';
+import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/manifest.dart';
-import 'package:playflutter/model/db/database_manager.dart';
-import 'package:playflutter/provider/dark_mode_provider.dart';
-import 'package:playflutter/tools/cache/cache_manager.dart';
-import 'package:playflutter/view/splash/splash.dart';
+import 'package:playflutter/core/model/db/database_manager.dart';
+import 'package:playflutter/core/provider/dark_mode_provider.dart';
+import 'package:playflutter/core/tools/cache/cache_manager.dart';
+import 'package:playflutter/module/splash/splash.dart';
 import 'package:provider/provider.dart';
 
 /// PlayFlutter程序主入口
