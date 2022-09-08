@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/extensions/function_extensions.dart';
-import 'package:playflutter/main.dart';
 import 'package:playflutter/core/tools/log_tools.dart';
+import 'package:playflutter/main.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 
@@ -13,6 +13,8 @@ import 'package:toast/toast.dart';
 /// @description 具有页面生命周期的pageState
 abstract class BasePageState<T extends StatefulWidget> extends State<T>
     with RouteAware, WidgetsBindingObserver {
+  var _lifecycleState = PageLifecycleState.unInitialized;
+  var _isAppPause = false;
   var _hasAddResumeChange = true;
   var _hasAddPauseChange = true;
   final _onResumeChange = ChangeNotifier();
@@ -56,11 +58,11 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
         break;
       case AppLifecycleState.paused:
         //应用当前对于用户不可见,不会响应用户输入,运行在后台.
-        onPause();
+        onAppPause();
         break;
       case AppLifecycleState.resumed:
         // 应用可见,响应用户输入
-        onResume();
+        onAppResume();
         break;
     }
   }
@@ -98,20 +100,43 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
 
   /// 页面获得焦点显示
   void onResume() {
-    ToastContext().init(context);
-    LogTools.log(widget.toString(), "onResume()");
-    _onResumeChange.notifyListeners();
+    _updateLifecycleState(PageLifecycleState.resume, () {
+      ToastContext().init(context);
+      LogTools.log(widget.toString(), "onResume()");
+      _onResumeChange.notifyListeners();
+    });
   }
 
   /// 页面失去焦点隐藏
   void onPause() {
-    LogTools.log(widget.toString(), "onPause()");
-    _onPauseChange.notifyListeners();
+    _updateLifecycleState(PageLifecycleState.pause, () {
+      LogTools.log(widget.toString(), "onPause()");
+      _onPauseChange.notifyListeners();
+    });
+  }
+
+  /// 应用获取焦点进入前台
+  void onAppResume() {
+    if (_isAppPause) {
+      _isAppPause = false;
+      onResume();
+    }
+  }
+
+  /// 应用失去焦点退至后台
+  void onAppPause() {
+    _updateLifecycleState(PageLifecycleState.pause, () {
+      LogTools.log(widget.toString(), "onPause()");
+      _isAppPause = true;
+      _onPauseChange.notifyListeners();
+    });
   }
 
   /// 页面销毁 原则上重写dispose方法也是一样的
   void onDestroy() {
-    LogTools.log(widget.toString(), "onDestroy()");
+    _updateLifecycleState(PageLifecycleState.destroy, () {
+      LogTools.log(widget.toString(), "onDestroy()");
+    });
   }
 
   /// 用于绑定viewModel onResume回调 首次绑定直接回调onResume 顺序问题该模式在后
@@ -130,7 +155,15 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
       _onPauseChange.addListener(() => onPause());
     }
   }
+
+  void _updateLifecycleState(PageLifecycleState state, Function block) {
+    if (_lifecycleState == state) return;
+    _lifecycleState = state;
+    block();
+  }
 }
+
+enum PageLifecycleState { unInitialized, resume, pause, destroy }
 
 extension PageStateExtensions on BasePageState {
   /// 创建viewModelWidget树
