@@ -25,7 +25,7 @@ class _SearchResultState extends BasePageState<SearchResultPage> {
     return buildViewModel<SearchResultViewModel>(
         create: (context) => SearchResultViewModel(context),
         viewBuild: (context, viewModel) => Scaffold(
-            appBar: AppBar(title: Text(viewModel.searchKey)),
+            appBar: AppBar(title: Text(viewModel.viewStates.searchKey)),
             body: buildSearchResultList(viewModel)));
   }
 
@@ -37,13 +37,13 @@ class _SearchResultState extends BasePageState<SearchResultPage> {
               () => viewModel.requestData(LoadStatus.refresh));
         },
         child: SuperListView(
-            statusController: viewModel.paging.statusController,
-            itemCount: viewModel.paging.data.length,
+            statusController: viewModel.viewStates.paging.statusController,
+            itemCount: viewModel.viewStates.paging.data.length,
             onPageReload: () => viewModel.requestData(LoadStatus.refresh),
             onItemReload: () => viewModel.requestData(LoadStatus.reload),
             onLoadMore: () => viewModel.requestData(LoadStatus.loadMore),
             itemBuilder: (BuildContext context, int index) {
-              Content item = viewModel.paging.data[index];
+              Content item = viewModel.viewStates.paging.data[index];
               itemClick(content) {
                 Navigator.pushNamed(context, RouteNames.details,
                     arguments: item.transformDetails());

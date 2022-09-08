@@ -50,9 +50,11 @@ class _HomeState extends BasePageState<HomePage>
                         () => viewModel.requestData(LoadStatus.refresh));
                   },
                   child: SuperListView(
-                      statusController: viewModel.paging.statusController,
-                      scrollController: viewModel.paging.scrollController,
-                      itemCount: viewModel.paging.data.length,
+                      statusController:
+                          viewModel.viewStates.paging.statusController,
+                      scrollController:
+                          viewModel.viewStates.paging.scrollController,
+                      itemCount: viewModel.viewStates.paging.data.length,
                       onPageReload: () =>
                           viewModel.requestData(LoadStatus.refresh),
                       onItemReload: () =>
@@ -70,7 +72,7 @@ class _HomeState extends BasePageState<HomePage>
                             (item) => Navigator.pushNamed(context, item.link))
                       ],
                       itemBuilder: (BuildContext context, int index) {
-                        var item = viewModel.paging.data[index];
+                        var item = viewModel.viewStates.paging.data[index];
                         return ContentItem(
                             content: item,
                             onItemClick: (item) => Navigator.pushNamed(

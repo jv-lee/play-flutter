@@ -22,14 +22,13 @@ import 'package:playflutter/module/main/model/entity/main_tab_page.dart';
 class HomeViewModel extends BaseViewModel {
   final _model = HomeModel();
   final viewStates = _HomeViewState();
-  late Paging<Content> paging;
 
   HomeViewModel(super.context);
 
   @override
   void init() {
     eventBus.bind(EventConstants.EVENT_TAB_SELECTED, _onTabSelectedEvent);
-    paging = LocalPaging.build(
+    viewStates.paging = LocalPaging.build(
         notifier: this,
         localKey: ThemeConstants.LOCAL_HOME_LIST,
         createJson: (json) => ContentDataPage.fromJson(json));
@@ -40,7 +39,7 @@ class HomeViewModel extends BaseViewModel {
   void onCleared() {
     eventBus.unbind(EventConstants.EVENT_TAB_SELECTED, _onTabSelectedEvent);
     viewStates.swiperController.dispose();
-    paging.dispose();
+    viewStates.paging.dispose();
     _model.dispose();
   }
 
@@ -62,7 +61,7 @@ class HomeViewModel extends BaseViewModel {
     }
 
     // request content list data.
-    paging.requestData(status,
+    viewStates.paging.requestData(status,
         (page) => _model.getContentDataAsync(page).then((value) => value.data));
   }
 
@@ -91,13 +90,14 @@ class HomeViewModel extends BaseViewModel {
   /// 全局事件 mainTab被点击回调
   void _onTabSelectedEvent(dynamic arg) {
     if (!isDisposed() && arg is TabSelectedEvent) {
-      arg.onEvent(MainTabPage.tabHome, paging.scrollController);
+      arg.onEvent(MainTabPage.tabHome, viewStates.paging.scrollController);
       notifyListeners();
     }
   }
 }
 
 class _HomeViewState {
+  late Paging<Content> paging;
   int bannerIndex = 0;
   List<BannerItem> bannerList = [];
   List<HomeCategory> categoryList = [];

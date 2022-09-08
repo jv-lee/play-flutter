@@ -12,19 +12,18 @@ import 'package:playflutter/module/me/model/me_model.dart';
 class CoinRankViewModel extends BaseViewModel {
   final _model = MeModel();
   final viewStates = _CoinRankViewState();
-  late Paging<CoinRank> paging;
 
   CoinRankViewModel(super.context);
 
   @override
   void init() {
-    paging = Paging.build(notifier: this, initPage: 1);
+    viewStates.paging = Paging.build(notifier: this, initPage: 1);
     requestData(LoadStatus.refresh);
   }
 
   @override
   void onCleared() {
-    paging.dispose();
+    viewStates.paging.dispose();
     _model.dispose();
   }
 
@@ -32,7 +31,7 @@ class CoinRankViewModel extends BaseViewModel {
     LogTools.log("CoinRank", "requestData - $status");
 
     // request coinRank list data.
-    paging.requestData(
+    viewStates.paging.requestData(
         status,
         (page) => _model
             .getCoinRankAsync(page)
@@ -72,5 +71,6 @@ class CoinRankViewModel extends BaseViewModel {
 }
 
 class _CoinRankViewState {
+  late Paging<CoinRank> paging;
   List<CoinRank> headerList = [];
 }

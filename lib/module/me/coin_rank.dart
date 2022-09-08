@@ -39,14 +39,14 @@ class _CoinRankPageState extends BasePageState<CoinRankPage> {
               () => viewModel.requestData(LoadStatus.refresh));
         },
         child: SuperListView(
-            statusController: viewModel.paging.statusController,
-            itemCount: viewModel.paging.data.length,
+            statusController: viewModel.viewStates.paging.statusController,
+            itemCount: viewModel.viewStates.paging.data.length,
             onPageReload: () => viewModel.requestData(LoadStatus.refresh),
             onItemReload: () => viewModel.requestData(LoadStatus.reload),
             onLoadMore: () => viewModel.requestData(LoadStatus.loadMore),
             headerChildren: [buildRankHeader(viewModel)],
             itemBuilder: (BuildContext context, int index) {
-              var item = viewModel.paging.data[index];
+              var item = viewModel.viewStates.paging.data[index];
               return buildRankItem(item);
             }));
   }

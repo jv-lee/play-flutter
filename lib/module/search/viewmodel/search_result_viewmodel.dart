@@ -11,20 +11,18 @@ import 'package:playflutter/module/search/search.dart';
 /// @description 搜索结果页viewModel
 class SearchResultViewModel extends BaseViewModel {
   final _model = SearchModel();
-
-  late String searchKey = "";
-  late Paging<Content> paging;
+  final viewStates = _SearchResultViewState();
 
   SearchResultViewModel(super.context);
 
   @override
   void init() {
-    paging = Paging.build(notifier: this);
+    viewStates.paging = Paging.build(notifier: this);
 
     runViewContext((context) {
       final arguments =
           (ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>);
-      searchKey = arguments[SearchPage.ARG_SEARCH_KEY];
+      viewStates.searchKey = arguments[SearchPage.ARG_SEARCH_KEY];
       notifyListeners();
       requestData(LoadStatus.refresh);
     });
@@ -32,16 +30,21 @@ class SearchResultViewModel extends BaseViewModel {
 
   @override
   void onCleared() {
-    paging.dispose();
+    viewStates.paging.dispose();
     _model.dispose();
   }
 
   void requestData(LoadStatus status) async {
     // request searchResult list data.
-    paging.requestData(
+    viewStates.paging.requestData(
         status,
         (page) => _model
-            .getSearchDataAsync(page, searchKey)
+            .getSearchDataAsync(page, viewStates.searchKey)
             .then((value) => value.data));
   }
+}
+
+class _SearchResultViewState {
+  late String searchKey = "";
+  late Paging<Content> paging;
 }
