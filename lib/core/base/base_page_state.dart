@@ -13,7 +13,10 @@ import 'package:toast/toast.dart';
 /// @description 具有页面生命周期的pageState
 abstract class BasePageState<T extends StatefulWidget> extends State<T>
     with RouteAware, WidgetsBindingObserver {
+  // 页面生命周期
   var _lifecycleState = PageLifecycleState.unInitialized;
+
+  // app前后台切换标志位
   var _isAppPause = false;
   var _hasAddResumeChange = true;
   var _hasAddPauseChange = true;
@@ -156,6 +159,7 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
     }
   }
 
+  /// 更新页面生命周期并执行代码块逻辑
   void _updateLifecycleState(PageLifecycleState state, Function block) {
     if (_lifecycleState == state) return;
     _lifecycleState = state;
@@ -163,6 +167,7 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
   }
 }
 
+/// 页面生命周期
 enum PageLifecycleState { unInitialized, resume, pause, destroy }
 
 extension PageStateExtensions on BasePageState {
