@@ -8,7 +8,7 @@ import 'package:playflutter/module/todo/callback/todo_action_callback.dart';
 import 'package:playflutter/module/todo/model/entity/todo_type.dart';
 import 'package:playflutter/module/todo/viewmodel/todo_list_viewmodel.dart';
 import 'package:playflutter/core/widget/common/sliding_pane_container.dart';
-import 'package:playflutter/core/widget/item/todo_item.dart';
+import 'package:playflutter/module/todo/widget/item/todo_item.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
 
 /// @author jv.lee

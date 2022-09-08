@@ -3,8 +3,8 @@ import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/route/route_names.dart';
 import 'package:playflutter/module/system/viewmodel/system_content_viewmodel.dart';
 import 'package:playflutter/core/widget/common/header/app_header_spacer.dart';
-import 'package:playflutter/core/widget/item/parent_tab_item.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
+import 'package:playflutter/module/system/widget/item/parent_tab_item.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30

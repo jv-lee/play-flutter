@@ -6,10 +6,10 @@ import 'package:playflutter/core/tools/status_tools.dart';
 import 'package:playflutter/module/system/viewmodel/navigation_content_viewmodel.dart';
 import 'package:playflutter/core/widget/common/header/app_header_spacer.dart';
 import 'package:playflutter/core/widget/common/overscroll_hide_container.dart';
-import 'package:playflutter/core/widget/item/navigation_tab_item.dart';
-import 'package:playflutter/core/widget/item/navigation_tag_item.dart';
+import 'package:playflutter/module/system/widget/item/navigation_tab_item.dart';
 import 'package:playflutter/core/widget/scroll/scroll_to_index.dart';
 import 'package:playflutter/core/widget/status/status_page.dart';
+import 'package:playflutter/module/system/widget/item/navigation_tag_item.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30

@@ -14,7 +14,7 @@ import 'package:playflutter/core/widget/common/header/app_header_container.dart'
 import 'package:playflutter/core/widget/common/header/app_header_spacer.dart';
 import 'package:playflutter/core/widget/common/header/app_text_action_bar.dart';
 import 'package:playflutter/core/widget/common/transparent_scaffold.dart';
-import 'package:playflutter/core/widget/item/category_item.dart';
+import 'package:playflutter/module/home/widget/item/category_item.dart';
 import 'package:playflutter/core/widget/item/content_item.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
 

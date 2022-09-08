@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/model/entity/todo.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/theme/theme_strings.dart';
-import 'package:playflutter/module/todo/model/entity/todo_type.dart';
 import 'package:playflutter/core/widget/common/sliding_pane_container.dart';
+import 'package:playflutter/module/todo/model/entity/todo_type.dart';
 
 /// @author jv.lee
 /// @date 2022/8/19
-/// @description
+/// @description 日记模块列表item
 class TodoItem extends StatelessWidget {
   final Todo item;
   final SlidingPaneController controller;
