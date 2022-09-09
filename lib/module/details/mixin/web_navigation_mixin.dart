@@ -67,7 +67,7 @@ mixin WebNavigationMixin<T extends StatefulWidget> on State<T> {
     });
   }
 
-  void onMoveEvent(PointerMoveEvent event) {
+  void onMoveEvent(PointerEvent event) {
     _changeNavigationVisible((controller) {
       // 手指移动距离
       var position = event.position.distance;
@@ -96,13 +96,14 @@ mixin WebNavigationMixin<T extends StatefulWidget> on State<T> {
     });
   }
 
-  void onUpEvent(PointerUpEvent event) {
+  void onUpEvent(PointerEvent event) {
     _changeNavigationVisible((controller) {
       if (webNavigationViewStates._canAnimationVisible()) {
         _animationVisible();
       } else if (webNavigationViewStates._canAnimationHide()) {
         _animationHide();
       } else {
+        _autoAnimation();
         webNavigationViewStates._clearScrollCount();
       }
     });
@@ -125,6 +126,9 @@ mixin WebNavigationMixin<T extends StatefulWidget> on State<T> {
   }
 
   _changeOffset(offset) {
+    // 禁止滚动平移，直接通过上下滑动up后直接处理显示隐藏
+    // if ((webNavigationViewStates.offsetY - offset).abs() < 2) return;
+
     if (offset < 0) {
       webNavigationViewStates.offsetY = 0;
     } else if (offset > webNavigationViewStates._offsetLimit) {
@@ -181,6 +185,15 @@ mixin WebNavigationMixin<T extends StatefulWidget> on State<T> {
       self.reset();
       self.forward();
     });
+  }
+
+  _autoAnimation() {
+    if (webNavigationViewStates.offsetY >
+        (webNavigationViewStates._offsetLimit / 2)) {
+      _animationHide();
+    } else {
+      _animationVisible();
+    }
   }
 }
 
