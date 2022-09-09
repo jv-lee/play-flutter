@@ -50,6 +50,12 @@ class ThemeColors {
       splashColor: lightColorPalette.placeholder,
       hintColor: lightColorPalette.label,
       unselectedWidgetColor: lightColorPalette.primary,
+      dialogBackgroundColor: lightColorPalette.item,
+      textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(primary: lightColorPalette.accent)),
+      colorScheme: ColorScheme.highContrastLight(
+          primary: lightColorPalette.focus,
+          onPrimary: lightColorPalette.onFocus),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: lightColorPalette.item,
           selectedIconTheme: IconThemeData(color: lightColorPalette.focus),
@@ -94,6 +100,14 @@ class ThemeColors {
       splashColor: darkColorPalette.placeholder,
       hintColor: darkColorPalette.label,
       unselectedWidgetColor: darkColorPalette.primary,
+      dialogBackgroundColor: darkColorPalette.item,
+      textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(primary: darkColorPalette.accent)),
+      colorScheme: ColorScheme.highContrastDark(
+          surface: darkColorPalette.focus,
+          onSurface: darkColorPalette.onFocus,
+          primary: darkColorPalette.focus,
+          onPrimary: darkColorPalette.onFocus),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: darkColorPalette.item,
           selectedIconTheme: IconThemeData(color: darkColorPalette.focus),
