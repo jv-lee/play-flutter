@@ -6,7 +6,9 @@ import 'package:playflutter/core/widget/status/status_controller.dart';
 
 /// @author jv.lee
 /// @date 2020/5/13
-/// @description 扩展ListView 可添加头部Widget/底部Widget - 页面加载装 loading/error/empty/data - item加载状态 loading/error/mepty/noMore
+/// @description 扩展ListView 可添加头部Widget/底部Widget
+/// page加载状态 loading/error/empty/data
+/// item加载状态 loading/error/empty/noMore
 class SuperListView extends StatefulWidget {
   final ScrollController? scrollController;
   final StatusController statusController;
