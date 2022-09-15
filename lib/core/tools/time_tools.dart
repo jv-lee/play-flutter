@@ -29,8 +29,7 @@ class TimeTools {
   }
 
   static String getCurrentFormatDate() {
-    int time = DateTime.now().millisecondsSinceEpoch;
-    DateTime date = DateTime.fromMillisecondsSinceEpoch(time);
+    DateTime date = DateTime.now();
     return "${date.year}-${date.month}-${date.day}";
   }
 }

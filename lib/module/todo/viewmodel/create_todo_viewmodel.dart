@@ -6,13 +6,13 @@ import 'package:playflutter/core/theme/theme_constants.dart';
 import 'package:playflutter/core/theme/theme_strings.dart';
 import 'package:playflutter/core/tools/cache/preferences.dart';
 import 'package:playflutter/core/tools/time_tools.dart';
+import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
 import 'package:playflutter/module/todo/model/entity/todo_type.dart';
 import 'package:playflutter/module/todo/model/todo_model.dart';
-import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
 
 /// @author jv.lee
 /// @date 2022/8/15
-/// @description
+/// @description 创建/编辑 笔记页面数据 viewModel
 class CreateTodoViewModel extends BaseViewModel {
   final _model = TodoModel();
   final viewStates = _CreateTodoViewState();
@@ -31,12 +31,14 @@ class CreateTodoViewModel extends BaseViewModel {
   void onCleared() {}
 
   changeTitle(String title) {
+    // 校验iOS拼音输入时未确定之前过滤拼音字母的无效占位输入
     if (viewStates.titleController.value.isComposingRangeValid) return;
     viewStates.title = title;
     notifyListeners();
   }
 
   changeContent(String content) {
+    // 校验iOS拼音输入时未确定之前过滤拼音字母的无效占位输入
     if (viewStates.contentController.value.isComposingRangeValid) return;
     viewStates.content = content;
     notifyListeners();
