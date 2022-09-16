@@ -96,15 +96,15 @@ class _HomeState extends BasePageState<HomePage>
       return Container();
     } else {
       return BannerView(
-          width: double.infinity,
-          height: ThemeDimens.homeBannerHeight,
           initialPage: bannerIndex,
           itemCount: bannerList.length,
           controller: viewModel.viewStates.bannerViewController,
           onIndexChange: (index) => viewModel.viewStates.bannerIndex = index,
-          indexedWidgetBuilder: (context, index) => BannerView.cardBannerItem(
-              bannerList[index].imagePath,
-              onItemTap: () => onItemClick(bannerList[index])));
+          indexedWidgetBuilder: (context, index) =>
+              BannerView.defaultBannerItem(bannerList[index].imagePath,
+                  onItemTap: () => onItemClick(bannerList[index])),
+          indexedIndicatorBuilder: (context, index) =>
+              BannerView.defaultIndicator(index, bannerList));
     }
   }
 

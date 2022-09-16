@@ -10,11 +10,12 @@ import 'package:playflutter/core/theme/theme_dimens.dart';
 /// @date 2022/9/15
 /// @description 项目banner封装组件
 class BannerView extends StatefulWidget {
-  final double width;
-  final double height;
   final int initialPage;
   final int itemCount;
   final IndexedWidgetBuilder indexedWidgetBuilder;
+  final double? width;
+  final double? height;
+  final IndexedWidgetBuilder? indexedIndicatorBuilder;
   final BannerViewController? controller;
   final Function(int)? onIndexChange;
   final int timeMillis;
@@ -23,11 +24,12 @@ class BannerView extends StatefulWidget {
 
   const BannerView({
     Key? key,
-    required this.width,
-    required this.height,
     required this.initialPage,
     required this.itemCount,
     required this.indexedWidgetBuilder,
+    this.width,
+    this.height,
+    this.indexedIndicatorBuilder,
     this.controller,
     this.onIndexChange,
     this.timeMillis = 3000,
@@ -38,7 +40,8 @@ class BannerView extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _BannerViewState();
 
-  static Widget cardBannerItem(String imagePath, {Function? onItemTap}) {
+  /// banner默认卡片样式item
+  static Widget defaultBannerItem(String imagePath, {Function? onItemTap}) {
     return Card(
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
@@ -61,10 +64,35 @@ class BannerView extends StatefulWidget {
                     errorWidget: (context, url, error) =>
                         const Icon(Icons.error)))));
   }
+
+  /// banner默认圆点样式indicator
+  static Widget defaultIndicator(int index, List<dynamic> data,
+      {AlignmentGeometry alignment = Alignment.bottomCenter,
+      EdgeInsetsGeometry? margin,
+      Color activeColor = Colors.white,
+      Color normalColor = Colors.grey}) {
+    return Container(
+        alignment: alignment,
+        margin:
+            margin ?? const EdgeInsets.only(bottom: ThemeDimens.offsetMedium),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: data
+              .map((e) => Container(
+                  margin: const EdgeInsets.all(ThemeDimens.offsetSmall),
+                  width: 5,
+                  height: 5,
+                  decoration: BoxDecoration(
+                      color:
+                          data.indexOf(e) == index ? activeColor : normalColor,
+                      shape: BoxShape.circle)))
+              .toList(),
+        ));
+  }
 }
 
 class _BannerViewState extends State<BannerView> {
-  final looperCountFactor = 10;
+  final looperCountFactor = 500;
   var isStart = false;
   late final PageController pageController;
   late int currentPage;
@@ -100,18 +128,26 @@ class _BannerViewState extends State<BannerView> {
         onPointerUp: (event) => startLoop(),
         onPointerCancel: (event) => startLoop(),
         child: SizedBox(
-            width: widget.width,
-            height: widget.height,
-            child: PageView.builder(
-                dragStartBehavior: DragStartBehavior.down,
-                onPageChanged: (page) {
-                  widget.onIndexChange?.run((self) => self(page));
-                  currentPage = page;
-                },
-                controller: pageController,
-                itemCount: getRealCount(),
-                itemBuilder: (context, index) => widget.indexedWidgetBuilder(
-                    context, getRealIndex(index, widget.itemCount)))));
+          width: widget.width ?? double.infinity,
+          height: widget.height ?? ThemeDimens.bannerHeight,
+          child: Stack(
+            children: [
+              PageView.builder(
+                  dragStartBehavior: DragStartBehavior.down,
+                  onPageChanged: (page) {
+                    widget.onIndexChange?.run((self) => self(page));
+                    setState(() => currentPage = page);
+                  },
+                  controller: pageController,
+                  itemCount: getRealCount(),
+                  itemBuilder: (context, index) => widget.indexedWidgetBuilder(
+                      context, getRealIndex(index, widget.itemCount))),
+              widget.indexedIndicatorBuilder?.let((self) => self(
+                      context, getRealIndex(currentPage, widget.itemCount))) ??
+                  Container()
+            ],
+          ),
+        ));
   }
 
   void startLoop() {

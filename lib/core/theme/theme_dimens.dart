@@ -4,7 +4,7 @@
 class ThemeDimens {
   // 全局通用组件数值
   static const double toolbarHeight = 56;
-  static const double listStateItemHeight = 60;
+  static const double bannerHeight = 180;
 
   // 全局通用radius值
   static const double offsetRadiusLarge = 32;
@@ -28,7 +28,6 @@ class ThemeDimens {
   static const double borderWidth = 2;
 
   // homeTab布局数值
-  static const double homeBannerHeight = 180;
   static const double homeCategoryLayoutHeight = 130;
   static const double homeCategoryItemSize = 50;
 
