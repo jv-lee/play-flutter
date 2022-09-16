@@ -84,7 +84,7 @@ packages:
       name: csslib
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.16.2"
+    version: "0.17.2"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -176,7 +176,7 @@ packages:
       name: html
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.14.0+4"
+    version: "0.15.0"
   http:
     dependency: transitive
     description:

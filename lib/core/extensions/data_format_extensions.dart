@@ -21,9 +21,9 @@ extension ContentExtensions on Content {
         id: id.toString(), title: getTitle(), link: link, isCollect: collect);
   }
 
-  String getTitle() => parse(title).body.text;
+  String getTitle() => parse(title).body?.text ?? title;
 
-  String getDescription() => parse(desc).body.text;
+  String getDescription() => parse(desc).body?.text ?? desc;
 
   String getAuthor() => author.isEmpty ? shareUser : author;
 
@@ -44,7 +44,8 @@ extension ContentExtensions on Content {
 
 extension ParentTabExtensions on ParentTab {
   String formHtmlLabels() {
-    return parse(_buildChildrenLabel()).body.innerHtml;
+    return parse(_buildChildrenLabel()).body?.innerHtml ??
+        _buildChildrenLabel();
   }
 
   String _buildChildrenLabel() {
@@ -62,5 +63,5 @@ extension ArticlesExtensions on Articles {
         id: id.toString(), title: getTitle(), link: link, isCollect: collect);
   }
 
-  String getTitle() => parse(title).body.innerHtml;
+  String getTitle() => parse(title).body?.innerHtml ?? title;
 }
