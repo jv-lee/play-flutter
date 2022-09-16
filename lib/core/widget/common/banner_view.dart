@@ -64,7 +64,7 @@ class BannerView extends StatefulWidget {
 }
 
 class _BannerViewState extends State<BannerView> {
-  final looperCountFactor = 10;
+  final looperCountFactor = 500;
   var isStart = false;
   late final PageController pageController;
   late int currentPage;
