@@ -1,4 +1,3 @@
-import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/event/constants/event_constants.dart';
 import 'package:playflutter/core/event/entity/tab_selected_event.dart';
@@ -12,6 +11,7 @@ import 'package:playflutter/core/tools/log_tools.dart';
 import 'package:playflutter/core/tools/paging/local_paging.dart';
 import 'package:playflutter/core/tools/paging/paging.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
+import 'package:playflutter/core/widget/common/banner.dart';
 import 'package:playflutter/module/home/model/entity/home_category.dart';
 import 'package:playflutter/module/home/model/home_model.dart';
 import 'package:playflutter/module/main/model/entity/main_tab_page.dart';
@@ -38,19 +38,18 @@ class HomeViewModel extends BaseViewModel {
   @override
   void onCleared() {
     eventBus.unbind(EventConstants.EVENT_TAB_SELECTED, _onTabSelectedEvent);
-    viewStates.swiperController.dispose();
     viewStates.paging.dispose();
     _model.dispose();
   }
 
   @override
   void onResume() {
-    viewStates.swiperController.startAutoplay();
+    viewStates.bannerViewController.startLoop();
   }
 
   @override
   void onPause() {
-    viewStates.swiperController.stopAutoplay();
+    viewStates.bannerViewController.stopLoop();
   }
 
   void requestData(LoadStatus status) async {
@@ -63,11 +62,6 @@ class HomeViewModel extends BaseViewModel {
     // request content list data.
     viewStates.paging.requestData(status,
         (page) => _model.getContentDataAsync(page).then((value) => value.data));
-  }
-
-  void changeBannerIndex(int index) {
-    viewStates.bannerIndex = index;
-    notifyListeners();
   }
 
   void _requestHeaderData() async {
@@ -98,8 +92,7 @@ class HomeViewModel extends BaseViewModel {
 
 class _HomeViewState {
   late Paging<Content> paging;
-  int bannerIndex = 0;
   List<BannerItem> bannerList = [];
   List<HomeCategory> categoryList = [];
-  SwiperController swiperController = SwiperController();
+  BannerViewController bannerViewController = BannerViewController();
 }

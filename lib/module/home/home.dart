@@ -7,16 +7,16 @@ import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
 import 'package:playflutter/core/theme/theme_strings.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
-import 'package:playflutter/module/home/model/entity/home_category.dart';
-import 'package:playflutter/module/home/viewmodel/home_viewmodel.dart';
-import 'package:playflutter/core/widget/common/app_banner.dart';
+import 'package:playflutter/core/widget/common/banner.dart';
 import 'package:playflutter/core/widget/common/header/app_header_container.dart';
 import 'package:playflutter/core/widget/common/header/app_header_spacer.dart';
 import 'package:playflutter/core/widget/common/header/app_text_action_bar.dart';
 import 'package:playflutter/core/widget/common/transparent_scaffold.dart';
-import 'package:playflutter/module/home/widget/item/category_item.dart';
 import 'package:playflutter/core/widget/item/content_item.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
+import 'package:playflutter/module/home/model/entity/home_category.dart';
+import 'package:playflutter/module/home/viewmodel/home_viewmodel.dart';
+import 'package:playflutter/module/home/widget/item/category_item.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26
@@ -91,17 +91,18 @@ class _HomeState extends BasePageState<HomePage>
   Widget buildBanner(
       HomeViewModel viewModel, Function(BannerItem) onItemClick) {
     var bannerList = viewModel.viewStates.bannerList;
-    var bannerIndex = viewModel.viewStates.bannerIndex;
     if (bannerList.isEmpty) {
       return Container();
     } else {
-      return AppBanner(
-          controller: viewModel.viewStates.swiperController,
-          index: bannerIndex,
-          count: bannerList.length,
-          onIndexChanged: (index) => viewModel.changeBannerIndex(index),
-          onIndexTap: (index) => onItemClick(bannerList[index]),
-          findPath: (index) => bannerList[index].imagePath);
+      return SizedBox(
+          width: double.infinity,
+          height: ThemeDimens.homeBannerHeight,
+          child: BannerView(
+              itemCount: bannerList.length,
+              controller: viewModel.viewStates.bannerViewController,
+              indexedWidgetBuilder: (context, index) =>
+                  BannerView.cardBannerItem(bannerList[index].imagePath,
+                      onItemTap: () => onItemClick(bannerList[index]))));
     }
   }
 
