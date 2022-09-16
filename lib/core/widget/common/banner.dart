@@ -14,7 +14,6 @@ class BannerView extends StatefulWidget {
   final int itemCount;
   final IndexedWidgetBuilder indexedWidgetBuilder;
   final BannerViewController? controller;
-  final Function(int)? onIndexTap;
   final Function(int)? onIndexChange;
   final int timeMillis;
   final bool clipEnable;
@@ -26,7 +25,6 @@ class BannerView extends StatefulWidget {
     required this.itemCount,
     required this.indexedWidgetBuilder,
     this.controller,
-    this.onIndexTap,
     this.onIndexChange,
     this.timeMillis = 3000,
     this.clipEnable = true,
