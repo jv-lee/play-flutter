@@ -120,10 +120,8 @@ class _HomeState extends BasePageState<HomePage>
               scrollDirection: Axis.horizontal,
               itemCount: categoryList.length,
               shrinkWrap: true,
-              itemBuilder: (BuildContext context, int index) {
-                var item = categoryList[index];
-                return CategoryItem(category: item, onItemClick: onItemClick);
-              }));
+              itemBuilder: (BuildContext context, int index) => CategoryItem(
+                  category: categoryList[index], onItemClick: onItemClick)));
     }
   }
 }
