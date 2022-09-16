@@ -64,7 +64,7 @@ class BannerView extends StatefulWidget {
 }
 
 class _BannerViewState extends State<BannerView> {
-  final looperCountFactor = 500;
+  final looperCountFactor = 10;
   var isStart = false;
   late final PageController pageController;
   late int currentPage;
@@ -77,7 +77,7 @@ class _BannerViewState extends State<BannerView> {
     widget.controller?._stopLoop = stopLoop;
 
     currentPage = widget.initialPage == 0
-        ? getStartSelectItem(widget.itemCount, looperCountFactor)
+        ? getStartSelectItem(widget.itemCount)
         : widget.initialPage;
     pageController = PageController(
         initialPage: currentPage,
@@ -109,7 +109,7 @@ class _BannerViewState extends State<BannerView> {
                   currentPage = page;
                 },
                 controller: pageController,
-                itemCount: getRealCount(looperCountFactor),
+                itemCount: getRealCount(),
                 itemBuilder: (context, index) => widget.indexedWidgetBuilder(
                     context, getRealIndex(index, widget.itemCount)))));
   }
@@ -136,9 +136,8 @@ class _BannerViewState extends State<BannerView> {
   }
 
   void autoAnimatePage() {
-    if (currentPage == getRealCount(looperCountFactor) - 1) {
-      pageController
-          .jumpToPage(getStartSelectItem(widget.itemCount, looperCountFactor));
+    if (currentPage == getRealCount() - 1) {
+      pageController.jumpToPage(getStartSelectItem(widget.itemCount));
     } else {
       ++currentPage;
       pageController.animateToPage(currentPage,
@@ -146,20 +145,17 @@ class _BannerViewState extends State<BannerView> {
     }
   }
 
-  getRealIndex(int position, int size) => position % size;
+  int getRealIndex(int position, int size) => position % size;
 
-  getRealCount(int looperCount) => looperCount * 3;
+  int getRealCount() => looperCountFactor * 3;
 
-  int getStartSelectItem(int size, int looperCount) {
+  int getStartSelectItem(int size) {
     // 我们设置当前选中的位置为Integer.MAX_VALUE / 2,这样开始就能往左滑动
     // 但是要保证这个值与getRealPosition 的 余数为0，因为要从第一页开始显示
-    var currentItem = size * looperCount ~/ 2;
-    var realIndex = getRealIndex(currentItem, size);
-    if (realIndex == 0) {
-      return currentItem;
-    }
+    var currentItem = size * looperCountFactor ~/ 2;
+
     // 直到找到从0开始的位置
-    while (realIndex != 0) {
+    while (getRealIndex(currentItem, size) != 0) {
       currentItem++;
     }
     return currentItem;
