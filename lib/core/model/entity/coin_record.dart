@@ -22,11 +22,11 @@ class CoinRecordData extends BaseData {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['data'] = data.toJson();
-    _data['errorCode'] = errorCode;
-    _data['errorMsg'] = errorMsg;
-    return _data;
+    final data = <String, dynamic>{};
+    data['data'] = this.data.toJson();
+    data['errorCode'] = errorCode;
+    data['errorMsg'] = errorMsg;
+    return data;
   }
 
   @override
@@ -69,15 +69,15 @@ class CoinRecordPage with PagingData<CoinRecord> {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['curPage'] = curPage;
-    _data['datas'] = datas.map((e) => e.toJson()).toList();
-    _data['offset'] = offset;
-    _data['over'] = over;
-    _data['pageCount'] = pageCount;
-    _data['size'] = size;
-    _data['total'] = total;
-    return _data;
+    final data = <String, dynamic>{};
+    data['curPage'] = curPage;
+    data['datas'] = datas.map((e) => e.toJson()).toList();
+    data['offset'] = offset;
+    data['over'] = over;
+    data['pageCount'] = pageCount;
+    data['size'] = size;
+    data['total'] = total;
+    return data;
   }
 
   @override
@@ -123,15 +123,15 @@ class CoinRecord {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['coinCount'] = coinCount;
-    _data['date'] = date;
-    _data['desc'] = desc;
-    _data['id'] = id;
-    _data['reason'] = reason;
-    _data['type'] = type;
-    _data['userId'] = userId;
-    _data['userName'] = userName;
-    return _data;
+    final data = <String, dynamic>{};
+    data['coinCount'] = coinCount;
+    data['date'] = date;
+    data['desc'] = desc;
+    data['id'] = id;
+    data['reason'] = reason;
+    data['type'] = type;
+    data['userId'] = userId;
+    data['userName'] = userName;
+    return data;
   }
 }

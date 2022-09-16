@@ -23,11 +23,11 @@ class ShareData extends BaseData {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['data'] = data.toJson();
-    _data['errorCode'] = errorCode;
-    _data['errorMsg'] = errorMsg;
-    return _data;
+    final data = <String, dynamic>{};
+    data['data'] = this.data.toJson();
+    data['errorCode'] = errorCode;
+    data['errorMsg'] = errorMsg;
+    return data;
   }
 
   @override
@@ -52,9 +52,9 @@ class ShareDataItem {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['coinInfo'] = coinInfo.toJson();
-    _data['shareArticles'] = shareArticles.toJson();
-    return _data;
+    final data = <String, dynamic>{};
+    data['coinInfo'] = coinInfo.toJson();
+    data['shareArticles'] = shareArticles.toJson();
+    return data;
   }
 }

@@ -50,11 +50,7 @@ class FileTools {
 
   /// 缓存大小格式转换
   static String formatSize(double value) {
-    List<String> unitArr = []
-      ..add('B')
-      ..add('K')
-      ..add('M')
-      ..add('G');
+    List<String> unitArr = ['B', 'K', 'M', 'G'];
     int index = 0;
     while (value > 1024) {
       index++;
@@ -81,6 +77,7 @@ class FileTools {
       if (file.existsSync()) {
         await file.delete(recursive: true);
       }
+      // ignore: empty_catches
     } catch (err) {}
   }
 }

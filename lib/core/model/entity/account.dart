@@ -23,11 +23,11 @@ class AccountData extends BaseData {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['data'] = data.toJson();
-    _data['errorCode'] = errorCode;
-    _data['errorMsg'] = errorMsg;
-    return _data;
+    final data = <String, dynamic>{};
+    data['data'] = this.data.toJson();
+    data['errorCode'] = errorCode;
+    data['errorMsg'] = errorMsg;
+    return data;
   }
 
   @override
@@ -57,11 +57,11 @@ class UserData extends BaseData {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['data'] = data.toJson();
-    _data['errorCode'] = errorCode;
-    _data['errorMsg'] = errorMsg;
-    return _data;
+    final data = <String, dynamic>{};
+    data['data'] = this.data.toJson();
+    data['errorCode'] = errorCode;
+    data['errorMsg'] = errorMsg;
+    return data;
   }
 
   @override
@@ -90,11 +90,11 @@ class AccountInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['coinInfo'] = coinInfo.toJson();
-    _data['collectArticleInfo'] = collectArticleInfo.toJson();
-    _data['userInfo'] = userInfo.toJson();
-    return _data;
+    final data = <String, dynamic>{};
+    data['coinInfo'] = coinInfo.toJson();
+    data['collectArticleInfo'] = collectArticleInfo.toJson();
+    data['userInfo'] = userInfo.toJson();
+    return data;
   }
 }
 
@@ -125,14 +125,14 @@ class CoinInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['coinCount'] = coinCount;
-    _data['level'] = level;
-    _data['nickname'] = nickname;
-    _data['rank'] = rank;
-    _data['userId'] = userId;
-    _data['username'] = username;
-    return _data;
+    final data = <String, dynamic>{};
+    data['coinCount'] = coinCount;
+    data['level'] = level;
+    data['nickname'] = nickname;
+    data['rank'] = rank;
+    data['userId'] = userId;
+    data['username'] = username;
+    return data;
   }
 }
 
@@ -148,9 +148,9 @@ class CollectArticleInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['count'] = count;
-    return _data;
+    final data = <String, dynamic>{};
+    data['count'] = count;
+    return data;
   }
 }
 
@@ -202,20 +202,20 @@ class UserInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['admin'] = admin;
-    _data['chapterTops'] = chapterTops;
-    _data['coinCount'] = coinCount;
-    _data['collectIds'] = collectIds;
-    _data['email'] = email;
-    _data['icon'] = icon;
-    _data['id'] = id;
-    _data['nickname'] = nickname;
-    _data['password'] = password;
-    _data['publicName'] = publicName;
-    _data['token'] = token;
-    _data['type'] = type;
-    _data['username'] = username;
-    return _data;
+    final data = <String, dynamic>{};
+    data['admin'] = admin;
+    data['chapterTops'] = chapterTops;
+    data['coinCount'] = coinCount;
+    data['collectIds'] = collectIds;
+    data['email'] = email;
+    data['icon'] = icon;
+    data['id'] = id;
+    data['nickname'] = nickname;
+    data['password'] = password;
+    data['publicName'] = publicName;
+    data['token'] = token;
+    data['type'] = type;
+    data['username'] = username;
+    return data;
   }
 }

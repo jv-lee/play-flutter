@@ -22,11 +22,11 @@ class TodoData extends BaseData {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['data'] = data.toJson();
-    _data['errorCode'] = errorCode;
-    _data['errorMsg'] = errorMsg;
-    return _data;
+    final data = <String, dynamic>{};
+    data['data'] = this.data.toJson();
+    data['errorCode'] = errorCode;
+    data['errorMsg'] = errorMsg;
+    return data;
   }
 
   @override
@@ -54,11 +54,11 @@ class TodoPageData extends BaseData {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['data'] = data.toJson();
-    _data['errorCode'] = errorCode;
-    _data['errorMsg'] = errorMsg;
-    return _data;
+    final data = <String, dynamic>{};
+    data['data'] = this.data.toJson();
+    data['errorCode'] = errorCode;
+    data['errorMsg'] = errorMsg;
+    return data;
   }
 
   @override
@@ -101,15 +101,15 @@ class TodoPage extends PagingData<Todo> {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['curPage'] = curPage;
-    _data['datas'] = datas.map((e) => e.toJson()).toList();
-    _data['offset'] = offset;
-    _data['over'] = over;
-    _data['pageCount'] = pageCount;
-    _data['size'] = size;
-    _data['total'] = total;
-    return _data;
+    final data = <String, dynamic>{};
+    data['curPage'] = curPage;
+    data['datas'] = datas.map((e) => e.toJson()).toList();
+    data['offset'] = offset;
+    data['over'] = over;
+    data['pageCount'] = pageCount;
+    data['size'] = size;
+    data['total'] = total;
+    return data;
   }
 
   @override
@@ -164,18 +164,18 @@ class Todo {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['completeDate'] = completeDate;
-    _data['completeDateStr'] = completeDateStr;
-    _data['content'] = content;
-    _data['date'] = date;
-    _data['dateStr'] = dateStr;
-    _data['id'] = id;
-    _data['priority'] = priority;
-    _data['status'] = status;
-    _data['title'] = title;
-    _data['type'] = type;
-    _data['userId'] = userId;
-    return _data;
+    final data = <String, dynamic>{};
+    data['completeDate'] = completeDate;
+    data['completeDateStr'] = completeDateStr;
+    data['content'] = content;
+    data['date'] = date;
+    data['dateStr'] = dateStr;
+    data['id'] = id;
+    data['priority'] = priority;
+    data['status'] = status;
+    data['title'] = title;
+    data['type'] = type;
+    data['userId'] = userId;
+    return data;
   }
 }

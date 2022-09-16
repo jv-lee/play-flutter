@@ -21,11 +21,11 @@ class Data extends BaseData{
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['data'] = data;
-    _data['errorCode'] = errorCode;
-    _data['errorMsg'] = errorMsg;
-    return _data;
+    final data = <String, dynamic>{};
+    data['data'] = this.data;
+    data['errorCode'] = errorCode;
+    data['errorMsg'] = errorMsg;
+    return data;
   }
 
   @override

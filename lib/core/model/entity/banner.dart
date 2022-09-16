@@ -20,11 +20,11 @@ class BannerData extends BaseData{
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['data'] = data.map((e)=>e.toJson()).toList();
-    _data['errorCode'] = errorCode;
-    _data['errorMsg'] = errorMsg;
-    return _data;
+    final data = <String, dynamic>{};
+    data['data'] = this.data.map((e)=>e.toJson()).toList();
+    data['errorCode'] = errorCode;
+    data['errorMsg'] = errorMsg;
+    return data;
   }
 
   @override
@@ -66,15 +66,15 @@ class BannerItem {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['desc'] = desc;
-    _data['id'] = id;
-    _data['imagePath'] = imagePath;
-    _data['isVisible'] = isVisible;
-    _data['order'] = order;
-    _data['title'] = title;
-    _data['type'] = type;
-    _data['url'] = url;
-    return _data;
+    final data = <String, dynamic>{};
+    data['desc'] = desc;
+    data['id'] = id;
+    data['imagePath'] = imagePath;
+    data['isVisible'] = isVisible;
+    data['order'] = order;
+    data['title'] = title;
+    data['type'] = type;
+    data['url'] = url;
+    return data;
   }
 }

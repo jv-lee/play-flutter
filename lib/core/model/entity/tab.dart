@@ -21,11 +21,11 @@ class TabData extends BaseData {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['data'] = data.map((e) => e.toJson()).toList();
-    _data['errorCode'] = errorCode;
-    _data['errorMsg'] = errorMsg;
-    return _data;
+    final data = <String, dynamic>{};
+    data['data'] = this.data.map((e) => e.toJson()).toList();
+    data['errorCode'] = errorCode;
+    data['errorMsg'] = errorMsg;
+    return data;
   }
 
   @override
@@ -83,20 +83,20 @@ class Tab {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['author'] = author;
-    _data['children'] = children;
-    _data['courseId'] = courseId;
-    _data['cover'] = cover;
-    _data['desc'] = desc;
-    _data['id'] = id;
-    _data['lisense'] = lisense;
-    _data['lisenseLink'] = lisenseLink;
-    _data['name'] = name;
-    _data['order'] = order;
-    _data['parentChapterId'] = parentChapterId;
-    _data['userControlSetTop'] = userControlSetTop;
-    _data['visible'] = visible;
-    return _data;
+    final data = <String, dynamic>{};
+    data['author'] = author;
+    data['children'] = children;
+    data['courseId'] = courseId;
+    data['cover'] = cover;
+    data['desc'] = desc;
+    data['id'] = id;
+    data['lisense'] = lisense;
+    data['lisenseLink'] = lisenseLink;
+    data['name'] = name;
+    data['order'] = order;
+    data['parentChapterId'] = parentChapterId;
+    data['userControlSetTop'] = userControlSetTop;
+    data['visible'] = visible;
+    return data;
   }
 }

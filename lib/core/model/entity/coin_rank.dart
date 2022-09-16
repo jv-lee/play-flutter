@@ -22,11 +22,11 @@ class CoinRankData extends BaseData {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['data'] = data.toJson();
-    _data['errorCode'] = errorCode;
-    _data['errorMsg'] = errorMsg;
-    return _data;
+    final data = <String, dynamic>{};
+    data['data'] = this.data.toJson();
+    data['errorCode'] = errorCode;
+    data['errorMsg'] = errorMsg;
+    return data;
   }
 
   @override
@@ -69,15 +69,15 @@ class CoinRankPage with PagingData<CoinRank> {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['curPage'] = curPage;
-    _data['datas'] = datas.map((e) => e.toJson()).toList();
-    _data['offset'] = offset;
-    _data['over'] = over;
-    _data['pageCount'] = pageCount;
-    _data['size'] = size;
-    _data['total'] = total;
-    return _data;
+    final data = <String, dynamic>{};
+    data['curPage'] = curPage;
+    data['datas'] = datas.map((e) => e.toJson()).toList();
+    data['offset'] = offset;
+    data['over'] = over;
+    data['pageCount'] = pageCount;
+    data['size'] = size;
+    data['total'] = total;
+    return data;
   }
 
   @override
@@ -117,13 +117,13 @@ class CoinRank {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['coinCount'] = coinCount;
-    _data['level'] = level;
-    _data['nickname'] = nickname;
-    _data['rank'] = rank;
-    _data['userId'] = userId;
-    _data['username'] = username;
-    return _data;
+    final data = <String, dynamic>{};
+    data['coinCount'] = coinCount;
+    data['level'] = level;
+    data['nickname'] = nickname;
+    data['rank'] = rank;
+    data['userId'] = userId;
+    data['username'] = username;
+    return data;
   }
 }

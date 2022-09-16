@@ -34,7 +34,8 @@ class CacheManager {
           .list()
           .firstWhere((element) => element.path.contains(name));
       file.deleteSync();
-    } catch (e) {}
+      // ignore: empty_catches
+    } catch (e){}
   }
 
   Future<File?> getFile(name) async {

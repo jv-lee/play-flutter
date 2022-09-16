@@ -22,11 +22,11 @@ class ContentData extends BaseData {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['data'] = data.toJson();
-    _data['errorCode'] = errorCode;
-    _data['errorMsg'] = errorMsg;
-    return _data;
+    final data = <String, dynamic>{};
+    data['data'] = this.data.toJson();
+    data['errorCode'] = errorCode;
+    data['errorMsg'] = errorMsg;
+    return data;
   }
 
   @override
@@ -210,42 +210,42 @@ class Content {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['apkLink'] = apkLink;
-    _data['audit'] = audit;
-    _data['author'] = author;
-    _data['canEdit'] = canEdit;
-    _data['chapterId'] = chapterId;
-    _data['chapterName'] = chapterName;
-    _data['collect'] = collect;
-    _data['courseId'] = courseId;
-    _data['desc'] = desc;
-    _data['descMd'] = descMd;
-    _data['envelopePic'] = envelopePic;
-    _data['fresh'] = fresh;
-    _data['host'] = host;
-    _data['id'] = id;
-    _data['originId'] = originId;
-    _data['link'] = link;
-    _data['niceDate'] = niceDate;
-    _data['niceShareDate'] = niceShareDate;
-    _data['origin'] = origin;
-    _data['prefix'] = prefix;
-    _data['projectLink'] = projectLink;
-    _data['publishTime'] = publishTime;
-    _data['realSuperChapterId'] = realSuperChapterId;
-    _data['selfVisible'] = selfVisible;
-    _data['shareDate'] = shareDate;
-    _data['shareUser'] = shareUser;
-    _data['superChapterId'] = superChapterId;
-    _data['superChapterName'] = superChapterName;
-    _data['tags'] = tags.map((e) => e.toJson()).toList();
-    _data['title'] = title;
-    _data['type'] = type;
-    _data['userId'] = userId;
-    _data['visible'] = visible;
-    _data['zan'] = zan;
-    return _data;
+    final data = <String, dynamic>{};
+    data['apkLink'] = apkLink;
+    data['audit'] = audit;
+    data['author'] = author;
+    data['canEdit'] = canEdit;
+    data['chapterId'] = chapterId;
+    data['chapterName'] = chapterName;
+    data['collect'] = collect;
+    data['courseId'] = courseId;
+    data['desc'] = desc;
+    data['descMd'] = descMd;
+    data['envelopePic'] = envelopePic;
+    data['fresh'] = fresh;
+    data['host'] = host;
+    data['id'] = id;
+    data['originId'] = originId;
+    data['link'] = link;
+    data['niceDate'] = niceDate;
+    data['niceShareDate'] = niceShareDate;
+    data['origin'] = origin;
+    data['prefix'] = prefix;
+    data['projectLink'] = projectLink;
+    data['publishTime'] = publishTime;
+    data['realSuperChapterId'] = realSuperChapterId;
+    data['selfVisible'] = selfVisible;
+    data['shareDate'] = shareDate;
+    data['shareUser'] = shareUser;
+    data['superChapterId'] = superChapterId;
+    data['superChapterName'] = superChapterName;
+    data['tags'] = tags.map((e) => e.toJson()).toList();
+    data['title'] = title;
+    data['type'] = type;
+    data['userId'] = userId;
+    data['visible'] = visible;
+    data['zan'] = zan;
+    return data;
   }
 }
 
@@ -264,9 +264,9 @@ class Tags {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['name'] = name;
-    _data['url'] = url;
-    return _data;
+    final data = <String, dynamic>{};
+    data['name'] = name;
+    data['url'] = url;
+    return data;
   }
 }
