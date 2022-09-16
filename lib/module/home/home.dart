@@ -7,7 +7,7 @@ import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
 import 'package:playflutter/core/theme/theme_strings.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
-import 'package:playflutter/core/widget/common/banner.dart';
+import 'package:playflutter/core/widget/common/banner_view.dart';
 import 'package:playflutter/core/widget/common/header/app_header_container.dart';
 import 'package:playflutter/core/widget/common/header/app_header_spacer.dart';
 import 'package:playflutter/core/widget/common/header/app_text_action_bar.dart';
@@ -95,18 +95,16 @@ class _HomeState extends BasePageState<HomePage>
     if (bannerList.isEmpty) {
       return Container();
     } else {
-      return SizedBox(
+      return BannerView(
           width: double.infinity,
           height: ThemeDimens.homeBannerHeight,
-          child: BannerView(
-              initialPage: bannerIndex,
-              itemCount: bannerList.length,
-              controller: viewModel.viewStates.bannerViewController,
-              onIndexChange: (index) =>
-                  viewModel.viewStates.bannerIndex = index,
-              indexedWidgetBuilder: (context, index) =>
-                  BannerView.cardBannerItem(bannerList[index].imagePath,
-                      onItemTap: () => onItemClick(bannerList[index]))));
+          initialPage: bannerIndex,
+          itemCount: bannerList.length,
+          controller: viewModel.viewStates.bannerViewController,
+          onIndexChange: (index) => viewModel.viewStates.bannerIndex = index,
+          indexedWidgetBuilder: (context, index) => BannerView.cardBannerItem(
+              bannerList[index].imagePath,
+              onItemTap: () => onItemClick(bannerList[index])));
     }
   }
 

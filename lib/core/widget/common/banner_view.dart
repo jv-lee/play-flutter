@@ -10,6 +10,8 @@ import 'package:playflutter/core/theme/theme_dimens.dart';
 /// @date 2022/9/15
 /// @description 项目banner封装组件
 class BannerView extends StatefulWidget {
+  final double width;
+  final double height;
   final int initialPage;
   final int itemCount;
   final IndexedWidgetBuilder indexedWidgetBuilder;
@@ -21,6 +23,8 @@ class BannerView extends StatefulWidget {
 
   const BannerView({
     Key? key,
+    required this.width,
+    required this.height,
     required this.initialPage,
     required this.itemCount,
     required this.indexedWidgetBuilder,
@@ -60,11 +64,11 @@ class BannerView extends StatefulWidget {
 }
 
 class _BannerViewState extends State<BannerView> {
-  final looperCountFactor = 500;
-  StreamSubscription? stream;
+  final looperCountFactor = 10;
   var isStart = false;
   late final PageController pageController;
-  late int itemPage;
+  late int currentPage;
+  StreamSubscription? stream;
 
   @override
   void initState() {
@@ -72,11 +76,11 @@ class _BannerViewState extends State<BannerView> {
     widget.controller?._startLoop = startLoop;
     widget.controller?._stopLoop = stopLoop;
 
-    itemPage = widget.initialPage == 0
+    currentPage = widget.initialPage == 0
         ? getStartSelectItem(widget.itemCount, looperCountFactor)
         : widget.initialPage;
     pageController = PageController(
-        initialPage: itemPage,
+        initialPage: currentPage,
         viewportFraction: widget.clipEnable ? 0.85 : 1.0);
 
     startLoop();
@@ -95,16 +99,19 @@ class _BannerViewState extends State<BannerView> {
         onPointerDown: (event) => startLoop(),
         onPointerUp: (event) => startLoop(),
         onPointerCancel: (event) => startLoop(),
-        child: PageView.builder(
-            dragStartBehavior: DragStartBehavior.down,
-            onPageChanged: (page) {
-              widget.onIndexChange?.run((self) => self(page));
-              itemPage = page;
-            },
-            controller: pageController,
-            itemCount: looperCountFactor * 3,
-            itemBuilder: (context, index) => widget.indexedWidgetBuilder(
-                context, getRealIndex(index, widget.itemCount))));
+        child: SizedBox(
+            width: widget.width,
+            height: widget.height,
+            child: PageView.builder(
+                dragStartBehavior: DragStartBehavior.down,
+                onPageChanged: (page) {
+                  widget.onIndexChange?.run((self) => self(page));
+                  currentPage = page;
+                },
+                controller: pageController,
+                itemCount: getRealCount(looperCountFactor),
+                itemBuilder: (context, index) => widget.indexedWidgetBuilder(
+                    context, getRealIndex(index, widget.itemCount)))));
   }
 
   void startLoop() {
@@ -129,16 +136,19 @@ class _BannerViewState extends State<BannerView> {
   }
 
   void autoAnimatePage() {
-    if (itemPage == (looperCountFactor * 3) - 1) {
-      pageController.jumpToPage(itemPage);
+    if (currentPage == getRealCount(looperCountFactor) - 1) {
+      pageController
+          .jumpToPage(getStartSelectItem(widget.itemCount, looperCountFactor));
     } else {
-      ++itemPage;
-      pageController.animateToPage(itemPage,
+      ++currentPage;
+      pageController.animateToPage(currentPage,
           duration: const Duration(milliseconds: 300), curve: Curves.ease);
     }
   }
 
   getRealIndex(int position, int size) => position % size;
+
+  getRealCount(int looperCount) => looperCount * 3;
 
   int getStartSelectItem(int size, int looperCount) {
     // 我们设置当前选中的位置为Integer.MAX_VALUE / 2,这样开始就能往左滑动

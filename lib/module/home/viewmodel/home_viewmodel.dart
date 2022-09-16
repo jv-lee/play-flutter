@@ -11,7 +11,7 @@ import 'package:playflutter/core/tools/log_tools.dart';
 import 'package:playflutter/core/tools/paging/local_paging.dart';
 import 'package:playflutter/core/tools/paging/paging.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
-import 'package:playflutter/core/widget/common/banner.dart';
+import 'package:playflutter/core/widget/common/banner_view.dart';
 import 'package:playflutter/module/home/model/entity/home_category.dart';
 import 'package:playflutter/module/home/model/home_model.dart';
 import 'package:playflutter/module/main/model/entity/main_tab_page.dart';
