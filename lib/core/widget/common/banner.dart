@@ -110,6 +110,7 @@ class _BannerViewState extends State<BannerView> {
   void startLoop() {
     // 是否符合自动轮播条件
     if (widget.itemCount > 0 && widget.loopEnable && isStart == false) {
+      releaseAutoStream();
       isStart = true;
       stream = Stream.periodic(
               Duration(milliseconds: widget.timeMillis), (data) => data)
@@ -119,7 +120,12 @@ class _BannerViewState extends State<BannerView> {
 
   void stopLoop() {
     isStart = false;
+    releaseAutoStream();
+  }
+
+  void releaseAutoStream() {
     stream?.cancel();
+    stream = null;
   }
 
   void autoAnimatePage() {
