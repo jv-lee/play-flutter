@@ -10,20 +10,24 @@ import 'package:playflutter/core/theme/theme_dimens.dart';
 /// @date 2022/9/15
 /// @description 项目banner封装组件
 class BannerView extends StatefulWidget {
+  final int initialPage;
   final int itemCount;
   final IndexedWidgetBuilder indexedWidgetBuilder;
   final BannerViewController? controller;
   final Function(int)? onIndexTap;
+  final Function(int)? onIndexChange;
   final int timeMillis;
   final bool clipEnable;
   final bool loopEnable;
 
   const BannerView({
     Key? key,
+    required this.initialPage,
     required this.itemCount,
     required this.indexedWidgetBuilder,
     this.controller,
     this.onIndexTap,
+    this.onIndexChange,
     this.timeMillis = 3000,
     this.clipEnable = true,
     this.loopEnable = true,
@@ -70,7 +74,9 @@ class _BannerViewState extends State<BannerView> {
     widget.controller?._startLoop = startLoop;
     widget.controller?._stopLoop = stopLoop;
 
-    itemPage = getStartSelectItem(widget.itemCount, looperCountFactor);
+    itemPage = widget.initialPage == 0
+        ? getStartSelectItem(widget.itemCount, looperCountFactor)
+        : widget.initialPage;
     pageController = PageController(
         initialPage: itemPage,
         viewportFraction: widget.clipEnable ? 0.85 : 1.0);
@@ -93,7 +99,10 @@ class _BannerViewState extends State<BannerView> {
         onPointerCancel: (event) => startLoop(),
         child: PageView.builder(
             dragStartBehavior: DragStartBehavior.down,
-            onPageChanged: (page) => itemPage = page,
+            onPageChanged: (page) {
+              widget.onIndexChange?.run((self) => self(page));
+              itemPage = page;
+            },
             controller: pageController,
             itemCount: looperCountFactor * 3,
             itemBuilder: (context, index) => widget.indexedWidgetBuilder(

@@ -91,6 +91,7 @@ class _HomeState extends BasePageState<HomePage>
   Widget buildBanner(
       HomeViewModel viewModel, Function(BannerItem) onItemClick) {
     var bannerList = viewModel.viewStates.bannerList;
+    var bannerIndex = viewModel.viewStates.bannerIndex;
     if (bannerList.isEmpty) {
       return Container();
     } else {
@@ -98,8 +99,11 @@ class _HomeState extends BasePageState<HomePage>
           width: double.infinity,
           height: ThemeDimens.homeBannerHeight,
           child: BannerView(
+              initialPage: bannerIndex,
               itemCount: bannerList.length,
               controller: viewModel.viewStates.bannerViewController,
+              onIndexChange: (index) =>
+                  viewModel.viewStates.bannerIndex = index,
               indexedWidgetBuilder: (context, index) =>
                   BannerView.cardBannerItem(bannerList[index].imagePath,
                       onItemTap: () => onItemClick(bannerList[index]))));

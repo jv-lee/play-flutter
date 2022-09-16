@@ -91,6 +91,7 @@ class HomeViewModel extends BaseViewModel {
 }
 
 class _HomeViewState {
+  int bannerIndex = 0;
   late Paging<Content> paging;
   List<BannerItem> bannerList = [];
   List<HomeCategory> categoryList = [];
