@@ -6,34 +6,34 @@ import 'package:playflutter/core/theme/theme_dimens.dart';
 /// @description 项目主题颜色
 class ThemeColors {
   static final AppColors lightColorPalette = AppColors(
-      const Color(0xFF9B9B9B),
-      const Color(0xFF414141),
-      const Color(0xFF191919),
-      const Color(0xFF4100AB),
-      const Color(0xFFEADEFF),
-      const Color(0xFFFFFFFF),
-      const Color(0xFFF9F5FF),
-      const Color(0x1FF9F5FF),
-      const Color(0x1AF9F5FF),
-      const Color(0xFFFFFFFF),
-      const Color(0xFFEBEBEB),
-      const Color(0xFFF9F9F9),
-      const Color(0xFFEBEBEB));
+      primary: const Color(0xFF9B9B9B),
+      primaryDark: const Color(0xFF414141),
+      accent: const Color(0xFF191919),
+      focus: const Color(0xFF4100AB),
+      onFocus: const Color(0xFFEADEFF),
+      window: const Color(0xFFFFFFFF),
+      background: const Color(0xFFF9F5FF),
+      backgroundTransparent: const Color(0x1FF9F5FF),
+      divider: const Color(0x1AF9F5FF),
+      item: const Color(0xFFFFFFFF),
+      shadow: const Color(0xFFEBEBEB),
+      placeholder: const Color(0xFFF9F9F9),
+      label: const Color(0xFFEBEBEB));
 
   static final AppColors darkColorPalette = AppColors(
-      const Color(0xFFD3D3D3),
-      const Color(0xFF6E6E6E),
-      const Color(0xFFF9F9F9),
-      const Color(0xFF874EFF),
-      const Color(0xFFEADEFF),
-      const Color(0xFF010101),
-      const Color(0xFF010101),
-      const Color(0x1F010101),
-      const Color(0x1A010101),
-      const Color(0xFF1B1B1B),
-      const Color(0xFF111111),
-      const Color(0xFF575757),
-      const Color(0xFF575757));
+      primary: const Color(0xFFD3D3D3),
+      primaryDark: const Color(0xFF6E6E6E),
+      accent: const Color(0xFFF9F9F9),
+      focus: const Color(0xFF874EFF),
+      onFocus: const Color(0xFFEADEFF),
+      window: const Color(0xFF010101),
+      background: const Color(0xFF010101),
+      backgroundTransparent: const Color(0x1F010101),
+      divider: const Color(0x1A010101),
+      item: const Color(0xFF1B1B1B),
+      shadow: const Color(0xFF111111),
+      placeholder: const Color(0xFF575757),
+      label: const Color(0xFF575757));
 
   static var lightThemeData = ThemeData(
       primaryColor: lightColorPalette.primary,
@@ -154,17 +154,17 @@ class AppColors {
   Color label;
 
   AppColors(
-      this.primary,
-      this.primaryDark,
-      this.accent,
-      this.focus,
-      this.onFocus,
-      this.window,
-      this.background,
-      this.backgroundTransparent,
-      this.divider,
-      this.item,
-      this.shadow,
-      this.placeholder,
-      this.label);
+      {required this.primary,
+      required this.primaryDark,
+      required this.accent,
+      required this.focus,
+      required this.onFocus,
+      required this.window,
+      required this.background,
+      required this.backgroundTransparent,
+      required this.divider,
+      required this.item,
+      required this.shadow,
+      required this.placeholder,
+      required this.label});
 }
