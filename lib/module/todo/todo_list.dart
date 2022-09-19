@@ -73,6 +73,7 @@ class _TodoListPageState extends BasePageState<TodoListPage>
     return Column(
       children: [
         slidingPaneState(
+            viewModel.slidingPaneController,
             Container(
               alignment: Alignment.centerLeft,
               width: double.infinity,
@@ -84,8 +85,7 @@ class _TodoListPageState extends BasePageState<TodoListPage>
                       fontSize: ThemeDimens.fontSizeSmall,
                       color: Theme.of(context).focusColor,
                       fontWeight: FontWeight.bold)),
-            ),
-            viewModel.slidingPaneController),
+            )),
         child
       ],
     );

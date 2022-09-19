@@ -155,10 +155,10 @@ class _SlidingPaneContainerState extends State<SlidingPaneContainer>
 }
 
 /// 提供给item中未被包含item点击的子widget，使用该方法构建需要显示的子item
-Widget slidingPaneState(Widget widget, SlidingPaneController controller) {
+Widget slidingPaneState(SlidingPaneController controller, Widget widget) {
   return GestureDetector(
       child: AbsorbPointer(absorbing: controller.isExpand(), child: widget),
-// 监听按下时是否有展开未收起的item
+      // 监听按下时是否有展开未收起的item
       onHorizontalDragDown: (details) {
         if (controller.isExpand()) {
           controller.updateExpand(false);
