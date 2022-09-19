@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/module/main/viewmodel/main_viewmodel.dart';
-import 'package:playflutter/core/widget/common/app_back_pop_scope.dart';
+import 'package:playflutter/core/widget/common/back_pop_scope.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26
@@ -18,7 +18,7 @@ class _MainState extends BasePageState<MainPage> {
   Widget build(BuildContext context) {
     return buildViewModel<MainViewModel>(
         create: (context) => MainViewModel(context),
-        viewBuild: (context, viewModel) => AppBackPopScope(
+        viewBuild: (context, viewModel) => BackPopScope(
             child: Scaffold(
                 body: PageView.builder(
                     itemCount: viewModel.viewStates.mainTabPages.length,

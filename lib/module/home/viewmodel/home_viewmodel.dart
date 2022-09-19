@@ -91,8 +91,8 @@ class HomeViewModel extends BaseViewModel {
 }
 
 class _HomeViewState {
-  int bannerIndex = 0;
   late Paging<Content> paging;
+  int bannerIndex = 0;
   List<BannerItem> bannerList = [];
   List<HomeCategory> categoryList = [];
   BannerViewController bannerViewController = BannerViewController();

@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:async';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -101,8 +103,7 @@ class _BannerViewState extends State<BannerView> {
   @override
   void initState() {
     super.initState();
-    widget.controller?._startLoop = startLoop;
-    widget.controller?._stopLoop = stopLoop;
+    widget.controller?.bindViewState(this);
 
     currentPage = widget.initialPage == 0
         ? getStartSelectItem(widget.itemCount)
@@ -124,7 +125,7 @@ class _BannerViewState extends State<BannerView> {
   @override
   Widget build(BuildContext context) {
     return Listener(
-        onPointerDown: (event) => startLoop(),
+        onPointerDown: (event) => stopLoop(),
         onPointerUp: (event) => startLoop(),
         onPointerCancel: (event) => startLoop(),
         child: SizedBox(
@@ -181,6 +182,19 @@ class _BannerViewState extends State<BannerView> {
     }
   }
 
+  void toPage(int page, bool isAnimation) {
+    var tempPage = currentPage;
+    while (getRealIndex(tempPage, widget.itemCount) != page) {
+      tempPage++;
+    }
+    if (isAnimation) {
+      pageController.jumpToPage(tempPage);
+    } else {
+      pageController.animateToPage(tempPage,
+          duration: const Duration(milliseconds: 300), curve: Curves.ease);
+    }
+  }
+
   int getRealIndex(int position, int size) => position % size;
 
   int getRealCount() => looperCountFactor * 3;
@@ -198,15 +212,21 @@ class _BannerViewState extends State<BannerView> {
   }
 }
 
+/// banner控制器
 class BannerViewController extends ChangeNotifier {
-  Function _startLoop = () {};
-  Function _stopLoop = () {};
+  late _BannerViewState _viewState;
 
-  void startLoop() {
-    _startLoop();
-  }
+  void bindViewState(_BannerViewState state) => _viewState = state;
 
-  void stopLoop() {
-    _stopLoop();
-  }
+  /// 开始轮播
+  void startLoop() => _viewState.startLoop();
+
+  /// 停止轮播
+  void stopLoop() => _viewState.stopLoop();
+
+  /// 无动画跳转
+  void jumpToPage(page) => _viewState.toPage(page, false);
+
+  /// 动画跳转
+  void animateToPage(page) => _viewState.toPage(page, true);
 }

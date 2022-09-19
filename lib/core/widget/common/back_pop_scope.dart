@@ -7,13 +7,13 @@ import 'package:toast/toast.dart';
 /// @author jv.lee
 /// @date 2022/6/29
 /// @description 页面拦截back事件，设置双击退出模式
-class AppBackPopScope extends StatelessWidget {
+class BackPopScope extends StatelessWidget {
   final Widget child;
   final int limitMillisecond;
   final String alertMessage;
   var firstTime = 0;
 
-  AppBackPopScope(
+  BackPopScope(
       {Key? key,
       required this.child,
       this.limitMillisecond = 2000,
