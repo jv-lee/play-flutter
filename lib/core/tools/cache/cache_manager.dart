@@ -4,7 +4,7 @@ import 'package:path_provider/path_provider.dart';
 
 /// @author jv.lee
 /// @date 2022/9/1
-/// @description
+/// @description 文件缓存管理类
 class CacheManager {
   CacheManager._internal();
 
