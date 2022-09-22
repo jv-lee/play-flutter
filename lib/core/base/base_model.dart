@@ -84,6 +84,5 @@ abstract class BaseModel {
   }
 }
 
-typedef CreateEntity<T> = T Function(dynamic resouse);
-typedef RequestResult<T> = bool Function(T);
-typedef ChangeError<T> = Future<T> Function();
+/// 通过数据实体构建转换函数 Entity.fromJson(resource)
+typedef CreateEntity<T> = T Function(dynamic resource);

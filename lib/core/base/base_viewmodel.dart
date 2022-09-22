@@ -1,5 +1,3 @@
-// ignore_for_file: invalid_use_of_protected_member
-
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 
@@ -60,9 +58,12 @@ abstract class BaseViewModel with ChangeNotifier {
   }
 }
 
+/// 执行带context的函数，可用于延时执行等跨作用域函数
 typedef RunViewContext = Function(BuildContext context);
 
+/// PageState build widget时创建viewModel
 typedef ViewBuild<T extends BaseViewModel> = Widget Function(
     BuildContext context, T viewModel);
 
+/// PageState 向下传递时在内部构建 viewModel时用到
 typedef StateBuild<T extends BasePageState> = Widget Function(T state,BuildContext context);
