@@ -16,11 +16,6 @@ class _OpacityTouchState extends State<OpacityTouch> {
   var opacity = 1.0;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
@@ -28,22 +23,21 @@ class _OpacityTouchState extends State<OpacityTouch> {
         opacity: opacity,
         child: widget.child,
       ),
-      onTapDown: (details) => {
-        setState(() {
-          opacity = 0.5;
-        })
-      },
-      onTapUp: (details) => {
-        setState(() {
-          opacity = 1.0;
-        })
-      },
-      onTapCancel: () => {
-        setState(() {
-          opacity = 1.0;
-        })
-      },
+      onTapDown: (details) => _onFocus(),
+      onTapUp: (details) => _unFocus(),
+      onTapCancel: () => _unFocus(),
     );
-    return Opacity(opacity: 1, child: widget.child);
+  }
+
+  void _onFocus() {
+    setState(() {
+      opacity = 0.5;
+    });
+  }
+
+  void _unFocus() {
+    setState(() {
+      opacity = 1.0;
+    });
   }
 }
