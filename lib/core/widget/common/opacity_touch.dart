@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 /// @description 透明度点击效果容器
 class OpacityTouch extends StatefulWidget {
   final Widget child;
+  final Function onTap;
 
-  const OpacityTouch({Key? key, required this.child}) : super(key: key);
+  const OpacityTouch({Key? key, required this.child, required this.onTap})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _OpacityTouchState();
@@ -23,6 +25,7 @@ class _OpacityTouchState extends State<OpacityTouch> {
         opacity: opacity,
         child: widget.child,
       ),
+      onTap: () => widget.onTap(),
       onTapDown: (details) => _onFocus(),
       onTapUp: (details) => _unFocus(),
       onTapCancel: () => _unFocus(),
