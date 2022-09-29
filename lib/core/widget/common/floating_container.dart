@@ -13,7 +13,6 @@ class FloatingContainer extends StatefulWidget {
 class _FloatingContainerState extends State<FloatingContainer> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Container();
   }
 }

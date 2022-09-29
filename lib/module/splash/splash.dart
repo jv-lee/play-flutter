@@ -3,8 +3,8 @@ import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
 import 'package:playflutter/core/tools/status_tools.dart';
-import 'package:playflutter/module/splash/viewmodel/splash_viewmodel.dart';
 import 'package:playflutter/core/widget/common/time_ready_button.dart';
+import 'package:playflutter/module/splash/viewmodel/splash_viewmodel.dart';
 
 /// @author jv.lee
 /// @date 2022/7/29
