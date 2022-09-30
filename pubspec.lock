@@ -64,13 +64,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.16.0"
-  cookie_jar:
-    dependency: transitive
-    description:
-      name: cookie_jar
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "3.0.1"
   crypto:
     dependency: transitive
     description:
@@ -99,13 +92,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "4.0.6"
-  dio_cookie_manager:
-    dependency: "direct main"
-    description:
-      name: dio_cookie_manager
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -276,7 +262,7 @@ packages:
     source: hosted
     version: "1.0.1"
   path_provider:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: path_provider
       url: "https://pub.flutter-io.cn"
@@ -316,7 +302,7 @@ packages:
       name: path_provider_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.0.4"
+    version: "2.0.5"
   path_provider_windows:
     dependency: transitive
     description:
@@ -373,13 +359,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.27.5"
-  screen_ratio_adapter:
-    dependency: "direct main"
-    description:
-      name: screen_ratio_adapter
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "3.0.0"
   share:
     dependency: "direct main"
     description:
@@ -468,7 +447,7 @@ packages:
       name: sqflite_common
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.2.1+1"
+    version: "2.3.0"
   stack_trace:
     dependency: transitive
     description:
@@ -552,21 +531,21 @@ packages:
       name: webview_flutter_android
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.10.1"
+    version: "2.10.3"
   webview_flutter_platform_interface:
     dependency: transitive
     description:
       name: webview_flutter_platform_interface
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.9.3"
+    version: "1.9.5"
   webview_flutter_wkwebview:
     dependency: transitive
     description:
       name: webview_flutter_wkwebview
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.9.4"
+    version: "2.9.5"
   win32:
     dependency: transitive
     description:

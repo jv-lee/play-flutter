@@ -30,23 +30,20 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^0.1.2 #icon库
   dio: ^4.0.6 #网络库
-  dio_cookie_manager: ^2.0.0 #网络库cookie管理器
-  toast: ^0.3.0 #toast提示
-  screen_ratio_adapter: ^3.0.0 #屏幕适配
-  webview_flutter: ^3.0.4 #原生webView插件
-  shared_preferences: ^2.0.15 #本地存储
-  provider: ^6.0.2 #操作provider通知使用主题切换
-  path_provider: ^2.0.11 #获取本地缓存目录 使用清除缓存功能
+  path: ^1.8.1 #系统path获取
+  html: ^0.15.0 #html字符串解析
   share: ^2.0.4 #分享
   night: ^0.0.8 #深色模式适配
+  toast: ^0.3.0 #toast提示
+  sqflite: ^2.0.3 #数据库
+  provider: ^6.0.2 #provider核心库
+  flutter_svg: ^1.1.0 #svg图片加载库
+  webview_flutter: ^3.0.4 #原生webView插件
+  cupertino_icons: ^0.1.2 #icon库
+  shared_preferences: ^2.0.15 #本地存储
   cached_network_image: ^3.2.1 #网络图片加载缓存
   flutter_cache_manager: ^3.3.0 #缓存还礼类
-  html: ^0.15.0 #html字符串解析
-  flutter_svg: ^1.1.0 #flutterSVG图片加载库
-  sqflite: ^2.0.3 #数据库
-  path: ^1.8.1 #系统path获取
 
 dev_dependencies:
   flutter_test:
