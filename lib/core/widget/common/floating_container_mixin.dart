@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:playflutter/core/tools/log_tools.dart';
 
 /// @author jv.lee
 /// @date 2022/9/30
@@ -7,6 +8,8 @@ mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
   bool firstBuild = true;
   ReIndexType reIndexType = ReIndexType.move;
   Offset _offset = const Offset(0, 0);
+  Alignment _alignment = Alignment.center;
+  EdgeInsets _margin = EdgeInsets.zero;
 
   double _startX = 0;
   double _startY = 0;
@@ -48,6 +51,8 @@ mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
     _height = height;
     _maxWidth = constraints.maxWidth;
     _maxHeight = constraints.maxHeight;
+    _alignment = alignment as Alignment? ?? Alignment.center;
+    _margin = margin as EdgeInsets? ?? EdgeInsets.zero;
 
     if (alignment == Alignment.topLeft) {
       _startX = 0;
@@ -78,12 +83,7 @@ mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
       _startY = _maxHeight - height;
     }
 
-    if (margin != null && margin is EdgeInsets) {
-      _startX += margin.left;
-      _startX -= margin.right;
-      _startY += margin.top;
-      _startY -= margin.bottom;
-    }
+    LogTools.log("jv-lee", "INIT margin:$_startX,${_margin.left}");
   }
 
   void changeOffset(PointerEvent event) {
@@ -93,6 +93,7 @@ mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
 
       _currentX = _startX + _offset.dx;
       _currentY = _startY + _offset.dy;
+      LogTools.log("JV-LEE", "currentX:$_currentX");
     });
   }
 
@@ -108,16 +109,33 @@ mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
     var x = _currentX;
     var y = _currentY;
 
-    if ((_startX + _width) + _currentX > _maxWidth) {
-      x = _maxWidth - (_startX + _width);
-    } else if (_startX + _currentX < 0) {
-      x = 0 - _startX;
+    if (_alignment == Alignment.topLeft) {
+      if (_currentX < 0) {
+        x = 0;
+      } else if (_currentX >
+          (_maxWidth - _width) - (_margin.right + _margin.left)) {
+        x = (_maxWidth - _width) - (_margin.right + _margin.left);
+      }
+
+      if (_currentY < 0) {
+        y = 0;
+      } else if (_currentY >
+          (_maxHeight - _height) - (_margin.top + _margin.bottom)) {
+        y = (_maxHeight - _height) - (_margin.top + _margin.bottom);
+      }
     }
 
-    if ((_startY + _height) + _currentY > _maxHeight) {
-      y = (_maxHeight - (_startY + _height));
-    } else if (_startY + _currentY < 0) {
-      y = 0 - _startY;
+    if (_alignment == Alignment.topCenter) {
+      if (_currentX < -(((_maxWidth / 2) - (_width / 2))) - _margin.left) {
+        x = -(((_maxWidth / 2) - (_width / 2)) - _margin.left);
+      }
+
+      if (_currentY < 0) {
+        y = 0;
+      } else if (_currentY >
+          (_maxHeight - _height) - (_margin.top + _margin.bottom)) {
+        y = (_maxHeight - _height) - (_margin.top + _margin.bottom);
+      }
     }
 
     setState(() {
