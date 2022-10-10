@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/core/tools/log_tools.dart';
 
 /// @author jv.lee
 /// @date 2022/9/30
@@ -92,8 +91,6 @@ mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
       _startX = (_maxWidth - width) - _margin.right;
       _startY = (_maxHeight - height) - _margin.bottom;
     }
-
-    LogTools.log("jv-lee", "INIT margin:$_startX,${_margin.left}");
   }
 
   void changeOffset(PointerEvent event) {
@@ -103,12 +100,10 @@ mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
 
       _currentX = _startX + _offset.dx;
       _currentY = _startY + _offset.dy;
-      LogTools.log("JV-LEE", "currentX:$_currentX");
     });
   }
 
   void changeUp(PointerEvent event) {
-    // moveUp();
     // reindexXYUp();
     // reindexXUp();
     // reindexYUp();
@@ -116,11 +111,23 @@ mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
   }
 
   void reindexMove() {
-    var x = _currentX;
-    var y = _currentY;
+    var x = _offset.dx;
+    var y = _offset.dy;
 
-    if(_currentX < _parentLeft) {
-      x = _parentLeft;
+    // 超过父容器左边
+    if (_currentX < _parentLeft) {
+      x = -(_startX - _parentLeft);
+      // 超过父容器右边
+    } else if (_currentX > (_parentRight - _width)) {
+      x = (_parentRight - _width) - _startX;
+    }
+
+    // 超过父容器顶部
+    if (_currentY < _parentTop) {
+      y = -(_startY - _parentTop);
+      // 超过父容器底部
+    } else if (_currentY > (_parentBottom - _height)) {
+      y = (_parentBottom - _height) - _startY;
     }
 
     setState(() {
@@ -128,74 +135,18 @@ mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
     });
   }
 
-  void moveUp() {
-    _resetBoundLimitHorizontal();
-    _resetBoundLimitVertical();
-
-    setState(() {
-      _offset = Offset(_currentX, _currentY);
-    });
-  }
-
   void reindexXYUp() {
-    setState(() {
-      _offset = Offset.zero;
-    });
+
   }
 
   void reindexXUp() {
-    _resetBoundLimitVertical();
-    if (_resetBoundLimitHorizontal()) {
-      setState(() {
-        _offset = Offset(_currentX, _currentY);
-      });
-    } else if ((_currentX + (_width / 2)) > (_maxWidth / 2)) {
-      // setState(() {
-      //   _offset = Offset(0, _currentY);
-      // });
-    } else {}
 
-    if ((_currentX + (_width / 2)) > (_maxWidth / 2)) {
-      // setState(() {
-      //   _offset = Offset(0, _currentY);
-      // });
-    }
   }
 
   void reindexYUp() {
-    _resetBoundLimitHorizontal();
-    _resetBoundLimitVertical();
 
-    setState(() {
-      _offset = Offset(_currentX, 0);
-    });
   }
 
-  bool _resetBoundLimitHorizontal() {
-    if (rectLeft() < 0) {
-      _currentX = 0;
-      return true;
-    }
-    if (rectRight() > _maxWidth) {
-      _currentX = _maxWidth - _width;
-      return true;
-    }
-
-    return false;
-  }
-
-  bool _resetBoundLimitVertical() {
-    if (rectTop() < 0) {
-      _currentY = 0;
-      return true;
-    }
-    if (rectBottom() > _maxHeight) {
-      _currentY = _maxHeight - _height;
-      return true;
-    }
-
-    return false;
-  }
 }
 
 enum ReIndexType {
