@@ -16,6 +16,11 @@ mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
   double _currentX = 0;
   double _currentY = 0;
 
+  double _parentLeft = 0;
+  double _parentTop = 0;
+  double _parentRight = 0;
+  double _parentBottom = 0;
+
   double _width = 0;
   double _height = 0;
   double _maxWidth = 0;
@@ -54,33 +59,38 @@ mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
     _alignment = alignment as Alignment? ?? Alignment.center;
     _margin = margin as EdgeInsets? ?? EdgeInsets.zero;
 
+    _parentLeft = 0 + _margin.left;
+    _parentTop = 0 + _margin.top;
+    _parentRight = _maxWidth - _margin.right;
+    _parentBottom = _maxHeight - _margin.bottom;
+
     if (alignment == Alignment.topLeft) {
-      _startX = 0;
-      _startY = 0;
+      _startX = 0 + _margin.left;
+      _startY = 0 + _margin.top;
     } else if (alignment == Alignment.topCenter) {
       _startX = (_maxWidth / 2) - (_width / 2);
-      _startY = 0;
+      _startY = 0 + _margin.top;
     } else if (alignment == Alignment.topRight) {
-      _startX = _maxWidth - _width;
-      _startY = 0;
+      _startX = (_maxWidth - _width) - _margin.right;
+      _startY = 0 + _margin.top;
     } else if (alignment == Alignment.centerLeft) {
-      _startX = 0;
+      _startX = 0 + _margin.left;
       _startY = (_maxHeight / 2) - (_height / 2);
     } else if (alignment == Alignment.center) {
       _startX = ((_maxWidth / 2) - (_width / 2));
       _startY = (_maxHeight / 2) - (_height / 2);
     } else if (alignment == Alignment.centerRight) {
-      _startX = _maxWidth - width;
+      _startX = (_maxWidth - width) - _margin.right;
       _startY = (_maxHeight / 2) - (_height / 2);
     } else if (alignment == Alignment.bottomLeft) {
-      _startX = 0;
-      _startY = _maxHeight - _height;
+      _startX = 0 + _margin.left;
+      _startY = (_maxHeight - _height) - _margin.bottom;
     } else if (alignment == Alignment.bottomCenter) {
       _startX = ((_maxWidth / 2) - (_width / 2));
-      _startY = _maxHeight - _height;
+      _startY = (_maxHeight - _height) - _margin.bottom;
     } else if (alignment == Alignment.bottomRight) {
-      _startX = _maxWidth - width;
-      _startY = _maxHeight - height;
+      _startX = (_maxWidth - width) - _margin.right;
+      _startY = (_maxHeight - height) - _margin.bottom;
     }
 
     LogTools.log("jv-lee", "INIT margin:$_startX,${_margin.left}");
@@ -109,33 +119,8 @@ mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
     var x = _currentX;
     var y = _currentY;
 
-    if (_alignment == Alignment.topLeft) {
-      if (_currentX < 0) {
-        x = 0;
-      } else if (_currentX >
-          (_maxWidth - _width) - (_margin.right + _margin.left)) {
-        x = (_maxWidth - _width) - (_margin.right + _margin.left);
-      }
-
-      if (_currentY < 0) {
-        y = 0;
-      } else if (_currentY >
-          (_maxHeight - _height) - (_margin.top + _margin.bottom)) {
-        y = (_maxHeight - _height) - (_margin.top + _margin.bottom);
-      }
-    }
-
-    if (_alignment == Alignment.topCenter) {
-      if (_currentX < -(((_maxWidth / 2) - (_width / 2))) - _margin.left) {
-        x = -(((_maxWidth / 2) - (_width / 2)) - _margin.left);
-      }
-
-      if (_currentY < 0) {
-        y = 0;
-      } else if (_currentY >
-          (_maxHeight - _height) - (_margin.top + _margin.bottom)) {
-        y = (_maxHeight - _height) - (_margin.top + _margin.bottom);
-      }
+    if(_currentX < _parentLeft) {
+      x = _parentLeft;
     }
 
     setState(() {
