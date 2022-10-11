@@ -41,8 +41,8 @@ class _FloatingContainerState extends State<FloatingContainer>
               onPointerUp: (event) => changeUp(event),
               onPointerCancel: (event) => changeUp(event),
               child: Container(
-                  width: widget.width,
-                  height: widget.height,
+                  width: double.infinity,
+                  height: double.infinity,
                   alignment: widget.alignment,
                   margin: widget.margin,
                   child: SizedBox(
@@ -66,6 +66,7 @@ enum ReindexType {
 
 mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
   bool _firstBuild = true;
+  bool _firstMove = true;
   ReindexType _reindexType = ReindexType.move;
   Offset _offset = const Offset(0, 0);
   EdgeInsets _margin = EdgeInsets.zero;
@@ -155,6 +156,7 @@ mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
   }
 
   void changeOffset(PointerEvent event) {
+    _firstMove = false;
     setState(() {
       _offset =
           Offset(_offset.dx + event.delta.dx, _offset.dy + event.delta.dy);
@@ -165,6 +167,7 @@ mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
   }
 
   void changeUp(PointerEvent event) {
+    if (_firstMove) return;
     if (_reindexType == ReindexType.move) {
       _reindexMove();
     } else if (_reindexType == ReindexType.reindexXY) {
