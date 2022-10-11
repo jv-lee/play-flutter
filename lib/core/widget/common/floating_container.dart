@@ -257,8 +257,8 @@ mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
             end: FractionalOffset(offset.dx, offset.dy))
         .animate(_animationController);
 
-    animation.addListener(() => setState(() => _offset =
-        Offset(animation.value?.dx ?? 0.0, animation.value?.dy ?? 0.0)));
+    animation.addListener(() => setState(() => _offset = Offset(
+        animation.value?.dx ?? offset.dx, animation.value?.dy ?? offset.dy)));
     _animationController.reset();
     _animationController.forward();
   }
