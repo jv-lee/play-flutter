@@ -5,11 +5,9 @@ import 'package:playflutter/core/widget/common/floating_container_mixin.dart';
 /// @date 2022/9/22
 /// @description 悬浮容器 支持手势拖动
 class FloatingContainer extends StatefulWidget {
-  final AlignmentGeometry? alignment;
-  final EdgeInsetsGeometry? padding;
-  final EdgeInsetsGeometry? margin;
-  final Color? color;
-  final Decoration? decoration;
+  final ReindexType reindexType;
+  final AlignmentGeometry alignment;
+  final EdgeInsetsGeometry margin;
 
   final double width;
   final double height;
@@ -17,11 +15,9 @@ class FloatingContainer extends StatefulWidget {
 
   const FloatingContainer(
       {Key? key,
-      this.alignment,
-      this.padding,
-      this.margin,
-      this.color,
-      this.decoration,
+      this.reindexType = ReindexType.move,
+      this.alignment = Alignment.topLeft,
+      this.margin = EdgeInsets.zero,
       required this.width,
       required this.height,
       required this.child})
@@ -36,10 +32,11 @@ class _FloatingContainerState extends State<FloatingContainer>
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      changePosition(constraints, widget.width, widget.height,
+      changePosition(
+          constraints, widget.reindexType, widget.width, widget.height,
           alignment: widget.alignment, margin: widget.margin);
       return Transform.translate(
-          offset: rectOffset(),
+          offset: moveOffset(),
           child: Listener(
               onPointerMove: (event) => changeOffset(event),
               onPointerUp: (event) => changeUp(event),
@@ -48,14 +45,22 @@ class _FloatingContainerState extends State<FloatingContainer>
                   width: widget.width,
                   height: widget.height,
                   alignment: widget.alignment,
-                  padding: widget.padding,
                   margin: widget.margin,
-                  color: widget.color,
-                  decoration: widget.decoration,
                   child: SizedBox(
                       width: widget.width,
                       height: widget.height,
                       child: widget.child))));
     });
   }
+}
+
+enum ReindexType {
+  // 不限制复位自由摆放
+  move,
+  // x，y轴同时开启复位
+  reindexXY,
+  // x轴开启复位
+  reindexX,
+  // y轴开启复位
+  reindexY
 }
