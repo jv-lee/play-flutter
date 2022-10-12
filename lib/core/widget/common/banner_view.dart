@@ -134,13 +134,13 @@ class _BannerViewState extends State<BannerView> {
           child: Stack(
             children: [
               PageView.builder(
+                  controller: pageController,
+                  itemCount: getRealCount(),
                   dragStartBehavior: DragStartBehavior.down,
                   onPageChanged: (page) {
                     widget.onIndexChange?.run((self) => self(page));
                     setState(() => currentPage = page);
                   },
-                  controller: pageController,
-                  itemCount: getRealCount(),
                   itemBuilder: (context, index) => widget.indexedWidgetBuilder(
                       context, getRealIndex(index, widget.itemCount))),
               widget.indexedIndicatorBuilder?.let((self) => self(
