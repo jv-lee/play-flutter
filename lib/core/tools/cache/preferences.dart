@@ -76,19 +76,27 @@ class Preferences {
 
   static void requestCache<T>(
       {required String localKey,
-        required CreateJson<T> createJson,
-        required Future<T> requestFuture,
-        required Function(T value) callback,
-        required Function(dynamic error) onError}) async {
+      required CreateJson<T> createJson,
+      required Future<T> requestFuture,
+      required Function(T value) callback,
+      required Function(dynamic error) onError}) async {
     // 本地缓存获取
     T? data = await getCache(localKey, createJson);
     data?.run((self) => callback(self));
 
     // 网络请求
     requestFuture.then((value) {
-      // 缓存网络数据
-      saveCache(localKey, value);
-      callback(value);
+      // 缓存数据为空直接使用网络数据
+      if (data == null) {
+        saveCache(localKey, value);
+        callback(value);
+        return;
+      }
+      // 缓存数据不为空，对比缓存数据和网络数据，不相同则保存返回
+      if (jsonEncode(data) != jsonEncode(value)) {
+        saveCache(localKey, value);
+        callback(value);
+      }
     }).catchError(onError);
   }
 }
