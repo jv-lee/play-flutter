@@ -26,6 +26,7 @@ class ThemeDimens {
 
   // 通用圆角线宽度
   static const double borderWidth = 2;
+  static const double floatingIconSize = 56;
 
   // homeTab布局数值
   static const double homeCategoryLayoutHeight = 130;
