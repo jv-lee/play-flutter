@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 /// @date 2022/9/22
 /// @description 悬浮容器 支持手势拖动
 class FloatingContainer extends StatefulWidget {
-  final ReindexType reindexType;
-  final AlignmentGeometry alignment;
-  final EdgeInsetsGeometry margin;
+  final ReindexType reindexType; // 复位回弹模式
+  final bool limitBound; // 是否限制拖动出容器外
+  final AlignmentGeometry alignment; // 对齐方式
+  final EdgeInsetsGeometry margin; // 上下左右间距值
 
   final double width;
   final double height;
@@ -14,8 +15,9 @@ class FloatingContainer extends StatefulWidget {
 
   const FloatingContainer(
       {Key? key,
-      this.reindexType = ReindexType.move,
-      this.alignment = Alignment.topLeft,
+      this.reindexType = ReindexType.reindexX,
+      this.limitBound = false,
+      this.alignment = Alignment.bottomRight,
       this.margin = EdgeInsets.zero,
       required this.width,
       required this.height,
@@ -31,9 +33,7 @@ class _FloatingContainerState extends State<FloatingContainer>
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      changePosition(
-          constraints, widget.reindexType, widget.width, widget.height,
-          alignment: widget.alignment, margin: widget.margin);
+      changeParentSize(constraints);
       return Transform.translate(
           offset: moveOffset(),
           child: Listener(
@@ -53,26 +53,17 @@ class _FloatingContainerState extends State<FloatingContainer>
   }
 }
 
-enum ReindexType {
-  // 不限制复位自由摆放
-  move,
-  // x，y轴同时开启复位
-  reindexXY,
-  // x轴开启复位
-  reindexX,
-  // y轴开启复位
-  reindexY
-}
+/// [FloatingContainer] 容器复位回弹动画type
+/// [ReindexType.move] 不限制复位自由摆放
+/// [ReindexType.reindexXY] x，y轴同时开启复位
+/// [ReindexType.reindexX] x轴开启复位
+/// [ReindexType.reindexY] y轴开启复位
+enum ReindexType { move, reindexXY, reindexX, reindexY }
 
 mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
-  bool _firstBuild = true;
-  bool _firstMove = true;
-  ReindexType _reindexType = ReindexType.move;
+  bool _hasMove = false; // 当前是否移动过
   Offset _offset = const Offset(0, 0);
-  EdgeInsets _margin = EdgeInsets.zero;
 
-  double _width = 0; // 当前view宽度
-  double _height = 0; // 当前view高度
   double _parentWidth = 0; // 父容器宽度
   double _parentHeight = 0; // 父容器高度
 
@@ -104,157 +95,176 @@ mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
     super.dispose();
   }
 
-  void changePosition(
-      BoxConstraints constraints, ReindexType type, double width, double height,
-      {AlignmentGeometry? alignment = Alignment.topLeft,
-      EdgeInsetsGeometry? margin}) {
-    if (_firstBuild) {
-      _firstBuild = false;
-    } else {
-      return;
-    }
-    _reindexType = type;
-    _width = width;
-    _height = height;
-    _parentWidth = constraints.maxWidth;
-    _parentHeight = constraints.maxHeight;
-    _margin = margin as EdgeInsets? ?? EdgeInsets.zero;
+  void changeParentSize(BoxConstraints constraints) {
+    _runWithView((widget) {
+      final margin = widget.margin as EdgeInsets;
+      final alignment = widget.alignment as Alignment;
+      _parentWidth = constraints.maxWidth;
+      _parentHeight = constraints.maxHeight;
 
-    _parentLeft = 0 + _margin.left;
-    _parentTop = 0 + _margin.top;
-    _parentRight = _parentWidth - _margin.right;
-    _parentBottom = _parentHeight - _margin.bottom;
+      _parentLeft = 0 + margin.left;
+      _parentTop = 0 + margin.top;
+      _parentRight = _parentWidth - margin.right;
+      _parentBottom = _parentHeight - margin.bottom;
 
-    if (alignment == Alignment.topLeft) {
-      _startX = 0 + _margin.left;
-      _startY = 0 + _margin.top;
-    } else if (alignment == Alignment.topCenter) {
-      _startX = (_parentWidth / 2) - (_width / 2);
-      _startY = 0 + _margin.top;
-    } else if (alignment == Alignment.topRight) {
-      _startX = (_parentWidth - _width) - _margin.right;
-      _startY = 0 + _margin.top;
-    } else if (alignment == Alignment.centerLeft) {
-      _startX = 0 + _margin.left;
-      _startY = (_parentHeight / 2) - (_height / 2);
-    } else if (alignment == Alignment.center) {
-      _startX = ((_parentWidth / 2) - (_width / 2));
-      _startY = (_parentHeight / 2) - (_height / 2);
-    } else if (alignment == Alignment.centerRight) {
-      _startX = (_parentWidth - width) - _margin.right;
-      _startY = (_parentHeight / 2) - (_height / 2);
-    } else if (alignment == Alignment.bottomLeft) {
-      _startX = 0 + _margin.left;
-      _startY = (_parentHeight - _height) - _margin.bottom;
-    } else if (alignment == Alignment.bottomCenter) {
-      _startX = ((_parentWidth / 2) - (_width / 2));
-      _startY = (_parentHeight - _height) - _margin.bottom;
-    } else if (alignment == Alignment.bottomRight) {
-      _startX = (_parentWidth - width) - _margin.right;
-      _startY = (_parentHeight - height) - _margin.bottom;
-    }
+      if (alignment == Alignment.topLeft) {
+        _startX = 0 + margin.left;
+        _startY = 0 + margin.top;
+      } else if (alignment == Alignment.topCenter) {
+        _startX = (_parentWidth / 2) - (widget.width / 2);
+        _startY = 0 + margin.top;
+      } else if (alignment == Alignment.topRight) {
+        _startX = (_parentWidth - widget.width) - margin.right;
+        _startY = 0 + margin.top;
+      } else if (alignment == Alignment.centerLeft) {
+        _startX = 0 + margin.left;
+        _startY = (_parentHeight / 2) - (widget.height / 2);
+      } else if (alignment == Alignment.center) {
+        _startX = ((_parentWidth / 2) - (widget.width / 2));
+        _startY = (_parentHeight / 2) - (widget.height / 2);
+      } else if (alignment == Alignment.centerRight) {
+        _startX = (_parentWidth - widget.width) - margin.right;
+        _startY = (_parentHeight / 2) - (widget.height / 2);
+      } else if (alignment == Alignment.bottomLeft) {
+        _startX = 0 + margin.left;
+        _startY = (_parentHeight - widget.height) - margin.bottom;
+      } else if (alignment == Alignment.bottomCenter) {
+        _startX = ((_parentWidth / 2) - (widget.width / 2));
+        _startY = (_parentHeight - widget.height) - margin.bottom;
+      } else if (alignment == Alignment.bottomRight) {
+        _startX = (_parentWidth - widget.width) - margin.right;
+        _startY = (_parentHeight - widget.height) - margin.bottom;
+      }
+    });
   }
 
   void changeOffset(PointerEvent event) {
-    _firstMove = false;
-    setState(() {
-      _offset =
-          Offset(_offset.dx + event.delta.dx, _offset.dy + event.delta.dy);
+    _hasMove = true; // 设置移动标志位
+    _runWithView((widget) {
+      final margin = widget.margin as EdgeInsets;
+      var offsetX = _offset.dx + event.delta.dx;
+      var offsetY = _offset.dy + event.delta.dy;
 
-      _currentX = _startX + _offset.dx;
-      _currentY = _startY + _offset.dy;
+      _currentX = _startX + offsetX;
+      _currentY = _startY + offsetY;
+
+      // 是否限制可拖动出边界
+      if (widget.limitBound) {
+        if (_currentX < _parentLeft - margin.left) {
+          offsetX = -(_startX - (_parentLeft - margin.left));
+        } else if (_currentX > ((_parentRight + margin.right) - widget.width)) {
+          offsetX = ((_parentRight + margin.right) - widget.width) - _startX;
+        }
+
+        if (_currentY < _parentTop - margin.top) {
+          offsetY = -(_startY - (_parentTop - margin.top));
+        } else if (_currentY >
+            ((_parentBottom + margin.bottom) - widget.height)) {
+          offsetY = ((_parentBottom + margin.bottom) - widget.height) - _startY;
+        }
+      }
+
+      setState(() => _offset = Offset(offsetX, offsetY));
     });
   }
 
   void changeUp(PointerEvent event) {
-    if (_firstMove) return;
-    if (_reindexType == ReindexType.move) {
-      _reindexMove();
-    } else if (_reindexType == ReindexType.reindexXY) {
-      _reindexXYUp();
-    } else if (_reindexType == ReindexType.reindexX) {
-      _reindexXUp();
-    } else if (_reindexType == ReindexType.reindexY) {
-      _reindexYUp();
-    }
+    if (!_hasMove) return; // 未移动过无需处理复位
+    _runWithView((widget) {
+      if (widget.reindexType == ReindexType.move) {
+        _reindexMove();
+      } else if (widget.reindexType == ReindexType.reindexXY) {
+        _reindexXYUp();
+      } else if (widget.reindexType == ReindexType.reindexX) {
+        _reindexXUp();
+      } else if (widget.reindexType == ReindexType.reindexY) {
+        _reindexYUp();
+      }
+    });
   }
 
   void _reindexMove() {
-    var x = _offset.dx;
-    var y = _offset.dy;
+    _runWithView((widget) {
+      var x = _offset.dx;
+      var y = _offset.dy;
 
-    // 超过父容器左边
-    if (_currentX < _parentLeft) {
-      x = -(_startX - _parentLeft);
-      // 超过父容器右边
-    } else if (_currentX > (_parentRight - _width)) {
-      x = (_parentRight - _width) - _startX;
-    }
+      // 超过父容器左边
+      if (_currentX < _parentLeft) {
+        x = -(_startX - _parentLeft);
+        // 超过父容器右边
+      } else if (_currentX > (_parentRight - widget.width)) {
+        x = (_parentRight - widget.width) - _startX;
+      }
 
-    // 超过父容器顶部
-    if (_currentY < _parentTop) {
-      y = -(_startY - _parentTop);
-      // 超过父容器底部
-    } else if (_currentY > (_parentBottom - _height)) {
-      y = (_parentBottom - _height) - _startY;
-    }
+      // 超过父容器顶部
+      if (_currentY < _parentTop) {
+        y = -(_startY - _parentTop);
+        // 超过父容器底部
+      } else if (_currentY > (_parentBottom - widget.height)) {
+        y = (_parentBottom - widget.height) - _startY;
+      }
 
-    _changeAnimation(Offset(x, y));
+      _startReindexAnimation(Offset(x, y));
+    });
   }
 
   void _reindexXYUp() {
-    _changeAnimation(Offset.zero);
+    _startReindexAnimation(Offset.zero);
   }
 
   void _reindexXUp() {
-    var x = 0.0;
-    var y = _offset.dy;
+    _runWithView((widget) {
+      var x = 0.0;
+      var y = _offset.dy;
 
-    // 当前view中心点靠近右边界
-    if ((_currentX + (_width / 2)) >= (_parentWidth / 2)) {
-      x = (_parentRight - _width) - _startX;
+      // 当前view中心点靠近右边界
+      if ((_currentX + (widget.width / 2)) >= (_parentWidth / 2)) {
+        x = (_parentRight - widget.width) - _startX;
 
-      // 当前view中心点靠近左边界
-    } else {
-      x = -(_startX - _parentLeft);
-    }
+        // 当前view中心点靠近左边界
+      } else {
+        x = -(_startX - _parentLeft);
+      }
 
-    // 超过父容器顶部
-    if (_currentY < _parentTop) {
-      y = -(_startY - _parentTop);
-      // 超过父容器底部
-    } else if (_currentY > (_parentBottom - _height)) {
-      y = (_parentBottom - _height) - _startY;
-    }
+      // 超过父容器顶部
+      if (_currentY < _parentTop) {
+        y = -(_startY - _parentTop);
+        // 超过父容器底部
+      } else if (_currentY > (_parentBottom - widget.height)) {
+        y = (_parentBottom - widget.height) - _startY;
+      }
 
-    _changeAnimation(Offset(x, y));
+      _startReindexAnimation(Offset(x, y));
+    });
   }
 
   void _reindexYUp() {
-    var x = _offset.dx;
-    var y = 0.0;
+    _runWithView((widget) {
+      var x = _offset.dx;
+      var y = 0.0;
 
-    // 超过父容器左边
-    if (_currentX < _parentLeft) {
-      x = -(_startX - _parentLeft);
-      // 超过父容器右边
-    } else if (_currentX > (_parentRight - _width)) {
-      x = (_parentRight - _width) - _startX;
-    }
+      // 超过父容器左边
+      if (_currentX < _parentLeft) {
+        x = -(_startX - _parentLeft);
+        // 超过父容器右边
+      } else if (_currentX > (_parentRight - widget.width)) {
+        x = (_parentRight - widget.width) - _startX;
+      }
 
-    // 当前view中心点靠近下边界
-    if ((_currentY + (_height / 2)) >= (_parentHeight / 2)) {
-      y = (_parentBottom - _height) - _startY;
+      // 当前view中心点靠近下边界
+      if ((_currentY + (widget.height / 2)) >= (_parentHeight / 2)) {
+        y = (_parentBottom - widget.height) - _startY;
 
-      // 当前view中心点靠近上边界
-    } else {
-      y = -(_startY - _parentTop);
-    }
+        // 当前view中心点靠近上边界
+      } else {
+        y = -(_startY - _parentTop);
+      }
 
-    _changeAnimation(Offset(x, y));
+      _startReindexAnimation(Offset(x, y));
+    });
   }
 
-  void _changeAnimation(Offset offset) {
+  void _startReindexAnimation(Offset offset) {
     var animation = FractionalOffsetTween(
             begin: FractionalOffset(_offset.dx, _offset.dy),
             end: FractionalOffset(offset.dx, offset.dy))
@@ -264,5 +274,9 @@ mixin FloatingContainerMixin<T extends StatefulWidget> on State<T> {
         animation.value?.dx ?? offset.dx, animation.value?.dy ?? offset.dy)));
     _animationController.reset();
     _animationController.forward();
+  }
+
+  void _runWithView(Function(FloatingContainer widget) block) {
+    block((this as _FloatingContainerState).widget);
   }
 }
