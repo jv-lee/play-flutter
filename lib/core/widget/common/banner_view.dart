@@ -102,8 +102,8 @@ class _BannerViewState extends State<BannerView> {
 
   @override
   void initState() {
-    super.initState();
     widget.controller?.bindViewState(this);
+    super.initState();
 
     currentPage = widget.initialPage == 0
         ? getStartSelectItem(widget.itemCount)
@@ -214,19 +214,19 @@ class _BannerViewState extends State<BannerView> {
 
 /// banner控制器
 class BannerViewController extends ChangeNotifier {
-  late _BannerViewState _viewState;
+  _BannerViewState? _viewState;
 
   void bindViewState(_BannerViewState state) => _viewState = state;
 
   /// 开始轮播
-  void startLoop() => _viewState.startLoop();
+  void startLoop() => _viewState?.startLoop();
 
   /// 停止轮播
-  void stopLoop() => _viewState.stopLoop();
+  void stopLoop() => _viewState?.stopLoop();
 
   /// 无动画跳转
-  void jumpToPage(page) => _viewState.toPage(page, false);
+  void jumpToPage(page) => _viewState?.toPage(page, false);
 
   /// 动画跳转
-  void animateToPage(page) => _viewState.toPage(page, true);
+  void animateToPage(page) => _viewState?.toPage(page, true);
 }
