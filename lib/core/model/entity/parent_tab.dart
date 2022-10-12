@@ -1,3 +1,4 @@
+import 'package:playflutter/core/extensions/json_extensions.dart';
 import 'package:playflutter/core/model/entity/base/base_data.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 
@@ -16,8 +17,7 @@ class ParentTabData extends BaseData with PagingData<ParentTab> {
   late final String errorMsg;
 
   ParentTabData.fromJson(Map<String, dynamic> json) {
-    data =
-        List.from(json['data']).map((e) => ParentTab.fromJson(e)).toList();
+    data = json.formatList('data', (json) => ParentTab.fromJson(json));
     errorCode = json['errorCode'];
     errorMsg = json['errorMsg'];
   }

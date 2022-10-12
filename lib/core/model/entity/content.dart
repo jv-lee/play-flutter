@@ -1,3 +1,4 @@
+import 'package:playflutter/core/extensions/json_extensions.dart';
 import 'package:playflutter/core/model/entity/base/base_data.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 
@@ -57,10 +58,7 @@ class ContentDataPage extends PagingData<Content> {
 
   ContentDataPage.fromJson(Map<String, dynamic> json) {
     curPage = json['curPage'];
-    var dataJson = json['datas'];
-    datas = dataJson == null
-        ? []
-        : List.from(dataJson).map((e) => Content.fromJson(e)).toList();
+    datas = json.formatList('datas', (json) => Content.fromJson(json));
     offset = json['offset'];
     over = json['over'];
     pageCount = json['pageCount'];

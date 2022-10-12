@@ -1,3 +1,4 @@
+import 'package:playflutter/core/extensions/json_extensions.dart';
 import 'package:playflutter/core/model/entity/base/base_data.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/widget/scroll/scroll_to_index.dart';
@@ -17,8 +18,7 @@ class NavigationTabData extends BaseData with PagingData<NavigationTab> {
   late final String errorMsg;
 
   NavigationTabData.fromJson(Map<String, dynamic> json) {
-    data =
-        List.from(json['data']).map((e) => NavigationTab.fromJson(e)).toList();
+    data = json.formatList('data', (json) => NavigationTab.fromJson(json));
     errorCode = json['errorCode'];
     errorMsg = json['errorMsg'];
   }

@@ -1,27 +1,29 @@
+import 'package:playflutter/core/extensions/json_extensions.dart';
 import 'package:playflutter/core/model/entity/base/base_data.dart';
 
 /// @author jv.lee
 /// @date 2022/6/27
 /// @description 首页banner数据实体
-class BannerData extends BaseData{
+class BannerData extends BaseData {
   BannerData({
     required this.data,
     required this.errorCode,
     required this.errorMsg,
   });
+
   late final List<BannerItem> data;
   late final int errorCode;
   late final String errorMsg;
-  
-  BannerData.fromJson(Map<String, dynamic> json){
-    data = List.from(json['data']).map((e)=>BannerItem.fromJson(e)).toList();
+
+  BannerData.fromJson(Map<String, dynamic> json) {
+    data = json.formatList('data', (json) => BannerItem.fromJson(json));
     errorCode = json['errorCode'];
     errorMsg = json['errorMsg'];
   }
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
-    data['data'] = this.data.map((e)=>e.toJson()).toList();
+    data['data'] = this.data.map((e) => e.toJson()).toList();
     data['errorCode'] = errorCode;
     data['errorMsg'] = errorMsg;
     return data;
@@ -45,6 +47,7 @@ class BannerItem {
     required this.type,
     required this.url,
   });
+
   late final String desc;
   late final int id;
   late final String imagePath;
@@ -54,7 +57,7 @@ class BannerItem {
   late final int type;
   late final String url;
 
-  BannerItem.fromJson(Map<String, dynamic> json){
+  BannerItem.fromJson(Map<String, dynamic> json) {
     desc = json['desc'];
     id = json['id'];
     imagePath = json['imagePath'];

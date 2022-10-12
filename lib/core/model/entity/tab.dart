@@ -1,3 +1,4 @@
+import 'package:playflutter/core/extensions/json_extensions.dart';
 import 'package:playflutter/core/model/entity/base/base_data.dart';
 
 /// @author jv.lee
@@ -15,7 +16,7 @@ class TabData extends BaseData {
   late final String errorMsg;
 
   TabData.fromJson(Map<String, dynamic> json) {
-    data = List.from(json['data']).map((e) => Tab.fromJson(e)).toList();
+    data = json.formatList('data', (json) => Tab.fromJson(json));
     errorCode = json['errorCode'];
     errorMsg = json['errorMsg'];
   }

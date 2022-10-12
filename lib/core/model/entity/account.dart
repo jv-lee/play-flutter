@@ -1,3 +1,5 @@
+import 'package:playflutter/core/extensions/function_extensions.dart';
+import 'package:playflutter/core/extensions/json_extensions.dart';
 import 'package:playflutter/core/model/entity/base/base_data.dart';
 
 /// @author jv.lee
@@ -15,9 +17,7 @@ class AccountData extends BaseData {
   late final String errorMsg;
 
   AccountData.fromJson(Map<String, dynamic> json) {
-    if (json['data'] != null) {
-      data = AccountInfo.fromJson(json['data']);
-    }
+    json.formatObject('data', AccountInfo.fromJson)?.run((self) => data = self);
     errorCode = json['errorCode'];
     errorMsg = json['errorMsg'];
   }
@@ -49,9 +49,7 @@ class UserData extends BaseData {
   late final String errorMsg;
 
   UserData.fromJson(Map<String, dynamic> json) {
-    if (json['data'] != null) {
-      data = UserInfo.fromJson(json['data']);
-    }
+    json.formatObject('data', UserInfo.fromJson)?.run((self) => data = self);
     errorCode = json['errorCode'];
     errorMsg = json['errorMsg'];
   }
