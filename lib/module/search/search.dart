@@ -5,7 +5,7 @@ import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/model/db/entity/search_history.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/theme/theme_strings.dart';
-import 'package:playflutter/module/search/model/entity/search_hot.dart';
+import 'package:playflutter/module/search/model/entity/search_hot_ui.dart';
 import 'package:playflutter/module/search/viewmodel/search_viewmodel.dart';
 import 'package:playflutter/core/widget/common/overscroll_hide_container.dart';
 
@@ -83,7 +83,7 @@ class _SearchState extends BasePageState<SearchPage> {
   }
 
   Widget buildSearchHotFlowItem(
-      SearchViewModel viewModel, SearchHot searchHot) {
+      SearchViewModel viewModel, SearchHotUI searchHot) {
     return Card(
         elevation: 0,
         color: Theme.of(context).hintColor,

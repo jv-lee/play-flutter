@@ -2,21 +2,27 @@ import 'package:flutter/widgets.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/model/db/dao/search_history_dao.dart';
 import 'package:playflutter/core/model/db/entity/search_history.dart';
+import 'package:playflutter/core/model/entity/search_hot.dart';
 import 'package:playflutter/core/route/route_names.dart';
-import 'package:playflutter/module/search/model/entity/search_hot.dart';
+import 'package:playflutter/core/theme/theme_constants.dart';
+import 'package:playflutter/core/tools/cache/preferences.dart';
+import 'package:playflutter/module/search/model/entity/search_hot_ui.dart';
+import 'package:playflutter/module/search/model/search_model.dart';
 import 'package:playflutter/module/search/search.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
 /// @description 搜索页面viewModel
 class SearchViewModel extends BaseViewModel {
-  final SearchHistoryDao _dao = SearchHistoryDao();
+  final _model = SearchModel();
+  final _dao = SearchHistoryDao();
   final viewStates = _SearchViewState();
 
   SearchViewModel(super.context);
 
   @override
   void init() {
+    _requestSearchHotList();
     _requestSearchHistoryList();
   }
 
@@ -42,6 +48,20 @@ class SearchViewModel extends BaseViewModel {
     _requestSearchHistoryList();
   }
 
+  void _requestSearchHotList() {
+    Preferences.requestCache<SearchHotData>(
+        localKey: ThemeConstants.LOCAL_SEARCH_HOT_LIST,
+        createJson: (json) => SearchHotData.fromJson(json),
+        requestFuture: _model.getSearchHotDataAsync(),
+        callback: (value) {
+          viewStates.searchHots = value.data
+              .map((e) => SearchHotUI.buildSearchHot(e.name))
+              .toList();
+          notifyListeners();
+        },
+        onError: (error) {});
+  }
+
   void _requestSearchHistoryList() {
     _dao.queryAll().then((value) {
       viewStates.searchHistoryList = value;
@@ -51,6 +71,6 @@ class SearchViewModel extends BaseViewModel {
 }
 
 class _SearchViewState {
-  List<SearchHot> searchHots = SearchHot.getSearchHots();
+  List<SearchHotUI> searchHots = [];
   List<SearchHistory> searchHistoryList = [];
 }

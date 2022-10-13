@@ -7,6 +7,7 @@ class ThemeConstants {
   /// localKey
   static const String LOCAL_HOME_LIST = "local:home-list";
   static const String LOCAL_HOME_BANNER = "local:home-banner";
+  static const String LOCAL_SEARCH_HOT_LIST = "local:search-hot-list";
   static const String LOCAL_SQUARE_LIST = "local:square-list";
   static const String LOCAL_SYSTEM_LIST = "local:system-list";
   static const String LOCAL_NAVIGATION_LIST = "local:navigation-list";
