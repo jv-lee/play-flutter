@@ -176,9 +176,13 @@ class _BannerViewState extends State<BannerView> {
     if (currentPage == getRealCount() - 1) {
       pageController.jumpToPage(getStartSelectItem(widget.itemCount));
     } else {
-      ++currentPage;
-      pageController.animateToPage(currentPage,
-          duration: const Duration(milliseconds: 300), curve: Curves.ease);
+      try {
+        ++currentPage;
+        pageController.animateToPage(currentPage,
+            duration: const Duration(milliseconds: 300), curve: Curves.ease);
+      // ignore: empty_catches
+      } catch(ignore){
+      }
     }
   }
 
