@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/route/route_names.dart';
 import 'package:playflutter/core/theme/theme_constants.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
 import 'package:playflutter/core/tools/cache/preferences.dart';
 import 'package:playflutter/core/tools/callback/page_callback_handler.dart';
+import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/module/todo/callback/todo_action_callback.dart';
 import 'package:playflutter/module/todo/dialog/select_todo_type_dialog.dart';
 import 'package:playflutter/module/todo/model/entity/todo_tab.dart';
@@ -91,13 +91,13 @@ class _TodoViewState {
   String typeToTitle() {
     switch (type) {
       case TodoType.WORK:
-        return ThemeStrings.todoTypeWork;
+        return "todo_type_work".localized();
       case TodoType.LIFE:
-        return ThemeStrings.todoTypeLife;
+        return "todo_type_life".localized();
       case TodoType.PLAY:
-        return ThemeStrings.todoTypePlay;
+        return "todo_type_play".localized();
       default:
-        return ThemeStrings.todoTypeDefault;
+        return "todo_type_default".localized();
     }
   }
 }

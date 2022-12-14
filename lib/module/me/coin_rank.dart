@@ -4,10 +4,10 @@ import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/model/entity/coin_rank.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
+import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
-import 'package:playflutter/module/me/viewmodel/coin_rank_viewmodel.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
+import 'package:playflutter/module/me/viewmodel/coin_rank_viewmodel.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -26,7 +26,7 @@ class _CoinRankPageState extends BasePageState<CoinRankPage> {
         create: (context) => CoinRankViewModel(context),
         viewBuild: (context, viewModel) {
           return Scaffold(
-              appBar: AppBar(title: const Text(ThemeStrings.coinRankTitle)),
+              appBar: AppBar(title: Text("coin_rank_title".localized())),
               body: buildRankContent(viewModel));
         });
   }

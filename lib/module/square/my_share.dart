@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/extensions/data_format_extensions.dart';
 import 'package:playflutter/core/route/route_names.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
+import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
-import 'package:playflutter/module/square/viewmodel/my_share_viewmodel.dart';
 import 'package:playflutter/core/widget/item/action_text_item.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
+import 'package:playflutter/module/square/viewmodel/my_share_viewmodel.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -24,7 +24,7 @@ class _MySharePageState extends BasePageState<MySharePage> {
     return buildViewModel<MyShareViewModel>(
         create: (context) => MyShareViewModel(context),
         viewBuild: (context, viewModel) => Scaffold(
-            appBar: AppBar(title: const Text(ThemeStrings.meItemShare)),
+            appBar: AppBar(title: Text("me_item_share".localized())),
             body: RefreshIndicator(
                 color: Theme.of(context).primaryColorLight,
                 onRefresh: () async {

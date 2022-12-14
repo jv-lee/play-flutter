@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/extensions/data_format_extensions.dart';
 import 'package:playflutter/core/model/entity/content.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
+import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/common/sliding_pane_container.dart';
 
 /// @author jv.lee
@@ -44,9 +44,9 @@ class ActionTextItem extends StatelessWidget {
             width: SlidingPaneContainer.slidingDefaultWidth,
             height: double.infinity,
             color: Colors.red,
-            child: const Center(
-                child: Text(ThemeStrings.itemDelete,
-                    style: TextStyle(
+            child: Center(
+                child: Text("item_delete".localized(),
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: ThemeDimens.fontSizeSmall)))));
   }

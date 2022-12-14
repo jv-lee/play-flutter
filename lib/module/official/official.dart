@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
-import 'package:playflutter/module/official/official_list.dart';
-import 'package:playflutter/module/official/viewmodel/official_viewmodel.dart';
+import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/common/overscroll_hide_container.dart';
 import 'package:playflutter/core/widget/status/status_page.dart';
+import 'package:playflutter/module/official/official_list.dart';
+import 'package:playflutter/module/official/viewmodel/official_viewmodel.dart';
 
 /// @author jv.lee
 /// @date 2022/6/28
@@ -36,7 +36,7 @@ class _OfficialState extends BasePageState<OfficialPage> {
               length: tabList.length,
               child: Scaffold(
                   appBar: AppBar(
-                    title: const Text(ThemeStrings.homeOfficialCategoryName),
+                    title: Text("home_official_category_name".localized()),
                     bottom: tabBar,
                   ),
                   body: StatusPage(

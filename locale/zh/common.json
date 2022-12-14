@@ -1,0 +1,11 @@
+{
+  "loading": "loading...",
+  "back_alert_message": "再次点击可退出",
+  "splash_time_text": "跳过",
+  "login_alert": "请先登录",
+  "item_delete": "删除",
+  "title_create": "新增",
+  "title_edit": "编辑",
+  "cancel": "取消",
+  "confirm": "确认"
+}

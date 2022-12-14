@@ -3,9 +3,9 @@ import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/provider/dark_mode_provider.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
-import 'package:playflutter/module/me/viewmodel/settings_viewmodel.dart';
+import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/common/profile_item.dart';
+import 'package:playflutter/module/me/viewmodel/settings_viewmodel.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26
@@ -24,7 +24,7 @@ class _SettingsState extends BasePageState<SettingsPage> {
         create: (context) => SettingsViewModel(context),
         viewBuild: (context, viewModel) => Scaffold(
             appBar: AppBar(
-              title: const Text(ThemeStrings.meItemSettings),
+              title: Text("me_item_settings".localized()),
             ),
             body: Column(children: [
               buildDarkModeSystemItem(),
@@ -38,7 +38,7 @@ class _SettingsState extends BasePageState<SettingsPage> {
     return Padding(
         padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
         child: ProfileItem(
-            leftText: ThemeStrings.settingsDarkModeSystem,
+            leftText: "settings_dark_mode_system".localized(),
             switchVisible: true,
             switchChecked: DarkModeProvider.isSystemTheme(context),
             onCheckedChange: (enable) =>
@@ -49,7 +49,7 @@ class _SettingsState extends BasePageState<SettingsPage> {
     return Padding(
         padding: const EdgeInsets.only(top: 1),
         child: ProfileItem(
-            leftText: ThemeStrings.settingsDarkModeNight,
+            leftText: "settings_dark_mode_night".localized(),
             switchVisible: true,
             switchChecked: DarkModeProvider.isDarkTheme(context),
             switchEnable: !DarkModeProvider.isSystemTheme(context),
@@ -61,7 +61,7 @@ class _SettingsState extends BasePageState<SettingsPage> {
     return Padding(
         padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
         child: ProfileItem(
-            leftText: ThemeStrings.settingsClearText,
+            leftText: "settings_clear_text".localized(),
             rightText: viewModel.viewStates.cacheSize,
             rightSvgPath: ThemeImages.commonArrowSvg,
             onItemClick: () => viewModel.clearCache()));
@@ -73,7 +73,7 @@ class _SettingsState extends BasePageState<SettingsPage> {
         child: Padding(
             padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
             child: ProfileItem(
-                leftText: ThemeStrings.settingsLogout,
+                leftText: "settings_logout".localized(),
                 leftSvgPath: ThemeImages.meLogoutSvg,
                 rightSvgPath: ThemeImages.commonArrowSvg,
                 onItemClick: () => viewModel.logout())));

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
-import 'package:playflutter/manifest.dart';
 import 'package:playflutter/core/model/db/database_manager.dart';
 import 'package:playflutter/core/provider/dark_mode_provider.dart';
 import 'package:playflutter/core/tools/cache/cache_manager.dart';
+import 'package:playflutter/core/tools/localizations.dart';
+import 'package:playflutter/manifest.dart';
 import 'package:playflutter/module/splash/splash.dart';
 import 'package:provider/provider.dart';
 
@@ -36,6 +38,15 @@ class PlayFlutterApp extends StatelessWidget {
               theme: provider.lightThemeData,
               darkTheme: provider.darkThemeData,
               navigatorObservers: [routeObserver],
+              localizationsDelegates: [
+                CommonLocalizationsDelegate.getInstance(),
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+              ],
+              localeResolutionCallback: (deviceLocale, supportedLocales) {
+                return CommonLocalizationsDelegate.getInstance()
+                    .initLocalizations(locale: deviceLocale);
+              },
               onGenerateRoute: onGenerateRoute,
               home: const SplashPage());
         }));

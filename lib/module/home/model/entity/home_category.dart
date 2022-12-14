@@ -1,6 +1,6 @@
 import 'package:playflutter/core/route/route_names.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
+import 'package:playflutter/core/tools/localizations.dart';
 
 /// @author jv.lee
 /// @date 2022/6/27
@@ -15,11 +15,11 @@ class HomeCategory {
   static List<HomeCategory> getHomeCategory() {
     var list = <HomeCategory>[];
     list.add(HomeCategory(
-        name: ThemeStrings.homeOfficialCategoryName,
+        name: "home_official_category_name".localized(),
         iconRes: ThemeImages.homeOfficialSvg,
         link: RouteNames.official));
     list.add(HomeCategory(
-        name: ThemeStrings.homeProjectCategoryName,
+        name: "home_project_category_name".localized(),
         iconRes: ThemeImages.homeProjectSvg,
         link: RouteNames.project));
     return list;

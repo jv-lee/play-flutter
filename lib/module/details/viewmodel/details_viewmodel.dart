@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/extensions/exception_extensions.dart';
 import 'package:playflutter/core/model/entity/details.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
+import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
 import 'package:playflutter/module/me/model/me_model.dart';
 import 'package:share/share.dart';
@@ -36,7 +36,7 @@ class DetailsViewModel extends BaseViewModel {
   void onCollect() async {
     // 校验是否已收藏
     if (detailsData.isCollect) {
-      Toast.show(ThemeStrings.menuCollectCompleted);
+      Toast.show("menu_collect_completed".localized());
       return;
     }
 
@@ -50,7 +50,7 @@ class DetailsViewModel extends BaseViewModel {
     // 发起收藏
     _model.postCollectAsync(detailsData.id).then((value) {
       detailsData.isCollect = true;
-      Toast.show(ThemeStrings.menuCollectComplete);
+      Toast.show("menu_collect_complete".localized());
     }).catchError((onError) {
       onFailedToast(onError);
     }).whenComplete(() => Navigator.of(context).pop());

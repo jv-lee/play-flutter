@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/model/entity/todo.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
+import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/common/sliding_pane_container.dart';
 import 'package:playflutter/module/todo/model/entity/todo_type.dart';
 
@@ -50,8 +50,8 @@ class TodoItem extends StatelessWidget {
                       height: double.infinity,
                       color: Colors.red,
                       alignment: Alignment.center,
-                      child: const Text(ThemeStrings.itemDelete,
-                          style: TextStyle(
+                      child: Text("item_delete".localized(),
+                          style: const TextStyle(
                               color: Colors.white,
                               fontSize: ThemeDimens.fontSizeSmall)))))),
       Expanded(
@@ -65,8 +65,8 @@ class TodoItem extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Text(
                           item.status == TodoStatus.UPCOMING.index
-                              ? ThemeStrings.todoItemComplete
-                              : ThemeStrings.todoItemUpcoming,
+                              ? "todo_item_complete".localized()
+                              : "todo_item_upcoming".localized(),
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: ThemeDimens.fontSizeSmall))))))
@@ -122,8 +122,8 @@ class TodoItem extends StatelessWidget {
               width: 25,
               height: 25,
               transform: Transform.rotate(angle: -45).transform,
-              child: const Text(ThemeStrings.todoCreateLevelHigh,
-                  style: TextStyle(fontSize: 8, color: Colors.white))))
+              child: Text("todo_create_level_high".localized(),
+                  style: const TextStyle(fontSize: 8, color: Colors.white))))
     ]);
   }
 }

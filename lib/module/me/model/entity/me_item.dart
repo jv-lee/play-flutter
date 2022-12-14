@@ -1,6 +1,6 @@
 import 'package:playflutter/core/route/route_names.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
+import 'package:playflutter/core/tools/localizations.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -21,23 +21,23 @@ class MeItem {
     var list = <MeItem>[];
     list.add(MeItem(
         route: RouteNames.coin,
-        name: ThemeStrings.meItemCoin,
+        name: "me_item_coin".localized(),
         iconSvgPath: ThemeImages.meCoinSvg));
     list.add(MeItem(
         route: RouteNames.collect,
-        name: ThemeStrings.meItemCollect,
+        name: "me_item_collect".localized(),
         iconSvgPath: ThemeImages.meCollectSvg));
     list.add(MeItem(
         route: RouteNames.my_share,
-        name: ThemeStrings.meItemShare,
+        name: "me_item_share".localized(),
         iconSvgPath: ThemeImages.meShareSvg));
     list.add(MeItem(
         route: RouteNames.todo,
-        name: ThemeStrings.meItemTodo,
+        name: "me_item_todo".localized(),
         iconSvgPath: ThemeImages.meTodoSvg));
     list.add(MeItem(
         route: RouteNames.settings,
-        name: ThemeStrings.meItemSettings,
+        name: "me_item_settings".localized(),
         iconSvgPath: ThemeImages.meSettingsSvg));
     return list;
   }

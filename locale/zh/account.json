@@ -1,0 +1,12 @@
+{
+  "account_login_title": "Login",
+  "account_register_title": "Register",
+  "account_login_button": "LOGIN",
+  "account_register_button": "REGISTER",
+  "account_username_text": "username",
+  "account_password_text": "password",
+  "account_repassword_text": "repassword",
+  "account_goto_register_text": "没有账号，去注册？",
+  "account_goto_login_text": "已有账号，去登陆？",
+  "account_logout_success": "已退出当前账号"
+}

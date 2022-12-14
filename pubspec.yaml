@@ -30,6 +30,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_localizations:
+    sdk: flutter
+
   dio: ^4.0.6 #网络库
   path: ^1.8.1 #系统path获取
   html: ^0.15.0 #html字符串解析
@@ -63,5 +66,6 @@ flutter:
         - asset: assets/fonts/Avenir.ttf
 
   assets:
+    - locale/zh/
     - assets/images/
     - assets/images/svg/

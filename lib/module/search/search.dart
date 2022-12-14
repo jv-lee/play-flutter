@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/model/db/entity/search_history.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
+import 'package:playflutter/core/tools/localizations.dart';
+import 'package:playflutter/core/widget/common/overscroll_hide_container.dart';
 import 'package:playflutter/module/search/model/entity/search_hot_ui.dart';
 import 'package:playflutter/module/search/viewmodel/search_viewmodel.dart';
-import 'package:playflutter/core/widget/common/overscroll_hide_container.dart';
 
 /// @author jv.lee
 /// @date 2022/6/28
@@ -43,7 +43,7 @@ class _SearchState extends BasePageState<SearchPage> {
             onSubmitted: (text) => viewModel.navigationSearchKey(text),
             textInputAction: TextInputAction.search,
             decoration:
-                const InputDecoration(hintText: ThemeStrings.searchHintText)));
+                InputDecoration(hintText: "search_hint_text".localized())));
   }
 
   Widget buildSearchContent(SearchViewModel viewModel) {
@@ -65,7 +65,7 @@ class _SearchState extends BasePageState<SearchPage> {
   Widget buildSearchHotLabel(SearchViewModel viewModel) {
     return Container(
         padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
-        child: Text(ThemeStrings.searchHotLabel,
+        child: Text("search_hot_label".localized(),
             style: TextStyle(
                 color: Theme.of(context).primaryColorLight,
                 fontSize: ThemeDimens.fontSizeMedium)));
@@ -118,7 +118,7 @@ class _SearchState extends BasePageState<SearchPage> {
               top: ThemeDimens.offsetLarge,
               right: ThemeDimens.offsetLarge,
               bottom: ThemeDimens.offsetMedium),
-          child: Text(ThemeStrings.searchHistoryLabel,
+          child: Text("search_history_label".localized(),
               style: TextStyle(
                   color: Theme.of(context).primaryColorLight,
                   fontSize: ThemeDimens.fontSizeMedium))),
@@ -131,7 +131,7 @@ class _SearchState extends BasePageState<SearchPage> {
           child: Material(
               child: InkWell(
                   onTap: () => viewModel.clearSearchHistory(),
-                  child: Text(ThemeStrings.searchClearText,
+                  child: Text("search_clear_text".localized(),
                       style: TextStyle(
                           color: Theme.of(context).primaryColor,
                           fontSize: ThemeDimens.fontSizeMedium)))))
@@ -158,7 +158,7 @@ class _SearchState extends BasePageState<SearchPage> {
           width: double.infinity,
           padding: const EdgeInsets.only(top: 26),
           child: Center(
-              child: Text(ThemeStrings.searchHistoryEmptyText,
+              child: Text("search_history_empty_text".localized(),
                   style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontSize: ThemeDimens.fontSizeMedium))));

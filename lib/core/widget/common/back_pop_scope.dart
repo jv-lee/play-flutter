@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/cupertino.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
+import 'package:playflutter/core/tools/localizations.dart';
 import 'package:toast/toast.dart';
 
 /// @author jv.lee
@@ -10,14 +10,10 @@ import 'package:toast/toast.dart';
 class BackPopScope extends StatelessWidget {
   final Widget child;
   final int limitMillisecond;
-  final String alertMessage;
+  final String alertMessage = "back_alert_message".localized();
   var firstTime = 0;
 
-  BackPopScope(
-      {Key? key,
-      required this.child,
-      this.limitMillisecond = 2000,
-      this.alertMessage = ThemeStrings.backAlertMessage})
+  BackPopScope({Key? key, required this.child, this.limitMillisecond = 2000})
       : super(key: key);
 
   @override

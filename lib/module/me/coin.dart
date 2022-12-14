@@ -5,7 +5,7 @@ import 'package:playflutter/core/model/entity/coin_record.dart';
 import 'package:playflutter/core/route/route_names.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
+import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/tools/status_tools.dart';
 import 'package:playflutter/module/me/viewmodel/coin_viewmodel.dart';
@@ -39,8 +39,8 @@ class _CoinPageState extends BasePageState<CoinPage> {
   Widget buildHeader(CoinViewModel viewModel) {
     return Stack(children: [
       AppBar(
-          title: const Text(ThemeStrings.meItemCoin,
-              style: TextStyle(color: Colors.white)),
+          title: Text("me_item_coin".localized(),
+              style: const TextStyle(color: Colors.white)),
           actions: [
             IconButton(
                 onPressed: () => Navigator.pushNamed(
@@ -97,14 +97,14 @@ class _CoinPageState extends BasePageState<CoinPage> {
                               Radius.circular(ThemeDimens.offsetRadiusMedium),
                           topRight:
                               Radius.circular(ThemeDimens.offsetRadiusMedium))),
-                  child: Text(ThemeStrings.coinTitleLabelText,
+                  child: Text("coin_title_label_text".localized(),
                       style: TextStyle(
                           fontSize: ThemeDimens.fontSizeSmall,
                           color: Theme.of(context).focusColor))),
               // 当前积分总数 item
               Container(
                   margin: const EdgeInsets.all(ThemeDimens.offsetLarge),
-                  child: Text(ThemeStrings.coinTotalDescription,
+                  child: Text("coin_total_description".localized(),
                       style: TextStyle(
                           fontSize: ThemeDimens.fontSizeSmallX,
                           color: Theme.of(context).primaryColor))),
@@ -141,7 +141,7 @@ class _CoinPageState extends BasePageState<CoinPage> {
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(ThemeStrings.coinToRankText,
+                              Text("coin_to_rank_text".localized(),
                                   style: TextStyle(
                                       fontSize: ThemeDimens.fontSizeMedium,
                                       color:

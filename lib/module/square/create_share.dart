@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
+import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/module/square/viewmodel/create_share_viewmodel.dart';
 
 /// @author jv.lee
@@ -24,8 +24,8 @@ class _CreateShareState extends BasePageState<CreateSharePage> {
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             child: Scaffold(
                 resizeToAvoidBottomInset: false,
-                appBar: AppBar(
-                    title: const Text(ThemeStrings.squareCreateShareText)),
+                appBar:
+                    AppBar(title: Text("square_create_share_text".localized())),
                 body: buildCrateShareContent(viewModel))));
   }
 
@@ -36,29 +36,29 @@ class _CreateShareState extends BasePageState<CreateSharePage> {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
               padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
-              child: Text(ThemeStrings.squareShareTitleText,
+              child: Text("square_share_title_text".localized(),
                   style:
                       TextStyle(color: Theme.of(context).primaryColorLight))),
           TextField(
               onChanged: (text) => {viewModel.changeShareTitle(text)},
               textInputAction: TextInputAction.next,
-              decoration: const InputDecoration(
-                  hintText: ThemeStrings.squareShareTitleHint)),
+              decoration: InputDecoration(
+                  hintText: "square_share_title_hint".localized())),
           Padding(
               padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
-              child: Text(ThemeStrings.squareShareLinkText,
+              child: Text("square_share_link_text".localized(),
                   style:
                       TextStyle(color: Theme.of(context).primaryColorLight))),
           TextField(
               onChanged: (text) => {viewModel.changeShareLink(text)},
               onSubmitted: (text) => {viewModel.submitShare()},
               textInputAction: TextInputAction.send,
-              decoration: const InputDecoration(
-                  hintText: ThemeStrings.squareShareLinkHint)),
+              decoration: InputDecoration(
+                  hintText: "square_share_link_hint".localized())),
           Expanded(
               child: Align(
                   alignment: Alignment.bottomLeft,
-                  child: Text(ThemeStrings.squareCreateShareDescription,
+                  child: Text("square_create_share_description".localized(),
                       style: TextStyle(
                           letterSpacing: ThemeDimens.offsetSmall,
                           fontSize: ThemeDimens.fontSizeSmall,

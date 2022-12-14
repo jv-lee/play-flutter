@@ -5,7 +5,7 @@ import 'package:playflutter/core/model/entity/banner.dart';
 import 'package:playflutter/core/route/route_names.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
+import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/widget/common/banner_view.dart';
 import 'package:playflutter/core/widget/common/header/app_header_container.dart';
@@ -81,7 +81,8 @@ class _HomeState extends BasePageState<HomePage>
                       })),
               AppHeaderContainer(
                   child: AppTextActionBar(
-                      title: ThemeStrings.homeHeaderText,
+                      // title: ThemeStrings.homeHeaderText,
+                      title: "home_header_text".localized(),
                       navigationSvgPath: ThemeImages.commonSearchSvg,
                       onNavigationClick: () =>
                           Navigator.pushNamed(context, RouteNames.search)))

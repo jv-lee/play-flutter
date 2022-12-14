@@ -6,10 +6,10 @@ import 'package:playflutter/core/extensions/exception_extensions.dart';
 import 'package:playflutter/core/model/entity/account.dart';
 import 'package:playflutter/core/model/http/constants/api_constants.dart';
 import 'package:playflutter/core/theme/theme_constants.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
 import 'package:playflutter/core/tools/cache/preferences.dart';
-import 'package:playflutter/module/account/model/account_model.dart';
+import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
+import 'package:playflutter/module/account/model/account_model.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 
@@ -52,7 +52,7 @@ class AccountService extends BaseModuleService {
 
     _model.getLogoutAsync().then((value) {
       updateAccountStatus(null, false);
-      Toast.show(ThemeStrings.accountLogoutSuccess);
+      Toast.show("account_logout_success".localized());
     }).catchError((onError) {
       onFailedToast(onError);
     }).whenComplete(() => Navigator.pop(context));

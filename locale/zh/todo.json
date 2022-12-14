@@ -1,0 +1,22 @@
+{
+  "todo_type_default": "只用这一个",
+  "todo_type_work": "工作",
+  "todo_type_life": "生活",
+  "todo_type_play": "娱乐",
+  "todo_create_title_label": "标题：",
+  "todo_create_title_hint": "必填",
+  "todo_create_content_label": "详情：",
+  "todo_create_content_hint": "非必填",
+  "todo_create_level_label": "优先级：",
+  "todo_create_level_low": "一般",
+  "todo_create_level_high": "重要",
+  "todo_create_date_label": "日期：",
+  "todo_create_save": "保存",
+  "todo_create_success": "创建TODO成功",
+  "todo_delete_success": "删除TODO成功",
+  "todo_update_success": "更新TODO成功",
+  "todo_move_success": "TODO状态修改成功",
+  "todo_item_complete": "标记已完成",
+  "todo_item_upcoming": "标记未完成",
+  "todo_item_level_height": "重要"
+}

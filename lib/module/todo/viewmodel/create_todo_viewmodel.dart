@@ -3,8 +3,8 @@ import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/extensions/exception_extensions.dart';
 import 'package:playflutter/core/model/entity/todo.dart';
 import 'package:playflutter/core/theme/theme_constants.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
 import 'package:playflutter/core/tools/cache/preferences.dart';
+import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/tools/time_tools.dart';
 import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
 import 'package:playflutter/module/todo/model/entity/todo_type.dart';
@@ -64,7 +64,7 @@ class CreateTodoViewModel extends BaseViewModel {
   onSubmit() {
     FocusManager.instance.primaryFocus?.unfocus();
     // 创建逻辑
-    if (viewStates.appbarTitle == ThemeStrings.titleCreate) {
+    if (viewStates.appbarTitle == "title_create".localized()) {
       _createTodo();
     } else {
       _updateTodo();
@@ -115,7 +115,7 @@ class CreateTodoViewModel extends BaseViewModel {
     if (todo != null) {
       viewStates
         ..isAdd = false
-        ..appbarTitle = ThemeStrings.titleEdit
+        ..appbarTitle = "title_edit".localized()
         ..id = todo.id
         ..title = todo.title
         ..content = todo.content
@@ -127,7 +127,7 @@ class CreateTodoViewModel extends BaseViewModel {
     } else {
       viewStates
         ..isAdd = true
-        ..appbarTitle = ThemeStrings.titleCreate
+        ..appbarTitle = "title_create".localized()
         ..date = TimeTools.getCurrentFormatDate();
     }
     final typeIndex = await Preferences.get(ThemeConstants.LOCAL_TODO_TYPE,
@@ -139,7 +139,7 @@ class CreateTodoViewModel extends BaseViewModel {
 
 class _CreateTodoViewState {
   var isAdd = true;
-  var appbarTitle = ThemeStrings.titleCreate;
+  var appbarTitle = "title_create".localized();
   var type = TodoType.DEFAULT.index;
   var priority = TodoPriority.LOW.index;
   var status = TodoStatus.UPCOMING.index;

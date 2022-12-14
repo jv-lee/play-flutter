@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/extensions/function_extensions.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
+import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/common/ink_well_container.dart';
 import 'package:playflutter/core/widget/dialog/dialog_container.dart';
 
@@ -11,8 +11,8 @@ import 'package:playflutter/core/widget/dialog/dialog_container.dart';
 class ConfirmDialog extends Dialog {
   final String titleText;
   final String? contentText;
-  final String cancelText;
-  final String confirmText;
+  final String? cancelText;
+  final String? confirmText;
   final bool singleConfirm;
   final Function? onCancel;
   final Function? onConfirm;
@@ -21,8 +21,8 @@ class ConfirmDialog extends Dialog {
       {Key? key,
       required this.titleText,
       this.contentText,
-      this.cancelText = ThemeStrings.cancel,
-      this.confirmText = ThemeStrings.confirm,
+      this.cancelText,
+      this.confirmText,
       this.onConfirm,
       this.onCancel,
       this.singleConfirm = false})
@@ -74,7 +74,7 @@ class ConfirmDialog extends Dialog {
                                 borderRadius: const BorderRadius.only(
                                     bottomLeft: Radius.circular(
                                         ThemeDimens.offsetRadiusMedium)),
-                                child: Text(cancelText,
+                                child: Text(cancelText ?? "cancel".localized(),
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Theme.of(context)
@@ -98,7 +98,7 @@ class ConfirmDialog extends Dialog {
                                 : const BorderRadius.only(
                                     bottomRight: Radius.circular(
                                         ThemeDimens.offsetRadiusMedium)),
-                            child: Text(confirmText,
+                            child: Text(confirmText ?? "confirm".localized(),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color:

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/theme/theme_strings.dart';
+import 'package:playflutter/core/tools/localizations.dart';
 
 /// @author jv.lee
 /// @date 2022/8/1
@@ -51,7 +51,7 @@ class _TimeReadyButtonState extends State<TimeReadyButton> {
                 color: Colors.black45,
                 borderRadius:
                     BorderRadius.circular(ThemeDimens.offsetRadiusMedium)),
-            child: Text("${ThemeStrings.splashTimeText}$number",
+            child: Text("${"splash_time_text".localized()}$number",
                 style: const TextStyle(
                     fontSize: ThemeDimens.fontSizeMedium,
                     color: Colors.white))));
