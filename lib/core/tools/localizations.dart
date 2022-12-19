@@ -6,12 +6,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:playflutter/core/tools/log_tools.dart';
 
+/// 本地化字符扩展函数
+/// 通过字符key.localized() 获取本地化字符
 extension LocalizedStringExtension on String {
   String localized() {
     return Localizations.instance.text(this);
   }
 }
 
+/// 本地化字符文件处理
 class Localizations {
   static final Localizations _singleton = Localizations._internal();
 
@@ -19,6 +22,7 @@ class Localizations {
 
   static Localizations get instance => _singleton;
 
+  // 本地字符缓存
   final Map<String, dynamic> _localisedValues = {};
 
   Future<Localizations> load(
@@ -50,6 +54,7 @@ class Localizations {
   }
 }
 
+/// 本地化代理加载器
 class CommonLocalizationsDelegate
     extends LocalizationsDelegate<CupertinoLocalizations> {
   CommonLocalizationsDelegate._internal();
@@ -79,8 +84,13 @@ class CommonLocalizationsDelegate
   @override
   bool shouldReload(CommonLocalizationsDelegate old) => false;
 
+  // 默认支持字符语言
   static const Locale _defaultLocale = Locale("zh");
+
+  // 支持的字符语言集合
   static final List<String> _supportLanguageCodeList = ['zh'];
+
+  // 需要加载的字符模块名
   static final List<String> _localizedModels = [
     "common",
     "home",
@@ -95,6 +105,7 @@ class CommonLocalizationsDelegate
     "todo"
   ];
 
+  /// 初始化本地化字符
   Locale initLocalizations({Locale? locale, List<String>? localizedModels}) {
     if (isSupported(locale ?? _defaultLocale)) {
       loadFile(locale ?? _defaultLocale, localizedModels ?? _localizedModels);
