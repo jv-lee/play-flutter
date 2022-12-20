@@ -66,6 +66,7 @@ flutter:
         - asset: assets/fonts/Avenir.ttf
 
   assets:
+    - locale/
     - locale/zh/
     - assets/images/
     - assets/images/svg/

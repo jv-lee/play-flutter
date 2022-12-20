@@ -25,21 +25,29 @@ class Localizations {
   // 本地字符缓存
   final Map<String, dynamic> _localisedValues = {};
 
-  Future<Localizations> load(
-      String languageCode, List<String> fileNames) async {
-    for (String fileName in fileNames) {
-      await _appendValues(fileName, languageCode);
+  /// 根据语言类型加载本地各模块语言json文件
+  Future<Localizations> load(String languageCode) async {
+    try {
+      String configJson = await rootBundle.loadString("locale/config.json");
+      Map<String, dynamic> config = json.decode(configJson);
+
+      for (String fileName in config['localizedModels']) {
+        await _appendValues(fileName, languageCode);
+      }
+    } catch (e) {
+      LogTools.log("Localizations", "load locale/config.json error $e");
     }
     return this;
   }
 
+  /// 加载语言json内容填充到本地 [_localisedValues]
   _appendValues(String fileName, String languageCode) async {
     try {
       String jsonContent =
           await rootBundle.loadString("locale/$languageCode/$fileName.json");
 
       Map<String, dynamic> map = json.decode(jsonContent);
-      if (map.isNotEmpty == true) {
+      if (map.isNotEmpty) {
         _localisedValues.addAll(map);
       }
     } catch (e) {
@@ -76,9 +84,9 @@ class CommonLocalizationsDelegate
         const DefaultCupertinoLocalizations());
   }
 
-  Future<void> loadFile(Locale locale, List<String> localizedModels) async {
+  Future<void> loadFile(Locale locale) async {
     await load(locale);
-    await Localizations.instance.load(locale.languageCode, localizedModels);
+    await Localizations.instance.load(locale.languageCode);
   }
 
   @override
@@ -90,29 +98,16 @@ class CommonLocalizationsDelegate
   // 支持的字符语言集合
   static final List<String> _supportLanguageCodeList = ['zh'];
 
-  // 需要加载的字符模块名
-  static final List<String> _localizedModels = [
-    "common",
-    "home",
-    "account",
-    "coin",
-    "details",
-    "me",
-    "search",
-    "settings",
-    "square",
-    "system",
-    "todo"
-  ];
-
   /// 初始化本地化字符
-  Locale initLocalizations({Locale? locale, List<String>? localizedModels}) {
+  Locale initLocalizations({Locale? locale}) {
+    // 支持的语言
     if (isSupported(locale ?? _defaultLocale)) {
-      loadFile(locale ?? _defaultLocale, localizedModels ?? _localizedModels);
+      loadFile(locale ?? _defaultLocale);
       return locale ?? _defaultLocale;
     }
 
-    loadFile(_defaultLocale, localizedModels ?? _localizedModels);
+    // 不支持直接返回默认语言
+    loadFile(_defaultLocale);
     return _defaultLocale;
   }
 }
