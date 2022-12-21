@@ -35,19 +35,25 @@ class PlayFlutterApp extends StatelessWidget {
         // 监听深色模式主题变换 更改主题配置
         child: Consumer<DarkModeProvider>(builder: (context, provider, widget) {
           return MaterialApp(
+              // 设置主题颜色
               theme: provider.lightThemeData,
               darkTheme: provider.darkThemeData,
+              // 全局路由监听
               navigatorObservers: [routeObserver],
+              // 本地化字符串
               localizationsDelegates: [
                 CommonLocalizationsDelegate.getInstance(),
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
               ],
+              // 本地化字符串根据当前语言类型设置初始化
               localeResolutionCallback: (deviceLocale, supportedLocales) {
                 return CommonLocalizationsDelegate.getInstance()
                     .initLocalizations(locale: deviceLocale);
               },
+              // 设置路由
               onGenerateRoute: onGenerateRoute,
+              // 闪屏页面
               home: const SplashPage());
         }));
   }
