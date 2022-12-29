@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/extensions/function_extensions.dart';
 import 'package:playflutter/core/tools/log_tools.dart';
-import 'package:playflutter/main.dart';
+import 'package:playflutter/manifest.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 

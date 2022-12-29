@@ -26,6 +26,11 @@ import 'package:playflutter/module/todo/todo.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
+/// 全局路由观察者容器
+/// [BasePageState] 中订阅路由事件
+final RouteObserver<ModalRoute<void>> routeObserver =
+    RouteObserver<ModalRoute<void>>();
+
 /// 项目全局服务注册监听
 List<SingleChildWidget> onGenerateProviders(BuildContext context) => [
       // 深色模式状态监听

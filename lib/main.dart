@@ -58,8 +58,3 @@ class PlayFlutterApp extends StatelessWidget {
         }));
   }
 }
-
-/// 全局路由观察者容器
-/// [BasePageState] 中订阅路由事件
-final RouteObserver<ModalRoute<void>> routeObserver =
-    RouteObserver<ModalRoute<void>>();
