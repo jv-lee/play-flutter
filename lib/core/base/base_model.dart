@@ -25,6 +25,7 @@ abstract class BaseModel {
     token.cancel("page destroy,cancel request.");
   }
 
+  /// model类通用get请求方法
   Future<T> requestGet<T extends BaseData>({
     required String path,
     required CreateEntity<T> create,
@@ -52,6 +53,7 @@ abstract class BaseModel {
         response.statusMessage ?? "request url:$path http exception.");
   }
 
+  /// model类通用post请求方法
   Future<T> requestPost<T extends BaseData>({
     required String path,
     required CreateEntity<T> create,

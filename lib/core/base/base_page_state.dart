@@ -16,12 +16,11 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
   // 页面生命周期
   var _lifecycleState = PageLifecycleState.unInitialized;
 
-  // app前后台切换标志位
-  var _isAppPause = false;
-  var _hasAddResumeChange = true;
-  var _hasAddPauseChange = true;
-  final _onResumeChange = ChangeNotifier();
-  final _onPauseChange = ChangeNotifier();
+  var _isAppPause = false; // app前后台切换标志位
+  var _hasAddResumeChange = true; // 页面resume监听绑定标识位
+  var _hasAddPauseChange = true; // 页面pause监听绑定标志位
+  final _onResumeChange = ChangeNotifier(); // 页面resume监听器
+  final _onPauseChange = ChangeNotifier(); // 页面pause监听器
 
   @override
   void initState() {
@@ -44,6 +43,7 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T>
     super.dispose();
   }
 
+  /// flutter page 前后台生命周期状态监听
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     switch (state) {
