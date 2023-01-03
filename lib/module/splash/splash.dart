@@ -58,7 +58,7 @@ class _SplashState extends BasePageState<SplashPage>
                       top: StatusTools.getStatusHeight() +
                           ThemeDimens.offsetSmall,
                       right: ThemeDimens.offsetLarge),
-                  child: TimeReadyButton(onEnd: () => viewModel.navigation()))
+                  child: TimeReadyButton(onEnd: () => viewModel.navigationMain()))
             ])));
   }
 }
