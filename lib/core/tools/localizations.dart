@@ -26,12 +26,10 @@ class Localizations {
   final Map<String, dynamic> _localisedValues = {};
 
   /// 根据语言类型加载本地各模块语言json文件
-  Future<Localizations> load(String languageCode) async {
+  Future<Localizations> load(
+      String languageCode, List<String> fileNames) async {
     try {
-      String configJson = await rootBundle.loadString("locale/config.json");
-      Map<String, dynamic> config = json.decode(configJson);
-
-      for (String fileName in config['localizedModels']) {
+      for (String fileName in fileNames) {
         await _appendValues(fileName, languageCode);
       }
     } catch (e) {
@@ -84,9 +82,9 @@ class CommonLocalizationsDelegate
         const DefaultCupertinoLocalizations());
   }
 
-  Future<void> loadFile(Locale locale) async {
+  Future<void> loadFile(Locale locale, List<String> fileNames) async {
     await load(locale);
-    await Localizations.instance.load(locale.languageCode);
+    await Localizations.instance.load(locale.languageCode, fileNames);
   }
 
   @override
@@ -99,15 +97,15 @@ class CommonLocalizationsDelegate
   static final List<String> _supportLanguageCodeList = ['zh'];
 
   /// 初始化本地化字符
-  Locale initLocalizations({Locale? locale}) {
+  Locale initLocalizations(List<String> fileNames, {Locale? locale}) {
     // 支持的语言
     if (isSupported(locale ?? _defaultLocale)) {
-      loadFile(locale ?? _defaultLocale);
+      loadFile(locale ?? _defaultLocale, fileNames);
       return locale ?? _defaultLocale;
     }
 
     // 不支持直接返回默认语言
-    loadFile(_defaultLocale);
+    loadFile(_defaultLocale, fileNames);
     return _defaultLocale;
   }
 }

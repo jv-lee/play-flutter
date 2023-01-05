@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
-import 'package:playflutter/module/system/navigation_content.dart';
-import 'package:playflutter/module/system/system_content.dart';
+import 'package:playflutter/module/system/page/navigation_content.dart';
+import 'package:playflutter/module/system/page/system_content.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30

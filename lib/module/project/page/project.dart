@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/tools/localizations.dart';
+import 'package:playflutter/module/project/page/project_list.dart';
+import 'package:playflutter/module/project/viewmodel/project_viewmodel.dart';
 import 'package:playflutter/core/widget/common/overscroll_hide_container.dart';
 import 'package:playflutter/core/widget/status/status_page.dart';
-import 'package:playflutter/module/official/official_list.dart';
-import 'package:playflutter/module/official/viewmodel/official_viewmodel.dart';
 
 /// @author jv.lee
 /// @date 2022/6/28
 /// @description 项目tab列表
-class OfficialPage extends StatefulWidget {
-  const OfficialPage({super.key});
+class ProjectPage extends StatefulWidget {
+  const ProjectPage({super.key});
 
   @override
-  State<StatefulWidget> createState() => _OfficialState();
+  State<StatefulWidget> createState() => _ProjectState();
 }
 
-class _OfficialState extends BasePageState<OfficialPage> {
+class _ProjectState extends BasePageState<ProjectPage> {
   @override
   Widget build(BuildContext context) {
-    return buildViewModel<OfficialViewModel>(
-        create: (context) => OfficialViewModel(context),
+    return buildViewModel<ProjectViewModel>(
+        create: (context) => ProjectViewModel(context),
         viewBuild: (context, viewModel) {
           TabBar? tabBar;
           final tabList = viewModel.viewStates.tabList;
@@ -36,7 +36,7 @@ class _OfficialState extends BasePageState<OfficialPage> {
               length: tabList.length,
               child: Scaffold(
                   appBar: AppBar(
-                    title: Text("home_official_category_name".localized()),
+                    title: Text("home_project_category_name".localized()),
                     bottom: tabBar,
                   ),
                   body: StatusPage(
@@ -45,7 +45,7 @@ class _OfficialState extends BasePageState<OfficialPage> {
                       child: OverscrollHideContainer(
                           scrollChild: TabBarView(
                               children: tabList
-                                  .map((e) => OfficialListPage(id: e.id))
+                                  .map((e) => ProjectListPage(id: e.id))
                                   .toList())))));
         });
   }

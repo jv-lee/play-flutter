@@ -4,7 +4,7 @@ import 'package:playflutter/core/model/entity/content.dart';
 import 'package:playflutter/core/tools/paging/paging.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/module/search/model/search_model.dart';
-import 'package:playflutter/module/search/search.dart';
+import 'package:playflutter/module/search/page/search.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
