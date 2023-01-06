@@ -17,7 +17,7 @@ import 'package:playflutter/module/details/details_route_names.dart';
 import 'package:playflutter/module/home/model/entity/home_category.dart';
 import 'package:playflutter/module/home/viewmodel/home_viewmodel.dart';
 import 'package:playflutter/module/home/widget/item/category_item.dart';
-import 'package:playflutter/module/search/model/search_route_names.dart';
+import 'package:playflutter/module/search/search_route_names.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26

@@ -7,7 +7,7 @@ import 'package:playflutter/core/theme/theme_constants.dart';
 import 'package:playflutter/core/tools/cache/preferences.dart';
 import 'package:playflutter/module/search/model/entity/search_hot_ui.dart';
 import 'package:playflutter/module/search/model/search_model.dart';
-import 'package:playflutter/module/search/model/search_route_names.dart';
+import 'package:playflutter/module/search/search_route_names.dart';
 import 'package:playflutter/module/search/page/search.dart';
 
 /// @author jv.lee
