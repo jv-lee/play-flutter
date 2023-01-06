@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:playflutter/core/base/base_module.dart';
-import 'package:playflutter/core/route/route_names.dart';
+import 'package:playflutter/module/me/me_route_names.dart';
 import 'package:playflutter/module/me/page/coin.dart';
 import 'package:playflutter/module/me/page/coin_rank.dart';
 import 'package:playflutter/module/me/page/collect.dart';
@@ -15,13 +15,13 @@ class MeModule extends BaseModule {
 
   @override
   Map<String, PageBuilder> pageBuilders() => {
-        RouteNames.coin: (settings) => CupertinoPageRoute(
+        MeRouteNames.coin: (settings) => CupertinoPageRoute(
             settings: settings, builder: (_) => const CoinPage()),
-        RouteNames.coin_rank: (settings) => CupertinoPageRoute(
+        MeRouteNames.coin_rank: (settings) => CupertinoPageRoute(
             settings: settings, builder: (_) => const CoinRankPage()),
-        RouteNames.collect: (settings) => CupertinoPageRoute(
+        MeRouteNames.collect: (settings) => CupertinoPageRoute(
             settings: settings, builder: (_) => const CollectPage()),
-        RouteNames.settings: (settings) => CupertinoPageRoute(
+        MeRouteNames.settings: (settings) => CupertinoPageRoute(
             settings: settings, builder: (_) => const SettingsPage()),
       };
 }

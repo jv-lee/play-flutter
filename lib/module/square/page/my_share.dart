@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/extensions/data_format_extensions.dart';
-import 'package:playflutter/core/route/route_names.dart';
 import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/widget/item/action_text_item.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
+import 'package:playflutter/module/details/details_route_names.dart';
 import 'package:playflutter/module/square/viewmodel/my_share_viewmodel.dart';
 
 /// @author jv.lee
@@ -47,7 +47,7 @@ class _MySharePageState extends BasePageState<MySharePage> {
                           slidingPaneController:
                               viewModel.slidingPaneController,
                           onItemClick: (item) => Navigator.pushNamed(
-                              context, RouteNames.details,
+                              context, DetailsRouteNames.details,
                               arguments: item.transformDetails()),
                           onItemDelete: (item) =>
                               viewModel.requestDeleteItem(item));

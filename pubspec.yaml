@@ -66,7 +66,10 @@ flutter:
         - asset: assets/fonts/Avenir.ttf
 
   assets:
-    - locale/
     - locale/zh/
-    - assets/images/
-    - assets/images/svg/
+    - assets/images/common/
+    - assets/images/account/
+    - assets/images/home/
+    - assets/images/me/
+    - assets/images/splash/
+    - assets/images/todo/

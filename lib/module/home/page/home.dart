@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/extensions/data_format_extensions.dart';
 import 'package:playflutter/core/model/entity/banner.dart';
-import 'package:playflutter/core/route/route_names.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
 import 'package:playflutter/core/tools/localizations.dart';
@@ -14,9 +13,11 @@ import 'package:playflutter/core/widget/common/header/app_text_action_bar.dart';
 import 'package:playflutter/core/widget/common/transparent_scaffold.dart';
 import 'package:playflutter/core/widget/item/content_item.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
+import 'package:playflutter/module/details/details_route_names.dart';
 import 'package:playflutter/module/home/model/entity/home_category.dart';
 import 'package:playflutter/module/home/viewmodel/home_viewmodel.dart';
 import 'package:playflutter/module/home/widget/item/category_item.dart';
+import 'package:playflutter/module/search/model/search_route_names.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26
@@ -66,7 +67,7 @@ class _HomeState extends BasePageState<HomePage>
                         buildBanner(
                             viewModel,
                             (item) => Navigator.pushNamed(
-                                context, RouteNames.details,
+                                context, DetailsRouteNames.details,
                                 arguments: item.transformDetails())),
                         buildCategory(viewModel,
                             (item) => Navigator.pushNamed(context, item.link))
@@ -76,7 +77,7 @@ class _HomeState extends BasePageState<HomePage>
                         return ContentItem(
                             content: item,
                             onItemClick: (item) => Navigator.pushNamed(
-                                context, RouteNames.details,
+                                context, DetailsRouteNames.details,
                                 arguments: item.transformDetails()));
                       })),
               AppHeaderContainer(
@@ -85,7 +86,7 @@ class _HomeState extends BasePageState<HomePage>
                       title: "home_header_text".localized(),
                       navigationSvgPath: ThemeImages.commonSearchSvg,
                       onNavigationClick: () =>
-                          Navigator.pushNamed(context, RouteNames.search)))
+                          Navigator.pushNamed(context, SearchRouteNames.search)))
             ])));
   }
 

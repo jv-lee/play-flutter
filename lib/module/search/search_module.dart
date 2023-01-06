@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:playflutter/core/base/base_module.dart';
-import 'package:playflutter/core/route/route_names.dart';
-import 'package:playflutter/module/account/page/login.dart';
-import 'package:playflutter/module/account/page/register.dart';
+import 'package:playflutter/module/search/model/search_route_names.dart';
 import 'package:playflutter/module/search/page/search.dart';
 import 'package:playflutter/module/search/page/search_result.dart';
 
@@ -15,9 +13,9 @@ class SearchModule extends BaseModule {
 
   @override
   Map<String, PageBuilder> pageBuilders() => {
-        RouteNames.search: (settings) => CupertinoPageRoute(
+        SearchRouteNames.search: (settings) => CupertinoPageRoute(
             settings: settings, builder: (_) => const SearchPage()),
-        RouteNames.search_result: (settings) => CupertinoPageRoute(
+        SearchRouteNames.search_result: (settings) => CupertinoPageRoute(
             settings: settings, builder: (_) => const SearchResultPage())
       };
 }

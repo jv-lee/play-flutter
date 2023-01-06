@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:playflutter/core/base/base_module.dart';
 import 'package:playflutter/core/model/entity/details.dart';
-import 'package:playflutter/core/route/route_names.dart';
+import 'package:playflutter/module/details/details_route_names.dart';
 import 'package:playflutter/module/details/page/details.dart';
 
 /// @author jv.lee
@@ -13,7 +13,7 @@ class DetailsModule extends BaseModule {
 
   @override
   Map<String, PageBuilder> pageBuilders() => {
-        RouteNames.details: (settings) {
+        DetailsRouteNames.details: (settings) {
           final arg = settings.arguments as DetailsData;
           return CupertinoPageRoute(
               settings: settings,

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/extensions/function_extensions.dart';
-import 'package:playflutter/core/route/route_names.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
 import 'package:playflutter/core/tools/localizations.dart';
+import 'package:playflutter/module/account/account_route_names.dart';
 import 'package:playflutter/module/account/service/account_service.dart';
+import 'package:playflutter/module/me/me_route_names.dart';
 import 'package:playflutter/module/me/model/entity/me_item.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
@@ -33,13 +34,13 @@ class MeViewModel extends BaseViewModel {
 
   void headerClick() {
     if (!viewStates.isLogin) {
-      Navigator.pushNamed(context, RouteNames.login);
+      Navigator.pushNamed(context, AccountRouteNames.login);
     }
   }
 
   void itemClick(route) {
     // 无需校验登陆状态
-    if (route == RouteNames.settings) {
+    if (route == MeRouteNames.settings) {
       Navigator.pushNamed(context, route);
       return;
     }
@@ -49,7 +50,7 @@ class MeViewModel extends BaseViewModel {
       Navigator.pushNamed(context, route);
     } else {
       Toast.show("login_alert".localized());
-      Navigator.pushNamed(context, RouteNames.login);
+      Navigator.pushNamed(context, AccountRouteNames.login);
     }
   }
 

@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:night/night.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
-import 'package:playflutter/core/route/route_names.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
 import 'package:playflutter/module/account/service/account_service.dart';
+import 'package:playflutter/module/main/main_route_names.dart';
 import 'package:provider/provider.dart';
 
 /// @author jv.lee
@@ -58,7 +58,7 @@ class SplashViewModel extends BaseViewModel {
 
   /// 导航至首页
   void navigationMain() {
-    Navigator.popAndPushNamed(context, RouteNames.main);
+    Navigator.popAndPushNamed(context, MainRouteNames.main);
   }
 }
 

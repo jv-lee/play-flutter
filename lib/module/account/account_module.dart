@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:playflutter/core/base/base_module.dart';
-import 'package:playflutter/core/route/route_names.dart';
+import 'package:playflutter/module/account/account_route_names.dart';
 import 'package:playflutter/module/account/page/login.dart';
 import 'package:playflutter/module/account/page/register.dart';
 
@@ -13,9 +13,9 @@ class AccountModule extends BaseModule {
 
   @override
   Map<String, PageBuilder> pageBuilders() => {
-        RouteNames.login: (settings) => CupertinoPageRoute(
+        AccountRouteNames.login: (settings) => CupertinoPageRoute(
             settings: settings, builder: (_) => const LoginPage()),
-        RouteNames.register: (settings) => CupertinoPageRoute(
+        AccountRouteNames.register: (settings) => CupertinoPageRoute(
             settings: settings, builder: (_) => const RegisterPage())
       };
 }

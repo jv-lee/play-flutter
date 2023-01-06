@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/extensions/data_format_extensions.dart';
-import 'package:playflutter/core/route/route_names.dart';
 import 'package:playflutter/core/tools/status_tools.dart';
-import 'package:playflutter/module/system/viewmodel/navigation_content_viewmodel.dart';
 import 'package:playflutter/core/widget/common/header/app_header_spacer.dart';
 import 'package:playflutter/core/widget/common/overscroll_hide_container.dart';
-import 'package:playflutter/module/system/widget/item/navigation_tab_item.dart';
 import 'package:playflutter/core/widget/scroll/scroll_to_index.dart';
 import 'package:playflutter/core/widget/status/status_page.dart';
+import 'package:playflutter/module/details/details_route_names.dart';
+import 'package:playflutter/module/system/viewmodel/navigation_content_viewmodel.dart';
+import 'package:playflutter/module/system/widget/item/navigation_tab_item.dart';
 import 'package:playflutter/module/system/widget/item/navigation_tag_item.dart';
 
 /// @author jv.lee
@@ -71,7 +71,7 @@ class _NavigationContentState extends BasePageState<NavigationContentPage>
                   key: item.globalKey,
                   navigationTab: item,
                   onItemClick: (content) => Navigator.pushNamed(
-                      context, RouteNames.details,
+                      context, DetailsRouteNames.details,
                       arguments: content.transformDetails()));
             },
             callback: (first, last) => viewModel.changeTagIndex(first)));

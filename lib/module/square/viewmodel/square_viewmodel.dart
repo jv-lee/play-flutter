@@ -4,16 +4,17 @@ import 'package:playflutter/core/event/constants/event_constants.dart';
 import 'package:playflutter/core/event/entity/tab_selected_event.dart';
 import 'package:playflutter/core/event/events_bus.dart';
 import 'package:playflutter/core/model/entity/content.dart';
-import 'package:playflutter/core/route/route_names.dart';
 import 'package:playflutter/core/theme/theme_constants.dart';
 import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/tools/log_tools.dart';
 import 'package:playflutter/core/tools/paging/local_paging.dart';
 import 'package:playflutter/core/tools/paging/paging.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
+import 'package:playflutter/module/account/account_route_names.dart';
 import 'package:playflutter/module/account/service/account_service.dart';
 import 'package:playflutter/module/main/model/entity/main_tab_page.dart';
 import 'package:playflutter/module/square/model/square_model.dart';
+import 'package:playflutter/module/square/square_route_names.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 
@@ -57,10 +58,10 @@ class SquareViewModel extends BaseViewModel {
 
   void navigationCreateShared() {
     if (accountService.viewStates.isLogin) {
-      Navigator.pushNamed(context, RouteNames.create_share);
+      Navigator.pushNamed(context, SquareRouteNames.create_share);
     } else {
       Toast.show("login_alert".localized());
-      Navigator.pushNamed(context, RouteNames.login);
+      Navigator.pushNamed(context, AccountRouteNames.login);
     }
   }
 

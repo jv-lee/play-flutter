@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/model/entity/coin_record.dart';
-import 'package:playflutter/core/route/route_names.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
 import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/tools/status_tools.dart';
-import 'package:playflutter/module/me/viewmodel/coin_viewmodel.dart';
 import 'package:playflutter/core/widget/common/ink_well_container.dart';
 import 'package:playflutter/core/widget/common/transparent_scaffold.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
+import 'package:playflutter/module/details/details_route_names.dart';
+import 'package:playflutter/module/me/me_route_names.dart';
+import 'package:playflutter/module/me/viewmodel/coin_viewmodel.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -44,7 +45,7 @@ class _CoinPageState extends BasePageState<CoinPage> {
           actions: [
             IconButton(
                 onPressed: () => Navigator.pushNamed(
-                    context, RouteNames.details,
+                    context, DetailsRouteNames.details,
                     arguments: viewModel.viewStates.detailsData),
                 icon: SvgPicture.asset(ThemeImages.commonHelpSvg))
           ],
@@ -129,7 +130,7 @@ class _CoinPageState extends BasePageState<CoinPage> {
               Expanded(
                   child: InkWellContainer(
                       onTap: () =>
-                          Navigator.pushNamed(context, RouteNames.coin_rank),
+                          Navigator.pushNamed(context, MeRouteNames.coin_rank),
                       borderRadius: const BorderRadius.only(
                           bottomLeft:
                               Radius.circular(ThemeDimens.offsetRadiusMedium),

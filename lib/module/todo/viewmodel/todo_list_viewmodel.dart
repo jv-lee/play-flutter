@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/extensions/exception_extensions.dart';
 import 'package:playflutter/core/model/entity/todo.dart';
-import 'package:playflutter/core/route/route_names.dart';
 import 'package:playflutter/core/tools/callback/page_callback_handler.dart';
 import 'package:playflutter/core/tools/log_tools.dart';
 import 'package:playflutter/core/tools/paging/paging.dart';
@@ -12,6 +11,7 @@ import 'package:playflutter/module/todo/model/entity/todo_type.dart';
 import 'package:playflutter/module/todo/model/todo_model.dart';
 import 'package:playflutter/core/widget/common/sliding_pane_container.dart';
 import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
+import 'package:playflutter/module/todo/todo_route_names.dart';
 
 /// @author jv.lee
 /// @date 2022/8/15
@@ -82,7 +82,7 @@ class TodoListViewModel extends BaseViewModel implements TodoActionCallback {
 
   void onItemClick(Todo item) {
     Navigator.of(context)
-        .pushNamed(RouteNames.create_todo, arguments: item)
+        .pushNamed(TodoRouteNames.create_todo, arguments: item)
         .then((value) {
       // 页面返回值 item点击只可能是update
       if (value is TodoResult) {

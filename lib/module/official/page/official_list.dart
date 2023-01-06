@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/extensions/data_format_extensions.dart';
-import 'package:playflutter/core/route/route_names.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
+import 'package:playflutter/module/details/details_route_names.dart';
 import 'package:playflutter/module/official/viewmodel/official_list_viewmodel.dart';
 import 'package:playflutter/core/widget/item/content_item.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
@@ -50,7 +50,7 @@ class _OfficialListState extends BasePageState<OfficialListPage>
                       return ContentItem(
                           content: item,
                           onItemClick: (item) => Navigator.pushNamed(
-                              context, RouteNames.details,
+                              context, DetailsRouteNames.details,
                               arguments: item.transformDetails()));
                     }))));
   }

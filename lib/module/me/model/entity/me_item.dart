@@ -1,6 +1,8 @@
-import 'package:playflutter/core/route/route_names.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
 import 'package:playflutter/core/tools/localizations.dart';
+import 'package:playflutter/module/me/me_route_names.dart';
+import 'package:playflutter/module/square/square_route_names.dart';
+import 'package:playflutter/module/todo/todo_route_names.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -20,23 +22,23 @@ class MeItem {
   static List<MeItem> getMeItems() {
     var list = <MeItem>[];
     list.add(MeItem(
-        route: RouteNames.coin,
+        route: MeRouteNames.coin,
         name: "me_item_coin".localized(),
         iconSvgPath: ThemeImages.meCoinSvg));
     list.add(MeItem(
-        route: RouteNames.collect,
+        route: MeRouteNames.collect,
         name: "me_item_collect".localized(),
         iconSvgPath: ThemeImages.meCollectSvg));
     list.add(MeItem(
-        route: RouteNames.my_share,
+        route: SquareRouteNames.my_share,
         name: "me_item_share".localized(),
         iconSvgPath: ThemeImages.meShareSvg));
     list.add(MeItem(
-        route: RouteNames.todo,
+        route: TodoRouteNames.todo,
         name: "me_item_todo".localized(),
         iconSvgPath: ThemeImages.meTodoSvg));
     list.add(MeItem(
-        route: RouteNames.settings,
+        route: MeRouteNames.settings,
         name: "me_item_settings".localized(),
         iconSvgPath: ThemeImages.meSettingsSvg));
     return list;

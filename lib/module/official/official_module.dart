@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:playflutter/core/base/base_module.dart';
-import 'package:playflutter/core/route/route_names.dart';
+import 'package:playflutter/module/official/official_route_names.dart';
 import 'package:playflutter/module/official/page/official.dart';
 
 /// @author jv.lee
@@ -12,7 +12,7 @@ class OfficialModule extends BaseModule {
 
   @override
   Map<String, PageBuilder> pageBuilders() => {
-        RouteNames.official: (settings) => CupertinoPageRoute(
+        OfficialRouteNames.official: (settings) => CupertinoPageRoute(
             settings: settings, builder: (_) => const OfficialPage()),
       };
 }

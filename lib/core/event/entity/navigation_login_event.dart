@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/core/route/route_names.dart';
+import 'package:playflutter/module/account/account_route_names.dart';
 import 'package:playflutter/module/account/service/account_service.dart';
 import 'package:provider/provider.dart';
 
@@ -11,6 +11,6 @@ class NavigationLoginEvent {
     // 注销登陆状态及登陆数据
     context.read<AccountService>().updateAccountStatus(null, false);
     // 导航至登陆页面
-    Navigator.pushNamed(context, RouteNames.login);
+    Navigator.pushNamed(context, AccountRouteNames.login);
   }
 }

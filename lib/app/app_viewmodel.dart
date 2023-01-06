@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_module.dart';
 import 'package:playflutter/core/module/module_manager.dart';
-import 'package:playflutter/core/provider/dark_mode_provider.dart';
 import 'package:playflutter/module/account/account_module.dart';
-import 'package:playflutter/module/account/service/account_service.dart';
 import 'package:playflutter/module/details/details_module.dart';
 import 'package:playflutter/module/home/home_module.dart';
 import 'package:playflutter/module/main/main_module.dart';
@@ -16,7 +14,6 @@ import 'package:playflutter/module/splash/splash_module.dart';
 import 'package:playflutter/module/square/square_module.dart';
 import 'package:playflutter/module/system/system_module.dart';
 import 'package:playflutter/module/todo/todo_module.dart';
-import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
 /// @author jv.lee
@@ -29,10 +26,6 @@ class AppViewModel {
   late Map<String, PageBuilder> pages;
 
   AppViewModel() {
-    onInit();
-  }
-
-  void onInit() {
     loadModules();
   }
 
@@ -49,18 +42,15 @@ class AppViewModel {
     moduleManager.registerModule(SquareModule());
     moduleManager.registerModule(SystemModule());
     moduleManager.registerModule(TodoModule());
+    moduleManager.onInit();
     pages = moduleManager.getPageBuilders();
   }
 
-  /// 项目全局服务注册监听
-  List<SingleChildWidget> onGenerateProviders(BuildContext context) => [
-        // 深色模式状态监听
-        ChangeNotifierProvider(
-            create: (context) => DarkModeProvider(context: context)),
-        // 账户服务
-        ChangeNotifierProvider(create: (context) => AccountService(context)),
-      ];
+  /// 注册模块服务
+  List<SingleChildWidget> onGenerateProviders(BuildContext context) =>
+      moduleManager.getModuleProviders();
 
+  /// 注册模块路由
   Route<dynamic> onGenerateRoute(RouteSettings settings) {
     return pages[settings.name]!(settings);
   }

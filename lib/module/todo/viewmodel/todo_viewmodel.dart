@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
-import 'package:playflutter/core/route/route_names.dart';
 import 'package:playflutter/core/theme/theme_constants.dart';
 import 'package:playflutter/core/tools/cache/preferences.dart';
 import 'package:playflutter/core/tools/callback/page_callback_handler.dart';
@@ -9,6 +8,7 @@ import 'package:playflutter/module/todo/callback/todo_action_callback.dart';
 import 'package:playflutter/module/todo/dialog/select_todo_type_dialog.dart';
 import 'package:playflutter/module/todo/model/entity/todo_tab.dart';
 import 'package:playflutter/module/todo/model/entity/todo_type.dart';
+import 'package:playflutter/module/todo/todo_route_names.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -47,7 +47,7 @@ class TodoViewModel extends BaseViewModel {
   }
 
   void navigationCreateTodo() {
-    Navigator.of(context).pushNamed(RouteNames.create_todo).then((value) {
+    Navigator.of(context).pushNamed(TodoRouteNames.create_todo).then((value) {
       // 页面返回值
       if (value is TodoResult) {
         // 页面新增通知刷新

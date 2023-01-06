@@ -3,11 +3,11 @@ import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/model/db/dao/search_history_dao.dart';
 import 'package:playflutter/core/model/db/entity/search_history.dart';
 import 'package:playflutter/core/model/entity/search_hot.dart';
-import 'package:playflutter/core/route/route_names.dart';
 import 'package:playflutter/core/theme/theme_constants.dart';
 import 'package:playflutter/core/tools/cache/preferences.dart';
 import 'package:playflutter/module/search/model/entity/search_hot_ui.dart';
 import 'package:playflutter/module/search/model/search_model.dart';
+import 'package:playflutter/module/search/model/search_route_names.dart';
 import 'package:playflutter/module/search/page/search.dart';
 
 /// @author jv.lee
@@ -32,7 +32,7 @@ class SearchViewModel extends BaseViewModel {
   void navigationSearchKey(String searchKey) {
     _dao.insert(SearchHistory.buildSearchHistory(searchKey));
     _requestSearchHistoryList();
-    Navigator.pushNamed(context, RouteNames.search_result,
+    Navigator.pushNamed(context, SearchRouteNames.search_result,
         arguments: {SearchPage.ARG_SEARCH_KEY: searchKey});
   }
 
