@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/theme/theme_images.dart';
 import 'package:playflutter/core/tools/localizations.dart';
+import 'package:playflutter/module/account/theme/theme_images_account.dart';
 import 'package:playflutter/module/account/viewmodel/login_viewmodel.dart';
 
 /// @author jv.lee
@@ -57,7 +57,7 @@ class _LoginPageState extends BasePageState<LoginPage> {
                   onChanged: (text) => viewModel.changeUserName(text),
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                      icon: SvgPicture.asset(ThemeImages.accountUsernameSvg,
+                      icon: SvgPicture.asset(ThemeImagesAccount.usernameSvg,
                           width: 24, height: 24),
                       hintText: "account_username_text".localized())),
               Divider(
@@ -72,7 +72,7 @@ class _LoginPageState extends BasePageState<LoginPage> {
                   textInputAction: TextInputAction.done,
                   obscureText: true,
                   decoration: InputDecoration(
-                      icon: SvgPicture.asset(ThemeImages.accountPasswordSvg,
+                      icon: SvgPicture.asset(ThemeImagesAccount.passwordSvg,
                           width: 24, height: 24),
                       hintText: "account_password_text".localized()))
             ])));

@@ -8,6 +8,7 @@ import 'package:playflutter/module/account/account_route_names.dart';
 import 'package:playflutter/module/account/service/account_service.dart';
 import 'package:playflutter/module/me/me_route_names.dart';
 import 'package:playflutter/module/me/model/entity/me_item.dart';
+import 'package:playflutter/module/me/theme/theme_images_me.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 
@@ -73,7 +74,7 @@ class MeViewModel extends BaseViewModel {
 class _MeViewState {
   Widget headerWidget = Padding(
       padding: const EdgeInsets.all(6),
-      child: SvgPicture.asset(ThemeImages.meAccountSvg));
+      child: SvgPicture.asset(ThemeImagesMe.accountSvg));
   String userName = "me_account_default_text".localized();
   String userDesc = "";
   bool isLogin = false;

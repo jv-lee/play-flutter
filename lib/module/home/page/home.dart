@@ -84,7 +84,7 @@ class _HomeState extends BasePageState<HomePage>
                   child: AppTextActionBar(
                       // title: ThemeStrings.homeHeaderText,
                       title: "home_header_text".localized(),
-                      navigationSvgPath: ThemeImages.commonSearchSvg,
+                      navigationSvgPath: ThemeImages.searchSvg,
                       onNavigationClick: () =>
                           Navigator.pushNamed(context, SearchRouteNames.search)))
             ])));

@@ -5,6 +5,7 @@ import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
 import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/common/profile_item.dart';
+import 'package:playflutter/module/me/theme/theme_images_me.dart';
 import 'package:playflutter/module/me/viewmodel/settings_viewmodel.dart';
 
 /// @author jv.lee
@@ -63,7 +64,7 @@ class _SettingsState extends BasePageState<SettingsPage> {
         child: ProfileItem(
             leftText: "settings_clear_text".localized(),
             rightText: viewModel.viewStates.cacheSize,
-            rightSvgPath: ThemeImages.commonArrowSvg,
+            rightSvgPath: ThemeImages.arrowSvg,
             onItemClick: () => viewModel.clearCache()));
   }
 
@@ -74,8 +75,8 @@ class _SettingsState extends BasePageState<SettingsPage> {
             padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
             child: ProfileItem(
                 leftText: "settings_logout".localized(),
-                leftSvgPath: ThemeImages.meLogoutSvg,
-                rightSvgPath: ThemeImages.commonArrowSvg,
+                leftSvgPath: ThemeImagesMe.logoutSvg,
+                rightSvgPath: ThemeImages.arrowSvg,
                 onItemClick: () => viewModel.logout())));
   }
 }

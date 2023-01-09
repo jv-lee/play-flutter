@@ -1,5 +1,5 @@
-import 'package:playflutter/core/theme/theme_images.dart';
 import 'package:playflutter/core/tools/localizations.dart';
+import 'package:playflutter/module/home/theme/theme_images_home.dart';
 import 'package:playflutter/module/official/official_route_names.dart';
 import 'package:playflutter/module/project/project_route_names.dart';
 
@@ -17,11 +17,11 @@ class HomeCategory {
     var list = <HomeCategory>[];
     list.add(HomeCategory(
         name: "home_official_category_name".localized(),
-        iconRes: ThemeImages.homeOfficialSvg,
+        iconRes: ThemeImagesHome.officialSvg,
         link: OfficialRouteNames.official));
     list.add(HomeCategory(
         name: "home_project_category_name".localized(),
-        iconRes: ThemeImages.homeProjectSvg,
+        iconRes: ThemeImagesHome.projectSvg,
         link: ProjectRouteNames.project));
     return list;
   }

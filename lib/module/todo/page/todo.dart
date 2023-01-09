@@ -4,6 +4,7 @@ import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
 import 'package:playflutter/module/todo/model/entity/todo_type.dart';
 import 'package:playflutter/module/todo/page/todo_list.dart';
+import 'package:playflutter/module/todo/theme/theme_images_todo.dart';
 import 'package:playflutter/module/todo/viewmodel/todo_viewmodel.dart';
 
 /// @author jv.lee
@@ -28,7 +29,7 @@ class _TodoPageState extends BasePageState<TodoPage> {
                   IconButton(
                       onPressed: () => viewModel.showSelectedTodoTypeDialog(),
                       icon: SvgPicture.asset(
-                        ThemeImages.todoReplaceSvg,
+                        ThemeImagesTodo.replaceSvg,
                         color: Theme.of(context).primaryColorLight,
                       ))
                 ]),
@@ -63,7 +64,7 @@ class _TodoPageState extends BasePageState<TodoPage> {
                 onTap: (index) => viewModel.changeTab(index)),
             floatingActionButton: FloatingActionButton(
               backgroundColor: Theme.of(context).focusColor,
-              child: SvgPicture.asset(ThemeImages.todoCreateSvg,
+              child: SvgPicture.asset(ThemeImagesTodo.createSvg,
                   width: 24, height: 24),
               onPressed: () => viewModel.navigationCreateTodo(),
             )));

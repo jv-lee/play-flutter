@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:night/night.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
-import 'package:playflutter/core/theme/theme_images.dart';
 import 'package:playflutter/module/account/service/account_service.dart';
 import 'package:playflutter/module/main/main_route_names.dart';
+import 'package:playflutter/module/splash/theme/theme_images_splash.dart';
 import 'package:provider/provider.dart';
 
 /// @author jv.lee
@@ -69,6 +69,6 @@ class _SplashViewState {
   _SplashViewState({required this.isDark});
 
   String getThemeModeBg() {
-    return isDark ? ThemeImages.splashDarkPng : ThemeImages.splashLightPng;
+    return isDark ? ThemeImagesSplash.splashDarkPng : ThemeImagesSplash.splashLightPng;
   }
 }

@@ -1,10 +1,10 @@
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/model/entity/coin_rank.dart';
-import 'package:playflutter/core/theme/theme_images.dart';
 import 'package:playflutter/core/tools/log_tools.dart';
 import 'package:playflutter/core/tools/paging/paging.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/module/me/model/me_model.dart';
+import 'package:playflutter/module/me/theme/theme_images_me.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -41,10 +41,10 @@ class CoinRankViewModel extends BaseViewModel {
   /// 根据获取 当前排行榜的icon 1 2 3 名
   String findLevelIcon(CoinRank item) {
     return item.rank == "1"
-        ? ThemeImages.meRankNo1Svg
+        ? ThemeImagesMe.rankNo1Svg
         : item.rank == "2"
-            ? ThemeImages.meRankNo2Svg
-            : ThemeImages.meRankNo3Svg;
+            ? ThemeImagesMe.rankNo2Svg
+            : ThemeImagesMe.rankNo3Svg;
   }
 
   /// 将排行榜前3名从列表移除重写填充到一个headerList列表中渲染头部

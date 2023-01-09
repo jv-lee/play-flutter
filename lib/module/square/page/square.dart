@@ -65,7 +65,7 @@ class _SquareState extends BasePageState<SquarePage>
               AppHeaderContainer(
                   child: AppTextActionBar(
                       title: "square_header_text".localized(),
-                      navigationSvgPath: ThemeImages.commonAddSvg,
+                      navigationSvgPath: ThemeImages.addSvg,
                       onNavigationClick: () =>
                           viewModel.navigationCreateShared()))
             ])));

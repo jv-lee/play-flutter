@@ -47,7 +47,7 @@ class _CoinPageState extends BasePageState<CoinPage> {
                 onPressed: () => Navigator.pushNamed(
                     context, DetailsRouteNames.details,
                     arguments: viewModel.viewStates.detailsData),
-                icon: SvgPicture.asset(ThemeImages.commonHelpSvg))
+                icon: SvgPicture.asset(ThemeImages.helpSvg))
           ],
           backgroundColor: Theme.of(context).focusColor,
           foregroundColor: Colors.white,
@@ -147,7 +147,7 @@ class _CoinPageState extends BasePageState<CoinPage> {
                                       fontSize: ThemeDimens.fontSizeMedium,
                                       color:
                                           Theme.of(context).primaryColorLight)),
-                              SvgPicture.asset(ThemeImages.commonArrowSvg,
+                              SvgPicture.asset(ThemeImages.arrowSvg,
                                   width: 24,
                                   height: 24,
                                   color: Theme.of(context).primaryColorLight)

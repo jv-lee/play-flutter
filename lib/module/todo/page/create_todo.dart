@@ -112,7 +112,7 @@ class _CreateTodoPageState extends BasePageState<CreateTodoPage> {
                           child: Text(viewModel.viewStates.date,
                               style: TextStyle(
                                   color: Theme.of(context).primaryColorLight))),
-                      SvgPicture.asset(ThemeImages.commonArrowSvg,
+                      SvgPicture.asset(ThemeImages.arrowSvg,
                           width: 24,
                           height: 24,
                           color: Theme.of(context).primaryColorLight)
