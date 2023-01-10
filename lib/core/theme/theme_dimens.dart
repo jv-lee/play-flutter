@@ -27,30 +27,4 @@ class ThemeDimens {
   // 通用圆角线宽度
   static const double borderWidth = 2;
   static const double floatingIconSize = 56;
-
-  // homeTab布局数值
-  static const double homeCategoryLayoutHeight = 130;
-  static const double homeCategoryItemSize = 50;
-
-  // systemTab布局数值
-  static const double systemTabWidth = 100;
-  static const double systemTabHeight = 24;
-  static const double systemTabRadius = 12;
-  static const double systemNavigationTabHeight = 56;
-
-  // meTab布局数值
-  static const double meHeaderHeight = 160;
-  static const double meHeaderPictureSize = 56;
-  static const double meHeaderPictureMargin = 36;
-  static const double meHeaderContentMargin = 26;
-  static const double meCoinHeaderHeight = 180;
-  static const double meCoinHeaderBgHeight = 120;
-
-  // todo布局数值
-  static const double todoStickyHeaderHeight = 26;
-  static const double todoSlidingWidth = 160;
-  static const double todoItemHeight = 58;
-  static const double todoSaveButton = 36;
-  static const double todoEditHeight = 56;
-  static const double todoEditContentHeight = 138;
 }

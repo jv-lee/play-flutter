@@ -4,12 +4,13 @@ import 'package:playflutter/core/model/entity/todo.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/tools/callback/page_callback_handler.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
+import 'package:playflutter/core/widget/common/sliding_pane_container.dart';
+import 'package:playflutter/core/widget/status/super_list_view.dart';
 import 'package:playflutter/module/todo/callback/todo_action_callback.dart';
 import 'package:playflutter/module/todo/model/entity/todo_type.dart';
+import 'package:playflutter/module/todo/theme/theme_dimens_todo.dart';
 import 'package:playflutter/module/todo/viewmodel/todo_list_viewmodel.dart';
-import 'package:playflutter/core/widget/common/sliding_pane_container.dart';
 import 'package:playflutter/module/todo/widget/item/todo_item.dart';
-import 'package:playflutter/core/widget/status/super_list_view.dart';
 
 /// @author jv.lee
 /// @date 2022/8/15
@@ -77,7 +78,7 @@ class _TodoListPageState extends BasePageState<TodoListPage>
             Container(
               alignment: Alignment.centerLeft,
               width: double.infinity,
-              height: ThemeDimens.todoStickyHeaderHeight,
+              height: ThemeDimensTodo.stickyHeaderHeight,
               padding: const EdgeInsets.only(left: ThemeDimens.offsetLarge),
               color: Theme.of(context).hoverColor,
               child: Text(item.dateStr,

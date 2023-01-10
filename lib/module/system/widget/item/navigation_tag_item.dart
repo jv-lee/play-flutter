@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/extensions/function_extensions.dart';
 import 'package:playflutter/core/model/entity/navigation_tab.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/module/system/theme/theme_dimens_system.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
@@ -40,10 +41,10 @@ class NavigationTagItem extends StatelessWidget {
       widgets.add(Card(
           elevation: 0,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(ThemeDimens.systemTabRadius)),
+              borderRadius: BorderRadius.circular(ThemeDimensSystem.tabRadius)),
           child: InkWell(
               onTap: () => onItemClick?.run((self) => self(element)),
-              borderRadius: BorderRadius.circular(ThemeDimens.systemTabRadius),
+              borderRadius: BorderRadius.circular(ThemeDimensSystem.tabRadius),
               child: Container(
                   padding: const EdgeInsets.all(ThemeDimens.offsetMedium),
                   child: Text(element.title,

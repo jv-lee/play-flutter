@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/core/extensions/function_extensions.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/module/home/model/entity/home_category.dart';
 import 'package:playflutter/core/widget/common/card_item_container.dart';
+import 'package:playflutter/module/home/model/entity/home_category.dart';
+import 'package:playflutter/module/home/theme/theme_dimens_home.dart';
 
 /// @author jv.lee
 /// @date 2022/6/27
@@ -22,8 +23,8 @@ class CategoryItem extends StatelessWidget {
         onItemClick: () => onItemClick?.run((self) => self(category)),
         child: Column(children: [
           SizedBox(
-              width: ThemeDimens.homeCategoryItemSize,
-              height: ThemeDimens.homeCategoryItemSize,
+              width: ThemeDimensHome.categoryItemSize,
+              height: ThemeDimensHome.categoryItemSize,
               child: SvgPicture.asset(category.iconRes)),
           Container(
               padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),

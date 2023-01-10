@@ -8,6 +8,7 @@ import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/common/overscroll_hide_container.dart';
 import 'package:playflutter/module/search/model/entity/search_hot_ui.dart';
 import 'package:playflutter/module/search/viewmodel/search_viewmodel.dart';
+import 'package:playflutter/module/system/theme/theme_dimens_system.dart';
 
 /// @author jv.lee
 /// @date 2022/6/28
@@ -92,7 +93,7 @@ class _SearchState extends BasePageState<SearchPage> {
                 BorderRadius.circular(ThemeDimens.offsetRadiusMedium)),
         child: InkWell(
             onTap: () => viewModel.navigationSearchKey(searchHot.hotKey),
-            borderRadius: BorderRadius.circular(ThemeDimens.systemTabRadius),
+            borderRadius: BorderRadius.circular(ThemeDimensSystem.tabRadius),
             child: Padding(
                 padding: const EdgeInsets.all(ThemeDimens.offsetMedium),
                 child: Text(searchHot.hotKey,

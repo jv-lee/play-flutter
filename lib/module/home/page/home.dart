@@ -15,6 +15,7 @@ import 'package:playflutter/core/widget/item/content_item.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
 import 'package:playflutter/module/details/details_route_names.dart';
 import 'package:playflutter/module/home/model/entity/home_category.dart';
+import 'package:playflutter/module/home/theme/theme_dimens_home.dart';
 import 'package:playflutter/module/home/viewmodel/home_viewmodel.dart';
 import 'package:playflutter/module/home/widget/item/category_item.dart';
 import 'package:playflutter/module/search/search_route_names.dart';
@@ -117,7 +118,7 @@ class _HomeState extends BasePageState<HomePage>
       return Container();
     } else {
       return SizedBox(
-          height: ThemeDimens.homeCategoryLayoutHeight,
+          height: ThemeDimensHome.categoryLayoutHeight,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: categoryList.length,
