@@ -4,7 +4,6 @@ import 'package:playflutter/core/event/constants/event_constants.dart';
 import 'package:playflutter/core/event/entity/tab_selected_event.dart';
 import 'package:playflutter/core/event/events_bus.dart';
 import 'package:playflutter/core/model/entity/content.dart';
-import 'package:playflutter/core/theme/theme_constants.dart';
 import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/tools/log_tools.dart';
 import 'package:playflutter/core/tools/paging/local_paging.dart';
@@ -15,6 +14,7 @@ import 'package:playflutter/module/account/service/account_service.dart';
 import 'package:playflutter/module/main/model/entity/main_tab_page.dart';
 import 'package:playflutter/module/square/model/square_model.dart';
 import 'package:playflutter/module/square/square_route_names.dart';
+import 'package:playflutter/module/square/theme/theme_constants_square.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 
@@ -35,7 +35,7 @@ class SquareViewModel extends BaseViewModel {
     accountService.addListener(notifyListeners);
     paging = LocalPaging.build(
         notifier: this,
-        localKey: ThemeConstants.LOCAL_SQUARE_LIST,
+        localKey: ThemeConstantsSquare.LOCAL_SQUARE_LIST,
         createJson: (json) => ContentDataPage.fromJson(json));
     requestData(LoadStatus.refresh);
   }

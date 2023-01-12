@@ -5,7 +5,6 @@ import 'package:playflutter/core/event/events_bus.dart';
 import 'package:playflutter/core/extensions/exception_extensions.dart';
 import 'package:playflutter/core/model/entity/banner.dart';
 import 'package:playflutter/core/model/entity/content.dart';
-import 'package:playflutter/core/theme/theme_constants.dart';
 import 'package:playflutter/core/tools/cache/preferences.dart';
 import 'package:playflutter/core/tools/log_tools.dart';
 import 'package:playflutter/core/tools/paging/local_paging.dart';
@@ -14,6 +13,7 @@ import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/widget/common/banner_view.dart';
 import 'package:playflutter/module/home/model/entity/home_category.dart';
 import 'package:playflutter/module/home/model/home_model.dart';
+import 'package:playflutter/module/home/theme/theme_constants_home.dart';
 import 'package:playflutter/module/main/model/entity/main_tab_page.dart';
 
 /// @author jv.lee
@@ -30,7 +30,7 @@ class HomeViewModel extends BaseViewModel {
     eventBus.bind(EventConstants.EVENT_TAB_SELECTED, _onTabSelectedEvent);
     viewStates.paging = LocalPaging.build(
         notifier: this,
-        localKey: ThemeConstants.LOCAL_HOME_LIST,
+        localKey: ThemeConstantsHome.LOCAL_HOME_LIST,
         createJson: (json) => ContentDataPage.fromJson(json));
     requestData(LoadStatus.refresh);
   }
@@ -66,7 +66,7 @@ class HomeViewModel extends BaseViewModel {
 
   void _requestHeaderData() async {
     Preferences.requestCache<BannerData>(
-        localKey: ThemeConstants.LOCAL_HOME_BANNER,
+        localKey: ThemeConstantsHome.LOCAL_HOME_BANNER,
         createJson: (json) => BannerData.fromJson(json),
         requestFuture: _model.getBannerDataAsync(),
         callback: (value) async {

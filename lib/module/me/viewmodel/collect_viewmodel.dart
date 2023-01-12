@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/extensions/exception_extensions.dart';
 import 'package:playflutter/core/model/entity/content.dart';
-import 'package:playflutter/core/theme/theme_constants.dart';
 import 'package:playflutter/core/tools/log_tools.dart';
 import 'package:playflutter/core/tools/paging/local_paging.dart';
 import 'package:playflutter/core/tools/paging/paging.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
-import 'package:playflutter/module/account/service/account_service.dart';
-import 'package:playflutter/module/me/model/me_model.dart';
 import 'package:playflutter/core/widget/common/sliding_pane_container.dart';
 import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
+import 'package:playflutter/module/account/service/account_service.dart';
+import 'package:playflutter/module/me/model/me_model.dart';
+import 'package:playflutter/module/me/theme/theme_constants_me.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -27,7 +27,7 @@ class CollectViewModel extends BaseViewModel {
     paging = LocalPaging.build(
         notifier: this,
         localKey:
-        context.userKey(ThemeConstants.LOCAL_COLLECT_LIST),
+        context.userKey(ThemeConstantsMe.LOCAL_COLLECT_LIST),
         createJson: (json) => ContentDataPage.fromJson(json));
     requestData(LoadStatus.refresh);
   }

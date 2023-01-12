@@ -11,6 +11,7 @@ import 'package:playflutter/module/account/service/account_service.dart';
 import 'package:playflutter/module/square/model/square_model.dart';
 import 'package:playflutter/core/widget/common/sliding_pane_container.dart';
 import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
+import 'package:playflutter/module/square/theme/theme_constants_square.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -26,7 +27,7 @@ class MyShareViewModel extends BaseViewModel {
   void init() {
     paging = LocalPaging.build(
         notifier: this,
-        localKey: context.userKey(ThemeConstants.LOCAL_SHARE_LIST),
+        localKey: context.userKey(ThemeConstantsSquare.LOCAL_SHARE_LIST),
         createJson: (json) => ContentDataPage.fromJson(json),
         initPage: 1);
     requestData(LoadStatus.refresh);

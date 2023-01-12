@@ -10,6 +10,7 @@ import 'package:playflutter/core/tools/cache/preferences.dart';
 import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
 import 'package:playflutter/module/account/model/account_model.dart';
+import 'package:playflutter/module/account/theme/theme_constants_account.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 
@@ -37,7 +38,7 @@ class AccountService extends BaseModuleService {
       }
       // 获取本地数据
       var localAccount = await Preferences.getCache(
-          ThemeConstants.LOCAL_ACCOUNT_DATA,
+          ThemeConstantsAccount.LOCAL_ACCOUNT_DATA,
           (json) => AccountData.fromJson(json));
       updateAccountStatus(localAccount, localAccount != null);
     }).whenComplete(() => callback());
@@ -59,7 +60,7 @@ class AccountService extends BaseModuleService {
   }
 
   void updateAccountStatus(AccountData? accountData, bool isLogin) {
-    Preferences.saveCache(ThemeConstants.LOCAL_ACCOUNT_DATA, accountData);
+    Preferences.saveCache(ThemeConstantsAccount.LOCAL_ACCOUNT_DATA, accountData);
     Preferences.save(ThemeConstants.LOCAL_IS_LOGIN, isLogin);
     viewStates.accountData = accountData;
     viewStates.isLogin = isLogin;

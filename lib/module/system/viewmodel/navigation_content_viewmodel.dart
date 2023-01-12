@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/model/entity/navigation_tab.dart';
-import 'package:playflutter/core/theme/theme_constants.dart';
 import 'package:playflutter/core/tools/log_tools.dart';
 import 'package:playflutter/core/tools/paging/local_paging.dart';
 import 'package:playflutter/core/tools/paging/paging.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/widget/scroll/scroll_to_index.dart';
 import 'package:playflutter/module/system/model/system_model.dart';
+import 'package:playflutter/module/system/theme/theme_constants_system.dart';
 import 'package:playflutter/module/system/theme/theme_dimens_system.dart';
 
 /// @author jv.lee
@@ -25,7 +25,7 @@ class NavigationContentViewModel extends BaseViewModel {
     paging = LocalPaging.build(
         notifier: this,
         initPage: 1,
-        localKey: ThemeConstants.LOCAL_NAVIGATION_LIST,
+        localKey: ThemeConstantsSystem.LOCAL_NAVIGATION_LIST,
         createJson: (json) => NavigationTabData.fromJson(json));
     requestData();
   }
