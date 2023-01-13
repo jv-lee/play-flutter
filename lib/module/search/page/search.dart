@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
-import 'package:playflutter/core/model/db/entity/search_history.dart';
+import 'package:playflutter/module/search/model/entity/search_history.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/common/overscroll_hide_container.dart';
