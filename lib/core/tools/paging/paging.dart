@@ -49,10 +49,14 @@ class Paging<T> {
       Future<PagingData<T>> Function(int) requestBlock) async {
     if (status == LoadStatus.refresh) {
       _page = initPage;
+      LogTools.log("Paging", "refresh:$_page");
     } else if (status == LoadStatus.loadMore) {
       ++_page;
+      LogTools.log("Paging", "loadMore:$_page");
     } else {
-      // reload直接复用page
+      // reload直接复用page , 如果_page == initPage代表首页数据为缓存直接递增至第二页
+      if (_page == initPage) ++_page;
+      LogTools.log("Paging", "reload:$_page");
     }
 
     requestBlock(_page).then((response) {
@@ -60,6 +64,7 @@ class Paging<T> {
       requestDataComplete(status, response);
       // 首页数据
       if (_page == initPage) {
+        LogTools.log("Paging", "initPage");
         // 首页空数据
         if (response.getDataSource().isEmpty) {
           data.clear();
@@ -87,6 +92,7 @@ class Paging<T> {
 
       // 加载更多数据
       if (response.getPageNumber() < response.getPageTotalNumber()) {
+        LogTools.log("Paging", "load more ing");
         data.addAll(response.getDataSource());
         statusController.itemLoading();
         notify();
@@ -95,6 +101,7 @@ class Paging<T> {
 
       // 加载更多至尾页
       if (response.getPageNumber() == response.getPageTotalNumber()) {
+        LogTools.log("Paging", "load more end");
         data.addAll(response.getDataSource());
         statusController.itemComplete();
         notify();
