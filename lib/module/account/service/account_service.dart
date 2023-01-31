@@ -7,10 +7,9 @@ import 'package:playflutter/core/model/entity/account.dart';
 import 'package:playflutter/core/model/http/constants/api_constants.dart';
 import 'package:playflutter/core/theme/theme_constants.dart';
 import 'package:playflutter/core/tools/cache/preferences.dart';
-import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
 import 'package:playflutter/module/account/model/account_model.dart';
-import 'package:playflutter/module/account/theme/theme_constants_account.dart';
+import 'package:playflutter/module/account/theme/theme_account.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 
@@ -38,7 +37,7 @@ class AccountService extends BaseModuleService {
       }
       // 获取本地数据
       var localAccount = await Preferences.getCache(
-          ThemeConstantsAccount.LOCAL_ACCOUNT_DATA,
+          ThemeAccount.constants.accountData,
           (json) => AccountData.fromJson(json));
       updateAccountStatus(localAccount, localAccount != null);
     }).whenComplete(() => callback());
@@ -53,14 +52,14 @@ class AccountService extends BaseModuleService {
 
     _model.getLogoutAsync().then((value) {
       updateAccountStatus(null, false);
-      Toast.show("account_logout_success".localized());
+      Toast.show(ThemeAccount.strings.logoutSuccess);
     }).catchError((onError) {
       onFailedToast(onError);
     }).whenComplete(() => Navigator.pop(context));
   }
 
   void updateAccountStatus(AccountData? accountData, bool isLogin) {
-    Preferences.saveCache(ThemeConstantsAccount.LOCAL_ACCOUNT_DATA, accountData);
+    Preferences.saveCache(ThemeAccount.constants.accountData, accountData);
     Preferences.save(ThemeConstants.LOCAL_IS_LOGIN, isLogin);
     viewStates.accountData = accountData;
     viewStates.isLogin = isLogin;

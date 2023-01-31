@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/tools/localizations.dart';
-import 'package:playflutter/module/account/theme/theme_images_account.dart';
+import 'package:playflutter/module/account/theme/theme_account.dart';
 import 'package:playflutter/module/account/viewmodel/register_viewmodel.dart';
 
 /// @author jv.lee
@@ -37,7 +36,7 @@ class _RegisterPageState extends BasePageState<RegisterPage> {
   }
 
   Widget buildTitle() {
-    return Text("account_register_title".localized(),
+    return Text(ThemeAccount.strings.registerTitle,
         style: TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.bold,
@@ -57,18 +56,18 @@ class _RegisterPageState extends BasePageState<RegisterPage> {
                   onChanged: (text) => viewModel.changeUserName(text),
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                      icon: SvgPicture.asset(ThemeImagesAccount.usernameSvg,
+                      icon: SvgPicture.asset(ThemeAccount.images.usernameSvg,
                           width: 24, height: 24),
-                      hintText: "account_username_text".localized())),
+                      hintText: ThemeAccount.strings.usernameText)),
               buildSpacer(),
               TextField(
                   onChanged: (text) => viewModel.changePassword(text),
                   textInputAction: TextInputAction.next,
                   obscureText: true,
                   decoration: InputDecoration(
-                      icon: SvgPicture.asset(ThemeImagesAccount.passwordSvg,
+                      icon: SvgPicture.asset(ThemeAccount.images.passwordSvg,
                           width: 24, height: 24),
-                      hintText: "account_password_text".localized())),
+                      hintText: ThemeAccount.strings.passwordText)),
               buildSpacer(),
               TextField(
                   onChanged: (text) => viewModel.changeRePassword(text),
@@ -76,9 +75,9 @@ class _RegisterPageState extends BasePageState<RegisterPage> {
                   textInputAction: TextInputAction.done,
                   obscureText: true,
                   decoration: InputDecoration(
-                      icon: SvgPicture.asset(ThemeImagesAccount.passwordSvg,
+                      icon: SvgPicture.asset(ThemeAccount.images.passwordSvg,
                           width: 24, height: 24),
-                      hintText: "account_repassword_text".localized()))
+                      hintText: ThemeAccount.strings.rePasswordText))
             ])));
   }
 
@@ -92,7 +91,7 @@ class _RegisterPageState extends BasePageState<RegisterPage> {
           Material(
               child: InkWell(
                   onTap: () => Navigator.pop(context),
-                  child: Text("account_goto_login_text".localized(),
+                  child: Text(ThemeAccount.strings.gotoLoginText,
                       style: TextStyle(color: Theme.of(context).focusColor)))),
           ElevatedButton(
               style: ButtonStyle(
@@ -102,7 +101,7 @@ class _RegisterPageState extends BasePageState<RegisterPage> {
                   backgroundColor: MaterialStateColor.resolveWith(
                       (states) => viewModel.viewStates.stateColor)),
               onPressed: () => viewModel.requestRegister(),
-              child: Text("account_register_button".localized(),
+              child: Text(ThemeAccount.strings.registerButton,
                   style: const TextStyle(color: Colors.white)))
         ]));
   }
