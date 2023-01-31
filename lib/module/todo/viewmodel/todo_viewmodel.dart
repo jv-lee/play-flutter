@@ -7,7 +7,7 @@ import 'package:playflutter/module/todo/callback/todo_action_callback.dart';
 import 'package:playflutter/module/todo/dialog/select_todo_type_dialog.dart';
 import 'package:playflutter/module/todo/model/entity/todo_tab.dart';
 import 'package:playflutter/module/todo/model/entity/todo_type.dart';
-import 'package:playflutter/module/todo/theme/theme_constants_todo.dart';
+import 'package:playflutter/module/todo/theme/theme_todo.dart';
 import 'package:playflutter/module/todo/todo_route_names.dart';
 
 /// @author jv.lee
@@ -58,7 +58,7 @@ class TodoViewModel extends BaseViewModel {
   }
 
   _initTodoType() async {
-    final typeIndex = await Preferences.get(ThemeConstantsTodo.LOCAL_TODO_TYPE,
+    final typeIndex = await Preferences.get(ThemeTodo.constants.todoType,
         defaultValue: TodoType.DEFAULT.index);
     viewStates.type = TodoType.values[typeIndex];
     viewStates.callbackHandler.notifyAll((callback) {
@@ -69,10 +69,10 @@ class TodoViewModel extends BaseViewModel {
 
   _updateTodoType() {
     runViewContext((context) async {
-      var localType = await Preferences.get(ThemeConstantsTodo.LOCAL_TODO_TYPE,
+      var localType = await Preferences.get(ThemeTodo.constants.todoType,
           defaultValue: TodoType.DEFAULT.index);
       if (localType == viewStates.type.index) return; // 相同类型忽略
-      Preferences.save(ThemeConstantsTodo.LOCAL_TODO_TYPE, viewStates.type.index);
+      Preferences.save(ThemeTodo.constants.todoType, viewStates.type.index);
       viewStates.callbackHandler.notifyAll((callback) {
         callback.onTypeChange(viewStates.type);
       });

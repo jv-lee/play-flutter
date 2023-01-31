@@ -4,7 +4,7 @@ import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/common/sliding_pane_container.dart';
 import 'package:playflutter/module/todo/model/entity/todo_type.dart';
-import 'package:playflutter/module/todo/theme/theme_dimens_todo.dart';
+import 'package:playflutter/module/todo/theme/theme_todo.dart';
 
 /// @author jv.lee
 /// @date 2022/8/19
@@ -29,9 +29,9 @@ class TodoItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SlidingPaneContainer(
         width: double.infinity,
-        height: ThemeDimensTodo.itemHeight,
+        height: ThemeTodo.dimens.itemHeight,
         controller: controller,
-        slidingWidth: ThemeDimensTodo.slidingWidth,
+        slidingWidth: ThemeTodo.dimens.slidingWidth,
         sliding: buildSliding(context),
         content: buildContent(context),
         decoration: BoxDecoration(

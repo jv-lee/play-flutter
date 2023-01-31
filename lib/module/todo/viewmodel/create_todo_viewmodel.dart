@@ -8,7 +8,7 @@ import 'package:playflutter/core/tools/time_tools.dart';
 import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
 import 'package:playflutter/module/todo/model/entity/todo_type.dart';
 import 'package:playflutter/module/todo/model/todo_model.dart';
-import 'package:playflutter/module/todo/theme/theme_constants_todo.dart';
+import 'package:playflutter/module/todo/theme/theme_todo.dart';
 
 /// @author jv.lee
 /// @date 2022/8/15
@@ -130,7 +130,7 @@ class CreateTodoViewModel extends BaseViewModel {
         ..appbarTitle = "title_create".localized()
         ..date = TimeTools.getCurrentFormatDate();
     }
-    final typeIndex = await Preferences.get(ThemeConstantsTodo.LOCAL_TODO_TYPE,
+    final typeIndex = await Preferences.get(ThemeTodo.constants.todoType,
         defaultValue: TodoType.DEFAULT.index);
     viewStates.type = typeIndex;
     notifyListeners();
