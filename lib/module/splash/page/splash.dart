@@ -3,7 +3,7 @@ import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/tools/status_tools.dart';
 import 'package:playflutter/core/widget/common/time_ready_button.dart';
-import 'package:playflutter/module/splash/theme/theme_images_splash.dart';
+import 'package:playflutter/module/splash/theme/theme_splash.dart';
 import 'package:playflutter/module/splash/viewmodel/splash_viewmodel.dart';
 
 /// @author jv.lee
@@ -49,7 +49,7 @@ class _SplashState extends BasePageState<SplashPage>
                   height: MediaQuery.of(context).size.height * 0.7,
                   color: Colors.transparent,
                   child: Image.asset(
-                    ThemeImagesSplash.splashAdPng,
+                    ThemeSplash.images.splashAdPng,
                     fit: BoxFit.cover,
                   )),
               Container(
