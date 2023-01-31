@@ -16,4 +16,11 @@ class _Constants {
 
 class _Strings {
   String headerText = "square_header_text".localized();
+  String createShareText = "square_create_share_text".localized();
+  String shareTitleText = "square_share_title_text".localized();
+  String shareLinkText = "square_share_link_text".localized();
+  String shareTitleHint = "square_share_title_hint".localized();
+  String shareLinkHint = "square_share_link_hint".localized();
+  String shareRequestSuccess = "square_share_request_success".localized();
+  String createShareDescription = "square_create_share_description".localized();
 }

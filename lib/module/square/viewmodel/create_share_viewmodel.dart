@@ -4,6 +4,7 @@ import 'package:playflutter/core/extensions/exception_extensions.dart';
 import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/module/square/model/square_model.dart';
 import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
+import 'package:playflutter/module/square/theme/theme_square.dart';
 import 'package:toast/toast.dart';
 
 /// @author jv.lee
@@ -48,7 +49,7 @@ class CreateShareViewModel extends BaseViewModel {
       // 提交请求
       _model.postShareDataSync(viewStates.shareTitle, viewStates.shareLink)
           .then((value) {
-        Toast.show("square_share_request_success".localized());
+        Toast.show(ThemeSquare.strings.shareRequestSuccess);
         Navigator.of(context).pop();
       }).catchError((onError) {
         onFailedToast(onError);
