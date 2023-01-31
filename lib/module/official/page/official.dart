@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
-import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/common/overscroll_hide_container.dart';
 import 'package:playflutter/core/widget/status/status_page.dart';
+import 'package:playflutter/module/home/theme/theme_home.dart';
 import 'package:playflutter/module/official/page/official_list.dart';
 import 'package:playflutter/module/official/viewmodel/official_viewmodel.dart';
 
@@ -36,7 +36,7 @@ class _OfficialState extends BasePageState<OfficialPage> {
               length: tabList.length,
               child: Scaffold(
                   appBar: AppBar(
-                    title: Text("home_official_category_name".localized()),
+                    title: Text(ThemeHome.strings.officialCategoryName),
                     bottom: tabBar,
                   ),
                   body: StatusPage(

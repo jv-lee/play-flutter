@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/extensions/data_format_extensions.dart';
 import 'package:playflutter/core/model/entity/parent_tab.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/common/card_item_container.dart';
+import 'package:playflutter/module/system/theme/theme_system.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
@@ -39,7 +39,7 @@ class ParentTabItem extends StatelessWidget {
               buildDivider(context),
               SizedBox(
                   width: double.infinity,
-                  child: Text("system_more_text".localized(),
+                  child: Text(ThemeSystem.strings.moreText,
                       style: TextStyle(
                           color: Theme.of(context).focusColor,
                           fontSize: ThemeDimens.fontSizeSmallX,

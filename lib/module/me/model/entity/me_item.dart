@@ -1,5 +1,4 @@
 import 'package:playflutter/core/theme/theme_images.dart';
-import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/module/me/me_route_names.dart';
 import 'package:playflutter/module/me/theme/theme_me.dart';
 import 'package:playflutter/module/square/square_route_names.dart';
@@ -24,23 +23,23 @@ class MeItem {
     var list = <MeItem>[];
     list.add(MeItem(
         route: MeRouteNames.coin,
-        name: "me_item_coin".localized(),
+        name: ThemeMe.strings.meItemCoin,
         iconSvgPath: ThemeMe.images.coinSvg));
     list.add(MeItem(
         route: MeRouteNames.collect,
-        name: "me_item_collect".localized(),
+        name: ThemeMe.strings.meItemCollect,
         iconSvgPath: ThemeMe.images.collectSvg));
     list.add(MeItem(
         route: SquareRouteNames.my_share,
-        name: "me_item_share".localized(),
+        name: ThemeMe.strings.meItemShare,
         iconSvgPath: ThemeMe.images.shareSvg));
     list.add(MeItem(
         route: TodoRouteNames.todo,
-        name: "me_item_todo".localized(),
+        name: ThemeMe.strings.meItemTodo,
         iconSvgPath: ThemeMe.images.todoSvg));
     list.add(MeItem(
         route: MeRouteNames.settings,
-        name: "me_item_settings".localized(),
+        name: ThemeMe.strings.meItemSettings,
         iconSvgPath: ThemeMe.images.settingsSvg));
     return list;
   }

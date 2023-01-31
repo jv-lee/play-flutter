@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/model/entity/details.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/common/app_popup_menu_divider.dart';
 import 'package:playflutter/core/widget/common/route_lazy_load.dart';
 import 'package:playflutter/module/details/mixin/web_navigation_mixin.dart';
 import 'package:playflutter/module/details/mixin/web_progress_mixin.dart';
+import 'package:playflutter/module/details/theme/theme_details.dart';
 import 'package:playflutter/module/details/viewmodel/details_viewmodel.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -63,7 +63,7 @@ class _DetailsState extends BasePageState<DetailsPage>
                   child: Container(
                       width: double.infinity,
                       alignment: Alignment.center,
-                      child: Text("menu_collect".localized()))),
+                      child: Text(ThemeDetails.strings.menuCollect))),
               AppPopupMenuDivider(
                   height: 1, color: Theme.of(context).primaryColorLight),
               PopupMenuItem(
@@ -72,7 +72,7 @@ class _DetailsState extends BasePageState<DetailsPage>
                   child: Container(
                       width: double.infinity,
                       alignment: Alignment.center,
-                      child: Text("menu_share".localized())))
+                      child: Text(ThemeDetails.strings.menuShare)))
             ]);
   }
 

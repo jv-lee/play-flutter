@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/model/entity/coin_rank.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
 import 'package:playflutter/module/me/theme/theme_me.dart';
@@ -26,7 +25,7 @@ class _CoinRankPageState extends BasePageState<CoinRankPage> {
         create: (context) => CoinRankViewModel(context),
         viewBuild: (context, viewModel) {
           return Scaffold(
-              appBar: AppBar(title: Text("coin_rank_title".localized())),
+              appBar: AppBar(title: Text(ThemeMe.strings.coinRankTitle)),
               body: buildRankContent(viewModel));
         });
   }

@@ -66,8 +66,8 @@ class TodoItem extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Text(
                           item.status == TodoStatus.UPCOMING.index
-                              ? "todo_item_complete".localized()
-                              : "todo_item_upcoming".localized(),
+                              ? ThemeTodo.strings.itemComplete
+                              : ThemeTodo.strings.itemUpcoming,
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: ThemeDimens.fontSizeSmall))))))
@@ -123,7 +123,7 @@ class TodoItem extends StatelessWidget {
               width: 25,
               height: 25,
               transform: Transform.rotate(angle: -45).transform,
-              child: Text("todo_create_level_high".localized(),
+              child: Text(ThemeTodo.strings.createLevelHigh,
                   style: const TextStyle(fontSize: 8, color: Colors.white))))
     ]);
   }

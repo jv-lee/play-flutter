@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/tools/file_tools.dart';
-import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/dialog/confirm_dialog.dart';
 import 'package:playflutter/module/account/service/account_service.dart';
+import 'package:playflutter/module/me/theme/theme_me.dart';
 import 'package:provider/provider.dart';
 
 /// @author jv.lee
@@ -37,7 +37,7 @@ class SettingsViewModel extends BaseViewModel {
     showDialog(
         context: context,
         builder: (context) => ConfirmDialog(
-            titleText: "settings_clear_title".localized(),
+            titleText: ThemeMe.strings.settingsClearTitle,
             onCancel: () => Navigator.pop(context),
             onConfirm: () async {
               Navigator.pop(context);
@@ -49,7 +49,7 @@ class SettingsViewModel extends BaseViewModel {
     showDialog(
         context: context,
         builder: (context) => ConfirmDialog(
-            titleText: "settings_logout_title".localized(),
+            titleText: ThemeMe.strings.settingsLogoutTitle,
             onCancel: () => Navigator.pop(context),
             onConfirm: () {
               Navigator.pop(context);

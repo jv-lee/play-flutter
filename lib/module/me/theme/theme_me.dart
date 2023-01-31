@@ -1,5 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:playflutter/core/tools/localizations.dart';
+
 /// @author jv.lee
 /// @date 2023/1/31
 /// @description
@@ -7,6 +9,7 @@ class ThemeMe {
   static _Constants constants = _Constants();
   static _Dimens dimens = _Dimens();
   static _Images images = _Images();
+  static _Strings strings = _Strings();
 }
 
 class _Constants {
@@ -36,4 +39,28 @@ class _Images {
   String rankNo2Svg = "assets/images/me/ic_me_rank_no2.svg";
   String rankNo3Svg = "assets/images/me/ic_me_rank_no3.svg";
   String settingsSvg = "assets/images/me/ic_me_settings.svg";
+}
+
+class _Strings {
+  String meAccountDefaultText = "me_account_default_text".localized();
+  String meAccountInfoText = "me_account_info_text".localized();
+  String meItemCoin = "me_item_coin".localized();
+  String meItemCollect = "me_item_collect".localized();
+  String meItemShare = "me_item_share".localized();
+  String meItemTodo = "me_item_todo".localized();
+  String meItemSettings = "me_item_settings".localized();
+
+  String settingsDarkModeSystem = "settings_dark_mode_system".localized();
+  String settingsDarkModeNight = "settings_dark_mode_night".localized();
+  String settingsClearText = "settings_clear_text".localized();
+  String settingsLogout = "settings_logout".localized();
+  String settingsClearTitle = "settings_clear_title".localized();
+  String settingsLogoutTitle = "settings_logout_title".localized();
+
+  String coinTitleLabelText = "coin_title_label_text".localized();
+  String coinTotalDescription = "coin_total_description".localized();
+  String coinDefaultValue = "coin_default_value".localized();
+  String coinToRankText = "coin_to_rank_text".localized();
+  String coinRankTitle = "coin_rank_title".localized();
+  String coinHelpTitle = "coin_help_title".localized();
 }

@@ -75,7 +75,7 @@ class _MeViewState {
   Widget headerWidget = Padding(
       padding: const EdgeInsets.all(6),
       child: SvgPicture.asset(ThemeMe.images.accountSvg));
-  String userName = "me_account_default_text".localized();
+  String userName = ThemeMe.strings.meAccountDefaultText;
   String userDesc = "";
   bool isLogin = false;
   List<MeItem> meItems = MeItem.getMeItems();

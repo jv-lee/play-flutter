@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
-import 'package:playflutter/core/tools/localizations.dart';
-import 'package:playflutter/module/project/page/project_list.dart';
-import 'package:playflutter/module/project/viewmodel/project_viewmodel.dart';
 import 'package:playflutter/core/widget/common/overscroll_hide_container.dart';
 import 'package:playflutter/core/widget/status/status_page.dart';
+import 'package:playflutter/module/home/theme/theme_home.dart';
+import 'package:playflutter/module/project/page/project_list.dart';
+import 'package:playflutter/module/project/viewmodel/project_viewmodel.dart';
 
 /// @author jv.lee
 /// @date 2022/6/28
@@ -36,7 +36,7 @@ class _ProjectState extends BasePageState<ProjectPage> {
               length: tabList.length,
               child: Scaffold(
                   appBar: AppBar(
-                    title: Text("home_project_category_name".localized()),
+                    title: Text(ThemeHome.strings.projectCategoryName),
                     bottom: tabBar,
                   ),
                   body: StatusPage(

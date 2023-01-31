@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/common/header/app_header_container.dart';
 import 'package:playflutter/core/widget/common/overscroll_hide_container.dart';
 import 'package:playflutter/core/widget/common/transparent_scaffold.dart';
@@ -41,12 +40,12 @@ class _SystemState extends BasePageState<SystemPage>
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               buildTab(
                   viewModel,
-                  "system_system_tab".localized(),
+                  ThemeSystem.strings.systemTab,
                   viewModel.viewStates.selectedIndex == 0,
                   () => viewModel.pageChange(0)),
               buildTab(
                   viewModel,
-                  "system_navigation_tab".localized(),
+                  ThemeSystem.strings.navigationTab,
                   viewModel.viewStates.selectedIndex == 1,
                   () => viewModel.pageChange(1))
             ])));

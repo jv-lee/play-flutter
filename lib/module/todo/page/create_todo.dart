@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
-import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/module/todo/model/entity/todo_type.dart';
+import 'package:playflutter/module/todo/theme/theme_todo.dart';
 import 'package:playflutter/module/todo/viewmodel/create_todo_viewmodel.dart';
 
 /// @author jv.lee
@@ -40,7 +40,7 @@ class _CreateTodoPageState extends BasePageState<CreateTodoPage> {
     return Column(children: [
       buildInputContainer(Row(
         children: [
-          Text("todo_create_title_label".localized(),
+          Text(ThemeTodo.strings.createTitleLabel,
               style: TextStyle(color: Theme.of(context).primaryColorLight)),
           Expanded(
               child: TextField(
@@ -48,7 +48,7 @@ class _CreateTodoPageState extends BasePageState<CreateTodoPage> {
                   onChanged: (text) => viewModel.changeTitle(text),
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                      hintText: "todo_create_title_hint".localized())))
+                      hintText: ThemeTodo.strings.createTitleHint)))
         ],
       )),
       buildInputContainer(
@@ -57,7 +57,7 @@ class _CreateTodoPageState extends BasePageState<CreateTodoPage> {
               Container(
                   alignment: Alignment.topLeft,
                   margin: const EdgeInsets.only(top: ThemeDimens.offsetLarge),
-                  child: Text("todo_create_content_label".localized(),
+                  child: Text(ThemeTodo.strings.createContentLabel,
                       style: TextStyle(
                           color: Theme.of(context).primaryColorLight))),
               Expanded(
@@ -67,13 +67,13 @@ class _CreateTodoPageState extends BasePageState<CreateTodoPage> {
                       textInputAction: TextInputAction.next,
                       maxLines: 5,
                       decoration: InputDecoration(
-                          hintText: "todo_create_content_hint".localized())))
+                          hintText: ThemeTodo.strings.createContentHint)))
             ],
           ),
           height: 138,
           alignment: Alignment.topLeft),
       buildInputContainer(Row(children: [
-        Text("todo_create_level_label".localized(),
+        Text(ThemeTodo.strings.createLevelLabel,
             style: TextStyle(color: Theme.of(context).primaryColorLight)),
         SizedBox(
             width: 80,
@@ -83,7 +83,7 @@ class _CreateTodoPageState extends BasePageState<CreateTodoPage> {
                   activeColor: Theme.of(context).focusColor,
                   groupValue: viewModel.viewStates.priority,
                   onChanged: (int? value) => viewModel.changePriority(value!)),
-              Text("todo_create_level_low".localized(),
+              Text(ThemeTodo.strings.createLevelLow,
                   style: TextStyle(color: Theme.of(context).primaryColor))
             ])),
         SizedBox(
@@ -94,7 +94,7 @@ class _CreateTodoPageState extends BasePageState<CreateTodoPage> {
                   activeColor: Theme.of(context).focusColor,
                   groupValue: viewModel.viewStates.priority,
                   onChanged: (int? value) => viewModel.changePriority(value!)),
-              Text("todo_create_level_high".localized(),
+              Text(ThemeTodo.strings.createLevelHigh,
                   style: TextStyle(color: Theme.of(context).primaryColor))
             ]))
       ])),
@@ -105,7 +105,7 @@ class _CreateTodoPageState extends BasePageState<CreateTodoPage> {
                   onTap: () => viewModel.changeDate(),
                   child: buildInputContainer(Row(
                     children: [
-                      Text("todo_create_date_label".localized(),
+                      Text(ThemeTodo.strings.createDateLabel,
                           style: TextStyle(
                               color: Theme.of(context).primaryColorLight)),
                       Expanded(
@@ -148,7 +148,7 @@ class _CreateTodoPageState extends BasePageState<CreateTodoPage> {
           color: Theme.of(context).focusColor,
           splashColor: Theme.of(context).focusColor,
           onPressed: () => viewModel.onSubmit(),
-          child: Text("todo_create_save".localized(),
+          child: Text(ThemeTodo.strings.createSave,
               style: const TextStyle(color: Colors.white)),
         ));
   }

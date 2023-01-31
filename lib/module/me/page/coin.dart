@@ -4,7 +4,6 @@ import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/model/entity/coin_record.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
-import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/tools/status_tools.dart';
 import 'package:playflutter/core/widget/common/ink_well_container.dart';
@@ -41,7 +40,7 @@ class _CoinPageState extends BasePageState<CoinPage> {
   Widget buildHeader(CoinViewModel viewModel) {
     return Stack(children: [
       AppBar(
-          title: Text("me_item_coin".localized(),
+          title: Text(ThemeMe.strings.meItemCoin,
               style: const TextStyle(color: Colors.white)),
           actions: [
             IconButton(
@@ -99,14 +98,14 @@ class _CoinPageState extends BasePageState<CoinPage> {
                               Radius.circular(ThemeDimens.offsetRadiusMedium),
                           topRight:
                               Radius.circular(ThemeDimens.offsetRadiusMedium))),
-                  child: Text("coin_title_label_text".localized(),
+                  child: Text(ThemeMe.strings.coinTitleLabelText,
                       style: TextStyle(
                           fontSize: ThemeDimens.fontSizeSmall,
                           color: Theme.of(context).focusColor))),
               // 当前积分总数 item
               Container(
                   margin: const EdgeInsets.all(ThemeDimens.offsetLarge),
-                  child: Text("coin_total_description".localized(),
+                  child: Text(ThemeMe.strings.coinTotalDescription,
                       style: TextStyle(
                           fontSize: ThemeDimens.fontSizeSmallX,
                           color: Theme.of(context).primaryColor))),
@@ -143,7 +142,7 @@ class _CoinPageState extends BasePageState<CoinPage> {
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("coin_to_rank_text".localized(),
+                              Text(ThemeMe.strings.coinToRankText,
                                   style: TextStyle(
                                       fontSize: ThemeDimens.fontSizeMedium,
                                       color:

@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 import 'package:playflutter/core/model/entity/todo.dart';
-import 'package:playflutter/core/tools/localizations.dart';
+import 'package:playflutter/module/todo/theme/theme_todo.dart';
 
 /// @author jv.lee
 /// @date 2022/8/15
@@ -14,13 +14,13 @@ class TodoTypeData {
   static List<TodoTypeData> getTodoTypes() {
     var list = <TodoTypeData>[];
     list.add(TodoTypeData(
-        type: TodoType.DEFAULT.index, name: "todo_type_default".localized()));
+        type: TodoType.DEFAULT.index, name: ThemeTodo.strings.typeDefault));
     list.add(TodoTypeData(
-        type: TodoType.WORK.index, name: "todo_type_work".localized()));
+        type: TodoType.WORK.index, name: ThemeTodo.strings.typeWork));
     list.add(TodoTypeData(
-        type: TodoType.LIFE.index, name: "todo_type_life".localized()));
+        type: TodoType.LIFE.index, name: ThemeTodo.strings.typeLife));
     list.add(TodoTypeData(
-        type: TodoType.PLAY.index, name: "todo_type_play".localized()));
+        type: TodoType.PLAY.index, name: ThemeTodo.strings.typePlay));
     return list;
   }
 }

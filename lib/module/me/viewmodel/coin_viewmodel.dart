@@ -2,7 +2,6 @@ import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/model/entity/coin_record.dart';
 import 'package:playflutter/core/model/entity/details.dart';
 import 'package:playflutter/core/model/http/constants/api_constants.dart';
-import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/tools/log_tools.dart';
 import 'package:playflutter/core/tools/paging/local_paging.dart';
 import 'package:playflutter/core/tools/paging/paging.dart';
@@ -53,5 +52,5 @@ class CoinViewModel extends BaseViewModel {
 
 class _CoinViewState {
   var detailsData = DetailsData(
-      title: "coin_help_title".localized(), link: ApiConstants.URI_COIN_HELP);
+      title: ThemeMe.strings.coinHelpTitle, link: ApiConstants.URI_COIN_HELP);
 }

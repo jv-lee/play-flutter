@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
-import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/common/back_pop_scope.dart';
 import 'package:playflutter/core/widget/common/cover_touch.dart';
 import 'package:playflutter/core/widget/common/floating_container.dart';
+import 'package:playflutter/module/home/theme/theme_home.dart';
 import 'package:playflutter/module/main/viewmodel/main_viewmodel.dart';
 import 'package:toast/toast.dart';
 
@@ -60,7 +60,7 @@ class _MainState extends BasePageState<MainPage> {
             margin: const EdgeInsets.all(ThemeDimens.offsetLarge),
             child: CoverTouch(
                 radius: const Radius.circular(ThemeDimens.floatingIconSize / 2),
-                onTap: () => Toast.show("home_header_text".localized()),
+                onTap: () => Toast.show(ThemeHome.strings.headerText),
                 child: Image.asset(ThemeImages.launcherRoundPng)))
         : Container();
   }

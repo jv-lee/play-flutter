@@ -3,7 +3,6 @@ import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/extensions/data_format_extensions.dart';
 import 'package:playflutter/core/model/entity/banner.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
-import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/widget/common/banner_view.dart';
 import 'package:playflutter/core/widget/common/header/app_header_container.dart';
@@ -82,8 +81,7 @@ class _HomeState extends BasePageState<HomePage>
                       })),
               AppHeaderContainer(
                   child: AppTextActionBar(
-                      // title: ThemeStrings.homeHeaderText,
-                      title: "home_header_text".localized(),
+                      title: ThemeHome.strings.headerText,
                       navigationSvgPath: ThemeImages.searchSvg,
                       onNavigationClick: () =>
                           Navigator.pushNamed(context, SearchRouteNames.search)))
