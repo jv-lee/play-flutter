@@ -4,7 +4,6 @@ import 'package:playflutter/core/tools/log_tools.dart';
 import 'package:playflutter/core/tools/paging/paging.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/module/me/model/me_model.dart';
-import 'package:playflutter/module/me/theme/theme_images_me.dart';
 import 'package:playflutter/module/me/theme/theme_me.dart';
 
 /// @author jv.lee

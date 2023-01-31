@@ -1,7 +1,6 @@
 import 'package:playflutter/core/theme/theme_images.dart';
 import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/module/me/me_route_names.dart';
-import 'package:playflutter/module/me/theme/theme_images_me.dart';
 import 'package:playflutter/module/me/theme/theme_me.dart';
 import 'package:playflutter/module/square/square_route_names.dart';
 import 'package:playflutter/module/todo/todo_route_names.dart';

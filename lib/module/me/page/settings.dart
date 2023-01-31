@@ -5,7 +5,6 @@ import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
 import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/common/profile_item.dart';
-import 'package:playflutter/module/me/theme/theme_images_me.dart';
 import 'package:playflutter/module/me/theme/theme_me.dart';
 import 'package:playflutter/module/me/viewmodel/settings_viewmodel.dart';
 
