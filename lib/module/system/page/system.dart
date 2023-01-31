@@ -5,7 +5,7 @@ import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/widget/common/header/app_header_container.dart';
 import 'package:playflutter/core/widget/common/overscroll_hide_container.dart';
 import 'package:playflutter/core/widget/common/transparent_scaffold.dart';
-import 'package:playflutter/module/system/theme/theme_dimens_system.dart';
+import 'package:playflutter/module/system/theme/theme_system.dart';
 import 'package:playflutter/module/system/viewmodel/system_viewmodel.dart';
 
 /// @author jv.lee
@@ -63,8 +63,8 @@ class _SystemState extends BasePageState<SystemPage>
     return InkWell(
         onTap: () => onClick(),
         child: Container(
-            width: ThemeDimensSystem.tabWidth,
-            height: ThemeDimensSystem.tabHeight,
+            width: ThemeSystem.dimens.tabWidth,
+            height: ThemeSystem.dimens.tabHeight,
             margin: const EdgeInsets.only(
                 left: ThemeDimens.offsetMedium,
                 right: ThemeDimens.offsetMedium),
@@ -73,7 +73,7 @@ class _SystemState extends BasePageState<SystemPage>
                 color: color,
                 shape: RoundedRectangleBorder(
                     borderRadius:
-                        BorderRadius.circular(ThemeDimensSystem.tabRadius))),
+                        BorderRadius.circular(ThemeSystem.dimens.tabRadius))),
             child: Text(text,
                 style: TextStyle(
                     color: textColor, fontSize: ThemeDimens.fontSizeMedium))));

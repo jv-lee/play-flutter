@@ -7,8 +7,7 @@ import 'package:playflutter/core/tools/paging/paging.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/widget/scroll/scroll_to_index.dart';
 import 'package:playflutter/module/system/model/system_model.dart';
-import 'package:playflutter/module/system/theme/theme_constants_system.dart';
-import 'package:playflutter/module/system/theme/theme_dimens_system.dart';
+import 'package:playflutter/module/system/theme/theme_system.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
@@ -25,7 +24,7 @@ class NavigationContentViewModel extends BaseViewModel {
     paging = LocalPaging.build(
         notifier: this,
         initPage: 1,
-        localKey: ThemeConstantsSystem.LOCAL_NAVIGATION_LIST,
+        localKey: ThemeSystem.constants.navigationList,
         createJson: (json) => NavigationTabData.fromJson(json));
     requestData();
   }
@@ -60,7 +59,7 @@ class NavigationContentViewModel extends BaseViewModel {
   void changeTagIndex(int index) {
     // 当前tab点击切换锁定滚动状态时 和 index重复change时不进行处理
     if (viewStates.isChangeTab && index != viewStates.tabSelectedIndex) {
-      var scrollOffset = ThemeDimensSystem.navigationTabHeight * index;
+      var scrollOffset = ThemeSystem.dimens.navigationTabHeight * index;
       // 限制滚动最大值
       if (scrollOffset >=
           viewStates.tabScrollController.position.maxScrollExtent) {

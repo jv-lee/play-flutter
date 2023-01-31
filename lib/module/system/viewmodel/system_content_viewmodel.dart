@@ -5,7 +5,7 @@ import 'package:playflutter/core/tools/paging/local_paging.dart';
 import 'package:playflutter/core/tools/paging/paging.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/module/system/model/system_model.dart';
-import 'package:playflutter/module/system/theme/theme_constants_system.dart';
+import 'package:playflutter/module/system/theme/theme_system.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
@@ -22,7 +22,7 @@ class SystemContentViewModel extends BaseViewModel {
     paging = LocalPaging.build(
         notifier: this,
         initPage: 1,
-        localKey: ThemeConstantsSystem.LOCAL_SYSTEM_LIST,
+        localKey: ThemeSystem.constants.systemList,
         createJson: (json) => ParentTabData.fromJson(json));
     requestData();
   }
