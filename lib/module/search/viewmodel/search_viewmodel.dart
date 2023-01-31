@@ -1,14 +1,14 @@
 import 'package:flutter/widgets.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
-import 'package:playflutter/module/search/model/dao/search_history_dao.dart';
-import 'package:playflutter/module/search/model/entity/search_history.dart';
 import 'package:playflutter/core/model/entity/search_hot.dart';
 import 'package:playflutter/core/tools/cache/preferences.dart';
+import 'package:playflutter/module/search/model/dao/search_history_dao.dart';
+import 'package:playflutter/module/search/model/entity/search_history.dart';
 import 'package:playflutter/module/search/model/entity/search_hot_ui.dart';
 import 'package:playflutter/module/search/model/search_model.dart';
 import 'package:playflutter/module/search/page/search.dart';
 import 'package:playflutter/module/search/search_route_names.dart';
-import 'package:playflutter/module/search/theme/theme_constants_search.dart';
+import 'package:playflutter/module/search/theme/theme_search.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -50,7 +50,7 @@ class SearchViewModel extends BaseViewModel {
 
   void _requestSearchHotList() {
     Preferences.requestCache<SearchHotData>(
-        localKey: ThemeConstantsSearch.LOCAL_SEARCH_HOT_LIST,
+        localKey: ThemeSearch.constants.searchHotList,
         createJson: (json) => SearchHotData.fromJson(json),
         requestFuture: _model.getSearchHotDataAsync(),
         callback: (value) {
