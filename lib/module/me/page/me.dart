@@ -4,7 +4,7 @@ import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/widget/common/header/app_header_container.dart';
 import 'package:playflutter/core/widget/common/profile_item.dart';
 import 'package:playflutter/core/widget/common/transparent_scaffold.dart';
-import 'package:playflutter/module/me/theme/theme_dimens_me.dart';
+import 'package:playflutter/module/me/theme/theme_me.dart';
 import 'package:playflutter/module/me/viewmodel/me_viewmodel.dart';
 
 /// @author jv.lee
@@ -41,17 +41,17 @@ class _MeState extends BasePageState<MePage>
         headerBrush: false,
         child: SizedBox(
             width: double.infinity,
-            height: ThemeDimensMe.headerHeight,
+            height: ThemeMe.dimens.headerHeight,
             child: Row(children: [
               Container(
-                  margin: const EdgeInsets.only(
-                      left: ThemeDimensMe.headerPictureMargin,
-                      right: ThemeDimensMe.headerPictureMargin),
-                  width: ThemeDimensMe.headerPictureSize,
-                  height: ThemeDimensMe.headerPictureSize,
+                  margin: EdgeInsets.only(
+                      left: ThemeMe.dimens.headerPictureMargin,
+                      right: ThemeMe.dimens.headerPictureMargin),
+                  width: ThemeMe.dimens.headerPictureSize,
+                  height: ThemeMe.dimens.headerPictureSize,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(
-                          ThemeDimensMe.headerPictureSize / 2),
+                          ThemeMe.dimens.headerPictureSize / 2),
                       border: Border.all(
                           width: 2, color: Theme.of(context).focusColor)),
                   child: viewModel.viewStates.headerWidget),

@@ -12,7 +12,7 @@ import 'package:playflutter/core/widget/common/transparent_scaffold.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
 import 'package:playflutter/module/details/details_route_names.dart';
 import 'package:playflutter/module/me/me_route_names.dart';
-import 'package:playflutter/module/me/theme/theme_dimens_me.dart';
+import 'package:playflutter/module/me/theme/theme_me.dart';
 import 'package:playflutter/module/me/viewmodel/coin_viewmodel.dart';
 
 /// @author jv.lee
@@ -65,7 +65,7 @@ class _CoinPageState extends BasePageState<CoinPage> {
   Widget buildHeaderBackground() {
     return Container(
         width: double.infinity,
-        height: ThemeDimensMe.coinHeaderBgHeight,
+        height: ThemeMe.dimens.coinHeaderBgHeight,
         decoration: BoxDecoration(
             color: Theme.of(context).focusColor,
             borderRadius: const BorderRadius.only(

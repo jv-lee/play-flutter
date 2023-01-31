@@ -6,7 +6,7 @@ import 'package:playflutter/core/theme/theme_dimens.dart';
 import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
-import 'package:playflutter/module/me/theme/theme_images_me.dart';
+import 'package:playflutter/module/me/theme/theme_me.dart';
 import 'package:playflutter/module/me/viewmodel/coin_rank_viewmodel.dart';
 
 /// @author jv.lee
@@ -74,7 +74,7 @@ class _CoinRankPageState extends BasePageState<CoinRankPage> {
                           fontSize: ThemeDimens.fontSizeMedium,
                           overflow: TextOverflow.ellipsis))),
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                SvgPicture.asset(ThemeImagesMe.userCoinSvg,
+                SvgPicture.asset(ThemeMe.images.userCoinSvg,
                     width: 24, height: 24),
                 Text(item.coinCount.toString(),
                     maxLines: 1,
@@ -105,7 +105,7 @@ class _CoinRankPageState extends BasePageState<CoinRankPage> {
                       overflow: TextOverflow.ellipsis))),
           Expanded(
               child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-            SvgPicture.asset(ThemeImagesMe.userCoinSvg, width: 24, height: 24),
+            SvgPicture.asset(ThemeMe.images.userCoinSvg, width: 24, height: 24),
             Text(item.coinCount.toString(),
                 maxLines: 1,
                 style: TextStyle(

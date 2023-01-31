@@ -9,7 +9,7 @@ import 'package:playflutter/core/tools/paging/paging.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/module/account/service/account_service.dart';
 import 'package:playflutter/module/me/model/me_model.dart';
-import 'package:playflutter/module/me/theme/theme_constants_me.dart';
+import 'package:playflutter/module/me/theme/theme_me.dart';
 import 'package:provider/provider.dart';
 
 /// @author jv.lee
@@ -29,7 +29,7 @@ class CoinViewModel extends BaseViewModel {
     accountService.addListener(notifyListeners);
     paging = LocalPaging.build(
         notifier: this,
-        localKey: context.userKey(ThemeConstantsMe.LOCAL_COIN_LIST),
+        localKey: context.userKey(ThemeMe.constants.coinList),
         createJson: (json) => CoinRecordPage.fromJson(json),
         initPage: 1);
     requestData(LoadStatus.refresh);

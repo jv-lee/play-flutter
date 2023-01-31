@@ -10,7 +10,7 @@ import 'package:playflutter/core/widget/common/sliding_pane_container.dart';
 import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
 import 'package:playflutter/module/account/service/account_service.dart';
 import 'package:playflutter/module/me/model/me_model.dart';
-import 'package:playflutter/module/me/theme/theme_constants_me.dart';
+import 'package:playflutter/module/me/theme/theme_me.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -26,8 +26,7 @@ class CollectViewModel extends BaseViewModel {
   void init() {
     paging = LocalPaging.build(
         notifier: this,
-        localKey:
-        context.userKey(ThemeConstantsMe.LOCAL_COLLECT_LIST),
+        localKey: context.userKey(ThemeMe.constants.collectList),
         createJson: (json) => ContentDataPage.fromJson(json));
     requestData(LoadStatus.refresh);
   }
