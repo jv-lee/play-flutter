@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/extensions/exception_extensions.dart';
-import 'package:playflutter/core/tools/localizations.dart';
-import 'package:playflutter/module/square/model/square_model.dart';
 import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
+import 'package:playflutter/module/square/model/square_model.dart';
 import 'package:playflutter/module/square/theme/theme_square.dart';
 import 'package:toast/toast.dart';
 
