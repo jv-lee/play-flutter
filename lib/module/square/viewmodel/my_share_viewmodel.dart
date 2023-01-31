@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/extensions/exception_extensions.dart';
 import 'package:playflutter/core/model/entity/content.dart';
-import 'package:playflutter/core/theme/theme_constants.dart';
 import 'package:playflutter/core/tools/log_tools.dart';
 import 'package:playflutter/core/tools/paging/local_paging.dart';
 import 'package:playflutter/core/tools/paging/paging.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
-import 'package:playflutter/module/account/service/account_service.dart';
-import 'package:playflutter/module/square/model/square_model.dart';
 import 'package:playflutter/core/widget/common/sliding_pane_container.dart';
 import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
-import 'package:playflutter/module/square/theme/theme_constants_square.dart';
+import 'package:playflutter/module/account/service/account_service.dart';
+import 'package:playflutter/module/square/model/square_model.dart';
+import 'package:playflutter/module/square/theme/theme_square.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -27,7 +26,7 @@ class MyShareViewModel extends BaseViewModel {
   void init() {
     paging = LocalPaging.build(
         notifier: this,
-        localKey: context.userKey(ThemeConstantsSquare.LOCAL_SHARE_LIST),
+        localKey: context.userKey(ThemeSquare.constants.shareList),
         createJson: (json) => ContentDataPage.fromJson(json),
         initPage: 1);
     requestData(LoadStatus.refresh);

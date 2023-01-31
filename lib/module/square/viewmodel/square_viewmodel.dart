@@ -14,7 +14,7 @@ import 'package:playflutter/module/account/service/account_service.dart';
 import 'package:playflutter/module/main/model/entity/main_tab_page.dart';
 import 'package:playflutter/module/square/model/square_model.dart';
 import 'package:playflutter/module/square/square_route_names.dart';
-import 'package:playflutter/module/square/theme/theme_constants_square.dart';
+import 'package:playflutter/module/square/theme/theme_square.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 
@@ -35,7 +35,7 @@ class SquareViewModel extends BaseViewModel {
     accountService.addListener(notifyListeners);
     paging = LocalPaging.build(
         notifier: this,
-        localKey: ThemeConstantsSquare.LOCAL_SQUARE_LIST,
+        localKey: ThemeSquare.constants.squareList,
         createJson: (json) => ContentDataPage.fromJson(json));
     requestData(LoadStatus.refresh);
   }

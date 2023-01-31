@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/extensions/data_format_extensions.dart';
 import 'package:playflutter/core/theme/theme_images.dart';
-import 'package:playflutter/core/tools/localizations.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/widget/common/header/app_header_container.dart';
 import 'package:playflutter/core/widget/common/header/app_header_spacer.dart';
@@ -11,6 +10,7 @@ import 'package:playflutter/core/widget/common/transparent_scaffold.dart';
 import 'package:playflutter/core/widget/item/content_item.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
 import 'package:playflutter/module/details/details_route_names.dart';
+import 'package:playflutter/module/square/theme/theme_square.dart';
 import 'package:playflutter/module/square/viewmodel/square_viewmodel.dart';
 
 /// @author jv.lee
@@ -64,7 +64,7 @@ class _SquareState extends BasePageState<SquarePage>
                       })),
               AppHeaderContainer(
                   child: AppTextActionBar(
-                      title: "square_header_text".localized(),
+                      title: ThemeSquare.strings.headerText,
                       navigationSvgPath: ThemeImages.addSvg,
                       onNavigationClick: () =>
                           viewModel.navigationCreateShared()))
