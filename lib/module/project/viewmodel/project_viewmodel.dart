@@ -3,7 +3,7 @@ import 'package:playflutter/core/model/entity/tab.dart';
 import 'package:playflutter/core/tools/cache/preferences.dart';
 import 'package:playflutter/core/widget/status/status.dart';
 import 'package:playflutter/module/project/model/project_model.dart';
-import 'package:playflutter/module/project/theme/theme_constants_project.dart';
+import 'package:playflutter/module/project/theme/theme_project.dart';
 
 /// @author jv.lee
 /// @date 2022/7/27
@@ -24,7 +24,7 @@ class ProjectViewModel extends BaseViewModel {
 
   void requestTabData() {
     Preferences.requestCache<TabData>(
-        localKey: ThemeConstantsProject.LOCAL_PROJECT_TAB,
+        localKey: ThemeProject.constants.projectTab,
         createJson: (json) => TabData.fromJson(json),
         requestFuture: _model.getProjectTabDataAsync(),
         callback: (value) {

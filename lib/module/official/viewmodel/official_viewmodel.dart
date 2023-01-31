@@ -3,7 +3,7 @@ import 'package:playflutter/core/model/entity/tab.dart';
 import 'package:playflutter/core/tools/cache/preferences.dart';
 import 'package:playflutter/core/widget/status/status.dart';
 import 'package:playflutter/module/official/model/official_model.dart';
-import 'package:playflutter/module/official/theme/theme_constants_official.dart';
+import 'package:playflutter/module/official/theme/theme_official.dart';
 
 /// @author jv.lee
 /// @date 2022/7/27
@@ -24,7 +24,7 @@ class OfficialViewModel extends BaseViewModel {
 
   void requestTabData() {
     Preferences.requestCache<TabData>(
-        localKey: ThemeConstantsOfficial.LOCAL_OFFICIAL_TAB,
+        localKey: ThemeOfficial.constants.officialTab,
         createJson: (json) => TabData.fromJson(json),
         requestFuture: _model.getOfficialTabDataAsync(),
         callback: (value) {
