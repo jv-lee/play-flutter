@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/extensions/function_extensions.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/tools/localizations.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/widget/common/ink_well_container.dart';
 import 'package:playflutter/core/widget/dialog/dialog_container.dart';
 
@@ -47,8 +46,8 @@ class ConfirmDialog extends Dialog {
                         Visibility(
                             visible: contentText != null,
                             child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: ThemeDimens.offsetMedium),
+                                padding: EdgeInsets.only(
+                                    top: ThemeCommon.dimens.offsetMedium),
                                 child: Text(contentText ?? "",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
@@ -71,10 +70,11 @@ class ConfirmDialog extends Dialog {
                         child: Expanded(
                             child: InkWellContainer(
                                 onTap: () => onCancel.checkNullInvoke(),
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(
-                                        ThemeDimens.offsetRadiusMedium)),
-                                child: Text(cancelText ?? "cancel".localized(),
+                                        ThemeCommon.dimens.offsetRadiusMedium)),
+                                child: Text(
+                                    cancelText ?? ThemeCommon.strings.cancel,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Theme.of(context)
@@ -90,15 +90,16 @@ class ConfirmDialog extends Dialog {
                         child: InkWellContainer(
                             onTap: () => onConfirm.checkNullInvoke(),
                             borderRadius: singleConfirm
-                                ? const BorderRadius.only(
+                                ? BorderRadius.only(
                                     bottomLeft: Radius.circular(
-                                        ThemeDimens.offsetRadiusMedium),
+                                        ThemeCommon.dimens.offsetRadiusMedium),
                                     bottomRight: Radius.circular(
-                                        ThemeDimens.offsetRadiusMedium))
-                                : const BorderRadius.only(
+                                        ThemeCommon.dimens.offsetRadiusMedium))
+                                : BorderRadius.only(
                                     bottomRight: Radius.circular(
-                                        ThemeDimens.offsetRadiusMedium)),
-                            child: Text(confirmText ?? "confirm".localized(),
+                                        ThemeCommon.dimens.offsetRadiusMedium)),
+                            child: Text(
+                                confirmText ?? ThemeCommon.strings.confirm,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color:

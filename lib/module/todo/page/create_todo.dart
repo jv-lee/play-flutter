@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/theme/theme_images.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/module/todo/model/entity/todo_type.dart';
 import 'package:playflutter/module/todo/theme/theme_todo.dart';
 import 'package:playflutter/module/todo/viewmodel/create_todo_viewmodel.dart';
@@ -56,7 +55,7 @@ class _CreateTodoPageState extends BasePageState<CreateTodoPage> {
             children: [
               Container(
                   alignment: Alignment.topLeft,
-                  margin: const EdgeInsets.only(top: ThemeDimens.offsetLarge),
+                  margin: EdgeInsets.only(top: ThemeCommon.dimens.offsetLarge),
                   child: Text(ThemeTodo.strings.createContentLabel,
                       style: TextStyle(
                           color: Theme.of(context).primaryColorLight))),
@@ -112,7 +111,7 @@ class _CreateTodoPageState extends BasePageState<CreateTodoPage> {
                           child: Text(viewModel.viewStates.date,
                               style: TextStyle(
                                   color: Theme.of(context).primaryColorLight))),
-                      SvgPicture.asset(ThemeImages.arrowSvg,
+                      SvgPicture.asset(ThemeCommon.images.arrowSvg,
                           width: 24,
                           height: 24,
                           color: Theme.of(context).primaryColorLight)
@@ -128,7 +127,7 @@ class _CreateTodoPageState extends BasePageState<CreateTodoPage> {
         height: height,
         alignment: alignment,
         padding:
-            const EdgeInsets.symmetric(horizontal: ThemeDimens.offsetLarge),
+            EdgeInsets.symmetric(horizontal: ThemeCommon.dimens.offsetLarge),
         decoration: BoxDecoration(
             border: Border(
                 bottom:
@@ -139,11 +138,11 @@ class _CreateTodoPageState extends BasePageState<CreateTodoPage> {
   Widget buildFooterButton(CreateTodoViewModel viewModel) {
     return Container(
         alignment: Alignment.bottomCenter,
-        margin: const EdgeInsets.all(ThemeDimens.offsetLarge),
+        margin: EdgeInsets.all(ThemeCommon.dimens.offsetLarge),
         child: MaterialButton(
           shape: RoundedRectangleBorder(
               borderRadius:
-                  BorderRadius.circular(ThemeDimens.offsetRadiusLarge)),
+                  BorderRadius.circular(ThemeCommon.dimens.offsetRadiusLarge)),
           minWidth: double.infinity,
           color: Theme.of(context).focusColor,
           splashColor: Theme.of(context).focusColor,

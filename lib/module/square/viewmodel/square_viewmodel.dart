@@ -4,7 +4,7 @@ import 'package:playflutter/core/event/constants/event_constants.dart';
 import 'package:playflutter/core/event/entity/tab_selected_event.dart';
 import 'package:playflutter/core/event/events_bus.dart';
 import 'package:playflutter/core/model/entity/content.dart';
-import 'package:playflutter/core/tools/localizations.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/tools/log_tools.dart';
 import 'package:playflutter/core/tools/paging/local_paging.dart';
 import 'package:playflutter/core/tools/paging/paging.dart';
@@ -60,7 +60,7 @@ class SquareViewModel extends BaseViewModel {
     if (accountService.viewStates.isLogin) {
       Navigator.pushNamed(context, SquareRouteNames.create_share);
     } else {
-      Toast.show("login_alert".localized());
+      Toast.show(ThemeCommon.strings.loginAlert);
       Navigator.pushNamed(context, AccountRouteNames.login);
     }
   }

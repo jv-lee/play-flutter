@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/extensions/data_format_extensions.dart';
 import 'package:playflutter/core/model/entity/content.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/tools/localizations.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/widget/common/sliding_pane_container.dart';
 
 /// @author jv.lee
@@ -25,7 +24,7 @@ class ActionTextItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
+        padding: EdgeInsets.only(top: ThemeCommon.dimens.offsetMedium),
         child: SlidingPaneContainer(
             width: double.infinity,
             height: 76,
@@ -45,10 +44,10 @@ class ActionTextItem extends StatelessWidget {
             height: double.infinity,
             color: Colors.red,
             child: Center(
-                child: Text("item_delete".localized(),
-                    style: const TextStyle(
+                child: Text(ThemeCommon.strings.itemDelete,
+                    style: TextStyle(
                         color: Colors.white,
-                        fontSize: ThemeDimens.fontSizeSmall)))));
+                        fontSize: ThemeCommon.dimens.fontSizeSmall)))));
   }
 
   Widget buildItemContent(BuildContext context) {
@@ -60,7 +59,7 @@ class ActionTextItem extends StatelessWidget {
             child: InkWell(
                 onTap: () => onItemClick(content),
                 child: Padding(
-                    padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
+                    padding: EdgeInsets.all(ThemeCommon.dimens.offsetLarge),
                     child: Stack(children: [
                       Align(
                           alignment: Alignment.topLeft,
@@ -68,7 +67,7 @@ class ActionTextItem extends StatelessWidget {
                               maxLines: 1,
                               style: TextStyle(
                                   color: Theme.of(context).primaryColorLight,
-                                  fontSize: ThemeDimens.fontSizeSmall,
+                                  fontSize: ThemeCommon.dimens.fontSizeSmall,
                                   fontWeight: FontWeight.bold,
                                   overflow: TextOverflow.ellipsis))),
                       Align(
@@ -77,7 +76,7 @@ class ActionTextItem extends StatelessWidget {
                               maxLines: 1,
                               style: TextStyle(
                                   color: Theme.of(context).primaryColor,
-                                  fontSize: ThemeDimens.fontSizeSmallX,
+                                  fontSize: ThemeCommon.dimens.fontSizeSmallX,
                                   fontWeight: FontWeight.bold,
                                   overflow: TextOverflow.ellipsis)))
                     ])))));

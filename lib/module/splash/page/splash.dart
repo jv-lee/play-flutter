@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/tools/status_tools.dart';
 import 'package:playflutter/core/widget/common/time_ready_button.dart';
 import 'package:playflutter/module/splash/theme/theme_splash.dart';
@@ -56,8 +56,8 @@ class _SplashState extends BasePageState<SplashPage>
                   alignment: Alignment.topRight,
                   margin: EdgeInsets.only(
                       top: StatusTools.getStatusHeight() +
-                          ThemeDimens.offsetSmall,
-                      right: ThemeDimens.offsetLarge),
+                          ThemeCommon.dimens.offsetSmall,
+                      right: ThemeCommon.dimens.offsetLarge),
                   child: TimeReadyButton(onEnd: () => viewModel.navigationMain()))
             ])));
   }

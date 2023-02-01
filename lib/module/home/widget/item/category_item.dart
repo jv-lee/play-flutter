@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/core/extensions/function_extensions.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/widget/common/card_item_container.dart';
 import 'package:playflutter/module/home/model/entity/home_category.dart';
 import 'package:playflutter/module/home/theme/theme_home.dart';
@@ -27,7 +27,7 @@ class CategoryItem extends StatelessWidget {
               height: ThemeHome.dimens.categoryItemSize,
               child: SvgPicture.asset(category.iconRes)),
           Container(
-              padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
+              padding: EdgeInsets.only(top: ThemeCommon.dimens.offsetMedium),
               child: Text(category.name,
                   style: TextStyle(color: Theme.of(context).primaryColorLight)))
         ]));

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/tools/localizations.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/module/account/theme/theme_account.dart';
 import 'package:playflutter/module/account/viewmodel/login_viewmodel.dart';
 
@@ -46,12 +45,13 @@ class _LoginPageState extends BasePageState<LoginPage> {
 
   Widget buildInputContent(LoginViewModel viewModel) {
     return Card(
-        margin: const EdgeInsets.all(ThemeDimens.offsetLarge),
+        margin: EdgeInsets.all(ThemeCommon.dimens.offsetLarge),
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(ThemeDimens.offsetLarge)),
+            borderRadius:
+                BorderRadius.circular(ThemeCommon.dimens.offsetLarge)),
         color: Theme.of(context).cardColor,
         child: Padding(
-            padding: const EdgeInsets.all(ThemeDimens.offsetMedium),
+            padding: EdgeInsets.all(ThemeCommon.dimens.offsetMedium),
             child: Column(children: [
               TextField(
                   onChanged: (text) => viewModel.changeUserName(text),
@@ -63,8 +63,8 @@ class _LoginPageState extends BasePageState<LoginPage> {
               Divider(
                   height: 1,
                   thickness: 1,
-                  indent: ThemeDimens.offsetMedium,
-                  endIndent: ThemeDimens.offsetMedium,
+                  indent: ThemeCommon.dimens.offsetMedium,
+                  endIndent: ThemeCommon.dimens.offsetMedium,
                   color: Theme.of(context).scaffoldBackgroundColor),
               TextField(
                   onChanged: (text) => viewModel.changePassword(text),
@@ -80,8 +80,8 @@ class _LoginPageState extends BasePageState<LoginPage> {
 
   Widget buildFooter(LoginViewModel viewModel) {
     return Container(
-        padding:
-            const EdgeInsets.symmetric(horizontal: ThemeDimens.offsetLarge * 2),
+        padding: EdgeInsets.symmetric(
+            horizontal: ThemeCommon.dimens.offsetLarge * 2),
         width: double.infinity,
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -94,7 +94,7 @@ class _LoginPageState extends BasePageState<LoginPage> {
               style: ButtonStyle(
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(
-                          ThemeDimens.offsetRadiusMedium))),
+                          ThemeCommon.dimens.offsetRadiusMedium))),
                   backgroundColor: MaterialStateColor.resolveWith(
                       (states) => viewModel.viewStates.stateColor)),
               onPressed: () => viewModel.requestLogin(),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/module/square/theme/theme_square.dart';
 import 'package:playflutter/module/square/viewmodel/create_share_viewmodel.dart';
 
@@ -31,11 +31,12 @@ class _CreateShareState extends BasePageState<CreateSharePage> {
 
   Widget buildCrateShareContent(CreateShareViewModel viewModel) {
     return Padding(
-        padding: const EdgeInsets.only(
-            left: ThemeDimens.offsetLarge, right: ThemeDimens.offsetLarge),
+        padding: EdgeInsets.only(
+            left: ThemeCommon.dimens.offsetLarge,
+            right: ThemeCommon.dimens.offsetLarge),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
-              padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
+              padding: EdgeInsets.only(top: ThemeCommon.dimens.offsetMedium),
               child: Text(ThemeSquare.strings.shareTitleText,
                   style:
                       TextStyle(color: Theme.of(context).primaryColorLight))),
@@ -45,7 +46,7 @@ class _CreateShareState extends BasePageState<CreateSharePage> {
               decoration: InputDecoration(
                   hintText: ThemeSquare.strings.shareTitleHint)),
           Padding(
-              padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
+              padding: EdgeInsets.only(top: ThemeCommon.dimens.offsetMedium),
               child: Text(ThemeSquare.strings.shareLinkText,
                   style:
                       TextStyle(color: Theme.of(context).primaryColorLight))),
@@ -53,15 +54,15 @@ class _CreateShareState extends BasePageState<CreateSharePage> {
               onChanged: (text) => {viewModel.changeShareLink(text)},
               onSubmitted: (text) => {viewModel.submitShare()},
               textInputAction: TextInputAction.send,
-              decoration: InputDecoration(
-                  hintText: ThemeSquare.strings.shareLinkHint)),
+              decoration:
+                  InputDecoration(hintText: ThemeSquare.strings.shareLinkHint)),
           Expanded(
               child: Align(
                   alignment: Alignment.bottomLeft,
                   child: Text(ThemeSquare.strings.createShareDescription,
                       style: TextStyle(
-                          letterSpacing: ThemeDimens.offsetSmall,
-                          fontSize: ThemeDimens.fontSizeSmall,
+                          letterSpacing: ThemeCommon.dimens.offsetSmall,
+                          fontSize: ThemeCommon.dimens.fontSizeSmall,
                           color: Theme.of(context).primaryColor))))
         ]));
   }

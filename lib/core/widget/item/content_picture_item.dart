@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/extensions/data_format_extensions.dart';
 import 'package:playflutter/core/model/entity/content.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/widget/common/card_item_container.dart';
 
 /// @author jv.lee
@@ -28,17 +28,17 @@ class ContentPictureItem extends StatelessWidget {
               imageUrl: content.envelopePic,
               imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.horizontal(
-                          left:
-                              Radius.circular(ThemeDimens.offsetRadiusMedium)),
+                      borderRadius: BorderRadius.horizontal(
+                          left: Radius.circular(
+                              ThemeCommon.dimens.offsetRadiusMedium)),
                       image: DecorationImage(
                           image: imageProvider, fit: BoxFit.cover))),
               placeholder: (context, url) => Container(
                     decoration: BoxDecoration(
                         color: Theme.of(context).splashColor,
-                        borderRadius: const BorderRadius.horizontal(
+                        borderRadius: BorderRadius.horizontal(
                             left: Radius.circular(
-                                ThemeDimens.offsetRadiusMedium))),
+                                ThemeCommon.dimens.offsetRadiusMedium))),
                   ),
               errorWidget: (context, url, error) => const Icon(Icons.error)),
           Expanded(
@@ -51,26 +51,26 @@ class ContentPictureItem extends StatelessWidget {
                         SizedBox(
                             width: double.infinity,
                             child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: ThemeDimens.offsetMedium,
-                                    left: ThemeDimens.offsetMedium,
-                                    right: ThemeDimens.offsetMedium),
+                                padding: EdgeInsets.only(
+                                    top: ThemeCommon.dimens.offsetMedium,
+                                    left: ThemeCommon.dimens.offsetMedium,
+                                    right: ThemeCommon.dimens.offsetMedium),
                                 child: Text(
                                   content.getTitle(),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                    fontSize: ThemeDimens.fontSizeMedium,
+                                    fontSize: ThemeCommon.dimens.fontSizeMedium,
                                     fontWeight: FontWeight.bold,
                                     color: Theme.of(context).primaryColorLight,
                                   ),
                                 ))),
                         Expanded(
                             child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: ThemeDimens.offsetMedium,
-                                    left: ThemeDimens.offsetMedium,
-                                    right: ThemeDimens.offsetMedium),
+                                padding: EdgeInsets.only(
+                                    top: ThemeCommon.dimens.offsetMedium,
+                                    left: ThemeCommon.dimens.offsetMedium,
+                                    right: ThemeCommon.dimens.offsetMedium),
                                 child: SizedBox(
                                     width: double.infinity,
                                     child: Text(
@@ -78,24 +78,27 @@ class ContentPictureItem extends StatelessWidget {
                                       maxLines: 4,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
-                                        fontSize: ThemeDimens.fontSizeSmall,
+                                        fontSize:
+                                            ThemeCommon.dimens.fontSizeSmall,
                                         color: Theme.of(context).primaryColor,
                                       ),
                                     )))),
                         Container(
                             padding:
-                                const EdgeInsets.all(ThemeDimens.offsetMedium),
+                                EdgeInsets.all(ThemeCommon.dimens.offsetMedium),
                             child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(content.getCategory(),
                                       style: TextStyle(
-                                          fontSize: ThemeDimens.fontSizeSmallX,
+                                          fontSize:
+                                              ThemeCommon.dimens.fontSizeSmallX,
                                           color: Theme.of(context).focusColor)),
                                   Text(content.getDateFormat(),
                                       style: TextStyle(
-                                          fontSize: ThemeDimens.fontSizeSmallX,
+                                          fontSize:
+                                              ThemeCommon.dimens.fontSizeSmallX,
                                           color: Theme.of(context)
                                               .primaryColorDark))
                                 ]))

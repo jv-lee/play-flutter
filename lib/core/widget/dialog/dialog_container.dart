@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/extensions/function_extensions.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 
 /// @author jv.lee
 /// @date 2022/8/15
@@ -48,9 +48,8 @@ class _DialogContainerState extends BasePageState<DialogContainer> {
                           height: widget.height,
                           decoration: BoxDecoration(
                               color: Theme.of(context).cardColor,
-                              borderRadius: const BorderRadius.all(
-                                  Radius.circular(
-                                      ThemeDimens.offsetRadiusMedium))),
+                              borderRadius: BorderRadius.all(Radius.circular(
+                                  ThemeCommon.dimens.offsetRadiusMedium))),
                           child: widget.stateBuild(this, context)))))),
       onWillPop: () async => widget.isCancel);
 }

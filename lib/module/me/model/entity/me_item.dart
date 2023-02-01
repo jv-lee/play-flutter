@@ -1,4 +1,4 @@
-import 'package:playflutter/core/theme/theme_images.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/module/me/me_route_names.dart';
 import 'package:playflutter/module/me/theme/theme_me.dart';
 import 'package:playflutter/module/square/square_route_names.dart';
@@ -11,13 +11,9 @@ class MeItem {
   late final String route;
   late final String name;
   late final String iconSvgPath;
-  late final String arrowSvgPath;
+  late final String arrowSvgPath = ThemeCommon.images.arrowSvg;
 
-  MeItem(
-      {required this.route,
-      required this.name,
-      required this.iconSvgPath,
-      this.arrowSvgPath = ThemeImages.arrowSvg});
+  MeItem({required this.route, required this.name, required this.iconSvgPath});
 
   static List<MeItem> getMeItems() {
     var list = <MeItem>[];

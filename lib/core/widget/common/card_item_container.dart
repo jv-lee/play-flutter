@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/extensions/function_extensions.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
@@ -8,31 +8,33 @@ import 'package:playflutter/core/theme/theme_dimens.dart';
 class CardItemContainer extends StatelessWidget {
   final Widget child;
   final double width;
-  final double contentPadding;
+  final double? contentPadding;
   final Function? onItemClick;
 
   const CardItemContainer(
       {Key? key,
       required this.child,
       this.width = 0,
-      this.contentPadding = ThemeDimens.offsetLarge,
+      this.contentPadding,
       this.onItemClick})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var content = Card(
-        margin: const EdgeInsets.all(ThemeDimens.offsetMedium),
-        shape: const RoundedRectangleBorder(
+        margin: EdgeInsets.all(ThemeCommon.dimens.offsetMedium),
+        shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
-                Radius.circular(ThemeDimens.offsetRadiusMedium))),
+                Radius.circular(ThemeCommon.dimens.offsetRadiusMedium))),
         child: Material(
             child: InkWell(
                 onTap: () => onItemClick.checkNullInvoke(),
-                borderRadius:
-                    BorderRadius.circular(ThemeDimens.offsetRadiusMedium),
+                borderRadius: BorderRadius.circular(
+                    ThemeCommon.dimens.offsetRadiusMedium),
                 child: Container(
-                    padding: EdgeInsets.all(contentPadding), child: child))));
+                    padding: EdgeInsets.all(
+                        contentPadding ?? ThemeCommon.dimens.offsetLarge),
+                    child: child))));
     return width == 0
         ? content
         : SizedBox(

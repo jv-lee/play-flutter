@@ -5,7 +5,7 @@ import 'package:playflutter/core/base/base_module_service.dart';
 import 'package:playflutter/core/extensions/exception_extensions.dart';
 import 'package:playflutter/core/model/entity/account.dart';
 import 'package:playflutter/core/model/http/constants/api_constants.dart';
-import 'package:playflutter/core/theme/theme_constants.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/tools/cache/preferences.dart';
 import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
 import 'package:playflutter/module/account/model/account_model.dart';
@@ -60,7 +60,7 @@ class AccountService extends BaseModuleService {
 
   void updateAccountStatus(AccountData? accountData, bool isLogin) {
     Preferences.saveCache(ThemeAccount.constants.accountData, accountData);
-    Preferences.save(ThemeConstants.LOCAL_IS_LOGIN, isLogin);
+    Preferences.save(ThemeCommon.constants.isLogin, isLogin);
     viewStates.accountData = accountData;
     viewStates.isLogin = isLogin;
     notifyListeners();

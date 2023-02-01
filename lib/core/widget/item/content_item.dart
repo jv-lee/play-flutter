@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/extensions/data_format_extensions.dart';
 import 'package:playflutter/core/model/entity/content.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/widget/common/card_item_container.dart';
 
 /// @author jv.lee
@@ -24,16 +24,16 @@ class ContentItem extends StatelessWidget {
               width: double.infinity,
               child: Text(content.getAuthor(),
                   style: TextStyle(
-                      fontSize: ThemeDimens.fontSizeMedium,
+                      fontSize: ThemeCommon.dimens.fontSizeMedium,
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).primaryColorLight))),
           Container(
-              padding: const EdgeInsets.symmetric(
-                  vertical: ThemeDimens.offsetMedium),
+              padding: EdgeInsets.symmetric(
+                  vertical: ThemeCommon.dimens.offsetMedium),
               width: double.infinity,
               child: Text(content.getTitle(),
                   style: TextStyle(
-                      fontSize: ThemeDimens.fontSizeSmall,
+                      fontSize: ThemeCommon.dimens.fontSizeSmall,
                       color: Theme.of(context).primaryColor),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis)),
@@ -41,16 +41,16 @@ class ContentItem extends StatelessWidget {
             Expanded(
                 child: Padding(
                     padding:
-                    const EdgeInsets.only(right: ThemeDimens.offsetMedium),
+                        EdgeInsets.only(right: ThemeCommon.dimens.offsetMedium),
                     child: Text(content.getCategory(),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                         style: TextStyle(
-                            fontSize: ThemeDimens.fontSizeSmallX,
+                            fontSize: ThemeCommon.dimens.fontSizeSmallX,
                             color: Theme.of(context).focusColor)))),
             Text(content.getDateFormat(),
                 style: TextStyle(
-                    fontSize: ThemeDimens.fontSizeSmallX,
+                    fontSize: ThemeCommon.dimens.fontSizeSmallX,
                     color: Theme.of(context).primaryColorDark))
           ])
         ]));

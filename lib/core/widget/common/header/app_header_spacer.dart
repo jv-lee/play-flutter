@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/tools/status_tools.dart';
 
 /// @author jv.lee
@@ -13,7 +13,7 @@ class AppHeaderSpacer extends StatelessWidget {
       Container(height: AppHeaderSpacer.spacerHeight());
 
   static spacerHeight() =>
-      ThemeDimens.toolbarHeight + StatusTools.getStatusHeight();
+      ThemeCommon.dimens.toolbarHeight + StatusTools.getStatusHeight();
 
   static Widget appendHeader(int index, Widget widget) =>
       index == 0 ? Column(children: [const AppHeaderSpacer(), widget]) : widget;

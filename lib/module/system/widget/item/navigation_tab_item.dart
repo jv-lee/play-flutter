@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/extensions/function_extensions.dart';
 import 'package:playflutter/core/model/entity/navigation_tab.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/module/system/theme/theme_system.dart';
 
 /// @author jv.lee
@@ -31,15 +31,16 @@ class NavigationTabItem extends StatelessWidget {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       Container(
           height: ThemeSystem.dimens.navigationTabHeight,
-          padding: const EdgeInsets.only(
-              top: ThemeDimens.offsetMedium, bottom: ThemeDimens.offsetMedium),
+          padding: EdgeInsets.only(
+              top: ThemeCommon.dimens.offsetMedium,
+              bottom: ThemeCommon.dimens.offsetMedium),
           child: InkWell(
               onTap: () => onItemClick?.run((self) => self(navigationTab)),
               borderRadius: BorderRadius.circular(ThemeSystem.dimens.tabRadius),
               child: Container(
-                  padding: const EdgeInsets.only(
-                      left: ThemeDimens.offsetMedium,
-                      right: ThemeDimens.offsetMedium),
+                  padding: EdgeInsets.only(
+                      left: ThemeCommon.dimens.offsetMedium,
+                      right: ThemeCommon.dimens.offsetMedium),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                       color: tabColor,

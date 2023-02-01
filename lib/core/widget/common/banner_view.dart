@@ -6,7 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/extensions/function_extensions.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 
 /// @author jv.lee
 /// @date 2022/9/15
@@ -45,20 +45,20 @@ class BannerView extends StatefulWidget {
   /// banner默认卡片样式item
   static Widget defaultBannerItem(String imagePath, {Function? onItemTap}) {
     return Card(
-        shape: const RoundedRectangleBorder(
+        shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
-                Radius.circular(ThemeDimens.offsetRadiusMedium))),
+                Radius.circular(ThemeCommon.dimens.offsetRadiusMedium))),
         child: Material(
             child: InkWell(
                 onTap: () => onItemTap.checkNullInvoke(),
-                borderRadius:
-                    BorderRadius.circular(ThemeDimens.offsetRadiusMedium),
+                borderRadius: BorderRadius.circular(
+                    ThemeCommon.dimens.offsetRadiusMedium),
                 child: CachedNetworkImage(
                     imageUrl: imagePath,
                     imageBuilder: (context, imageProvider) => Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(
-                                ThemeDimens.offsetRadiusMedium),
+                                ThemeCommon.dimens.offsetRadiusMedium),
                             image: DecorationImage(
                                 image: imageProvider, fit: BoxFit.cover))),
                     placeholder: (context, url) =>
@@ -76,12 +76,12 @@ class BannerView extends StatefulWidget {
     return Container(
         alignment: alignment,
         margin:
-            margin ?? const EdgeInsets.only(bottom: ThemeDimens.offsetMedium),
+            margin ?? EdgeInsets.only(bottom: ThemeCommon.dimens.offsetMedium),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: data
               .map((e) => Container(
-                  margin: const EdgeInsets.all(ThemeDimens.offsetSmall),
+                  margin: EdgeInsets.all(ThemeCommon.dimens.offsetSmall),
                   width: 5,
                   height: 5,
                   decoration: BoxDecoration(
@@ -130,7 +130,7 @@ class _BannerViewState extends State<BannerView> {
         onPointerCancel: (event) => startLoop(),
         child: SizedBox(
           width: widget.width ?? double.infinity,
-          height: widget.height ?? ThemeDimens.bannerHeight,
+          height: widget.height ?? ThemeCommon.dimens.bannerHeight,
           child: Stack(
             children: [
               PageView.builder(
@@ -180,9 +180,8 @@ class _BannerViewState extends State<BannerView> {
         ++currentPage;
         pageController.animateToPage(currentPage,
             duration: const Duration(milliseconds: 300), curve: Curves.ease);
-      // ignore: empty_catches
-      } catch(ignore){
-      }
+        // ignore: empty_catches
+      } catch (ignore) {}
     }
   }
 

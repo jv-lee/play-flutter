@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/extensions/data_format_extensions.dart';
-import 'package:playflutter/core/theme/theme_images.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/widget/common/header/app_header_container.dart';
 import 'package:playflutter/core/widget/common/header/app_header_spacer.dart';
@@ -65,7 +65,7 @@ class _SquareState extends BasePageState<SquarePage>
               AppHeaderContainer(
                   child: AppTextActionBar(
                       title: ThemeSquare.strings.headerText,
-                      navigationSvgPath: ThemeImages.addSvg,
+                      navigationSvgPath: ThemeCommon.images.addSvg,
                       onNavigationClick: () =>
                           viewModel.navigationCreateShared()))
             ])));

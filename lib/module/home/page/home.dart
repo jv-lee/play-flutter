@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/extensions/data_format_extensions.dart';
 import 'package:playflutter/core/model/entity/banner.dart';
-import 'package:playflutter/core/theme/theme_images.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/widget/common/banner_view.dart';
 import 'package:playflutter/core/widget/common/header/app_header_container.dart';
@@ -82,9 +82,9 @@ class _HomeState extends BasePageState<HomePage>
               AppHeaderContainer(
                   child: AppTextActionBar(
                       title: ThemeHome.strings.headerText,
-                      navigationSvgPath: ThemeImages.searchSvg,
-                      onNavigationClick: () =>
-                          Navigator.pushNamed(context, SearchRouteNames.search)))
+                      navigationSvgPath: ThemeCommon.images.searchSvg,
+                      onNavigationClick: () => Navigator.pushNamed(
+                          context, SearchRouteNames.search)))
             ])));
   }
 
@@ -92,36 +92,32 @@ class _HomeState extends BasePageState<HomePage>
       HomeViewModel viewModel, Function(BannerItem) onItemClick) {
     var bannerList = viewModel.viewStates.bannerList;
     var bannerIndex = viewModel.viewStates.bannerIndex;
-    if (bannerList.isEmpty) {
-      return Container();
-    } else {
-      return BannerView(
-          initialPage: bannerIndex,
-          itemCount: bannerList.length,
-          controller: viewModel.viewStates.bannerViewController,
-          onIndexChange: (index) => viewModel.viewStates.bannerIndex = index,
-          indexedWidgetBuilder: (context, index) =>
-              BannerView.defaultBannerItem(bannerList[index].imagePath,
-                  onItemTap: () => onItemClick(bannerList[index])),
-          indexedIndicatorBuilder: (context, index) =>
-              BannerView.defaultIndicator(index, bannerList));
-    }
+    return Visibility(
+        visible: bannerList.isNotEmpty,
+        child: BannerView(
+            initialPage: bannerIndex,
+            itemCount: bannerList.length,
+            controller: viewModel.viewStates.bannerViewController,
+            onIndexChange: (index) => viewModel.viewStates.bannerIndex = index,
+            indexedWidgetBuilder: (context, index) =>
+                BannerView.defaultBannerItem(bannerList[index].imagePath,
+                    onItemTap: () => onItemClick(bannerList[index])),
+            indexedIndicatorBuilder: (context, index) =>
+                BannerView.defaultIndicator(index, bannerList)));
   }
 
   Widget buildCategory(
       HomeViewModel viewModel, Function(HomeCategory) onItemClick) {
     var categoryList = viewModel.viewStates.categoryList;
-    if (categoryList.isEmpty) {
-      return Container();
-    } else {
-      return SizedBox(
-          height: ThemeHome.dimens.categoryLayoutHeight,
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: categoryList.length,
-              shrinkWrap: true,
-              itemBuilder: (BuildContext context, int index) => CategoryItem(
-                  category: categoryList[index], onItemClick: onItemClick)));
-    }
+    return Visibility(
+        visible: categoryList.isNotEmpty,
+        child: SizedBox(
+            height: ThemeHome.dimens.categoryLayoutHeight,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: categoryList.length,
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, int index) => CategoryItem(
+                    category: categoryList[index], onItemClick: onItemClick))));
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/core/theme/theme_icons.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/module/home/page/home.dart';
 import 'package:playflutter/module/me/page/me.dart';
 import 'package:playflutter/module/square/page/square.dart';
@@ -28,26 +28,26 @@ class MainTabPage {
   static List<MainTabPage> getMainTabPages() {
     var list = <MainTabPage>[];
     list.add(MainTabPage(
-        normalIcon: ThemeIcons.homeNormal,
-        pressIcon: ThemeIcons.homePress,
+        normalIcon: ThemeCommon.icons.homeNormal,
+        pressIcon: ThemeCommon.icons.homePress,
         label: tabHome,
         page: const HomePage()));
 
     list.add(MainTabPage(
-        normalIcon: ThemeIcons.squareNormal,
-        pressIcon: ThemeIcons.squarePress,
+        normalIcon: ThemeCommon.icons.squareNormal,
+        pressIcon: ThemeCommon.icons.squarePress,
         label: tabSquare,
         page: const SquarePage()));
 
     list.add(MainTabPage(
-        normalIcon: ThemeIcons.systemNormal,
-        pressIcon: ThemeIcons.systemPress,
+        normalIcon: ThemeCommon.icons.systemNormal,
+        pressIcon: ThemeCommon.icons.systemPress,
         label: tabSystem,
         page: const SystemPage()));
 
     list.add(MainTabPage(
-        normalIcon: ThemeIcons.meNormal,
-        pressIcon: ThemeIcons.mePress,
+        normalIcon: ThemeCommon.icons.meNormal,
+        pressIcon: ThemeCommon.icons.mePress,
         label: tabMe,
         page: const MePage()));
 

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/provider/dark_mode_provider.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/theme/theme_images.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/widget/common/profile_item.dart';
 import 'package:playflutter/module/me/theme/theme_me.dart';
 import 'package:playflutter/module/me/viewmodel/settings_viewmodel.dart';
@@ -36,7 +35,7 @@ class _SettingsState extends BasePageState<SettingsPage> {
 
   Widget buildDarkModeSystemItem() {
     return Padding(
-        padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
+        padding: EdgeInsets.only(top: ThemeCommon.dimens.offsetMedium),
         child: ProfileItem(
             leftText: ThemeMe.strings.settingsDarkModeSystem,
             switchVisible: true,
@@ -59,11 +58,11 @@ class _SettingsState extends BasePageState<SettingsPage> {
 
   Widget buildClearCacheItem(SettingsViewModel viewModel) {
     return Padding(
-        padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
+        padding: EdgeInsets.only(top: ThemeCommon.dimens.offsetMedium),
         child: ProfileItem(
             leftText: ThemeMe.strings.settingsClearText,
             rightText: viewModel.viewStates.cacheSize,
-            rightSvgPath: ThemeImages.arrowSvg,
+            rightSvgPath: ThemeCommon.images.arrowSvg,
             onItemClick: () => viewModel.clearCache()));
   }
 
@@ -71,11 +70,11 @@ class _SettingsState extends BasePageState<SettingsPage> {
     return Visibility(
         visible: viewModel.accountService.viewStates.isLogin,
         child: Padding(
-            padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
+            padding: EdgeInsets.only(top: ThemeCommon.dimens.offsetMedium),
             child: ProfileItem(
                 leftText: ThemeMe.strings.settingsLogout,
                 leftSvgPath: ThemeMe.images.logoutSvg,
-                rightSvgPath: ThemeImages.arrowSvg,
+                rightSvgPath: ThemeCommon.images.arrowSvg,
                 onItemClick: () => viewModel.logout())));
   }
 }

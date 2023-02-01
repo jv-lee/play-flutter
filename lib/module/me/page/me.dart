@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/widget/common/header/app_header_container.dart';
 import 'package:playflutter/core/widget/common/profile_item.dart';
 import 'package:playflutter/core/widget/common/transparent_scaffold.dart';
@@ -60,20 +60,21 @@ class _MeState extends BasePageState<MePage>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                        padding: const EdgeInsets.all(ThemeDimens.offsetSmall),
+                        padding: EdgeInsets.all(ThemeCommon.dimens.offsetSmall),
                         child: Text(viewModel.viewStates.userName,
                             style: TextStyle(
                                 color: Theme.of(context).primaryColorLight,
-                                fontSize: ThemeDimens.fontSizeLarge))),
+                                fontSize: ThemeCommon.dimens.fontSizeLarge))),
                     Visibility(
                         visible: viewModel.viewStates.isLogin,
                         child: Padding(
                             padding:
-                                const EdgeInsets.all(ThemeDimens.offsetSmall),
+                                EdgeInsets.all(ThemeCommon.dimens.offsetSmall),
                             child: Text(viewModel.viewStates.userDesc,
                                 style: TextStyle(
                                     color: Theme.of(context).focusColor,
-                                    fontSize: ThemeDimens.fontSizeSmall))))
+                                    fontSize:
+                                        ThemeCommon.dimens.fontSizeSmall))))
                   ])
             ])));
   }

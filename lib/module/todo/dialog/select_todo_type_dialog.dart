@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/module/todo/model/entity/todo_type.dart';
 import 'package:playflutter/core/widget/common/overscroll_hide_container.dart';
 import 'package:playflutter/core/widget/dialog/dialog_container.dart';
@@ -52,7 +52,7 @@ class SelectTodoTypeDialog extends Dialog {
                     child: Text(e.name,
                         style: TextStyle(
                             color: Theme.of(context).primaryColorLight,
-                            fontSize: ThemeDimens.fontSizeMedium))))
+                            fontSize: ThemeCommon.dimens.fontSizeMedium))))
                 .toList()));
   }
 }

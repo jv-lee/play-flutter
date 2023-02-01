@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/model/entity/details.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/widget/common/app_popup_menu_divider.dart';
 import 'package:playflutter/core/widget/common/route_lazy_load.dart';
 import 'package:playflutter/module/details/mixin/web_navigation_mixin.dart';
@@ -53,9 +53,9 @@ class _DetailsState extends BasePageState<DetailsPage>
     return PopupMenuButton(
         shape: RoundedRectangleBorder(
             borderRadius:
-                BorderRadius.circular(ThemeDimens.offsetRadiusMedium)),
+                BorderRadius.circular(ThemeCommon.dimens.offsetRadiusMedium)),
         constraints: const BoxConstraints(maxWidth: 75),
-        offset: const Offset(0, ThemeDimens.toolbarHeight),
+        offset: Offset(0, ThemeCommon.dimens.toolbarHeight),
         itemBuilder: (context) => [
               PopupMenuItem(
                   height: 30,
@@ -123,7 +123,7 @@ class _DetailsState extends BasePageState<DetailsPage>
   Widget buildWebNavigationBar(DetailsViewModel viewModel) {
     return Container(
         width: double.infinity,
-        height: ThemeDimens.toolbarHeight,
+        height: ThemeCommon.dimens.toolbarHeight,
         decoration:
             BoxDecoration(color: Theme.of(context).cardColor, boxShadow: const [
           BoxShadow(

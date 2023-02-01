@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/widget/common/header/app_header_container.dart';
 import 'package:playflutter/core/widget/common/overscroll_hide_container.dart';
 import 'package:playflutter/core/widget/common/transparent_scaffold.dart';
@@ -36,7 +36,7 @@ class _SystemState extends BasePageState<SystemPage>
     return AppHeaderContainer(
         child: SizedBox(
             width: double.infinity,
-            height: ThemeDimens.toolbarHeight,
+            height: ThemeCommon.dimens.toolbarHeight,
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               buildTab(
                   viewModel,
@@ -64,9 +64,9 @@ class _SystemState extends BasePageState<SystemPage>
         child: Container(
             width: ThemeSystem.dimens.tabWidth,
             height: ThemeSystem.dimens.tabHeight,
-            margin: const EdgeInsets.only(
-                left: ThemeDimens.offsetMedium,
-                right: ThemeDimens.offsetMedium),
+            margin: EdgeInsets.only(
+                left: ThemeCommon.dimens.offsetMedium,
+                right: ThemeCommon.dimens.offsetMedium),
             alignment: Alignment.center,
             decoration: ShapeDecoration(
                 color: color,
@@ -75,7 +75,8 @@ class _SystemState extends BasePageState<SystemPage>
                         BorderRadius.circular(ThemeSystem.dimens.tabRadius))),
             child: Text(text,
                 style: TextStyle(
-                    color: textColor, fontSize: ThemeDimens.fontSizeMedium))));
+                    color: textColor,
+                    fontSize: ThemeCommon.dimens.fontSizeMedium))));
   }
 
   Widget buildPage(SystemViewModel viewModel) {

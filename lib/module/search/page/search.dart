@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/widget/common/overscroll_hide_container.dart';
 import 'package:playflutter/module/search/model/entity/search_history.dart';
 import 'package:playflutter/module/search/model/entity/search_hot_ui.dart';
@@ -64,11 +64,11 @@ class _SearchState extends BasePageState<SearchPage> {
 
   Widget buildSearchHotLabel(SearchViewModel viewModel) {
     return Container(
-        padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
+        padding: EdgeInsets.all(ThemeCommon.dimens.offsetLarge),
         child: Text(ThemeSearch.strings.searchHotLabel,
             style: TextStyle(
                 color: Theme.of(context).primaryColorLight,
-                fontSize: ThemeDimens.fontSizeMedium)));
+                fontSize: ThemeCommon.dimens.fontSizeMedium)));
   }
 
   Widget buildSearchHotFlow(SearchViewModel viewModel) {
@@ -77,8 +77,9 @@ class _SearchState extends BasePageState<SearchPage> {
         .toList();
 
     return Container(
-        padding: const EdgeInsets.only(
-            left: ThemeDimens.offsetLarge, right: ThemeDimens.offsetLarge),
+        padding: EdgeInsets.only(
+            left: ThemeCommon.dimens.offsetLarge,
+            right: ThemeCommon.dimens.offsetLarge),
         child: Wrap(spacing: -4, runSpacing: -2, children: widgets));
   }
 
@@ -89,15 +90,16 @@ class _SearchState extends BasePageState<SearchPage> {
         color: Theme.of(context).hintColor,
         shape: RoundedRectangleBorder(
             borderRadius:
-                BorderRadius.circular(ThemeDimens.offsetRadiusMedium)),
+                BorderRadius.circular(ThemeCommon.dimens.offsetRadiusMedium)),
         child: InkWell(
             onTap: () => viewModel.navigationSearchKey(searchHot.hotKey),
-            borderRadius: BorderRadius.circular(ThemeDimens.offsetRadiusSmall),
+            borderRadius:
+                BorderRadius.circular(ThemeCommon.dimens.offsetRadiusSmall),
             child: Padding(
-                padding: const EdgeInsets.all(ThemeDimens.offsetMedium),
+                padding: EdgeInsets.all(ThemeCommon.dimens.offsetMedium),
                 child: Text(searchHot.hotKey,
                     style: TextStyle(
-                        fontSize: ThemeDimens.fontSizeSmall,
+                        fontSize: ThemeCommon.dimens.fontSizeSmall,
                         color: searchHot.color)))));
   }
 
@@ -113,28 +115,28 @@ class _SearchState extends BasePageState<SearchPage> {
   Widget buildSearchHistoryLabel(SearchViewModel viewModel) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Padding(
-          padding: const EdgeInsets.only(
-              left: ThemeDimens.offsetLarge,
-              top: ThemeDimens.offsetLarge,
-              right: ThemeDimens.offsetLarge,
-              bottom: ThemeDimens.offsetMedium),
+          padding: EdgeInsets.only(
+              left: ThemeCommon.dimens.offsetLarge,
+              top: ThemeCommon.dimens.offsetLarge,
+              right: ThemeCommon.dimens.offsetLarge,
+              bottom: ThemeCommon.dimens.offsetMedium),
           child: Text(ThemeSearch.strings.searchHistoryLabel,
               style: TextStyle(
                   color: Theme.of(context).primaryColorLight,
-                  fontSize: ThemeDimens.fontSizeMedium))),
+                  fontSize: ThemeCommon.dimens.fontSizeMedium))),
       Padding(
-          padding: const EdgeInsets.only(
-              left: ThemeDimens.offsetLarge,
-              top: ThemeDimens.offsetLarge,
-              right: ThemeDimens.offsetLarge,
-              bottom: ThemeDimens.offsetMedium),
+          padding: EdgeInsets.only(
+              left: ThemeCommon.dimens.offsetLarge,
+              top: ThemeCommon.dimens.offsetLarge,
+              right: ThemeCommon.dimens.offsetLarge,
+              bottom: ThemeCommon.dimens.offsetMedium),
           child: Material(
               child: InkWell(
                   onTap: () => viewModel.clearSearchHistory(),
                   child: Text(ThemeSearch.strings.searchClearText,
                       style: TextStyle(
                           color: Theme.of(context).primaryColor,
-                          fontSize: ThemeDimens.fontSizeMedium)))))
+                          fontSize: ThemeCommon.dimens.fontSizeMedium)))))
     ]);
   }
 
@@ -145,25 +147,25 @@ class _SearchState extends BasePageState<SearchPage> {
 
     return Expanded(
         child: Padding(
-            padding: const EdgeInsets.only(
-                left: ThemeDimens.offsetLarge, right: ThemeDimens.offsetLarge),
+            padding: EdgeInsets.only(
+                left: ThemeCommon.dimens.offsetLarge,
+                right: ThemeCommon.dimens.offsetLarge),
             child: OverscrollHideContainer(
                 scrollChild:
                     ListView(shrinkWrap: true, children: searchHistoryList))));
   }
 
   Widget buildSearchHistoryEmpty(SearchViewModel viewModel) {
-    if (viewModel.viewStates.searchHistoryList.isEmpty) {
-      return Container(
-          width: double.infinity,
-          padding: const EdgeInsets.only(top: 26),
-          child: Center(
-              child: Text(ThemeSearch.strings.searchHistoryEmptyText,
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontSize: ThemeDimens.fontSizeMedium))));
-    }
-    return Container();
+    return Visibility(
+        visible: viewModel.viewStates.searchHistoryList.isEmpty,
+        child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.only(top: 26),
+            child: Center(
+                child: Text(ThemeSearch.strings.searchHistoryEmptyText,
+                    style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontSize: ThemeCommon.dimens.fontSizeMedium)))));
   }
 
   Widget buildSearchHistoryItem(
@@ -172,9 +174,9 @@ class _SearchState extends BasePageState<SearchPage> {
         child: InkWell(
             onTap: () => viewModel.navigationSearchKey(searchHistory.searchKey),
             child: Container(
-                padding: const EdgeInsets.only(
-                    top: ThemeDimens.offsetMedium,
-                    bottom: ThemeDimens.offsetMedium),
+                padding: EdgeInsets.only(
+                    top: ThemeCommon.dimens.offsetMedium,
+                    bottom: ThemeCommon.dimens.offsetMedium),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -182,7 +184,7 @@ class _SearchState extends BasePageState<SearchPage> {
                         searchHistory.searchKey,
                         style: TextStyle(
                             color: Theme.of(context).primaryColor,
-                            fontSize: ThemeDimens.fontSizeSmall),
+                            fontSize: ThemeCommon.dimens.fontSizeSmall),
                       ),
                       InkWell(
                           onTap: () =>

@@ -1,8 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/theme/theme_images.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/widget/common/back_pop_scope.dart';
 import 'package:playflutter/core/widget/common/cover_touch.dart';
 import 'package:playflutter/core/widget/common/floating_container.dart';
@@ -55,13 +54,14 @@ class _MainState extends BasePageState<MainPage> {
   Widget buildFloatingWidget() {
     return kDebugMode
         ? FloatingContainer(
-            width: ThemeDimens.floatingIconSize,
-            height: ThemeDimens.floatingIconSize,
-            margin: const EdgeInsets.all(ThemeDimens.offsetLarge),
+            width: ThemeCommon.dimens.floatingIconSize,
+            height: ThemeCommon.dimens.floatingIconSize,
+            margin: EdgeInsets.all(ThemeCommon.dimens.offsetLarge),
             child: CoverTouch(
-                radius: const Radius.circular(ThemeDimens.floatingIconSize / 2),
+                radius:
+                    Radius.circular(ThemeCommon.dimens.floatingIconSize / 2),
                 onTap: () => Toast.show(ThemeHome.strings.headerText),
-                child: Image.asset(ThemeImages.launcherRoundPng)))
+                child: Image.asset(ThemeCommon.images.launcherRoundPng)))
         : Container();
   }
 }

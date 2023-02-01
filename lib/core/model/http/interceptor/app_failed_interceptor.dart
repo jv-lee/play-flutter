@@ -5,7 +5,7 @@ import 'package:playflutter/core/event/constants/event_constants.dart';
 import 'package:playflutter/core/event/entity/navigation_login_event.dart';
 import 'package:playflutter/core/event/events_bus.dart';
 import 'package:playflutter/core/model/http/constants/api_constants.dart';
-import 'package:playflutter/core/theme/theme_constants.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/tools/cache/preferences.dart';
 
 /// @author jv.lee
@@ -27,7 +27,7 @@ class AppFailedInterceptor extends Interceptor {
         var code = response.data["errorCode"] as int;
         //登陆失效,打开登陆页面
         if (code == ApiConstants.REQUEST_TOKEN_ERROR) {
-          bool isLogin = await Preferences.get(ThemeConstants.LOCAL_IS_LOGIN);
+          bool isLogin = await Preferences.get(ThemeCommon.constants.isLogin);
           //单独处理登陆状态 ， 已登陆状态发起重新登陆事件
           if (isLogin) {
             eventBus.send(

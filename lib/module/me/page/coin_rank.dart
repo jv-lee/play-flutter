@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/model/entity/coin_rank.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
 import 'package:playflutter/module/me/theme/theme_me.dart';
@@ -60,17 +60,18 @@ class _CoinRankPageState extends BasePageState<CoinRankPage> {
   Widget buildRankHeaderItem(CoinRankViewModel viewModel, CoinRank item) {
     return Expanded(
         child: Container(
-            padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
+            padding: EdgeInsets.all(ThemeCommon.dimens.offsetLarge),
             child: Column(children: [
               SvgPicture.asset(viewModel.findLevelIcon(item),
                   width: 24, height: 24),
               Padding(
-                  padding: const EdgeInsets.only(top: ThemeDimens.offsetMedium),
+                  padding:
+                      EdgeInsets.only(top: ThemeCommon.dimens.offsetMedium),
                   child: Text(item.username,
                       maxLines: 1,
                       style: TextStyle(
                           color: Theme.of(context).primaryColorLight,
-                          fontSize: ThemeDimens.fontSizeMedium,
+                          fontSize: ThemeCommon.dimens.fontSizeMedium,
                           overflow: TextOverflow.ellipsis))),
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 SvgPicture.asset(ThemeMe.images.userCoinSvg,
@@ -79,7 +80,7 @@ class _CoinRankPageState extends BasePageState<CoinRankPage> {
                     maxLines: 1,
                     style: TextStyle(
                         color: Theme.of(context).primaryColor,
-                        fontSize: ThemeDimens.fontSizeSmall,
+                        fontSize: ThemeCommon.dimens.fontSizeSmall,
                         fontWeight: FontWeight.bold))
               ])
             ])));
@@ -87,12 +88,12 @@ class _CoinRankPageState extends BasePageState<CoinRankPage> {
 
   Widget buildRankItem(CoinRank item) {
     return Container(
-        padding: const EdgeInsets.all(ThemeDimens.offsetLarge),
+        padding: EdgeInsets.all(ThemeCommon.dimens.offsetLarge),
         child: Row(children: [
           Text(item.rank,
               style: TextStyle(
                   color: Theme.of(context).primaryColorLight,
-                  fontSize: ThemeDimens.fontSizeLarge,
+                  fontSize: ThemeCommon.dimens.fontSizeLarge,
                   fontWeight: FontWeight.bold)),
           Expanded(
               child: Text(item.username,
@@ -100,7 +101,7 @@ class _CoinRankPageState extends BasePageState<CoinRankPage> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Theme.of(context).primaryColorLight,
-                      fontSize: ThemeDimens.fontSizeMedium,
+                      fontSize: ThemeCommon.dimens.fontSizeMedium,
                       overflow: TextOverflow.ellipsis))),
           Expanded(
               child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
@@ -109,7 +110,7 @@ class _CoinRankPageState extends BasePageState<CoinRankPage> {
                 maxLines: 1,
                 style: TextStyle(
                     color: Theme.of(context).primaryColor,
-                    fontSize: ThemeDimens.fontSizeSmall,
+                    fontSize: ThemeCommon.dimens.fontSizeSmall,
                     fontWeight: FontWeight.bold))
           ]))
         ]));

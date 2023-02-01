@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/extensions/function_extensions.dart';
-import 'package:playflutter/core/theme/theme_images.dart';
-import 'package:playflutter/core/tools/localizations.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/module/account/account_route_names.dart';
 import 'package:playflutter/module/account/service/account_service.dart';
 import 'package:playflutter/module/me/me_route_names.dart';
@@ -50,7 +49,7 @@ class MeViewModel extends BaseViewModel {
     if (viewStates.isLogin) {
       Navigator.pushNamed(context, route);
     } else {
-      Toast.show("login_alert".localized());
+      Toast.show(ThemeCommon.strings.loginAlert);
       Navigator.pushNamed(context, AccountRouteNames.login);
     }
   }
@@ -61,7 +60,7 @@ class MeViewModel extends BaseViewModel {
         viewStates
           ..userName = self.nickname
           ..userDesc = "等级：${self.level} 排名：${self.rank}"
-          ..headerWidget = Image.asset(ThemeImages.launcherRoundPng);
+          ..headerWidget = Image.asset(ThemeCommon.images.launcherRoundPng);
       } else {
         viewStates = _MeViewState();
       }

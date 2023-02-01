@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 
 /// @author jv.lee
 /// @date 2020/4/30
@@ -59,6 +59,6 @@ class StatusTools {
 
   // 获取appBarLayoutHeight - 2 校正
   static getAppBarLayoutHeight() {
-    return ThemeDimens.toolbarHeight + getStatusHeight() - 2;
+    return ThemeCommon.dimens.toolbarHeight + getStatusHeight() - 2;
   }
 }

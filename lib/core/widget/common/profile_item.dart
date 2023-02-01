@@ -3,7 +3,7 @@ import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/core/extensions/function_extensions.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 
 /// @author jv.lee
 /// @date 2022/7/14
@@ -61,7 +61,7 @@ class ProfileItem extends StatelessWidget {
                                     style: TextStyle(
                                         color:
                                             Theme.of(context).primaryColorLight,
-                                        fontSize: ThemeDimens.fontSizeMedium))))
+                                        fontSize: ThemeCommon.dimens.fontSizeMedium))))
                       ]),
                       Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                         Offstage(
@@ -72,7 +72,7 @@ class ProfileItem extends StatelessWidget {
                                 child: Text(rightText.toString(),
                                     style: TextStyle(
                                         color: Theme.of(context).primaryColor,
-                                        fontSize: ThemeDimens.fontSizeSmall)))),
+                                        fontSize: ThemeCommon.dimens.fontSizeSmall)))),
                         Visibility(
                             visible: switchVisible,
                             child: Switch(
