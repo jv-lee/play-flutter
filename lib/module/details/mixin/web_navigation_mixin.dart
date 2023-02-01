@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/extensions/function_extensions.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 /// @author jv.lee
@@ -198,7 +198,7 @@ mixin WebNavigationMixin<T extends StatefulWidget> on State<T> {
 }
 
 class _WebNavigationViewState {
-  final _offsetLimit = ThemeDimens.toolbarHeight; // webNavigation高度，最大平移距离
+  final _offsetLimit = ThemeCommon.dimens.toolbarHeight; // webNavigation高度，最大平移距离
   WebViewController? _webViewController; // web控制器
   TickerProvider? _tickerProvider; // 动画信号提供者
   AnimationController? _animationController; // 动画控制器
