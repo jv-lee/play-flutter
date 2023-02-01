@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 
 /// @author jv.lee
 /// @date 2022/4/27
@@ -65,7 +65,7 @@ class ThemeColors {
           backgroundColor: lightColorPalette.item,
           foregroundColor: lightColorPalette.accent,
           titleTextStyle: TextStyle(
-              fontSize: ThemeDimens.fontSizeLarge,
+              fontSize: ThemeCommon.dimens.fontSizeLarge,
               fontWeight: FontWeight.bold,
               fontFamily: "Avenir",
               color: lightColorPalette.accent)),
@@ -117,7 +117,7 @@ class ThemeColors {
           backgroundColor: darkColorPalette.item,
           foregroundColor: darkColorPalette.accent,
           titleTextStyle: TextStyle(
-              fontSize: ThemeDimens.fontSizeLarge,
+              fontSize: ThemeCommon.dimens.fontSizeLarge,
               fontWeight: FontWeight.bold,
               fontFamily: "Avenir",
               color: darkColorPalette.accent)),
