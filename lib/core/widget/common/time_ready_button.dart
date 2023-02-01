@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/tools/localizations.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 
 /// @author jv.lee
 /// @date 2022/8/1
@@ -38,23 +37,25 @@ class _TimeReadyButtonState extends State<TimeReadyButton> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: () {
-          stream?.cancel();
-          widget.onEnd();
-        },
-        child: Container(
-            width: 68,
-            height: 32,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                color: Colors.black45,
-                borderRadius:
-                    BorderRadius.circular(ThemeDimens.offsetRadiusMedium)),
-            child: Text("${"splash_time_text".localized()}$number",
-                style: const TextStyle(
-                    fontSize: ThemeDimens.fontSizeMedium,
-                    color: Colors.white))));
+    // 对于频繁更新的控件（比如倒计时，秒表），使用RepaintBoundary隔离它，让他在一个独立的paint区域。
+    return RepaintBoundary(
+        child: GestureDetector(
+            onTap: () {
+              stream?.cancel();
+              widget.onEnd();
+            },
+            child: Container(
+                width: 68,
+                height: 32,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: Colors.black45,
+                    borderRadius: BorderRadius.circular(
+                        ThemeCommon.dimens.offsetRadiusMedium)),
+                child: Text("${ThemeCommon.strings.splashTimeText}$number",
+                    style: TextStyle(
+                        fontSize: ThemeCommon.dimens.fontSizeMedium,
+                        color: Colors.white)))));
   }
 
   void updateTiming(int number) {
