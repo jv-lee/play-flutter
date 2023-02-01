@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/model/entity/todo.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/tools/callback/page_callback_handler.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/widget/common/sliding_pane_container.dart';
@@ -79,11 +79,11 @@ class _TodoListPageState extends BasePageState<TodoListPage>
               alignment: Alignment.centerLeft,
               width: double.infinity,
               height: ThemeTodo.dimens.stickyHeaderHeight,
-              padding: const EdgeInsets.only(left: ThemeDimens.offsetLarge),
+              padding: EdgeInsets.only(left: ThemeCommon.dimens.offsetLarge),
               color: Theme.of(context).hoverColor,
               child: Text(item.dateStr,
                   style: TextStyle(
-                      fontSize: ThemeDimens.fontSizeSmall,
+                      fontSize: ThemeCommon.dimens.fontSizeSmall,
                       color: Theme.of(context).focusColor,
                       fontWeight: FontWeight.bold)),
             )),

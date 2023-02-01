@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/model/entity/todo.dart';
-import 'package:playflutter/core/theme/theme_dimens.dart';
-import 'package:playflutter/core/tools/localizations.dart';
+import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/widget/common/sliding_pane_container.dart';
 import 'package:playflutter/module/todo/model/entity/todo_type.dart';
 import 'package:playflutter/module/todo/theme/theme_todo.dart';
@@ -51,10 +50,10 @@ class TodoItem extends StatelessWidget {
                       height: double.infinity,
                       color: Colors.red,
                       alignment: Alignment.center,
-                      child: Text("item_delete".localized(),
-                          style: const TextStyle(
+                      child: Text(ThemeCommon.strings.itemDelete,
+                          style: TextStyle(
                               color: Colors.white,
-                              fontSize: ThemeDimens.fontSizeSmall)))))),
+                              fontSize: ThemeCommon.dimens.fontSizeSmall)))))),
       Expanded(
           child: Material(
               child: InkWell(
@@ -68,9 +67,9 @@ class TodoItem extends StatelessWidget {
                           item.status == TodoStatus.UPCOMING.index
                               ? ThemeTodo.strings.itemComplete
                               : ThemeTodo.strings.itemUpcoming,
-                          style: const TextStyle(
+                          style: TextStyle(
                               color: Colors.white,
-                              fontSize: ThemeDimens.fontSizeSmall))))))
+                              fontSize: ThemeCommon.dimens.fontSizeSmall))))))
     ]);
   }
 
@@ -84,9 +83,9 @@ class TodoItem extends StatelessWidget {
               child: InkWell(
             onTap: () => onItemClick(item),
             child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: ThemeDimens.offsetLarge,
-                    vertical: ThemeDimens.offsetMedium),
+                padding: EdgeInsets.symmetric(
+                    horizontal: ThemeCommon.dimens.offsetLarge,
+                    vertical: ThemeCommon.dimens.offsetMedium),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -94,13 +93,13 @@ class TodoItem extends StatelessWidget {
                           maxLines: 1,
                           style: TextStyle(
                               color: Theme.of(context).primaryColorLight,
-                              fontSize: ThemeDimens.fontSizeMedium,
+                              fontSize: ThemeCommon.dimens.fontSizeMedium,
                               overflow: TextOverflow.ellipsis)),
                       Text(item.content,
                           maxLines: 1,
                           style: TextStyle(
                               color: Theme.of(context).primaryColor,
-                              fontSize: ThemeDimens.fontSizeMedium,
+                              fontSize: ThemeCommon.dimens.fontSizeMedium,
                               overflow: TextOverflow.ellipsis))
                     ])),
           ))),
