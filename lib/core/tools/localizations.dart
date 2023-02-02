@@ -33,7 +33,7 @@ class Localizations {
         await _appendValues(fileName, languageCode);
       }
     } catch (e) {
-      LogTools.log("Localizations", "load locale/config.json error $e");
+      LogTools.log("Localizations", "load assets/local/$languageCode/fileName.json error $e");
     }
     return this;
   }
@@ -42,7 +42,7 @@ class Localizations {
   _appendValues(String fileName, String languageCode) async {
     try {
       String jsonContent =
-          await rootBundle.loadString("locale/$languageCode/$fileName.json");
+          await rootBundle.loadString("assets/locale/$languageCode/$fileName.json");
 
       Map<String, dynamic> map = json.decode(jsonContent);
       if (map.isNotEmpty) {
