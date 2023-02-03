@@ -5,6 +5,7 @@ import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
 import 'package:playflutter/module/account/account_route_names.dart';
 import 'package:playflutter/module/account/model/account_model.dart';
 import 'package:playflutter/module/account/service/account_service.dart';
+import 'package:playflutter/module/account/theme/theme_account.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 
@@ -23,7 +24,7 @@ class LoginViewModel extends BaseViewModel {
   @override
   void onCleared() {}
 
-  void changeUserName(username) {
+  void changeUsername(username) {
     viewStates.username = username;
     _changeLoginEnable();
   }
@@ -33,15 +34,12 @@ class LoginViewModel extends BaseViewModel {
     _changeLoginEnable();
   }
 
-  void _changeLoginEnable() {
-    viewStates.stateColor =
-        (viewStates.username.isNotEmpty && viewStates.password.isNotEmpty)
-            ? Theme.of(context).focusColor
-            : Colors.grey;
-    notifyListeners();
-  }
-
   void requestLogin() {
+    // 校验当前是否输入账户及密码
+    if (_checkInputCompliance() == false) {
+      return;
+    }
+
     // 显示loading弹窗
     showDialog(
         barrierDismissible: false,
@@ -51,12 +49,6 @@ class LoginViewModel extends BaseViewModel {
     // 隐藏输入框 延时发起逻辑
     FocusManager.instance.primaryFocus?.unfocus();
     Future.delayed(const Duration(milliseconds: 300), () {
-      if (viewStates.username.isEmpty || viewStates.password.isEmpty) {
-        Navigator.pop(context);
-        Toast.show("username || password is empty.");
-        return;
-      }
-
       accountModel
           .postLoginAsync(viewStates.username, viewStates.password)
           .then((userData) => accountModel.getAccountInfoAsync())
@@ -77,6 +69,23 @@ class LoginViewModel extends BaseViewModel {
       }
     });
   }
+
+  void _changeLoginEnable() {
+    viewStates.stateColor =
+    (viewStates.username.isNotEmpty && viewStates.password.isNotEmpty)
+        ? Theme.of(context).focusColor
+        : Colors.grey;
+    notifyListeners();
+  }
+
+  bool _checkInputCompliance() {
+    if (viewStates.username.isEmpty || viewStates.password.isEmpty) {
+      Toast.show(ThemeAccount.strings.loginInputEmpty);
+      return false;
+    }
+    return true;
+  }
+
 }
 
 class _LoginViewState {

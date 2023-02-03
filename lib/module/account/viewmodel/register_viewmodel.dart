@@ -2,9 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
+import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
 import 'package:playflutter/module/account/model/account_model.dart';
 import 'package:playflutter/module/account/service/account_service.dart';
-import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
+import 'package:playflutter/module/account/theme/theme_account.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 
@@ -23,7 +24,7 @@ class RegisterViewModel extends BaseViewModel {
   @override
   void onCleared() {}
 
-  void changeUserName(username) {
+  void changeUsername(username) {
     viewStates.username = username;
     _changeRegisterEnable();
   }
@@ -38,16 +39,12 @@ class RegisterViewModel extends BaseViewModel {
     _changeRegisterEnable();
   }
 
-  void _changeRegisterEnable() {
-    viewStates.stateColor = (viewStates.username.isNotEmpty &&
-            viewStates.password.isNotEmpty &&
-            viewStates.rePassword.isNotEmpty)
-        ? Theme.of(context).focusColor
-        : Colors.grey;
-    notifyListeners();
-  }
-
   void requestRegister() {
+    // 校验是否输入帐号及密码
+    if (_checkInputCompliance() == false) {
+      return;
+    }
+
     // 显示loading弹窗
     showDialog(
         barrierDismissible: false,
@@ -57,14 +54,6 @@ class RegisterViewModel extends BaseViewModel {
     // 隐藏输入框 延时发起逻辑
     FocusManager.instance.primaryFocus?.unfocus();
     Future.delayed(const Duration(milliseconds: 300), () {
-      if (viewStates.username.isEmpty ||
-          viewStates.password.isEmpty ||
-          viewStates.rePassword.isEmpty) {
-        Navigator.pop(context);
-        Toast.show("username || password || repassword is empty.");
-        return;
-      }
-
       accountModel
           .postRegisterAsync(
               viewStates.username, viewStates.password, viewStates.rePassword)
@@ -78,6 +67,26 @@ class RegisterViewModel extends BaseViewModel {
       }).whenComplete(() => Navigator.pop(context, true));
     });
   }
+
+  void _changeRegisterEnable() {
+    viewStates.stateColor = (viewStates.username.isNotEmpty &&
+        viewStates.password.isNotEmpty &&
+        viewStates.rePassword.isNotEmpty)
+        ? Theme.of(context).focusColor
+        : Colors.grey;
+    notifyListeners();
+  }
+
+  bool _checkInputCompliance() {
+    if (viewStates.username.isEmpty ||
+        viewStates.password.isEmpty ||
+        viewStates.rePassword.isEmpty) {
+      Toast.show(ThemeAccount.strings.registerInputEmpty);
+      return false;
+    }
+    return true;
+  }
+
 }
 
 class _RegisterViewState {

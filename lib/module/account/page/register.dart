@@ -54,7 +54,7 @@ class _RegisterPageState extends BasePageState<RegisterPage> {
             padding: EdgeInsets.all(ThemeCommon.dimens.offsetMedium),
             child: Column(children: [
               TextField(
-                  onChanged: (text) => viewModel.changeUserName(text),
+                  onChanged: (text) => viewModel.changeUsername(text),
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                       icon: SvgPicture.asset(ThemeAccount.images.usernameSvg,
