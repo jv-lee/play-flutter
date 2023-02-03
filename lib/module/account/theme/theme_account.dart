@@ -26,6 +26,8 @@ class _Strings {
   String gotoRegisterText = "account_goto_register_text".localized();
   String gotoLoginText = "account_goto_login_text".localized();
   String logoutSuccess = "account_logout_success".localized();
+  String loginInputEmpty = "account_login_input_empty".localized();
+  String registerInputEmpty = "account_register_input_empty".localized();
 }
 
 class _Images {

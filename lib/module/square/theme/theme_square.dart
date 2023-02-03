@@ -23,4 +23,5 @@ class _Strings {
   String shareLinkHint = "square_share_link_hint".localized();
   String shareRequestSuccess = "square_share_request_success".localized();
   String createShareDescription = "square_create_share_description".localized();
+  String shareInputEmpty = "square_share_input_empty".localized();
 }

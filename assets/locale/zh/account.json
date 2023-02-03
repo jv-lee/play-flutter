@@ -8,5 +8,7 @@
   "account_repassword_text": "repassword",
   "account_goto_register_text": "没有账号，去注册？",
   "account_goto_login_text": "已有账号，去登陆？",
-  "account_logout_success": "已退出当前账号"
+  "account_logout_success": "已退出当前账号",
+  "account_login_input_empty": "username || password is empty.",
+  "account_register_input_empty": "username || password || rePassword is empty."
 }

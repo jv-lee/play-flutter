@@ -41,7 +41,7 @@ class CreateShareViewModel extends BaseViewModel {
     Future.delayed(const Duration(milliseconds: 300), () {
       if (viewStates.shareTitle.isEmpty || viewStates.shareLink.isEmpty) {
         Navigator.of(context).pop();
-        Toast.show("title || content is empty.");
+        Toast.show(ThemeSquare.strings.shareInputEmpty);
         return;
       }
 
