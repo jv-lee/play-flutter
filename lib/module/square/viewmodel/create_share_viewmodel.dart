@@ -10,7 +10,7 @@ import 'package:toast/toast.dart';
 /// @date 2022/7/22
 /// @description 创建分享内容viewModel
 class CreateShareViewModel extends BaseViewModel {
-  final SquareModel _model = SquareModel();
+  final _squareModel = SquareModel();
   final viewStates = _CreateShareViewState();
 
   CreateShareViewModel(super.context);
@@ -46,7 +46,7 @@ class CreateShareViewModel extends BaseViewModel {
       }
 
       // 提交请求
-      _model.postShareDataSync(viewStates.shareTitle, viewStates.shareLink)
+      _squareModel.postShareDataSync(viewStates.shareTitle, viewStates.shareLink)
           .then((value) {
         Toast.show(ThemeSquare.strings.shareRequestSuccess);
         Navigator.of(context).pop();

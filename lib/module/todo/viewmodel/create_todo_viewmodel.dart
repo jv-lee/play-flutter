@@ -14,7 +14,7 @@ import 'package:playflutter/module/todo/theme/theme_todo.dart';
 /// @date 2022/8/15
 /// @description 创建/编辑 笔记页面数据 viewModel
 class CreateTodoViewModel extends BaseViewModel {
-  final _model = TodoModel();
+  final _todoModel = TodoModel();
   final viewStates = _CreateTodoViewState();
 
   CreateTodoViewModel(super.context);
@@ -74,7 +74,7 @@ class CreateTodoViewModel extends BaseViewModel {
   _createTodo() {
     showDialog(context: context, builder: (context) => const LoadingDialog());
 
-    _model
+    _todoModel
         .postAddTodoAsync(viewStates.title, viewStates.content, viewStates.date,
             viewStates.type, viewStates.priority)
         .then((value) {
@@ -91,7 +91,7 @@ class CreateTodoViewModel extends BaseViewModel {
   _updateTodo() {
     showDialog(context: context, builder: (context) => const LoadingDialog());
 
-    _model
+    _todoModel
         .postUpdateTodoAsync(
             viewStates.id,
             viewStates.title,

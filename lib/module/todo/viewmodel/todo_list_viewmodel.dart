@@ -17,7 +17,7 @@ import 'package:playflutter/module/todo/todo_route_names.dart';
 /// @date 2022/8/15
 /// @description
 class TodoListViewModel extends BaseViewModel implements TodoActionCallback {
-  final _model = TodoModel();
+  final _todoModel = TodoModel();
   final slidingPaneController = SlidingPaneController();
   late TodoType type;
   late TodoStatus status;
@@ -75,7 +75,7 @@ class TodoListViewModel extends BaseViewModel implements TodoActionCallback {
     // request todos list data.
     paging.requestData(
         status,
-        (page) => _model
+        (page) => _todoModel
             .postTodoDataAsync(page, type.index, this.status.index)
             .then((value) => value.data));
   }
@@ -96,7 +96,7 @@ class TodoListViewModel extends BaseViewModel implements TodoActionCallback {
     slidingPaneController.closeAction();
     showDialog(context: context, builder: (context) => const LoadingDialog());
 
-    _model.postDeleteTodoAsync(item.id + 123456).then((value) {
+    _todoModel.postDeleteTodoAsync(item.id + 123456).then((value) {
       paging.data.remove(item);
       paging.notifyDataChange();
     }).catchError((onError) {
@@ -114,7 +114,9 @@ class TodoListViewModel extends BaseViewModel implements TodoActionCallback {
         ? TodoStatus.UPCOMING
         : TodoStatus.COMPLETE;
 
-    _model.postUpdateTodoStatusAsync(item.id, targetStatus.index).then((value) {
+    _todoModel
+        .postUpdateTodoStatusAsync(item.id, targetStatus.index)
+        .then((value) {
       paging.data.remove(item);
       paging.notifyDataChange();
       // 通知另一状态页面添加被更改状态的数据

@@ -9,7 +9,7 @@ import 'package:playflutter/module/project/model/project_model.dart';
 /// @date 2022/7/26
 /// @description
 class ProjectListViewModel extends BaseViewModel {
-  final ProjectModel _model = ProjectModel();
+  final _projectModel = ProjectModel();
   late int id;
   late Paging<Content> paging;
 
@@ -32,7 +32,7 @@ class ProjectListViewModel extends BaseViewModel {
     // request square list data.
     paging.requestData(
         status,
-        (page) => _model
+        (page) => _projectModel
             .getProjectListDataAsync(page, id)
             .then((value) => value.data));
   }

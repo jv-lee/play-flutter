@@ -9,7 +9,7 @@ import 'package:playflutter/module/official/model/official_model.dart';
 /// @date 2022/7/26
 /// @description
 class OfficialListViewModel extends BaseViewModel {
-  final OfficialModel _model = OfficialModel();
+  final _officialModel = OfficialModel();
   late int id;
   late Paging<Content> paging;
 
@@ -32,7 +32,7 @@ class OfficialListViewModel extends BaseViewModel {
     // request square list data.
     paging.requestData(
         status,
-        (page) => _model
+        (page) => _officialModel
             .getOfficialListDataAsync(page, id)
             .then((value) => value.data));
   }

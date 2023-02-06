@@ -10,7 +10,7 @@ import 'package:playflutter/module/me/theme/theme_me.dart';
 /// @date 2022/7/15
 /// @description 积分排行榜viewModel
 class CoinRankViewModel extends BaseViewModel {
-  final _model = MeModel();
+  final _meModel = MeModel();
   final viewStates = _CoinRankViewState();
 
   CoinRankViewModel(super.context);
@@ -24,7 +24,7 @@ class CoinRankViewModel extends BaseViewModel {
   @override
   void onCleared() {
     viewStates.paging.dispose();
-    _model.dispose();
+    _meModel.dispose();
   }
 
   void requestData(LoadStatus status) async {
@@ -33,7 +33,7 @@ class CoinRankViewModel extends BaseViewModel {
     // request coinRank list data.
     viewStates.paging.requestData(
         status,
-        (page) => _model
+        (page) => _meModel
             .getCoinRankAsync(page)
             .then((value) => _swapRankList(value.data)));
   }

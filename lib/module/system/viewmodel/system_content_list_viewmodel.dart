@@ -9,7 +9,7 @@ import 'package:playflutter/module/system/model/system_model.dart';
 /// @date 2022/7/26
 /// @description
 class SystemContentListViewModel extends BaseViewModel {
-  final SystemModel _model = SystemModel();
+  final _systemModel = SystemModel();
   late int id;
   late Paging<Content> paging;
 
@@ -33,6 +33,6 @@ class SystemContentListViewModel extends BaseViewModel {
     paging.requestData(
         status,
         (page) =>
-            _model.getContentDataAsync(page, id).then((value) => value.data));
+            _systemModel.getContentDataAsync(page, id).then((value) => value.data));
   }
 }

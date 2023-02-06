@@ -14,8 +14,8 @@ import 'package:playflutter/module/search/theme/theme_search.dart';
 /// @date 2022/7/15
 /// @description 搜索页面viewModel
 class SearchViewModel extends BaseViewModel {
-  final _model = SearchModel();
-  final _dao = SearchHistoryDao();
+  final _searchModel = SearchModel();
+  final _searchHistoryDao = SearchHistoryDao();
   final viewStates = _SearchViewState();
 
   SearchViewModel(super.context);
@@ -30,7 +30,7 @@ class SearchViewModel extends BaseViewModel {
   void onCleared() {}
 
   void navigationSearchKey(String searchKey) {
-    _dao.insert(SearchHistory.buildSearchHistory(searchKey));
+    _searchHistoryDao.insert(SearchHistory.buildSearchHistory(searchKey));
     _requestSearchHistoryList();
     Navigator.pushNamed(context, SearchRouteNames.search_result,
         arguments: {SearchPage.ARG_SEARCH_KEY: searchKey});
@@ -38,13 +38,13 @@ class SearchViewModel extends BaseViewModel {
 
   void deleteSearchHistory(SearchHistory history) {
     if (viewStates.searchHistoryList.isEmpty) return;
-    _dao.delete(history.searchKey);
+    _searchHistoryDao.delete(history.searchKey);
     _requestSearchHistoryList();
   }
 
   void clearSearchHistory() {
     if (viewStates.searchHistoryList.isEmpty) return;
-    _dao.deleteAll();
+    _searchHistoryDao.deleteAll();
     _requestSearchHistoryList();
   }
 
@@ -52,7 +52,7 @@ class SearchViewModel extends BaseViewModel {
     Preferences.requestCache<SearchHotData>(
         localKey: ThemeSearch.constants.searchHotList,
         createJson: (json) => SearchHotData.fromJson(json),
-        requestFuture: _model.getSearchHotDataAsync(),
+        requestFuture: _searchModel.getSearchHotDataAsync(),
         callback: (value) {
           viewStates.searchHots = value.data
               .map((e) => SearchHotUI.buildSearchHot(e.name))
@@ -63,7 +63,7 @@ class SearchViewModel extends BaseViewModel {
   }
 
   void _requestSearchHistoryList() {
-    _dao.queryAll().then((value) {
+    _searchHistoryDao.queryAll().then((value) {
       viewStates.searchHistoryList = value;
       notifyListeners();
     });

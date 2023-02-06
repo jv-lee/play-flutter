@@ -16,7 +16,7 @@ import 'package:playflutter/module/me/theme/theme_me.dart';
 /// @date 2022/7/15
 /// @description 收藏列表viewModel
 class CollectViewModel extends BaseViewModel {
-  final _model = MeModel();
+  final _meModel = MeModel();
   final slidingPaneController = SlidingPaneController();
   late Paging<Content> paging;
 
@@ -34,7 +34,7 @@ class CollectViewModel extends BaseViewModel {
   @override
   void onCleared() {
     paging.dispose();
-    _model.dispose();
+    _meModel.dispose();
   }
 
   void requestData(LoadStatus status) async {
@@ -42,7 +42,7 @@ class CollectViewModel extends BaseViewModel {
 
     // request collect list data.
     paging.requestData(status,
-        (page) => _model.getCollectListAsync(page).then((value) => value.data));
+        (page) => _meModel.getCollectListAsync(page).then((value) => value.data));
   }
 
   void requestDeleteItem(Content item) {
@@ -53,7 +53,7 @@ class CollectViewModel extends BaseViewModel {
         builder: (BuildContext context) => const LoadingDialog());
 
     Future.delayed(const Duration(milliseconds: 300), () {
-      _model.postUnCollectAsync(item.id, item.originId).then((value) {
+      _meModel.postUnCollectAsync(item.id, item.originId).then((value) {
         paging.data.remove(item);
         paging.notifyDataChange();
       }).catchError((onError) {

@@ -20,7 +20,7 @@ import 'package:playflutter/module/main/model/entity/main_tab_page.dart';
 /// @date 2022/6/23
 /// @description home页面viewModel
 class HomeViewModel extends BaseViewModel {
-  final _model = HomeModel();
+  final _homeModel = HomeModel();
   final viewStates = _HomeViewState();
 
   HomeViewModel(super.context);
@@ -39,7 +39,7 @@ class HomeViewModel extends BaseViewModel {
   void onCleared() {
     eventBus.unbind(EventConstants.EVENT_TAB_SELECTED, _onTabSelectedEvent);
     viewStates.paging.dispose();
-    _model.dispose();
+    _homeModel.dispose();
   }
 
   @override
@@ -61,14 +61,14 @@ class HomeViewModel extends BaseViewModel {
 
     // request content list data.
     viewStates.paging.requestData(status,
-        (page) => _model.getContentDataAsync(page).then((value) => value.data));
+        (page) => _homeModel.getContentDataAsync(page).then((value) => value.data));
   }
 
   void _requestHeaderData() async {
     Preferences.requestCache<BannerData>(
         localKey: ThemeHome.constants.homeBanner,
         createJson: (json) => BannerData.fromJson(json),
-        requestFuture: _model.getBannerDataAsync(),
+        requestFuture: _homeModel.getBannerDataAsync(),
         callback: (value) async {
           viewStates.bannerList.clear();
           viewStates.bannerList.addAll(value.data);

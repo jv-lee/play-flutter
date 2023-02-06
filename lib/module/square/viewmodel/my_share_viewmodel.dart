@@ -16,7 +16,7 @@ import 'package:playflutter/module/square/theme/theme_square.dart';
 /// @date 2022/7/15
 /// @description 我的分享页面viewModel
 class MyShareViewModel extends BaseViewModel {
-  final _model = SquareModel();
+  final _squareModel = SquareModel();
   final slidingPaneController = SlidingPaneController();
   late Paging<Content> paging;
 
@@ -35,7 +35,7 @@ class MyShareViewModel extends BaseViewModel {
   @override
   void onCleared() {
     paging.dispose();
-    _model.dispose();
+    _squareModel.dispose();
   }
 
   void requestData(LoadStatus status) async {
@@ -44,7 +44,7 @@ class MyShareViewModel extends BaseViewModel {
     // request square list data.
     paging.requestData(
         status,
-        (page) => _model
+        (page) => _squareModel
             .getMyShareDataSync(page)
             .then((value) => value.data.shareArticles));
   }
@@ -57,7 +57,7 @@ class MyShareViewModel extends BaseViewModel {
         builder: (BuildContext context) => const LoadingDialog());
 
     Future.delayed(const Duration(milliseconds: 300), () {
-      _model.postDeleteShareAsync(item.id).then((value) {
+      _squareModel.postDeleteShareAsync(item.id).then((value) {
         paging.data.remove(item);
         paging.notifyDataChange();
       }).catchError((onError) {

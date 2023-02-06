@@ -10,7 +10,7 @@ import 'package:playflutter/module/search/page/search.dart';
 /// @date 2022/7/15
 /// @description 搜索结果页viewModel
 class SearchResultViewModel extends BaseViewModel {
-  final _model = SearchModel();
+  final _searchModel = SearchModel();
   final viewStates = _SearchResultViewState();
 
   SearchResultViewModel(super.context);
@@ -31,14 +31,14 @@ class SearchResultViewModel extends BaseViewModel {
   @override
   void onCleared() {
     viewStates.paging.dispose();
-    _model.dispose();
+    _searchModel.dispose();
   }
 
   void requestData(LoadStatus status) async {
     // request searchResult list data.
     viewStates.paging.requestData(
         status,
-        (page) => _model
+        (page) => _searchModel
             .getSearchDataAsync(page, viewStates.searchKey)
             .then((value) => value.data));
   }

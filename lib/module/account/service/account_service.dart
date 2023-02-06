@@ -17,7 +17,7 @@ import 'package:toast/toast.dart';
 /// @date 2022/8/3
 /// @description 账户服务，应用存活期间常驻，全模块可调用账户服务
 class AccountService extends BaseModuleService {
-  final _model = AccountModel();
+  final _accountModel = AccountModel();
   final viewStates = AccountViewState();
 
   AccountService(super.context);
@@ -26,7 +26,7 @@ class AccountService extends BaseModuleService {
   void init() {}
 
   void requestAccountData(Function callback) async {
-    _model.getAccountInfoAsync().then((value) {
+    _accountModel.getAccountInfoAsync().then((value) {
       updateAccountStatus(value, true);
     }).catchError((error) async {
       // 登陆token失效
@@ -50,7 +50,7 @@ class AccountService extends BaseModuleService {
         context: context,
         builder: (BuildContext context) => const LoadingDialog());
 
-    _model.getLogoutAsync().then((value) {
+    _accountModel.getLogoutAsync().then((value) {
       updateAccountStatus(null, false);
       Toast.show(ThemeAccount.strings.logoutSuccess);
     }).catchError((onError) {

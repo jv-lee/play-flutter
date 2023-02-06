@@ -16,7 +16,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 /// @date 2022/8/8
 /// @description 详情页viewModel
 class DetailsViewModel extends BaseViewModel {
-  final _model = MeModel();
+  final _meModel = MeModel();
   final viewStates = _DetailsViewState();
   final DetailsData detailsData;
 
@@ -29,7 +29,7 @@ class DetailsViewModel extends BaseViewModel {
 
   @override
   void onCleared() {
-    _model.dispose();
+    _meModel.dispose();
   }
 
   /// 收藏该文章
@@ -48,7 +48,7 @@ class DetailsViewModel extends BaseViewModel {
         builder: (BuildContext context) => const LoadingDialog());
 
     // 发起收藏
-    _model.postCollectAsync(detailsData.id).then((value) {
+    _meModel.postCollectAsync(detailsData.id).then((value) {
       detailsData.isCollect = true;
       Toast.show(ThemeDetails.strings.menuCollectComplete);
     }).catchError((onError) {

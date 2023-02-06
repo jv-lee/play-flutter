@@ -22,7 +22,7 @@ import 'package:toast/toast.dart';
 /// @date 2022/6/29
 /// @description
 class SquareViewModel extends BaseViewModel {
-  final _model = SquareModel();
+  final _squareModel = SquareModel();
   late AccountService accountService;
   late Paging<Content> paging;
 
@@ -45,7 +45,7 @@ class SquareViewModel extends BaseViewModel {
     eventBus.unbind(EventConstants.EVENT_TAB_SELECTED, _onTabSelectedEvent);
     accountService.removeListener(notifyListeners);
     paging.dispose();
-    _model.dispose();
+    _squareModel.dispose();
   }
 
   void requestData(LoadStatus status) async {
@@ -53,7 +53,7 @@ class SquareViewModel extends BaseViewModel {
 
     // request square list data.
     paging.requestData(status,
-        (page) => _model.getSquareDataAsync(page).then((value) => value.data));
+        (page) => _squareModel.getSquareDataAsync(page).then((value) => value.data));
   }
 
   void navigationCreateShared() {

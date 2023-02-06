@@ -11,8 +11,7 @@ import 'package:playflutter/module/system/theme/theme_system.dart';
 /// @date 2022/6/30
 /// @description 体系tab systemContent数据viewModel
 class SystemContentViewModel extends BaseViewModel {
-  final _model = SystemModel();
-
+  final _systemModel = SystemModel();
   late Paging<ParentTab> paging;
 
   SystemContentViewModel(super.context);
@@ -30,13 +29,14 @@ class SystemContentViewModel extends BaseViewModel {
   @override
   void onCleared() {
     paging.dispose();
-    _model.dispose();
+    _systemModel.dispose();
   }
 
   void requestData() async {
     LogTools.log("SystemContent", "requestData");
 
     // request systemContent list data.
-    paging.requestData(LoadStatus.refresh, (page) => _model.getParentTabAsync());
+    paging.requestData(
+        LoadStatus.refresh, (page) => _systemModel.getParentTabAsync());
   }
 }

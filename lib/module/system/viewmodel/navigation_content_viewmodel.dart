@@ -13,7 +13,7 @@ import 'package:playflutter/module/system/theme/theme_system.dart';
 /// @date 2022/6/30
 /// @description 体系tab navigationContent数据viewModel
 class NavigationContentViewModel extends BaseViewModel {
-  final _model = SystemModel();
+  final _systemModel = SystemModel();
   final viewStates = _NavigationContentViewState();
   late Paging<NavigationTab> paging;
 
@@ -33,7 +33,7 @@ class NavigationContentViewModel extends BaseViewModel {
   void onCleared() {
     viewStates.tabScrollController.dispose();
     viewStates.tagScrollController.dispose();
-    _model.dispose();
+    _systemModel.dispose();
   }
 
   void requestData() async {
@@ -43,7 +43,7 @@ class NavigationContentViewModel extends BaseViewModel {
     paging.requestData(
         LoadStatus.refresh,
         (page) => Future.delayed(const Duration(milliseconds: 500),
-            () => _model.getNavigationTabAsync()));
+            () => _systemModel.getNavigationTabAsync()));
   }
 
   /// tab点击切换index选中状态

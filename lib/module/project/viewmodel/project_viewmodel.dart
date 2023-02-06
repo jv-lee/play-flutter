@@ -9,7 +9,7 @@ import 'package:playflutter/module/project/theme/theme_project.dart';
 /// @date 2022/7/27
 /// @description
 class ProjectViewModel extends BaseViewModel {
-  final ProjectModel _model = ProjectModel();
+  final _projectModel = ProjectModel();
   final viewStates = _ProjectViewState();
 
   ProjectViewModel(super.context);
@@ -26,7 +26,7 @@ class ProjectViewModel extends BaseViewModel {
     Preferences.requestCache<TabData>(
         localKey: ThemeProject.constants.projectTab,
         createJson: (json) => TabData.fromJson(json),
-        requestFuture: _model.getProjectTabDataAsync(),
+        requestFuture: _projectModel.getProjectTabDataAsync(),
         callback: (value) {
           if (value.data.isEmpty) {
             viewStates.pageStatus = PageStatus.empty;

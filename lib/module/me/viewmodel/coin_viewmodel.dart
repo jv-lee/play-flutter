@@ -15,7 +15,7 @@ import 'package:provider/provider.dart';
 /// @date 2022/7/15
 /// @description 积分页面viewModel
 class CoinViewModel extends BaseViewModel {
-  final _model = MeModel();
+  final _meModel = MeModel();
   final viewStates = _CoinViewState();
   late AccountService accountService;
   late Paging<CoinRecord> paging;
@@ -38,7 +38,7 @@ class CoinViewModel extends BaseViewModel {
   void onCleared() {
     accountService.removeListener(notifyListeners);
     paging.dispose();
-    _model.dispose();
+    _meModel.dispose();
   }
 
   void requestData(LoadStatus status) async {
@@ -46,7 +46,7 @@ class CoinViewModel extends BaseViewModel {
 
     // request coin list data.
     paging.requestData(status,
-        (page) => _model.getCoinRecordAsync(page).then((value) => value.data));
+        (page) => _meModel.getCoinRecordAsync(page).then((value) => value.data));
   }
 }
 

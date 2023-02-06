@@ -9,7 +9,7 @@ import 'package:playflutter/module/official/theme/theme_official.dart';
 /// @date 2022/7/27
 /// @description
 class OfficialViewModel extends BaseViewModel {
-  final OfficialModel _model = OfficialModel();
+  final _officialModel = OfficialModel();
   final viewStates = _OfficialViewState();
 
   OfficialViewModel(super.context);
@@ -26,7 +26,7 @@ class OfficialViewModel extends BaseViewModel {
     Preferences.requestCache<TabData>(
         localKey: ThemeOfficial.constants.officialTab,
         createJson: (json) => TabData.fromJson(json),
-        requestFuture: _model.getOfficialTabDataAsync(),
+        requestFuture: _officialModel.getOfficialTabDataAsync(),
         callback: (value) {
           if (value.data.isEmpty) {
             viewStates.pageStatus = PageStatus.empty;
