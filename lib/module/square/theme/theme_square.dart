@@ -7,6 +7,7 @@ import 'package:playflutter/core/tools/localizations.dart';
 class ThemeSquare {
   static _Constants constants = _Constants();
   static _Strings strings = _Strings();
+  static _Routes routes = _Routes();
 }
 
 class _Constants {
@@ -24,4 +25,9 @@ class _Strings {
   String shareRequestSuccess = "square_share_request_success".localized();
   String createShareDescription = "square_create_share_description".localized();
   String shareInputEmpty = "square_share_input_empty".localized();
+}
+
+class _Routes {
+  String myShare = "/myShare";
+  String createShare = "/createShare";
 }

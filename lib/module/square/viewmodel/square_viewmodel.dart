@@ -13,7 +13,6 @@ import 'package:playflutter/module/account/account_route_names.dart';
 import 'package:playflutter/module/account/service/account_service.dart';
 import 'package:playflutter/module/main/model/entity/main_tab_page.dart';
 import 'package:playflutter/module/square/model/square_model.dart';
-import 'package:playflutter/module/square/square_route_names.dart';
 import 'package:playflutter/module/square/theme/theme_square.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
@@ -58,7 +57,7 @@ class SquareViewModel extends BaseViewModel {
 
   void navigationCreateShared() {
     if (accountService.viewStates.isLogin) {
-      Navigator.pushNamed(context, SquareRouteNames.create_share);
+      Navigator.pushNamed(context, ThemeSquare.routes.createShare);
     } else {
       Toast.show(ThemeCommon.strings.loginAlert);
       Navigator.pushNamed(context, AccountRouteNames.login);

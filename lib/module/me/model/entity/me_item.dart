@@ -1,7 +1,7 @@
 import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/module/me/me_route_names.dart';
 import 'package:playflutter/module/me/theme/theme_me.dart';
-import 'package:playflutter/module/square/square_route_names.dart';
+import 'package:playflutter/module/square/theme/theme_square.dart';
 import 'package:playflutter/module/todo/todo_route_names.dart';
 
 /// @author jv.lee
@@ -26,7 +26,7 @@ class MeItem {
         name: ThemeMe.strings.meItemCollect,
         iconSvgPath: ThemeMe.images.collectSvg));
     list.add(MeItem(
-        route: SquareRouteNames.my_share,
+        route: ThemeSquare.routes.myShare,
         name: ThemeMe.strings.meItemShare,
         iconSvgPath: ThemeMe.images.shareSvg));
     list.add(MeItem(
