@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/extensions/data_format_extensions.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
-import 'package:playflutter/module/details/details_route_names.dart';
-import 'package:playflutter/module/project/viewmodel/project_list_viewmodel.dart';
 import 'package:playflutter/core/widget/item/content_picture_item.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
+import 'package:playflutter/module/details/theme/theme_details.dart';
+import 'package:playflutter/module/project/viewmodel/project_list_viewmodel.dart';
 
 /// @author jv.lee
 /// @date 2022/7/26
@@ -50,7 +50,7 @@ class _ProjectListState extends BasePageState<ProjectListPage>
                       return ContentPictureItem(
                           content: item,
                           onItemClick: (item) => Navigator.pushNamed(
-                              context, DetailsRouteNames.details,
+                              context, ThemeDetails.routes.details,
                               arguments: item.transformDetails()));
                     }))));
   }

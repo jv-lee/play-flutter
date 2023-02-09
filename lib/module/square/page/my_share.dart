@@ -4,7 +4,7 @@ import 'package:playflutter/core/extensions/data_format_extensions.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/widget/item/action_text_item.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
-import 'package:playflutter/module/details/details_route_names.dart';
+import 'package:playflutter/module/details/theme/theme_details.dart';
 import 'package:playflutter/module/me/theme/theme_me.dart';
 import 'package:playflutter/module/square/viewmodel/my_share_viewmodel.dart';
 
@@ -47,7 +47,7 @@ class _MySharePageState extends BasePageState<MySharePage> {
                           slidingPaneController:
                               viewModel.slidingPaneController,
                           onItemClick: (item) => Navigator.pushNamed(
-                              context, DetailsRouteNames.details,
+                              context, ThemeDetails.routes.details,
                               arguments: item.transformDetails()),
                           onItemDelete: (item) =>
                               viewModel.requestDeleteItem(item));

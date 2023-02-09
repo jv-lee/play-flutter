@@ -9,7 +9,7 @@ import 'package:playflutter/core/widget/common/header/app_text_action_bar.dart';
 import 'package:playflutter/core/widget/common/transparent_scaffold.dart';
 import 'package:playflutter/core/widget/item/content_item.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
-import 'package:playflutter/module/details/details_route_names.dart';
+import 'package:playflutter/module/details/theme/theme_details.dart';
 import 'package:playflutter/module/square/theme/theme_square.dart';
 import 'package:playflutter/module/square/viewmodel/square_viewmodel.dart';
 
@@ -59,7 +59,7 @@ class _SquareState extends BasePageState<SquarePage>
                         return ContentItem(
                             content: item,
                             onItemClick: (item) => Navigator.pushNamed(
-                                context, DetailsRouteNames.details,
+                                context, ThemeDetails.routes.details,
                                 arguments: item.transformDetails()));
                       })),
               AppHeaderContainer(

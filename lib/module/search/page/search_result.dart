@@ -6,7 +6,7 @@ import 'package:playflutter/core/tools/paging/paging_data.dart';
 import 'package:playflutter/core/widget/item/content_item.dart';
 import 'package:playflutter/core/widget/item/content_picture_item.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
-import 'package:playflutter/module/details/details_route_names.dart';
+import 'package:playflutter/module/details/theme/theme_details.dart';
 import 'package:playflutter/module/search/viewmodel/search_result_viewmodel.dart';
 
 /// @author jv.lee
@@ -45,7 +45,7 @@ class _SearchResultState extends BasePageState<SearchResultPage> {
             itemBuilder: (BuildContext context, int index) {
               Content item = viewModel.viewStates.paging.data[index];
               itemClick(content) {
-                Navigator.pushNamed(context, DetailsRouteNames.details,
+                Navigator.pushNamed(context, ThemeDetails.routes.details,
                     arguments: item.transformDetails());
               }
 

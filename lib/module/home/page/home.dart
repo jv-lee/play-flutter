@@ -11,7 +11,7 @@ import 'package:playflutter/core/widget/common/header/app_text_action_bar.dart';
 import 'package:playflutter/core/widget/common/transparent_scaffold.dart';
 import 'package:playflutter/core/widget/item/content_item.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
-import 'package:playflutter/module/details/details_route_names.dart';
+import 'package:playflutter/module/details/theme/theme_details.dart';
 import 'package:playflutter/module/home/model/entity/home_category.dart';
 import 'package:playflutter/module/home/theme/theme_home.dart';
 import 'package:playflutter/module/home/viewmodel/home_viewmodel.dart';
@@ -66,7 +66,7 @@ class _HomeState extends BasePageState<HomePage>
                         buildBanner(
                             viewModel,
                             (item) => Navigator.pushNamed(
-                                context, DetailsRouteNames.details,
+                                context, ThemeDetails.routes.details,
                                 arguments: item.transformDetails())),
                         buildCategory(viewModel,
                             (item) => Navigator.pushNamed(context, item.link))
@@ -76,7 +76,7 @@ class _HomeState extends BasePageState<HomePage>
                         return ContentItem(
                             content: item,
                             onItemClick: (item) => Navigator.pushNamed(
-                                context, DetailsRouteNames.details,
+                                context, ThemeDetails.routes.details,
                                 arguments: item.transformDetails()));
                       })),
               AppHeaderContainer(
