@@ -4,7 +4,7 @@ import 'package:playflutter/core/tools/localizations.dart';
 
 /// @author jv.lee
 /// @date 2023/1/31
-/// @description
+/// @description 首页模块 资源引用类
 class ThemeHome {
   static _Constants constants = _Constants();
   static _Dimens dimens = _Dimens();
