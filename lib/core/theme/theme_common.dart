@@ -5,7 +5,7 @@ import 'package:playflutter/core/tools/localizations.dart';
 
 /// @author jv.lee
 /// @date 2023/1/31
-/// @description 项目通用资源引用
+/// @description 项目通用 资源引用类
 class ThemeCommon {
   static _Constants constants = _Constants();
   static _Dimens dimens =_Dimens();
