@@ -9,8 +9,8 @@ import 'package:playflutter/core/tools/log_tools.dart';
 import 'package:playflutter/core/tools/paging/local_paging.dart';
 import 'package:playflutter/core/tools/paging/paging.dart';
 import 'package:playflutter/core/tools/paging/paging_data.dart';
-import 'package:playflutter/module/account/account_route_names.dart';
 import 'package:playflutter/module/account/service/account_service.dart';
+import 'package:playflutter/module/account/theme/theme_account.dart';
 import 'package:playflutter/module/main/model/entity/main_tab_page.dart';
 import 'package:playflutter/module/square/model/square_model.dart';
 import 'package:playflutter/module/square/theme/theme_square.dart';
@@ -60,7 +60,7 @@ class SquareViewModel extends BaseViewModel {
       Navigator.pushNamed(context, ThemeSquare.routes.createShare);
     } else {
       Toast.show(ThemeCommon.strings.loginAlert);
-      Navigator.pushNamed(context, AccountRouteNames.login);
+      Navigator.pushNamed(context, ThemeAccount.routes.login);
     }
   }
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/extensions/exception_extensions.dart';
 import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
-import 'package:playflutter/module/account/account_route_names.dart';
 import 'package:playflutter/module/account/model/account_model.dart';
 import 'package:playflutter/module/account/service/account_service.dart';
 import 'package:playflutter/module/account/theme/theme_account.dart';
@@ -62,7 +61,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   void navigationRegister() {
-    Navigator.pushNamed(context, AccountRouteNames.register).then((value) {
+    Navigator.pushNamed(context, ThemeAccount.routes.register).then((value) {
       // 获取注册页面结果回调直接关闭login页面
       if (value != null && value as bool) {
         Navigator.pop(context);

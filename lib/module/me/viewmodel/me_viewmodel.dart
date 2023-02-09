@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/extensions/function_extensions.dart';
 import 'package:playflutter/core/theme/theme_common.dart';
-import 'package:playflutter/module/account/account_route_names.dart';
 import 'package:playflutter/module/account/service/account_service.dart';
+import 'package:playflutter/module/account/theme/theme_account.dart';
 import 'package:playflutter/module/me/me_route_names.dart';
 import 'package:playflutter/module/me/model/entity/me_item.dart';
 import 'package:playflutter/module/me/theme/theme_me.dart';
@@ -34,7 +34,7 @@ class MeViewModel extends BaseViewModel {
 
   void headerClick() {
     if (!viewStates.isLogin) {
-      Navigator.pushNamed(context, AccountRouteNames.login);
+      Navigator.pushNamed(context, ThemeAccount.routes.login);
     }
   }
 
@@ -50,7 +50,7 @@ class MeViewModel extends BaseViewModel {
       Navigator.pushNamed(context, route);
     } else {
       Toast.show(ThemeCommon.strings.loginAlert);
-      Navigator.pushNamed(context, AccountRouteNames.login);
+      Navigator.pushNamed(context, ThemeAccount.routes.login);
     }
   }
 

@@ -4,11 +4,12 @@ import 'package:playflutter/core/tools/localizations.dart';
 
 /// @author jv.lee
 /// @date 2023/1/31
-/// @description
+/// @description 账户模块 资源引用类
 class ThemeAccount {
   static _Constants constants = _Constants();
   static _Strings strings = _Strings();
   static _Images images = _Images();
+  static _Routes routes = _Routes();
 }
 
 class _Constants {
@@ -33,4 +34,9 @@ class _Strings {
 class _Images {
   String usernameSvg = "assets/images/account/ic_account_username.svg";
   String passwordSvg = "assets/images/account/ic_account_password.svg";
+}
+
+class _Routes {
+  String login = "/login";
+  String register = "/register";
 }
