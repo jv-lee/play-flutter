@@ -1,5 +1,5 @@
 import 'package:playflutter/module/home/theme/theme_home.dart';
-import 'package:playflutter/module/official/official_route_names.dart';
+import 'package:playflutter/module/official/theme/theme_official.dart';
 import 'package:playflutter/module/project/project_route_names.dart';
 
 /// @author jv.lee
@@ -17,7 +17,7 @@ class HomeCategory {
     list.add(HomeCategory(
         name: ThemeHome.strings.officialCategoryName,
         iconRes: ThemeHome.images.officialSvg,
-        link: OfficialRouteNames.official));
+        link: ThemeOfficial.routes.official));
     list.add(HomeCategory(
         name: ThemeHome.strings.projectCategoryName,
         iconRes: ThemeHome.images.projectSvg,
