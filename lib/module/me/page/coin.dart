@@ -9,7 +9,6 @@ import 'package:playflutter/core/widget/common/ink_well_container.dart';
 import 'package:playflutter/core/widget/common/transparent_scaffold.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
 import 'package:playflutter/module/details/theme/theme_details.dart';
-import 'package:playflutter/module/me/me_route_names.dart';
 import 'package:playflutter/module/me/theme/theme_me.dart';
 import 'package:playflutter/module/me/viewmodel/coin_viewmodel.dart';
 
@@ -129,7 +128,7 @@ class _CoinPageState extends BasePageState<CoinPage> {
               Expanded(
                   child: InkWellContainer(
                       onTap: () =>
-                          Navigator.pushNamed(context, MeRouteNames.coin_rank),
+                          Navigator.pushNamed(context, ThemeMe.routes.coinRank),
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(
                               ThemeCommon.dimens.offsetRadiusMedium),

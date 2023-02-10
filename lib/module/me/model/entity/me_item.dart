@@ -1,5 +1,4 @@
 import 'package:playflutter/core/theme/theme_common.dart';
-import 'package:playflutter/module/me/me_route_names.dart';
 import 'package:playflutter/module/me/theme/theme_me.dart';
 import 'package:playflutter/module/square/theme/theme_square.dart';
 import 'package:playflutter/module/todo/todo_route_names.dart';
@@ -18,11 +17,11 @@ class MeItem {
   static List<MeItem> getMeItems() {
     var list = <MeItem>[];
     list.add(MeItem(
-        route: MeRouteNames.coin,
+        route: ThemeMe.routes.coin,
         name: ThemeMe.strings.meItemCoin,
         iconSvgPath: ThemeMe.images.coinSvg));
     list.add(MeItem(
-        route: MeRouteNames.collect,
+        route: ThemeMe.routes.collect,
         name: ThemeMe.strings.meItemCollect,
         iconSvgPath: ThemeMe.images.collectSvg));
     list.add(MeItem(
@@ -34,7 +33,7 @@ class MeItem {
         name: ThemeMe.strings.meItemTodo,
         iconSvgPath: ThemeMe.images.todoSvg));
     list.add(MeItem(
-        route: MeRouteNames.settings,
+        route: ThemeMe.routes.settings,
         name: ThemeMe.strings.meItemSettings,
         iconSvgPath: ThemeMe.images.settingsSvg));
     return list;

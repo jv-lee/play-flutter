@@ -5,7 +5,6 @@ import 'package:playflutter/core/extensions/function_extensions.dart';
 import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/module/account/service/account_service.dart';
 import 'package:playflutter/module/account/theme/theme_account.dart';
-import 'package:playflutter/module/me/me_route_names.dart';
 import 'package:playflutter/module/me/model/entity/me_item.dart';
 import 'package:playflutter/module/me/theme/theme_me.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +39,7 @@ class MeViewModel extends BaseViewModel {
 
   void itemClick(route) {
     // 无需校验登陆状态
-    if (route == MeRouteNames.settings) {
+    if (route == ThemeMe.routes.settings) {
       Navigator.pushNamed(context, route);
       return;
     }

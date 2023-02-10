@@ -4,12 +4,13 @@ import 'package:playflutter/core/tools/localizations.dart';
 
 /// @author jv.lee
 /// @date 2023/1/31
-/// @description
+/// @description 我的模块 资源引用类
 class ThemeMe {
   static _Constants constants = _Constants();
   static _Dimens dimens = _Dimens();
   static _Images images = _Images();
   static _Strings strings = _Strings();
+  static _Routes routes = _Routes();
 }
 
 class _Constants {
@@ -63,4 +64,11 @@ class _Strings {
   String coinToRankText = "coin_to_rank_text".localized();
   String coinRankTitle = "coin_rank_title".localized();
   String coinHelpTitle = "coin_help_title".localized();
+}
+
+class _Routes {
+  String coin = "/coin";
+  String coinRank = "/coinRank";
+  String collect = "/collect";
+  String settings = "/settings";
 }
