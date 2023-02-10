@@ -1,6 +1,6 @@
 import 'package:playflutter/module/home/theme/theme_home.dart';
 import 'package:playflutter/module/official/theme/theme_official.dart';
-import 'package:playflutter/module/project/project_route_names.dart';
+import 'package:playflutter/module/project/theme/theme_project.dart';
 
 /// @author jv.lee
 /// @date 2022/6/27
@@ -21,7 +21,7 @@ class HomeCategory {
     list.add(HomeCategory(
         name: ThemeHome.strings.projectCategoryName,
         iconRes: ThemeHome.images.projectSvg,
-        link: ProjectRouteNames.project));
+        link: ThemeProject.routes.project));
     return list;
   }
 }
