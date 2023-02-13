@@ -16,7 +16,7 @@ import 'package:playflutter/module/home/model/entity/home_category.dart';
 import 'package:playflutter/module/home/theme/theme_home.dart';
 import 'package:playflutter/module/home/viewmodel/home_viewmodel.dart';
 import 'package:playflutter/module/home/widget/item/category_item.dart';
-import 'package:playflutter/module/search/search_route_names.dart';
+import 'package:playflutter/module/search/theme/theme_search.dart';
 
 /// @author jv.lee
 /// @date 2022/4/26
@@ -84,7 +84,7 @@ class _HomeState extends BasePageState<HomePage>
                       title: ThemeHome.strings.headerText,
                       navigationSvgPath: ThemeCommon.images.searchSvg,
                       onNavigationClick: () => Navigator.pushNamed(
-                          context, SearchRouteNames.search)))
+                          context, ThemeSearch.routes.search)))
             ])));
   }
 

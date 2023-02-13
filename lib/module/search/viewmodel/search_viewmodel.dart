@@ -7,7 +7,6 @@ import 'package:playflutter/module/search/model/entity/search_history.dart';
 import 'package:playflutter/module/search/model/entity/search_hot_ui.dart';
 import 'package:playflutter/module/search/model/search_model.dart';
 import 'package:playflutter/module/search/page/search.dart';
-import 'package:playflutter/module/search/search_route_names.dart';
 import 'package:playflutter/module/search/theme/theme_search.dart';
 
 /// @author jv.lee
@@ -32,7 +31,7 @@ class SearchViewModel extends BaseViewModel {
   void navigationSearchKey(String searchKey) {
     _searchHistoryDao.insert(SearchHistory.buildSearchHistory(searchKey));
     _requestSearchHistoryList();
-    Navigator.pushNamed(context, SearchRouteNames.search_result,
+    Navigator.pushNamed(context, ThemeSearch.routes.searchResult,
         arguments: {SearchPage.ARG_SEARCH_KEY: searchKey});
   }
 
