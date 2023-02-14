@@ -1,4 +1,4 @@
-package com.lee.playfluttter
+package com.lee.playflutter
 
 import io.flutter.embedding.android.FlutterActivity
 
