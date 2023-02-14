@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:playflutter/core/base/base_module.dart';
 import 'package:playflutter/core/model/entity/parent_tab.dart';
 import 'package:playflutter/module/system/page/system_content_tab.dart';
-import 'package:playflutter/module/system/system_route_names.dart';
+import 'package:playflutter/module/system/theme/theme_system.dart';
 
 /// @author jv.lee
 /// @date 2023/1/5
@@ -13,7 +13,7 @@ class SystemModule extends BaseModule {
 
   @override
   Map<String, PageBuilder> pageBuilders() => {
-        SystemRouteNames.system_content_tab: (settings) {
+        ThemeSystem.routes.systemContentTab: (settings) {
           final arg = settings.arguments as ParentTab;
           return CupertinoPageRoute(
               settings: settings,

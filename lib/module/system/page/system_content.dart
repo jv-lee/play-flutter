@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
 import 'package:playflutter/core/widget/common/header/app_header_spacer.dart';
 import 'package:playflutter/core/widget/status/super_list_view.dart';
-import 'package:playflutter/module/system/system_route_names.dart';
+import 'package:playflutter/module/system/theme/theme_system.dart';
 import 'package:playflutter/module/system/viewmodel/system_content_viewmodel.dart';
 import 'package:playflutter/module/system/widget/item/parent_tab_item.dart';
 
@@ -36,7 +36,7 @@ class _SystemContentState extends BasePageState<SystemContentPage>
               return ParentTabItem(
                   parentTab: item,
                   onItemClick: (parentTab) => Navigator.of(context).pushNamed(
-                      SystemRouteNames.system_content_tab,
+                      ThemeSystem.routes.systemContentTab,
                       arguments: parentTab));
             }));
   }
