@@ -4,12 +4,13 @@ import 'package:playflutter/core/tools/localizations.dart';
 
 /// @author jv.lee
 /// @date 2023/1/31
-/// @description
+/// @description 笔记模块 资源引用类
 class ThemeTodo {
   static _Constants constants = _Constants();
   static _Dimens dimens = _Dimens();
   static _Images images = _Images();
   static _Strings strings = _Strings();
+  static _Routes routes = _Routes();
 }
 
 class _Constants {
@@ -55,4 +56,9 @@ class _Strings {
   String itemComplete = "todo_item_complete".localized();
   String itemUpcoming = "todo_item_upcoming".localized();
   String itemLevelHeight = "todo_item_level_height".localized();
+}
+
+class _Routes {
+  String todo = "/todo";
+  String createTodo = "/create_todo";
 }

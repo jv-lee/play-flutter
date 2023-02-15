@@ -1,7 +1,7 @@
 import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/module/me/theme/theme_me.dart';
 import 'package:playflutter/module/square/theme/theme_square.dart';
-import 'package:playflutter/module/todo/todo_route_names.dart';
+import 'package:playflutter/module/todo/theme/theme_todo.dart';
 
 /// @author jv.lee
 /// @date 2022/7/15
@@ -29,7 +29,7 @@ class MeItem {
         name: ThemeMe.strings.meItemShare,
         iconSvgPath: ThemeMe.images.shareSvg));
     list.add(MeItem(
-        route: TodoRouteNames.todo,
+        route: ThemeTodo.routes.todo,
         name: ThemeMe.strings.meItemTodo,
         iconSvgPath: ThemeMe.images.todoSvg));
     list.add(MeItem(

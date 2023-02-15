@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:playflutter/core/base/base_module.dart';
 import 'package:playflutter/module/todo/page/create_todo.dart';
 import 'package:playflutter/module/todo/page/todo.dart';
-import 'package:playflutter/module/todo/todo_route_names.dart';
+import 'package:playflutter/module/todo/theme/theme_todo.dart';
 
 /// @author jv.lee
 /// @date 2023/1/5
@@ -13,9 +13,9 @@ class TodoModule extends BaseModule {
 
   @override
   Map<String, PageBuilder> pageBuilders() => {
-        TodoRouteNames.todo: (settings) => CupertinoPageRoute(
+        ThemeTodo.routes.todo: (settings) => CupertinoPageRoute(
             settings: settings, builder: (_) => const TodoPage()),
-        TodoRouteNames.create_todo: (settings) => CupertinoPageRoute(
+        ThemeTodo.routes.createTodo: (settings) => CupertinoPageRoute(
             settings: settings, builder: (_) => const CreateTodoPage())
       };
 }
