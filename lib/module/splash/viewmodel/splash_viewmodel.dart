@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:night/night.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/module/account/service/account_service.dart';
-import 'package:playflutter/module/main/main_route_names.dart';
+import 'package:playflutter/module/main/theme/theme_main.dart';
 import 'package:playflutter/module/splash/theme/theme_splash.dart';
 import 'package:provider/provider.dart';
 
@@ -58,7 +58,7 @@ class SplashViewModel extends BaseViewModel {
 
   /// 导航至首页
   void navigationMain() {
-    Navigator.popAndPushNamed(context, MainRouteNames.main);
+    Navigator.popAndPushNamed(context, ThemeMain.routes.main);
   }
 }
 

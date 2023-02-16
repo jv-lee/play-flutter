@@ -1,6 +1,6 @@
 import 'package:playflutter/core/base/base_module.dart';
 import 'package:playflutter/core/route/route_animation.dart';
-import 'package:playflutter/module/main/main_route_names.dart';
+import 'package:playflutter/module/main/theme/theme_main.dart';
 import 'package:playflutter/module/main/page/main.dart';
 
 /// @author jv.lee
@@ -12,7 +12,7 @@ class MainModule extends BaseModule {
 
   @override
   Map<String, PageBuilder> pageBuilders() => {
-        MainRouteNames.main: (settings) => CupertinoMainPageRoute(
+        ThemeMain.routes.main: (settings) => CupertinoMainPageRoute(
             settings: settings, builder: (_) => const MainPage()),
       };
 }
