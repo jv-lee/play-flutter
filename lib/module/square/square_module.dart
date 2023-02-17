@@ -6,7 +6,7 @@ import 'package:playflutter/module/square/theme/theme_square.dart';
 
 /// @author jv.lee
 /// @date 2023/1/5
-/// @description
+/// @description 广场 模块类
 class SquareModule extends BaseModule {
   @override
   String localizationFileName() => "square";

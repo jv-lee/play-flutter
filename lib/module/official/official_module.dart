@@ -5,7 +5,7 @@ import 'package:playflutter/module/official/theme/theme_official.dart';
 
 /// @author jv.lee
 /// @date 2023/1/5
-/// @description
+/// @description 公众号 模块类
 class OfficialModule extends BaseModule {
   @override
   String localizationFileName() => "";

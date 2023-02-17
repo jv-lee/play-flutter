@@ -5,7 +5,7 @@ import 'package:playflutter/module/splash/theme/theme_splash.dart';
 
 /// @author jv.lee
 /// @date 2023/1/5
-/// @description
+/// @description 闪屏 模块类
 class SplashModule extends BaseModule {
   @override
   String localizationFileName() => "";

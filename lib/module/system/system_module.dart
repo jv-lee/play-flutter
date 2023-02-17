@@ -6,7 +6,7 @@ import 'package:playflutter/module/system/theme/theme_system.dart';
 
 /// @author jv.lee
 /// @date 2023/1/5
-/// @description
+/// @description 系统 模块类
 class SystemModule extends BaseModule {
   @override
   String localizationFileName() => "system";

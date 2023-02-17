@@ -6,7 +6,7 @@ import 'package:playflutter/module/details/theme/theme_details.dart';
 
 /// @author jv.lee
 /// @date 2023/1/5
-/// @description
+/// @description 详情页 模块类
 class DetailsModule extends BaseModule {
   @override
   String localizationFileName() => "details";

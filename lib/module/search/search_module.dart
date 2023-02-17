@@ -6,7 +6,7 @@ import 'package:playflutter/module/search/theme/theme_search.dart';
 
 /// @author jv.lee
 /// @date 2023/1/5
-/// @description
+/// @description 搜索模块类
 class SearchModule extends BaseModule {
   @override
   String localizationFileName() => "search";

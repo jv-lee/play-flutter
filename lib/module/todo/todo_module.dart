@@ -6,7 +6,7 @@ import 'package:playflutter/module/todo/theme/theme_todo.dart';
 
 /// @author jv.lee
 /// @date 2023/1/5
-/// @description
+/// @description 笔记 模块类
 class TodoModule extends BaseModule {
   @override
   String localizationFileName() => "todo";

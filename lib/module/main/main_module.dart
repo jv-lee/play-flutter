@@ -5,7 +5,7 @@ import 'package:playflutter/module/main/page/main.dart';
 
 /// @author jv.lee
 /// @date 2023/1/5
-/// @description
+/// @description main 模块类
 class MainModule extends BaseModule {
   @override
   String localizationFileName() => "";

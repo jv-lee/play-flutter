@@ -6,7 +6,7 @@ import 'package:playflutter/module/account/theme/theme_account.dart';
 
 /// @author jv.lee
 /// @date 2023/1/5
-/// @description
+/// @description 账户 模块类
 class AccountModule extends BaseModule {
   @override
   String localizationFileName() => "account";

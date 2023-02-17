@@ -5,7 +5,7 @@ import 'package:playflutter/module/project/theme/theme_project.dart';
 
 /// @author jv.lee
 /// @date 2023/1/5
-/// @description
+/// @description 项目 模块类
 class ProjectModule extends BaseModule {
   @override
   String localizationFileName() => "";

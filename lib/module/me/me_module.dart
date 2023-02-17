@@ -8,7 +8,7 @@ import 'package:playflutter/module/me/theme/theme_me.dart';
 
 /// @author jv.lee
 /// @date 2023/1/5
-/// @description
+/// @description 我的 模块类
 class MeModule extends BaseModule {
   @override
   String localizationFileName() => "me";
