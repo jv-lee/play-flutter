@@ -2,7 +2,7 @@
 
 /// @author jv.lee
 /// @date 2023/2/16
-/// @description
+/// @description 主页模块 资源引用类
 class ThemeMain {
   static _Routes routes = _Routes();
 }
