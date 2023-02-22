@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// @author jv.lee
 /// @date 2022/8/22
-/// @description
+/// @description 水波纹点击容器
 class InkWellContainer extends StatelessWidget {
   final Widget child;
   final Function onTap;

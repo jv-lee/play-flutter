@@ -3,7 +3,7 @@ import 'package:playflutter/core/widget/dialog/dialog_container.dart';
 
 /// @author jv.lee
 /// @date 2022/7/25
-/// @description 通用loadingDialog
+/// @description 通用加载进度弹窗
 class LoadingDialog extends Dialog {
   final bool isCancel;
 

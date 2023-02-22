@@ -6,7 +6,7 @@ import 'package:playflutter/core/widget/dialog/dialog_container.dart';
 
 /// @author jv.lee
 /// @date 2022/8/22
-/// @description
+/// @description 通用确认弹窗组件
 class ConfirmDialog extends Dialog {
   final String titleText;
   final String? contentText;

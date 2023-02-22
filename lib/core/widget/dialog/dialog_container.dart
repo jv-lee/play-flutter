@@ -6,7 +6,7 @@ import 'package:playflutter/core/theme/theme_common.dart';
 
 /// @author jv.lee
 /// @date 2022/8/15
-/// @description 通用dialog容器
+/// @description 通用弹窗容器
 class DialogContainer extends StatefulWidget {
   final double width;
   final double height;

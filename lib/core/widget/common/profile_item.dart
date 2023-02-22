@@ -7,7 +7,7 @@ import 'package:playflutter/core/theme/theme_common.dart';
 
 /// @author jv.lee
 /// @date 2022/7/14
-/// @description 设置item
+/// @description 通用设置item组件
 class ProfileItem extends StatelessWidget {
   final String? leftSvgPath;
   final String? rightSvgPath;
