@@ -7,7 +7,7 @@ import 'package:playflutter/module/system/model/system_model.dart';
 
 /// @author jv.lee
 /// @date 2022/7/26
-/// @description
+/// @description 体系tab 系统模块内容列表viewModel
 class SystemContentListViewModel extends BaseViewModel {
   final _systemModel = SystemModel();
   late int id;

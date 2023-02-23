@@ -5,7 +5,7 @@ import 'package:playflutter/core/model/entity/parent_tab.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
-/// @description
+/// @description 系统模块数据类
 class SystemModel extends BaseModel {
   Future<ParentTabData> getParentTabAsync() async {
     return requestGet(
