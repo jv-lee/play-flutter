@@ -7,7 +7,7 @@ import 'package:playflutter/module/system/page/system.dart';
 
 /// @author jv.lee
 /// @date 2022/8/2
-/// @description
+/// @description 主页多tabPage数据类
 class MainTabPage {
   late final IconData normalIcon;
   late final IconData pressIcon;

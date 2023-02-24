@@ -5,7 +5,7 @@ import 'package:playflutter/core/model/entity/search_hot.dart';
 
 /// @author jv.lee
 /// @date 2022/7/21
-/// @description
+/// @description 搜索模块数据处理类
 class SearchModel extends BaseModel {
   Future<ContentData> getSearchDataAsync(int page, String searchKey) async {
     return requestPost(

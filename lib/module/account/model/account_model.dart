@@ -4,7 +4,7 @@ import 'package:playflutter/core/model/entity/account.dart';
 
 /// @author jv.lee
 /// @date 2022/8/3
-/// @description 账户相关请求
+/// @description 账户相关请求数据处理model
 class AccountModel extends BaseModel {
   Future<AccountData> getAccountInfoAsync() async {
     return requestGet(

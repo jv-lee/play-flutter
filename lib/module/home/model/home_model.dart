@@ -4,7 +4,7 @@ import 'package:playflutter/core/model/entity/content.dart';
 
 /// @author jv.lee
 /// @date 2022/6/23
-/// @description home页面数据处理类
+/// @description 首页相关请求数据处理model
 class HomeModel extends BaseModel {
   Future<BannerData> getBannerDataAsync() async {
     return requestGet(
