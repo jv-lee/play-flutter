@@ -7,7 +7,7 @@ import 'package:playflutter/core/model/entity/data.dart';
 
 /// @author jv.lee
 /// @date 2022/8/5
-/// @description
+/// @description 我的模块请求数据处理model
 class MeModel extends BaseModel {
   /// 获取积分记录
   /// [page] 1 - *
