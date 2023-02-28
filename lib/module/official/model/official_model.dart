@@ -4,7 +4,7 @@ import 'package:playflutter/core/model/entity/tab.dart';
 
 /// @author jv.lee
 /// @date 2022/7/27
-/// @description
+/// @description 公众号模块请求数据处理model
 class OfficialModel extends BaseModel {
   Future<TabData> getOfficialTabDataAsync() async {
     return requestGet(
