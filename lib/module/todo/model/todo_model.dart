@@ -5,7 +5,7 @@ import 'package:playflutter/core/model/entity/todo.dart';
 
 /// @author jv.lee
 /// @date 2022/8/15
-/// @description todo模块api接口
+/// @description todo模块数据处理类
 class TodoModel extends BaseModel {
   ///  新增一个TODO
   ///  [title] 新增标题（必须）
