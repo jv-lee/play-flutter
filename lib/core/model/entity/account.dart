@@ -4,7 +4,7 @@ import 'package:playflutter/core/model/entity/base/base_data.dart';
 
 /// @author jv.lee
 /// @date 2022/8/3
-/// @description
+/// @description 账户信息实体类
 class AccountData extends BaseData {
   AccountData({
     required this.data,

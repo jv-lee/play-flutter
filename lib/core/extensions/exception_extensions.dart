@@ -5,7 +5,7 @@ import 'package:toast/toast.dart';
 
 /// @author jv.lee
 /// @date 2022/6/28
-/// @description
+/// @description 通用错误处理扩展函数类
 extension Exception on Object {
   onFailed(dynamic onError, Function(String message) callback) {
     if (onError is HttpException) {
