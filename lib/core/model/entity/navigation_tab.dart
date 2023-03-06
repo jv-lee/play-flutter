@@ -5,7 +5,7 @@ import 'package:playflutter/core/widget/scroll/scroll_to_index.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
-/// @description
+/// @description 系统分类导航子tab数据实体
 class NavigationTabData extends BaseData with PagingData<NavigationTab> {
   NavigationTabData({
     required this.data,

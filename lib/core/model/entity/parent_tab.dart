@@ -4,7 +4,7 @@ import 'package:playflutter/core/tools/paging/paging_data.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
-/// @description
+/// @description 系统分类导航父tab实体数据
 class ParentTabData extends BaseData with PagingData<ParentTab> {
   ParentTabData({
     required this.data,
