@@ -4,7 +4,7 @@ import 'package:playflutter/core/model/entity/content.dart';
 
 /// @author jv.lee
 /// @date 2022/8/12
-/// @description
+/// @description 分享数据实体类
 class ShareData extends BaseData {
   ShareData({
     required this.data,

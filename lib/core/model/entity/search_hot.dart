@@ -3,7 +3,7 @@ import 'package:playflutter/core/model/entity/base/base_data.dart';
 
 /// @author jv.lee
 /// @date 2022/10/12
-/// @description
+/// @description 搜索热词实体类
 class SearchHotData extends BaseData {
   SearchHotData({
     required this.data,
