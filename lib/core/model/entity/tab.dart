@@ -3,7 +3,7 @@ import 'package:playflutter/core/model/entity/base/base_data.dart';
 
 /// @author jv.lee
 /// @date 2022/7/27
-/// @description
+/// @description 公众号&项目模块tab实体
 class TabData extends BaseData {
   TabData({
     required this.data,
