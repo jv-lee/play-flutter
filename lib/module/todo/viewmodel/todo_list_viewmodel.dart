@@ -15,7 +15,7 @@ import 'package:playflutter/module/todo/theme/theme_todo.dart';
 
 /// @author jv.lee
 /// @date 2022/8/15
-/// @description
+/// @description 笔记列表viewModel
 class TodoListViewModel extends BaseViewModel implements TodoActionCallback {
   final _todoModel = TodoModel();
   final slidingPaneController = SlidingPaneController();

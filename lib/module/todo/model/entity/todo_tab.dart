@@ -2,7 +2,7 @@ import 'package:playflutter/module/todo/theme/theme_todo.dart';
 
 /// @author jv.lee
 /// @date 2022/8/18
-/// @description
+/// @description 笔记模块底部类型tab实体
 class TodoTab {
   late final String normalIcon;
   late final String pressIcon;

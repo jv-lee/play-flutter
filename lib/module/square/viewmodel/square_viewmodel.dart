@@ -19,7 +19,7 @@ import 'package:toast/toast.dart';
 
 /// @author jv.lee
 /// @date 2022/6/29
-/// @description
+/// @description 广场页面viewModel
 class SquareViewModel extends BaseViewModel {
   final _squareModel = SquareModel();
   late AccountService accountService;

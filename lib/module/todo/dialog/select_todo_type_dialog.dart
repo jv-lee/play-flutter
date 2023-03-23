@@ -7,7 +7,7 @@ import 'package:playflutter/core/widget/dialog/dialog_container.dart';
 
 /// @author jv.lee
 /// @date 2022/8/15
-/// @description
+/// @description 选择笔记类型弹窗
 class SelectTodoTypeDialog extends Dialog {
   final int startIndex;
   final ValueChanged<int> onSelectedItemChanged;
