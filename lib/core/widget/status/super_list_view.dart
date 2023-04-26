@@ -6,7 +6,7 @@ import 'package:playflutter/core/widget/status/status_controller.dart';
 
 /// @author jv.lee
 /// @date 2020/5/13
-/// @description 扩展ListView 可添加头部Widget/底部Widget
+/// @description 扩展ListView 可添加头部Widget/底部Widget 设置加载状态
 /// page加载状态 loading/error/empty/data
 /// item加载状态 loading/error/empty/noMore
 class SuperListView extends StatefulWidget {
@@ -23,6 +23,7 @@ class SuperListView extends StatefulWidget {
   final Widget? itemLoading;
   final Widget? itemError;
   final Widget? itemNoMore;
+  final Widget? itemEmpty;
   final List<Widget> headerChildren;
   final List<Widget> footerChildren;
   final int itemMoreCount = 1;
@@ -42,6 +43,7 @@ class SuperListView extends StatefulWidget {
       this.pageError,
       this.itemLoading,
       this.itemError,
+      this.itemEmpty,
       this.itemNoMore,
       this.isLoadMore = false,
       this.headerChildren = const <Widget>[],
@@ -157,18 +159,19 @@ class _SuperListViewState extends State<SuperListView> {
   Widget buildItemWidget(BuildContext context) {
     switch (_itemStatus) {
       case ItemStatus.loading:
-        return itemLoading(context);
+        return widget.itemLoading ?? itemLoading(context);
       case ItemStatus.empty:
-        return itemEmpty(context);
+        return widget.itemEmpty ?? itemEmpty(context);
       case ItemStatus.error:
-        return itemError(context, () {
-          widget.statusController.itemLoading();
-          widget.onItemReload.checkNullInvoke();
-        });
+        return widget.itemError ??
+            itemError(context, () {
+              widget.statusController.itemLoading();
+              widget.onItemReload.checkNullInvoke();
+            });
       case ItemStatus.end:
-        return itemNoMore(context);
+        return widget.itemNoMore ?? itemNoMore(context);
       default:
-        return itemEmpty(context);
+        return widget.itemEmpty ?? itemEmpty(context);
     }
   }
 }
