@@ -10,6 +10,7 @@ import 'package:playflutter/core/widget/status/status_controller.dart';
 /// page加载状态 loading/error/empty/data
 /// item加载状态 loading/error/empty/noMore
 class SuperListView extends StatefulWidget {
+
   final ScrollController? scrollController;
   final StatusController statusController;
   final int itemCount;
@@ -26,8 +27,10 @@ class SuperListView extends StatefulWidget {
   final Widget? itemEmpty;
   final List<Widget> headerChildren;
   final List<Widget> footerChildren;
-  final int itemMoreCount = 1;
   final bool isLoadMore;
+
+  // 默认底部状态item数量 (loading/loadMore/loadEnd)
+  final int itemMoreCount = 1;
 
   const SuperListView(
       {Key? key,
@@ -132,18 +135,18 @@ class _SuperListViewState extends State<SuperListView> {
                 widget.footerChildren.length +
                 widget.itemMoreCount,
             itemBuilder: (BuildContext context, int index) {
-              //创建headerItem
+              // 创建headerItem
               if (index < widget.headerChildren.length) {
                 return widget.headerChildren[index];
               }
 
-              //创建contentItem
+              // 创建contentItem
               if (index < (widget.headerChildren.length + widget.itemCount)) {
                 return widget.itemBuilder(
                     context, index - widget.headerChildren.length);
               }
 
-              //创建footerItem
+              // 创建footerItem
               if (index <
                   (widget.headerChildren.length +
                       widget.itemCount +
