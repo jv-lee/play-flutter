@@ -56,6 +56,17 @@ abstract class BaseViewModel with ChangeNotifier {
       function(context);
     });
   }
+
+  /// 根据范型获取获取路由携带的参数
+  T? getArgument<T>() {
+    return ModalRoute.of(context)?.settings.arguments as T?;
+  }
+
+  /// 获取路由携带的参数字典
+  Map<String, dynamic> getArguments() {
+    return ModalRoute.of(context)?.settings.arguments
+            as Map<String, dynamic>? ?? {};
+  }
 }
 
 /// 执行带context的函数，可用于延时执行等跨作用域函数
