@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:playflutter/core/base/base_module.dart';
-import 'package:playflutter/core/model/entity/details.dart';
 import 'package:playflutter/module/details/page/details.dart';
 import 'package:playflutter/module/details/theme/theme_details.dart';
 
@@ -14,10 +13,8 @@ class DetailsModule extends BaseModule {
   @override
   Map<String, PageBuilder> pageBuilders() => {
         ThemeDetails.routes.details: (settings) {
-          final arg = settings.arguments as DetailsData;
           return CupertinoPageRoute(
-              settings: settings,
-              builder: (_) => DetailsPage(detailsData: arg));
+              settings: settings, builder: (_) => const DetailsPage());
         }
       };
 }

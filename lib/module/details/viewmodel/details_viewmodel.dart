@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/extensions/exception_extensions.dart';
+import 'package:playflutter/core/extensions/function_extensions.dart';
 import 'package:playflutter/core/model/entity/details.dart';
 import 'package:playflutter/core/widget/dialog/loading_dialog.dart';
 import 'package:playflutter/module/details/theme/theme_details.dart';
@@ -18,13 +19,17 @@ import 'package:webview_flutter/webview_flutter.dart';
 class DetailsViewModel extends BaseViewModel {
   final _meModel = MeModel();
   final viewStates = _DetailsViewState();
-  final DetailsData detailsData;
 
-  DetailsViewModel(super.context, {required this.detailsData});
+  DetailsViewModel(super.context);
 
   @override
   void init() {
     if (Platform.isAndroid) WebView.platform = AndroidWebView();
+
+    runViewContext((context) => {
+          getArgument<DetailsData>()
+              ?.run((self) => viewStates.detailsData = self)
+        });
   }
 
   @override
@@ -35,7 +40,7 @@ class DetailsViewModel extends BaseViewModel {
   /// 收藏该文章
   void onCollect() async {
     // 校验是否已收藏
-    if (detailsData.isCollect) {
+    if (viewStates.detailsData.isCollect) {
       Toast.show(ThemeDetails.strings.menuCollectCompleted);
       return;
     }
@@ -48,8 +53,8 @@ class DetailsViewModel extends BaseViewModel {
         builder: (BuildContext context) => const LoadingDialog());
 
     // 发起收藏
-    _meModel.postCollectAsync(detailsData.id).then((value) {
-      detailsData.isCollect = true;
+    _meModel.postCollectAsync(viewStates.detailsData.id).then((value) {
+      viewStates.detailsData.isCollect = true;
       Toast.show(ThemeDetails.strings.menuCollectComplete);
     }).catchError((onError) {
       onFailedToast(onError);
@@ -59,7 +64,8 @@ class DetailsViewModel extends BaseViewModel {
   /// 分享该文章链接
   void onShare() {
     if (isDisposed()) return;
-    Share.share("${detailsData.title}:${detailsData.link}");
+    Share.share(
+        "${viewStates.detailsData.title}:${viewStates.detailsData.link}");
   }
 
   /// 监听webView是否可回退拦截back事件处理web回退逻辑
@@ -85,4 +91,5 @@ class DetailsViewModel extends BaseViewModel {
 
 class _DetailsViewState {
   WebViewController? webViewController;
+  DetailsData detailsData = DetailsData();
 }

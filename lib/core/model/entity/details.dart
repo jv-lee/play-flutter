@@ -10,8 +10,8 @@ class DetailsData {
 
   DetailsData(
       {this.id = empty_id,
-      required this.title,
-      required this.link,
+      this.title = "",
+      this.link = "",
       this.isCollect = false});
 
   static const String empty_id = "0";

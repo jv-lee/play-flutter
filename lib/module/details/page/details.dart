@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_page_state.dart';
-import 'package:playflutter/core/model/entity/details.dart';
 import 'package:playflutter/core/theme/theme_common.dart';
 import 'package:playflutter/core/widget/common/app_popup_menu_divider.dart';
 import 'package:playflutter/core/widget/common/route_lazy_load.dart';
@@ -16,9 +15,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 /// @date 2022/6/28
 /// @description 内容详情页
 class DetailsPage extends StatefulWidget {
-  final DetailsData detailsData;
-
-  const DetailsPage({super.key, required this.detailsData});
+  const DetailsPage({super.key});
 
   @override
   State<StatefulWidget> createState() => _DetailsState();
@@ -29,8 +26,7 @@ class _DetailsState extends BasePageState<DetailsPage>
   @override
   Widget build(BuildContext context) {
     return buildViewModel<DetailsViewModel>(
-        create: (context) =>
-            DetailsViewModel(context, detailsData: widget.detailsData),
+        create: (context) => DetailsViewModel(context),
         // ios直接使用内容页面，无需拦截back事件，android需要拦截back事件处理web页面回退
         viewBuild: (context, viewModel) => Platform.isIOS
             ? buildContent(viewModel)
@@ -42,7 +38,7 @@ class _DetailsState extends BasePageState<DetailsPage>
   Widget buildContent(DetailsViewModel viewModel) {
     return Scaffold(
         appBar: AppBar(
-            title: Text(viewModel.detailsData.title),
+            title: Text(viewModel.viewStates.detailsData.title),
             actions: [buildActionMenu(viewModel)],
             leading: BackButton(onPressed: () => Navigator.pop(context))),
         body: buildWebPage(viewModel));
@@ -86,7 +82,7 @@ class _DetailsState extends BasePageState<DetailsPage>
           child: RouteLazyLoad(
               child: WebView(
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  initialUrl: viewModel.detailsData.link,
+                  initialUrl: viewModel.viewStates.detailsData.link,
                   javascriptMode: JavascriptMode.unrestricted,
                   gestureNavigationEnabled: true,
                   onWebViewCreated: (controller) {
