@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:playflutter/core/base/base_viewmodel.dart';
 import 'package:playflutter/core/model/entity/content.dart';
 import 'package:playflutter/core/tools/paging/paging.dart';
@@ -20,9 +19,8 @@ class SearchResultViewModel extends BaseViewModel {
     viewStates.paging = Paging.build(notifier: this);
 
     runViewContext((context) {
-      final arguments =
-          (ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>);
-      viewStates.searchKey = arguments[SearchPage.ARG_SEARCH_KEY];
+      final arguments = getArguments();
+      viewStates.searchKey = arguments[SearchPage.ARG_SEARCH_KEY] ?? "";
       notifyListeners();
       requestData(LoadStatus.refresh);
     });
