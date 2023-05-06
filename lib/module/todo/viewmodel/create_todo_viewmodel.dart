@@ -22,8 +22,7 @@ class CreateTodoViewModel extends BaseViewModel {
   @override
   void init() {
     runViewContext((context) {
-      final todo = (ModalRoute.of(context)?.settings.arguments as Todo?);
-      _changeTodo(todo);
+      _changeTodo(getArgument<Todo>());
     });
   }
 
