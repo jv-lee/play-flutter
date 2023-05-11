@@ -25,6 +25,7 @@ class TodoTypeData {
   }
 }
 
+/// 笔记类型滑动选择类型实体
 class TodoTypeWheelData {
   late final int startIndex;
   late final List<TodoTypeData> todoTypes;
@@ -32,12 +33,16 @@ class TodoTypeWheelData {
   TodoTypeWheelData({required this.startIndex, required this.todoTypes});
 }
 
+/// 笔记类型
 enum TodoType { DEFAULT, WORK, LIFE, PLAY }
 
+/// 笔记状态
 enum TodoStatus { UPCOMING, COMPLETE }
 
+/// 笔记优先级
 enum TodoPriority { LOW, HIGH }
 
+/// 笔记修改结果实体 - （新增/修改）
 class TodoResult {
   var isAdd = true;
   final Todo todo;
