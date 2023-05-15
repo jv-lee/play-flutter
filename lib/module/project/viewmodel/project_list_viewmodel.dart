@@ -7,7 +7,7 @@ import 'package:playflutter/module/project/model/project_model.dart';
 
 /// @author jv.lee
 /// @date 2022/7/26
-/// @description
+/// @description 项目列表 数据viewModel
 class ProjectListViewModel extends BaseViewModel {
   final _projectModel = ProjectModel();
   late int id;

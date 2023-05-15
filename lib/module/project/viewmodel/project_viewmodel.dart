@@ -7,7 +7,7 @@ import 'package:playflutter/module/project/theme/theme_project.dart';
 
 /// @author jv.lee
 /// @date 2022/7/27
-/// @description
+/// @description 项目tab 数据viewModel
 class ProjectViewModel extends BaseViewModel {
   final _projectModel = ProjectModel();
   final viewStates = _ProjectViewState();
