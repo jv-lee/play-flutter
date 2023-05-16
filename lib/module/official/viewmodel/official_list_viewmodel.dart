@@ -7,7 +7,7 @@ import 'package:playflutter/module/official/model/official_model.dart';
 
 /// @author jv.lee
 /// @date 2022/7/26
-/// @description
+/// @description 公众号列表 数据viewModel
 class OfficialListViewModel extends BaseViewModel {
   final _officialModel = OfficialModel();
   late int id;

@@ -7,7 +7,7 @@ import 'package:playflutter/module/official/theme/theme_official.dart';
 
 /// @author jv.lee
 /// @date 2022/7/27
-/// @description
+/// @description 公众号tab 数据viewModel
 class OfficialViewModel extends BaseViewModel {
   final _officialModel = OfficialModel();
   final viewStates = _OfficialViewState();
