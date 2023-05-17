@@ -6,7 +6,7 @@ import 'package:playflutter/module/system/theme/theme_system.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
-/// @description
+/// @description 导航模块 导航tabItem控件
 class NavigationTabItem extends StatelessWidget {
   final NavigationTab navigationTab;
   final bool isSelected;

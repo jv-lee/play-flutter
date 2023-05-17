@@ -7,7 +7,7 @@ import 'package:playflutter/module/system/theme/theme_system.dart';
 
 /// @author jv.lee
 /// @date 2022/6/30
-/// @description
+/// @description 系统模块顶部 tabItem控件
 class ParentTabItem extends StatelessWidget {
   final ParentTab parentTab;
   final Function(ParentTab) onItemClick;
