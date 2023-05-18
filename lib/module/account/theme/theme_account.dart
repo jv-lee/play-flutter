@@ -13,7 +13,7 @@ class ThemeAccount {
 }
 
 class _Constants {
-   String accountData = "local:account-data";
+   String accountData = "local:account-data"; // 账户数据缓存key
 }
 
 class _Strings {

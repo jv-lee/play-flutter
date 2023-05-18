@@ -13,8 +13,8 @@ class ThemeHome {
 }
 
 class _Constants {
-  String homeList = "local:home-list";
-  String homeBanner = "local:home-banner";
+  String homeList = "local:home-list"; // 首页列表缓存key
+  String homeBanner = "local:home-banner"; // 首页banner 缓存key
 }
 
 class _Dimens {
