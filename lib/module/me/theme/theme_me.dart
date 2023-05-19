@@ -14,8 +14,8 @@ class ThemeMe {
 }
 
 class _Constants {
-  String coinList = "local:coin-list";
-  String collectList = "local:collect-list";
+  String coinList = "local:coin-list"; // 积分列表缓存key
+  String collectList = "local:collect-list"; // 收藏列表缓存key
 }
 
 class _Dimens {
