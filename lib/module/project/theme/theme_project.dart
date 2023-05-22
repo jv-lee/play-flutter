@@ -9,7 +9,7 @@ class ThemeProject {
 }
 
 class _Constants {
-  String projectTab = "local:project-tab";
+  String projectTab = "local:project-tab"; // 文件模块列表缓存key
 }
 
 class _Routes {

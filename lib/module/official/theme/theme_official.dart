@@ -9,7 +9,7 @@ class ThemeOfficial {
 }
 
 class _Constants {
-  String officialTab = "local:official-tab";
+  String officialTab = "local:official-tab"; // 公众号模块列表缓存key
 }
 
 class _Routes {
