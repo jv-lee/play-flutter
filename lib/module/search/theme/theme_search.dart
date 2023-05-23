@@ -12,7 +12,7 @@ class ThemeSearch {
 }
 
 class _Constants {
-  String searchHotList = "local:search-hot-list";
+  String searchHotList = "local:search-hot-list"; // 搜索热词缓存key
 }
 
 class _Strings {
