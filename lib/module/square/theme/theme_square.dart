@@ -11,8 +11,8 @@ class ThemeSquare {
 }
 
 class _Constants {
-  String squareList = "local:square-list";
-  String shareList = "local:share-list";
+  String squareList = "local:square-list"; // 广场列表缓存key
+  String shareList = "local:share-list"; // 我的分享列表缓存key
 }
 
 class _Strings {
