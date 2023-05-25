@@ -13,8 +13,8 @@ class ThemeSystem {
 }
 
 class _Constants {
-  String systemList = "local:system-list";
-  String navigationList = "local:navigation-list";
+  String systemList = "local:system-list"; // 系统列表缓存key
+  String navigationList = "local:navigation-list"; // 导航列表缓存key
 }
 
 class _Dimens {
