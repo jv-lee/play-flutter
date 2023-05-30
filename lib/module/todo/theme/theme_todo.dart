@@ -14,7 +14,7 @@ class ThemeTodo {
 }
 
 class _Constants {
-  String todoType = "local:todo-type";
+  String todoType = "local:todo-type"; // 选中笔记类型缓存key
 }
 
 class _Dimens {
