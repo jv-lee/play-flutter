@@ -25,6 +25,7 @@ class AccountService extends BaseModuleService {
   @override
   void init() {}
 
+  /// 请求账户信息，更新全局账户状态
   void requestAccountData(Function callback) async {
     _accountModel.getAccountInfoAsync().then((value) {
       updateAccountStatus(value, true);
@@ -43,6 +44,7 @@ class AccountService extends BaseModuleService {
     }).whenComplete(() => callback());
   }
 
+  /// 请求登出
   void requestLogout(BuildContext context) {
     // 显示loading弹窗
     showDialog(
@@ -58,6 +60,7 @@ class AccountService extends BaseModuleService {
     }).whenComplete(() => Navigator.pop(context));
   }
 
+  /// 更新当前账户状态信息
   void updateAccountStatus(AccountData? accountData, bool isLogin) {
     Preferences.saveCache(ThemeAccount.constants.accountData, accountData);
     Preferences.save(ThemeCommon.constants.isLogin, isLogin);
